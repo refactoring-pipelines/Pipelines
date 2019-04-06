@@ -1,8 +1,6 @@
-using System;
 using ApprovalTests;
 using ApprovalTests.Writers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pipelines;
 
 namespace Pipelines.Test
 {
@@ -13,7 +11,7 @@ namespace Pipelines.Test
         public void BasicPipelineTest()
         {
             var input = new InputPipe<string>("age");
-            var uppercase = input.Process(Int64.Parse);
+            var uppercase = input.Process(long.Parse);
             var collector = uppercase.Collect();
 
             Verify(input);
@@ -21,7 +19,6 @@ namespace Pipelines.Test
 
         private static void Verify(InputPipe<string> input)
         {
-            
             Approvals.Verify(WriterFactory.CreateTextWriter($@"
 digraph G {{
 node [style=filled, shape=rec]
@@ -29,10 +26,5 @@ node [style=filled, shape=rec]
 {input}
 }}".Trim(), "dot"));
         }
-
-        public static string ToUpper(string s)
-        {
-            return s.ToUpper();
-        }
-}
+    }
 }
