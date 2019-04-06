@@ -22,7 +22,12 @@ namespace Pipelines.Test
         private static void Verify(InputPipe<string> input)
         {
             
-            Approvals.Verify(WriterFactory.CreateTextWriter("digraph G {" + input + "}", "dot"));
+            Approvals.Verify(WriterFactory.CreateTextWriter($@"
+digraph G {{
+node [style=filled, shape=rec]
+
+{input}
+}}".Trim(), "dot"));
         }
 
         public static string ToUpper(string s)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Pipelines
 {
@@ -10,6 +11,8 @@ namespace Pipelines
         {
             _label = label;
         }
+
+        public override string NodeName => $@"""{typeof(T).Name} {_label}""";
 
         public void Send(T value)
         {
@@ -24,11 +27,11 @@ namespace Pipelines
 
         public override string ToString()
         {
-            var nodeName = $@"""{typeof(T).Name} {_label}""";
-            return $@"
-    {nodeName} -> ""CharacterFile.From()""  -> {{Collector1 , CharacterFile}}
-    {nodeName} [color=green,shape=rect, style=filled]
-";
+            var result = new StringBuilder();
+            result.AppendLine($@"{NodeName} [color=green]");
+            foreach (var listener in _listeners) result.AppendLine(listener.ToString());
+
+            return result.ToString();
         }
     }
 }
