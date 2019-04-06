@@ -1,4 +1,16 @@
 ﻿digraph G {
-    "String age" -> "CharacterFile.From()"  -> {Collector1 , CharacterFile}
-    "String age" [color=green,shape=rect, style=filled]
+node [style=filled, shape=rec]
+
+"String age" [color=green]
+
+"String age" -> "Int64.Parse()" -> {Int64, Collector0}
+
+Collector0 [label="Collector", color="#c361f4"]
+{ rank=same; "Int64.Parse()", Collector0}
+
+Int64 [color="#9fbff4"]
+"Int64.Parse()" [shape=invhouse]
+
+
+
 }

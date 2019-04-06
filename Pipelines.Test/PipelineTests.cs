@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Pipelines.Test
 {
+    //[UseReporter(typeof(VisualStudioReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -15,6 +16,8 @@ namespace Pipelines.Test
             var collector = uppercase.Collect();
 
             Verify(input);
+            input.Send("42");
+            Assert.AreEqual(42, collector.SingleResult);
         }
 
         private static void Verify(InputPipe<string> input)

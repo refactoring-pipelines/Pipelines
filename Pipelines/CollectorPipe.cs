@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Pipelines
 {
@@ -21,6 +22,8 @@ namespace Pipelines
         {
             _results.Add(value);
         }
+
+        public T SingleResult => _results.Single();
 
         public virtual string NodeName => $"Collector{_counter}";
 
