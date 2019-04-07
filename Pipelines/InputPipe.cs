@@ -12,7 +12,7 @@ namespace Pipelines
             _label = label;
         }
 
-        public override string Name => $@"""{typeof(T).Name} {_label}""";
+        public override string Name => $@"{typeof(T).Name} {_label}";
 
         public void Send(T value)
         {

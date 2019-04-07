@@ -2,10 +2,10 @@
 
 "String age" [color=green]
 "Int64.Parse() -> Int64" [shape=invhouse]
-Collector0 [label="Collector", color="#c361f4"]
+"Collector0" [label=Collector, color="#c361f4"]
 
-"Int64.Parse() -> Int64" -> Collector0
-{ rank=same; "Int64.Parse() -> Int64", Collector0}
+"Int64.Parse() -> Int64" -> "Collector0"
+{ rank=same; "Int64.Parse() -> Int64", "Collector0"}
 
 "String age" -> "Int64.Parse() -> Int64"
 

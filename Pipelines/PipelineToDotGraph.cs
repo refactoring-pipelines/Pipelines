@@ -5,18 +5,23 @@ namespace Pipelines
 {
     public static class DotGraph
     {
+        static string Quoted(string value)
+        {
+            return $@"""{value}""";
+        }
+
         private static readonly Dictionary<string, string> formatByType = new Dictionary<string, string>
         {
             {"InputPipe`1", @"color=green"},
             {"FunctionPipe`2", @"shape=invhouse"},
-            {"CollectorPipe`1", @"label=""Collector"", color=""#c361f4"""}
+            {"CollectorPipe`1", @"label=Collector, color=""#c361f4"""},
         };
 
         private static void AppendFormat(ILabeledNode node, StringBuilder result)
         {
             var format =
                 formatByType.GetValueOrDefault(node.GetType().Name) ?? "";
-            result.AppendLine($@"{node.Name} [{format}]");
+            result.AppendLine($@"{Quoted(node.Name)} [{format}]");
         }
 
         public static string FromPipeline<T>(InputPipe<T> root)
@@ -43,9 +48,9 @@ digraph G {{ node [style=filled, shape=rec]
 
             foreach (var listener in node.Listeners)
             {
-                result.AppendLine(node.Name + " -> " + listener.Name);
+                result.AppendLine(Quoted(node.Name) + " -> " + Quoted(listener.Name));
                 if (listener.GetType().Name == "CollectorPipe`1")
-                    result.AppendLine($@"{{ rank=same; {node.Name}, {listener.Name}}}");
+                    result.AppendLine($@"{{ rank=same; {Quoted(node.Name)}, {Quoted(listener.Name)}}}");
             }
 
             result.AppendLine();

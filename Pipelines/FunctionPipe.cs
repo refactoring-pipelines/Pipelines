@@ -15,7 +15,7 @@ namespace Pipelines
             predecessor.AddListener(this);
         }
 
-        public override string Name => $@"""{_func.Method.DeclaringType.Name}.{_func.Method.Name}() -> {typeof(TOutput).Name}""";
+        public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}() -> {typeof(TOutput).Name}";
 
         public void OnMessage(TInput input)
         {
