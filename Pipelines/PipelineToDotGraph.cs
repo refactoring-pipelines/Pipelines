@@ -16,7 +16,7 @@ namespace Pipelines
         {
             var format =
                 formatByType.GetValueOrDefault(node.GetType().Name) ?? "";
-            result.AppendLine($@"{node.NodeName} [{format}]");
+            result.AppendLine($@"{node.Name} [{format}]");
         }
 
         public static string FromPipeline<T>(InputPipe<T> root)
@@ -43,9 +43,9 @@ digraph G {{ node [style=filled, shape=rec]
 
             foreach (var listener in node.Listeners)
             {
-                result.AppendLine(node.NodeName + " -> " + listener.NodeName);
+                result.AppendLine(node.Name + " -> " + listener.Name);
                 if (listener.GetType().Name == "CollectorPipe`1")
-                    result.AppendLine($@"{{ rank=same; {node.NodeName}, {listener.NodeName}}}");
+                    result.AppendLine($@"{{ rank=same; {node.Name}, {listener.Name}}}");
             }
 
             result.AppendLine();
