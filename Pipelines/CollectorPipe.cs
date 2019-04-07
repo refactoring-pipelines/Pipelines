@@ -25,14 +25,7 @@ namespace Pipelines
 
         public T SingleResult => _results.Single();
 
-        public virtual string NodeName => $"Collector{_counter}";
-
-        public string PrintFormatting()
-        {
-            return $@"
-{NodeName} [label=""Collector"", color=""#c361f4""]
-{{ rank=same; {_predecessor.NodeName}, {NodeName}}}
-";
-        }
+        string ILabeledNode.NodeName => $"Collector{_counter}";
+        IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
     }
 }

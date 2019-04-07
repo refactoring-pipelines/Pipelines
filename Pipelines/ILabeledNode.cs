@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Pipelines
 {
-    public interface INameableNode
+    public interface ILabeledNode
     {
         string NodeName { get; }
+        IEnumerable<ILabeledNode> Listeners { get; }
     }
 }

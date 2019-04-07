@@ -1,10 +1,11 @@
 using ApprovalTests;
+using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Pipelines.Test
 {
-    //[UseReporter(typeof(VisualStudioReporter))]
+    [UseReporter(typeof(VisualStudioReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -22,12 +23,7 @@ namespace Pipelines.Test
 
         private static void Verify(InputPipe<string> input)
         {
-            Approvals.Verify(WriterFactory.CreateTextWriter($@"
-digraph G {{
-node [style=filled, shape=rec]
-
-{input}
-}}".Trim(), "dot"));
+            Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.FromPipeline(input), "dot"));
         }
     }
 }

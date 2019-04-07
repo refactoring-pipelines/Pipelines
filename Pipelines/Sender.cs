@@ -2,11 +2,13 @@
 
 namespace Pipelines
 {
-    public abstract class Sender<T> : INameableNode
+    public abstract class Sender<T> : ILabeledNode
     {
         protected readonly List<IListener<T>> _listeners = new List<IListener<T>>();
 
         public abstract string NodeName { get; }
+
+        IEnumerable<ILabeledNode> ILabeledNode.Listeners => _listeners;
 
         public void AddListener(IListener<T> listener)
         {
