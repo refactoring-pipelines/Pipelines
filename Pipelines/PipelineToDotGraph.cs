@@ -30,28 +30,21 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
+        static readonly Dictionary<Type, Action<ILabeledNode, StringBuilder>> PipeAppendersByType =
+            new Dictionary<Type, Action<ILabeledNode, StringBuilder>>
+            {
+                { typeof(CollectorPipe<>), AppendCollectorPipe },
+                { typeof(FunctionPipe<,>), AppendFunctionPipe },
+                { typeof(InputPipe<>), AppendInputPipe },
+            };
+
         private static void Append(ILabeledNode node, StringBuilder result)
         {
             // these shouldn't be necessary, but they help make it more obvious when something else is wrong
             result.AppendLine(Quoted(node.IncomingName));
             result.AppendLine(Quoted(node.OutgoingName));
 
-            if (node.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
-            {
-                AppendCollectorPipe(node, result);
-            }
-            else if (node.GetType().GetGenericTypeDefinition() == typeof(FunctionPipe<,>))
-            {
-                AppendFunctionPipe(node, result);
-            }
-            else if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
-            {
-                AppendInputPipe(node, result);
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(node.GetType().Name);
-            }
+            PipeAppendersByType[node.GetType().GetGenericTypeDefinition()](node, result);
 
             foreach (var listener in node.Listeners)
             {
