@@ -35,17 +35,17 @@ digraph G {{ node [style=filled, shape=rec]
             result.AppendLine(Quoted(node.IncomingName));
             result.AppendLine(Quoted(node.OutgoingName));
 
-            if (node.GetType().Name == typeof(CollectorPipe<>).Name)
+            if (node.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {
                 AppendFormat(node.IncomingName, @"label=Collector, color=""#c361f4""", result);
             }
-            else if (node.GetType().Name == typeof(FunctionPipe<,>).Name)
+            else if (node.GetType().GetGenericTypeDefinition() == typeof(FunctionPipe<,>))
             {
                 result.AppendLine(Quoted(node.IncomingName) + " -> " + Quoted(node.OutgoingName));
                 AppendFormat((node.IncomingName), @"shape=invhouse", result);
                 AppendFormat((node.OutgoingName), @"color=""#9fbff4""", result);
             }
-            else if (node.GetType().Name == typeof(InputPipe<>).Name)
+            else if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
             {
                 AppendFormat(node.IncomingName, @"color=green", result);
             }
@@ -56,7 +56,7 @@ digraph G {{ node [style=filled, shape=rec]
 
             foreach (var listener in node.Listeners)
             {
-                if (listener.GetType().Name == typeof(CollectorPipe<>).Name)
+                if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
                     result.AppendLine($@"{{ rank=same; {Quoted(node.OutgoingName)}, {Quoted(listener.IncomingName)}}}");
 
                 result.AppendLine(Quoted(node.OutgoingName) + " -> " + Quoted(listener.IncomingName));
