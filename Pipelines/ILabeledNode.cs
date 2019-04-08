@@ -6,7 +6,8 @@ namespace Pipelines
 {
     public interface ILabeledNode
     {
-        string Name { get; }
+        string IncomingName { get; }
+        string OutgoingName { get; }
         IEnumerable<ILabeledNode> Listeners { get; }
     }
 }

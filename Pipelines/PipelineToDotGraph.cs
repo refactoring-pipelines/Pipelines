@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Pipelines
@@ -8,20 +9,6 @@ namespace Pipelines
         static string Quoted(string value)
         {
             return $@"""{value}""";
-        }
-
-        private static readonly Dictionary<string, string> formatByType = new Dictionary<string, string>
-        {
-            {"InputPipe`1", @"color=green"},
-            {"FunctionPipe`2", @"shape=invhouse"},
-            {"CollectorPipe`1", @"label=Collector, color=""#c361f4"""},
-        };
-
-        private static void AppendFormat(ILabeledNode node, StringBuilder result)
-        {
-            var format =
-                formatByType.GetValueOrDefault(node.GetType().Name) ?? "";
-            result.AppendLine($@"{Quoted(node.Name)} [{format}]");
         }
 
         public static string FromPipeline<T>(InputPipe<T> root)
@@ -37,23 +24,45 @@ digraph G {{ node [style=filled, shape=rec]
 ".Trim();
         }
 
+        static void AppendFormat(string name, string format, StringBuilder result)
+        {
+            result.AppendLine($@"{Quoted(name)} [{format}]");
+        }
+
         private static void Append(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat(node, result);
+            // these shouldn't be necessary, but they help make it more obvious when something else is wrong
+            result.AppendLine(Quoted(node.IncomingName));
+            result.AppendLine(Quoted(node.OutgoingName));
+
+            if (node.GetType().Name == typeof(CollectorPipe<>).Name)
+            {
+                AppendFormat(node.IncomingName, @"label=Collector, color=""#c361f4""", result);
+            }
+            else if (node.GetType().Name == typeof(FunctionPipe<,>).Name)
+            {
+                result.AppendLine(Quoted(node.IncomingName) + " -> " + Quoted(node.OutgoingName));
+                AppendFormat((node.IncomingName), @"shape=invhouse", result);
+                AppendFormat((node.OutgoingName), @"color=""#9fbff4""", result);
+            }
+            else if (node.GetType().Name == typeof(InputPipe<>).Name)
+            {
+                AppendFormat(node.IncomingName, @"color=green", result);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(node.GetType().Name);
+            }
 
             foreach (var listener in node.Listeners)
             {
+                if (listener.GetType().Name == typeof(CollectorPipe<>).Name)
+                    result.AppendLine($@"{{ rank=same; {Quoted(node.OutgoingName)}, {Quoted(listener.IncomingName)}}}");
+
+                result.AppendLine(Quoted(node.OutgoingName) + " -> " + Quoted(listener.IncomingName));
+
                 Append(listener, result);
             }
-
-            foreach (var listener in node.Listeners)
-            {
-                result.AppendLine(Quoted(node.Name) + " -> " + Quoted(listener.Name));
-                if (listener.GetType().Name == "CollectorPipe`1")
-                    result.AppendLine($@"{{ rank=same; {Quoted(node.Name)}, {Quoted(listener.Name)}}}");
-            }
-
-            result.AppendLine();
         }
     }
 }

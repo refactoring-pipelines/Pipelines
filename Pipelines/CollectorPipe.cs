@@ -9,7 +9,7 @@ namespace Pipelines
         private readonly int _counter;
         private readonly Sender<T> _predecessor;
         private readonly List<T> _results = new List<T>();
-
+        
         public CollectorPipe(Sender<T> predecessor)
         {
             _counter = counter++;
@@ -25,7 +25,10 @@ namespace Pipelines
 
         public T SingleResult => _results.Single();
 
-        string ILabeledNode.Name => $"Collector{_counter}";
+
+        string ILabeledNode.IncomingName => $"Collector{_counter}";
+        string ILabeledNode.OutgoingName => $"Collector{_counter}";
+
         IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
     }
 }

@@ -6,7 +6,8 @@ namespace Pipelines
     {
         protected readonly List<IListener<T>> _listeners = new List<IListener<T>>();
 
-        public abstract string Name { get; }
+        public abstract string IncomingName { get; }
+        public abstract string OutgoingName { get; }
 
         IEnumerable<ILabeledNode> ILabeledNode.Listeners => _listeners;
 
