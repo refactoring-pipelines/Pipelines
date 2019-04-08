@@ -29,6 +29,7 @@ digraph G {{ node [style=filled, shape=rec]
             result.AppendLine($@"{Quoted(name)} [{format}]");
         }
 
+
         private static void Append(ILabeledNode node, StringBuilder result)
         {
             // these shouldn't be necessary, but they help make it more obvious when something else is wrong
@@ -37,17 +38,15 @@ digraph G {{ node [style=filled, shape=rec]
 
             if (node.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {
-                AppendFormat(node.IncomingName, @"label=Collector, color=""#c361f4""", result);
+                AppendCollectorPipe(node, result);
             }
             else if (node.GetType().GetGenericTypeDefinition() == typeof(FunctionPipe<,>))
             {
-                result.AppendLine(Quoted(node.IncomingName) + " -> " + Quoted(node.OutgoingName));
-                AppendFormat((node.IncomingName), @"shape=invhouse", result);
-                AppendFormat((node.OutgoingName), @"color=""#9fbff4""", result);
+                AppendFunctionPipe(node, result);
             }
             else if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
             {
-                AppendFormat(node.IncomingName, @"color=green", result);
+                AppendInputPipe(node, result);
             }
             else
             {
@@ -63,6 +62,23 @@ digraph G {{ node [style=filled, shape=rec]
 
                 Append(listener, result);
             }
+        }
+
+        private static void AppendInputPipe(ILabeledNode node, StringBuilder result)
+        {
+            AppendFormat(node.IncomingName, @"color=green", result);
+        }
+
+        private static void AppendFunctionPipe(ILabeledNode node, StringBuilder result)
+        {
+            result.AppendLine(Quoted(node.IncomingName) + " -> " + Quoted(node.OutgoingName));
+            AppendFormat((node.IncomingName), @"shape=invhouse", result);
+            AppendFormat((node.OutgoingName), @"color=""#9fbff4""", result);
+        }
+
+        private static void AppendCollectorPipe(ILabeledNode node, StringBuilder result)
+        {
+            AppendFormat(node.IncomingName, @"label=Collector, color=""#c361f4""", result);
         }
     }
 }
