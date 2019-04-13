@@ -40,31 +40,37 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, StringBuilder> processChild, HashSet<NodeMetadata> metadata)
+        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processChild, HashSet<NodeMetadata> metadata)
         {
-            processNode(node, result);
+            processNode(node, metadata, result);
 
             foreach (var listener in node.Listeners)
             {
-                processChild(node, listener, result);
+                processChild(node, listener, metadata, result);
                 ProcessTree(listener, result, processNode, processChild, metadata);
             }
             return result;
         }
 
+        [Obsolete]
         internal static NodeMetadata CheckNameUnique(ILabeledNode node)
         {
-            var existing = DotGraph.metadata.FirstOrDefault(_ => _.Node.Equals(node));
+            return CheckNameUnique(node, metadata);
+        }
+
+        internal static NodeMetadata CheckNameUnique(ILabeledNode node, HashSet<NodeMetadata> metadata)
+        {
+            var existing = metadata.FirstOrDefault(_ => _.Node.Equals(node));
             if (existing != null)
             {
                 return existing;
             }
 
             var name = node.Name;
-            bool any = DotGraph.metadata.Any(_ => _.Node.Name == name);
+            bool any = metadata.Any(_ => _.Node.Name == name);
             if (any)
             {
-                var maxCount = DotGraph.metadata.Where(_ => _.Node.Name == name).Max(_ => _.count);
+                var maxCount = metadata.Where(_ => _.Node.Name == name).Max(_ => _.count);
                 maxCount++;
                 var newMetadata = new NodeMetadata
                 {
@@ -72,7 +78,7 @@ digraph G {{ node [style=filled, shape=rec]
                     Name = Quoted(name + ' ' + maxCount),
                     Node = node,
                 };
-                DotGraph.metadata.Add(newMetadata);
+                metadata.Add(newMetadata);
                 return newMetadata;
             }
             else
@@ -83,7 +89,7 @@ digraph G {{ node [style=filled, shape=rec]
                     Name = Quoted(name),
                     Node = node,
                 };
-                DotGraph.metadata.Add(newMetadata);
+                metadata.Add(newMetadata);
                 return newMetadata;
             }
         }

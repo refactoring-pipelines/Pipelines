@@ -11,7 +11,7 @@ namespace Pipelines
 
         }
 
-        private static void ProcessChildRanking(ILabeledNode node, ILabeledNode listener, StringBuilder result)
+        private static void ProcessChildRanking(ILabeledNode node, ILabeledNode listener, HashSet<NodeMetadata> metadata, StringBuilder result)
         {
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {

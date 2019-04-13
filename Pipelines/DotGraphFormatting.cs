@@ -19,9 +19,9 @@ namespace Pipelines
                 { typeof(InputPipe<>), AppendInputPipeFormatting },
             };
 
-        public static StringBuilder AppendFormatting(ILabeledNode node, HashSet<NodeMetadata> metadata )
+        public static StringBuilder AppendFormatting(ILabeledNode node, HashSet<NodeMetadata> metadata)
         {
-            Action<ILabeledNode, StringBuilder> processNode = (node_, result_) => PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, result_);
+            Action<ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processNode = (node_, metadata_, result_) => PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, result_);
             return DotGraph.ProcessTree(node, new StringBuilder(), processNode, delegate { }, metadata);
         }
 

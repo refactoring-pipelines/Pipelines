@@ -12,7 +12,7 @@ namespace Pipelines
             return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionPipe, delegate { }, metadata);
         }
 
-        private static void AppendFunctionPipe(ILabeledNode node, StringBuilder result)
+        private static void AppendFunctionPipe(ILabeledNode node, HashSet<NodeMetadata> metadata, StringBuilder result)
         {
             var functionPipe = node as IFunctionPipe;
             if (functionPipe == null)
