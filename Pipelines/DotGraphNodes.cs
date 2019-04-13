@@ -10,7 +10,6 @@ namespace Pipelines
         public static StringBuilder AppendNodeAndChildren(ILabeledNode node)
         {
             return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionPipe, delegate { });
-
         }
 
         private static void AppendFunctionPipe(ILabeledNode node, StringBuilder result)
@@ -19,7 +18,9 @@ namespace Pipelines
             if (functionPipe == null)
                 return;
 
-            string input = DotGraph.Quoted(functionPipe.Predecessor.Name);
+            var predecessorFunctionPipe = functionPipe.Predecessor as IFunctionPipe;
+
+            string input = DotGraph.Quoted(predecessorFunctionPipe?.OutputName ?? functionPipe.Predecessor.Name);
             string function = DotGraph.Quoted(node.Name);
             string output = DotGraph.Quoted(functionPipe.OutputName);
             var collectorNode = functionPipe.Collector;

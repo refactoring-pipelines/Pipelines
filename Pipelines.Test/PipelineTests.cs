@@ -21,6 +21,21 @@ namespace Pipelines.Test
             Assert.AreEqual(42, collector.SingleResult);
         }
 
+        [TestMethod]
+        public void ConnectedPipelinesTest()
+        {
+            var input = new InputPipe<string>("age");
+            var parsePipe = input.Process(long.Parse);
+            parsePipe.Process(LongToString);
+
+            Verify(input);
+        }
+
+        string LongToString(long value)
+        {
+            return value.ToString();
+        }
+
         private static void Verify(InputPipe<string> input)
         {
             Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.FromPipeline(input), "dot"));

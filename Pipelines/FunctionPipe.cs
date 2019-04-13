@@ -28,6 +28,11 @@ namespace Pipelines
             return new CollectorPipe<TOutput>(this);
         }
 
+        public FunctionPipe<TOutput, TNext> Process<TNext>(Func<TOutput, TNext> func)
+        {
+            return new FunctionPipe<TOutput, TNext>(func, this);
+        }
+
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
 
         IEnumerable<ILabeledNode> ILabeledNode.Listeners => this._listeners;
