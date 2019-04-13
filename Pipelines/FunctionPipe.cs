@@ -28,12 +28,12 @@ namespace Pipelines
             return new CollectorPipe<TOutput>(this);
         }
 
-        public override string IncomingName => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
-        public override string OutgoingName => _func.Method.ReturnType.Name;
+        public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
 
         IEnumerable<ILabeledNode> ILabeledNode.Listeners => this._listeners;
 
         ILabeledNode IFunctionPipe.Predecessor => this.predecessor;
         ILabeledNode IFunctionPipe.Collector => this._listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
+        string IFunctionPipe.OutputName => _func.Method.ReturnType.Name;
     }
 }

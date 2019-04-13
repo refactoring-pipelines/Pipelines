@@ -27,18 +27,18 @@ namespace Pipelines
 
         private static void AppendInputPipeFormatting(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat(node.IncomingName, @"color=green", result);
+            AppendFormat(node.Name, @"color=green", result);
         }
 
         private static void AppendFunctionPipeFormatting(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat((node.IncomingName), @"shape=invhouse", result);
-            AppendFormat((node.OutgoingName), @"color=""#9fbff4""", result);
+            AppendFormat((node.Name), @"shape=invhouse", result);
+            AppendFormat(((IFunctionPipe)node).OutputName, @"color=""#9fbff4""", result);
         }
 
         private static void AppendCollectorPipeFormatting(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat(node.IncomingName, @"label=Collector, color=""#c361f4""", result);
+            AppendFormat(node.Name, @"label=Collector, color=""#c361f4""", result);
         }
     }
 }

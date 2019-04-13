@@ -26,8 +26,7 @@ namespace Pipelines
         public T SingleResult => _results.Single();
 
 
-        string ILabeledNode.IncomingName => $"Collector{_counter}";
-        string ILabeledNode.OutgoingName => $"Collector{_counter}";
+        string ILabeledNode.Name => $"Collector{_counter}";
 
         IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
     }
