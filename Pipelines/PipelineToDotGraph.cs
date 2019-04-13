@@ -13,13 +13,13 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var result = new StringBuilder();
-            Append(root, result);
-
             return $@"
 digraph G {{ node [style=filled, shape=rec]
 
-{result}
+{AppendNodeAndChildren(root)}
+{AppendFormatting(root)}
+{AppendRankings(root)}
+
 }}
 ".Trim();
         }
@@ -29,47 +29,69 @@ digraph G {{ node [style=filled, shape=rec]
             result.AppendLine($@"{Quoted(name)} [{format}]");
         }
 
-
         static readonly Dictionary<Type, Action<ILabeledNode, StringBuilder>> PipeAppendersByType =
             new Dictionary<Type, Action<ILabeledNode, StringBuilder>>
             {
-                { typeof(CollectorPipe<>), AppendCollectorPipe },
-                { typeof(FunctionPipe<,>), AppendFunctionPipe },
-                { typeof(InputPipe<>), AppendInputPipe },
+                { typeof(CollectorPipe<>), AppendCollectorPipeFormatting },
+                { typeof(FunctionPipe<,>), AppendFunctionPipeFormatting },
+                { typeof(InputPipe<>), AppendInputPipeFormatting },
             };
 
-        private static void Append(ILabeledNode node, StringBuilder result)
+        private static StringBuilder AppendNodeAndChildren(ILabeledNode node)
         {
-            // these shouldn't be necessary, but they help make it more obvious when something else is wrong
-            result.AppendLine(Quoted(node.IncomingName));
-            result.AppendLine(Quoted(node.OutgoingName));
+            Action< ILabeledNode , ILabeledNode, StringBuilder> processChild = (node_, child_, result_) => result_.AppendLine(Quoted(node_.OutgoingName) + " -> " + Quoted(child_.IncomingName));
+            return ProcessTree(node, new StringBuilder(), AppendFunctionPipe, processChild);
 
-            PipeAppendersByType[node.GetType().GetGenericTypeDefinition()](node, result);
+        }
+
+        private static StringBuilder AppendFormatting(ILabeledNode node)
+        {
+            Action<ILabeledNode, StringBuilder> processNode = (node_, result_) => PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, result_);
+            return ProcessTree(node, new StringBuilder(), processNode, delegate { });
+        }
+
+        private static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, StringBuilder> processChild)
+        {
+            processNode(node, result);
 
             foreach (var listener in node.Listeners)
             {
-                if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
-                    result.AppendLine($@"{{ rank=same; {Quoted(node.OutgoingName)}, {Quoted(listener.IncomingName)}}}");
-
-                result.AppendLine(Quoted(node.OutgoingName) + " -> " + Quoted(listener.IncomingName));
-
-                Append(listener, result);
+                processChild(node, listener, result);
+                ProcessTree(listener, result, processNode, processChild);
             }
+            return result;
         }
 
-        private static void AppendInputPipe(ILabeledNode node, StringBuilder result)
+        private static StringBuilder AppendRankings(ILabeledNode node)
         {
-            AppendFormat(node.IncomingName, @"color=green", result);
+            return ProcessTree(node, new StringBuilder(), delegate { }, ProcessChildRanking);
+
+        }
+
+        private static void ProcessChildRanking(ILabeledNode node, ILabeledNode listener, StringBuilder result)
+        {
+            if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
+                result.AppendLine($@"{{ rank=same; {Quoted(node.OutgoingName)}, {Quoted(listener.IncomingName)}}}");
         }
 
         private static void AppendFunctionPipe(ILabeledNode node, StringBuilder result)
         {
             result.AppendLine(Quoted(node.IncomingName) + " -> " + Quoted(node.OutgoingName));
+        }
+
+        private static void AppendInputPipeFormatting(ILabeledNode node, StringBuilder result)
+        {
+            AppendFormat(node.IncomingName, @"color=green", result);
+        }
+
+
+        private static void AppendFunctionPipeFormatting(ILabeledNode node, StringBuilder result)
+        {
             AppendFormat((node.IncomingName), @"shape=invhouse", result);
             AppendFormat((node.OutgoingName), @"color=""#9fbff4""", result);
         }
 
-        private static void AppendCollectorPipe(ILabeledNode node, StringBuilder result)
+        private static void AppendCollectorPipeFormatting(ILabeledNode node, StringBuilder result)
         {
             AppendFormat(node.IncomingName, @"label=Collector, color=""#c361f4""", result);
         }
