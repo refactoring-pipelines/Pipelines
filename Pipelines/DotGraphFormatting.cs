@@ -8,7 +8,7 @@ namespace Pipelines
     {
         static void AppendFormat(string name, string format, StringBuilder result)
         {
-            result.AppendLine($@"{DotGraph.Quoted(name)} [{format}]");
+            result.AppendLine($@"{name} [{format}]");
         }
 
         static readonly Dictionary<Type, Action<ILabeledNode, StringBuilder>> PipeAppendersByType =
@@ -19,7 +19,7 @@ namespace Pipelines
                 { typeof(InputPipe<>), AppendInputPipeFormatting },
             };
 
-        public static StringBuilder AppendFormatting(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder AppendFormatting(ILabeledNode node, HashSet<NodeMetadata> metadata )
         {
             Action<ILabeledNode, StringBuilder> processNode = (node_, result_) => PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, result_);
             return DotGraph.ProcessTree(node, new StringBuilder(), processNode, delegate { }, metadata);
@@ -27,13 +27,20 @@ namespace Pipelines
 
         private static void AppendInputPipeFormatting(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat(node.Name, @"color=green", result);
+            AppendFormat(DotGraph.CheckNameUnique(node).Name, @"color=green", result);
         }
 
         private static void AppendFunctionPipeFormatting(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat((node.Name), @"shape=invhouse", result);
-            AppendFormat(((IFunctionPipe)node).OutputName, @"color=""#9fbff4""", result);
+            ILabeledNode output = ((IFunctionPipe)node).Output;
+            var nodeMetadata = DotGraph.CheckNameUnique(output);
+            NodeMetadata functionNodeMetadata = DotGraph.CheckNameUnique(node);
+
+            string label = nodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(nodeMetadata.Node.Name)}, ";
+            AppendFormat(nodeMetadata.Name, $@"{label}color=""#9fbff4""", result);
+
+            string functionLabel = functionNodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(functionNodeMetadata.Node.Name)}, ";
+            AppendFormat(functionNodeMetadata.Name, $@"{functionLabel}shape=invhouse", result);
         }
 
         private static void AppendCollectorPipeFormatting(ILabeledNode node, StringBuilder result)

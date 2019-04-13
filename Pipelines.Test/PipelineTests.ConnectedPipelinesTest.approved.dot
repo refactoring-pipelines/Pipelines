@@ -1,14 +1,25 @@
 ﻿digraph G { node [style=filled, shape=rec]
 
-"String age" -> "Int64.Parse()" -> "Int64"
+# Nodes
+"String age" -> "Int64.Parse()" -> {"Int64", "Collector"}
 "Int64" -> "PipelineTests.LongToString()" -> "String"
+"String" -> "Int64.Parse() 1" -> "Int64 1"
+"Int64 1" -> "PipelineTests.LongToString() 1" -> "String 1"
 
+
+# Formatting
 "String age" [color=green]
-"Int64.Parse()" [shape=invhouse]
 "Int64" [color="#9fbff4"]
-"PipelineTests.LongToString()" [shape=invhouse]
+"Int64.Parse()" [shape=invhouse]
+"Collector" [color = "#c361f4"]
 "String" [color="#9fbff4"]
+"PipelineTests.LongToString()" [shape=invhouse]
+"Int64 1" [label="Int64", color="#9fbff4"]
+"Int64.Parse() 1" [label="Int64.Parse()", shape=invhouse]
+"String 1" [label="String", color="#9fbff4"]
+"PipelineTests.LongToString() 1" [label="PipelineTests.LongToString()", shape=invhouse]
 
+{ rank=same; "Int64.Parse()", "Collector"}
 
 
 }

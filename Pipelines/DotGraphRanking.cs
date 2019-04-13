@@ -5,7 +5,7 @@ namespace Pipelines
 {
     public static class DotGraphRanking
     {
-        public static StringBuilder AppendRankings(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder AppendRankings(ILabeledNode node, HashSet<NodeMetadata> metadata)
         {
             return DotGraph.ProcessTree(node, new StringBuilder(), delegate { }, ProcessChildRanking, metadata);
 
@@ -16,7 +16,7 @@ namespace Pipelines
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {
                 var nodeMetadata = DotGraph.CheckNameUnique(listener);
-                result.AppendLine($@"{{ rank=same; {DotGraph.Quoted(node.Name)}, {DotGraph.Quoted(nodeMetadata.Name)}}}");
+                result.AppendLine($@"{{ rank=same; {DotGraph.Quoted(node.Name)}, {nodeMetadata.Name}}}");
             }
         }
     }

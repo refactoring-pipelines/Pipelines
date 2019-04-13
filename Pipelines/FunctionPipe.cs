@@ -39,6 +39,35 @@ namespace Pipelines
 
         ILabeledNode IFunctionPipe.Predecessor => this.predecessor;
         ILabeledNode IFunctionPipe.Collector => this._listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
-        string IFunctionPipe.OutputName => _func.Method.ReturnType.Name;
+        ILabeledNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
+    }
+
+    class OutputNode : ILabeledNode
+    {
+        private IFunctionPipe functionPipe;
+        private string name;
+
+        public OutputNode(IFunctionPipe functionPipe, string name)
+        {
+            this.functionPipe = functionPipe;
+            this.name = name;
+        }
+
+        string ILabeledNode.Name => name;
+
+        IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
+
+        public override bool Equals(object other)
+        {
+            var that = other as OutputNode;
+            return that != null && this.functionPipe == that.functionPipe;
+        }
+
+        
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }

@@ -23,14 +23,15 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var metadata = new Dictionary<ILabeledNode, NodeMetadata> { };
-
             DotGraph.metadata = new HashSet<NodeMetadata>();
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
 
+# Nodes
 {DotGraphNodes.AppendNodeAndChildren(root, metadata)}
+
+# Formatting
 {DotGraphFormatting.AppendFormatting(root, metadata)}
 {DotGraphRanking.AppendRankings(root, metadata)}
 
@@ -39,7 +40,7 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, StringBuilder> processChild, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, StringBuilder> processChild, HashSet<NodeMetadata> metadata)
         {
             processNode(node, result);
 
@@ -53,7 +54,7 @@ digraph G {{ node [style=filled, shape=rec]
 
         internal static NodeMetadata CheckNameUnique(ILabeledNode node)
         {
-            var existing = DotGraph.metadata.FirstOrDefault(_ => _.Node == node);
+            var existing = DotGraph.metadata.FirstOrDefault(_ => _.Node.Equals(node));
             if (existing != null)
             {
                 return existing;
@@ -68,7 +69,7 @@ digraph G {{ node [style=filled, shape=rec]
                 var newMetadata = new NodeMetadata
                 {
                     count = maxCount,
-                    Name = name + maxCount,
+                    Name = Quoted(name + ' ' + maxCount),
                     Node = node,
                 };
                 DotGraph.metadata.Add(newMetadata);
@@ -79,7 +80,7 @@ digraph G {{ node [style=filled, shape=rec]
                 var newMetadata = new NodeMetadata
                 {
                     count = 0,
-                    Name = name,
+                    Name = Quoted(name),
                     Node = node,
                 };
                 DotGraph.metadata.Add(newMetadata);

@@ -4,6 +4,6 @@
     {
         ILabeledNode Predecessor { get; }
         ILabeledNode Collector { get; }
-        string OutputName { get; }
+        ILabeledNode Output { get; }
     }
 }
