@@ -13,7 +13,7 @@ namespace Pipelines
         private static void ProcessChildRanking(ILabeledNode node, ILabeledNode listener, StringBuilder result)
         {
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
-                result.AppendLine($@"{{ rank=same; {DotGraph.Quoted(node.OutgoingName)}, {DotGraph.Quoted(listener.IncomingName)}}}");
+                result.AppendLine($@"{{ rank=same; {DotGraph.Quoted(node.IncomingName)}, {DotGraph.Quoted(listener.IncomingName)}}}");
         }
 
     }

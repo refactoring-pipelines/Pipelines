@@ -8,6 +8,7 @@ namespace Pipelines
     {
         string IncomingName { get; }
         string OutgoingName { get; }
+
         IEnumerable<ILabeledNode> Listeners { get; }
     }
 }
