@@ -19,11 +19,10 @@ namespace Pipelines
             return $@"""{value}""";
         }
 
-        public static HashSet<NodeMetadata> metadata;
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            DotGraph.metadata = new HashSet<NodeMetadata>();
+            var metadata = new HashSet<NodeMetadata>();
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -50,12 +49,6 @@ digraph G {{ node [style=filled, shape=rec]
                 ProcessTree(listener, result, processNode, processChild, metadata);
             }
             return result;
-        }
-
-        [Obsolete]
-        internal static NodeMetadata CheckNameUnique(ILabeledNode node)
-        {
-            return CheckNameUnique(node, metadata);
         }
 
         internal static NodeMetadata CheckNameUnique(ILabeledNode node, HashSet<NodeMetadata> metadata)
