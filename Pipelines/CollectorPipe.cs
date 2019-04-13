@@ -5,14 +5,11 @@ namespace Pipelines
 {
     public class CollectorPipe<T> : IListener<T>
     {
-        private static int counter;
-        private readonly int _counter;
         private readonly Sender<T> _predecessor;
         private readonly List<T> _results = new List<T>();
-        
+
         public CollectorPipe(Sender<T> predecessor)
         {
-            _counter = counter++;
             _predecessor = predecessor;
             predecessor.AddListener(this);
         }
@@ -26,8 +23,9 @@ namespace Pipelines
         public T SingleResult => _results.Single();
 
 
-        string ILabeledNode.Name => $"Collector{_counter}";
+        string ILabeledNode.Name => "Collector";
 
         IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
+
     }
 }

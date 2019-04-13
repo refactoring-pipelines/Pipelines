@@ -7,9 +7,9 @@ namespace Pipelines
     public static class DotGraphNodes
     {
 
-        public static StringBuilder AppendNodeAndChildren(ILabeledNode node)
+        public static StringBuilder AppendNodeAndChildren(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
         {
-            return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionPipe, delegate { });
+            return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionPipe, delegate { }, metadata);
         }
 
         private static void AppendFunctionPipe(ILabeledNode node, StringBuilder result)
@@ -24,8 +24,12 @@ namespace Pipelines
             string function = DotGraph.Quoted(node.Name);
             string output = DotGraph.Quoted(functionPipe.OutputName);
             var collectorNode = functionPipe.Collector;
-            string collector = collectorNode == null ? "" :  ", " + DotGraph.Quoted(collectorNode.Name);
-            result.AppendLine($"{input} -> {function} -> {{{output}{collector}}}");
+            if (collectorNode != null)
+            {
+                var nodeMetadata = DotGraph.CheckNameUnique(collectorNode);
+                output = $"{{{output}, {DotGraph.Quoted(nodeMetadata.Name)}}}";
+            }
+            result.AppendLine($"{input} -> {function} -> {output}");
         }
     }
 }

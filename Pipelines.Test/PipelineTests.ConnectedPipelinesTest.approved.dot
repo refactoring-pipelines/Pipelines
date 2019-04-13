@@ -1,7 +1,7 @@
 ﻿digraph G { node [style=filled, shape=rec]
 
-"String age" -> "Int64.Parse()" -> {"Int64"}
-"Int64" -> "PipelineTests.LongToString()" -> {"String"}
+"String age" -> "Int64.Parse()" -> "Int64"
+"Int64" -> "PipelineTests.LongToString()" -> "String"
 
 "String age" [color=green]
 "Int64.Parse()" [shape=invhouse]

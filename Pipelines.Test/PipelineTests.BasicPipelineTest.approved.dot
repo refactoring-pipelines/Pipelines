@@ -1,13 +1,13 @@
 ﻿digraph G { node [style=filled, shape=rec]
 
-"String age" -> "Int64.Parse()" -> {"Int64", "Collector0"}
+"String age" -> "Int64.Parse()" -> {"Int64", "Collector"}
 
 "String age" [color=green]
 "Int64.Parse()" [shape=invhouse]
 "Int64" [color="#9fbff4"]
-"Collector0" [label=Collector, color="#c361f4"]
+"Collector" [color = "#c361f4"]
 
-{ rank=same; "Int64.Parse()", "Collector0"}
+{ rank=same; "Int64.Parse()", "Collector"}
 
 
 }

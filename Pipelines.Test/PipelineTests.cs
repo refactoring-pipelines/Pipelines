@@ -26,7 +26,8 @@ namespace Pipelines.Test
         {
             var input = new InputPipe<string>("age");
             var parsePipe = input.Process(long.Parse);
-            parsePipe.Process(LongToString);
+            //var collector = parsePipe.Collect();
+            parsePipe.Process(LongToString);//.Process(long.Parse).Process(LongToString);
 
             Verify(input);
         }

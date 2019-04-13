@@ -19,10 +19,10 @@ namespace Pipelines
                 { typeof(InputPipe<>), AppendInputPipeFormatting },
             };
 
-        public static StringBuilder AppendFormatting(ILabeledNode node)
+        public static StringBuilder AppendFormatting(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
         {
             Action<ILabeledNode, StringBuilder> processNode = (node_, result_) => PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, result_);
-            return DotGraph.ProcessTree(node, new StringBuilder(), processNode, delegate { });
+            return DotGraph.ProcessTree(node, new StringBuilder(), processNode, delegate { }, metadata);
         }
 
         private static void AppendInputPipeFormatting(ILabeledNode node, StringBuilder result)
@@ -38,7 +38,9 @@ namespace Pipelines
 
         private static void AppendCollectorPipeFormatting(ILabeledNode node, StringBuilder result)
         {
-            AppendFormat(node.Name, @"label=Collector, color=""#c361f4""", result);
+            var nodeMetadata = DotGraph.CheckNameUnique(node);
+            string label = nodeMetadata.count == 0 ? "" : "label=Collector, ";
+            AppendFormat(nodeMetadata.Name, $@"{label}color = ""#c361f4""", result);
         }
     }
 }
