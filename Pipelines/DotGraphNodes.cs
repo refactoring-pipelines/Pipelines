@@ -26,8 +26,8 @@ namespace Pipelines
             var collectorNode = functionPipe.Collector;
             if (collectorNode != null)
             {
-                var nodeMetadata = metadata.CheckNameUnique(collectorNode);
-                output = $"{{{output}, {nodeMetadata.QuotedUniqueName}}}";
+                var collectorUniqueName = metadata.CheckNameUnique(collectorNode).QuotedUniqueName;
+                output = $"{{{output}, {collectorUniqueName}}}";
             }
             result.AppendLine($"{input} -> {function} -> {output}");
         }

@@ -28,27 +28,28 @@ namespace Pipelines
 
         private static void AppendInputPipeFormatting(ILabeledNode node, NodeMetadataDictionary metadata, StringBuilder result)
         {
-            AppendFormat(metadata.CheckNameUnique(node).QuotedUniqueName, @"color=green", result);
+            var uniqueName = metadata.CheckNameUnique(node).QuotedUniqueName;
+            AppendFormat(uniqueName, @"color=green", result);
         }
 
         private static void AppendFunctionPipeFormatting(ILabeledNode node, NodeMetadataDictionary metadata, StringBuilder result)
         {
             ILabeledNode output = ((IFunctionPipe)node).Output;
-            var nodeMetadata = metadata.CheckNameUnique(output);
-            NodeMetadata functionNodeMetadata = metadata.CheckNameUnique(node);
 
-            string label = nodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(output.Name)}, ";
-            AppendFormat(nodeMetadata.QuotedUniqueName, $@"{label}color=""#9fbff4""", result);
+            string label = metadata.CheckNameUnique(output).count == 0 ? "" : $"label={DotGraph.Quoted(output.Name)}, ";
+            var outputUniqueName = metadata.CheckNameUnique(output).QuotedUniqueName;
+            AppendFormat(outputUniqueName, $@"{label}color=""#9fbff4""", result);
 
-            string functionLabel = functionNodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(node.Name)}, ";
-            AppendFormat(functionNodeMetadata.QuotedUniqueName, $@"{functionLabel}shape=invhouse", result);
+            string functionLabel = metadata.CheckNameUnique(node).count == 0 ? "" : $"label={DotGraph.Quoted(node.Name)}, ";
+            var functionUniqueName = metadata.CheckNameUnique(node).QuotedUniqueName;
+            AppendFormat(functionUniqueName, $@"{functionLabel}shape=invhouse", result);
         }
 
         private static void AppendCollectorPipeFormatting(ILabeledNode node, NodeMetadataDictionary metadata, StringBuilder result)
         {
-            var nodeMetadata = metadata.CheckNameUnique(node);
-            string label = nodeMetadata.count == 0 ? "" : "label=Collector, ";
-            AppendFormat(nodeMetadata.QuotedUniqueName, $@"{label}color = ""#c361f4""", result);
+            string label = metadata.CheckNameUnique(node).count == 0 ? "" : "label=Collector, ";
+            var uniqueName = metadata.CheckNameUnique(node).QuotedUniqueName;
+            AppendFormat(uniqueName, $@"{label}color = ""#c361f4""", result);
         }
     }
 }
