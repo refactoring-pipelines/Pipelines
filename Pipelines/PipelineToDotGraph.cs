@@ -21,6 +21,33 @@ namespace Pipelines
     public class NodeMetadataDictionary
     {
         public readonly Dictionary<ILabeledNode, NodeMetadata> _values = new Dictionary<ILabeledNode, NodeMetadata>();
+
+        public NodeMetadata CheckNameUnique(ILabeledNode node)
+        {
+            if (_values.TryGetValue(node, out var existing))
+            {
+                return existing;
+            }
+
+            IEnumerable<NodeMetadata> metadataWithSameNodeNames = _values.Values.Where(_ => _.Node.Name == node.Name);
+            int count;
+            if (metadataWithSameNodeNames.Any())
+            {
+                count = metadataWithSameNodeNames.Max(_ => _.count) + 1;
+            }
+            else
+            {
+                count = 0;
+            }
+
+            var newMetadata = new NodeMetadata
+            {
+                count = count,
+                Node = node,
+            };
+            _values.Add(node, newMetadata);
+            return newMetadata;
+        }
     }
 
     public static class DotGraph
@@ -60,33 +87,6 @@ digraph G {{ node [style=filled, shape=rec]
                 ProcessTree(listener, result, processNode, processChild, metadata);
             }
             return result;
-        }
-
-        internal static NodeMetadata CheckNameUnique(ILabeledNode node, NodeMetadataDictionary metadata)
-        {
-            if (metadata._values.TryGetValue(node, out var existing))
-            {
-                return existing;
-            }
-
-            IEnumerable<NodeMetadata> metadataWithSameNodeNames = metadata._values.Values.Where(_ => _.Node.Name == node.Name);
-            int count;
-            if (metadataWithSameNodeNames.Any())
-            {
-                count = metadataWithSameNodeNames.Max(_ => _.count) + 1;
-            }
-            else
-            {
-                count = 0;
-            }
-
-            var newMetadata = new NodeMetadata
-            {
-                count = count,
-                Node = node,
-            };
-            metadata._values.Add(node, newMetadata);
-            return newMetadata;
         }
     }
 }
