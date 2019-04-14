@@ -22,7 +22,7 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var metadata = new HashSet<NodeMetadata>();
+            var metadata = new Dictionary<ILabeledNode, NodeMetadata>();
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -39,7 +39,7 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processChild, HashSet<NodeMetadata> metadata)
+        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processChild, Dictionary<ILabeledNode, NodeMetadata> metadata)
         {
             processNode(node, metadata, result);
 
@@ -51,27 +51,25 @@ digraph G {{ node [style=filled, shape=rec]
             return result;
         }
 
-        internal static NodeMetadata CheckNameUnique(ILabeledNode node, HashSet<NodeMetadata> metadata)
+        internal static NodeMetadata CheckNameUnique(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
         {
-            var existing = metadata.FirstOrDefault(_ => _.Node.Equals(node));
-            if (existing != null)
+            if (metadata.TryGetValue(node, out var existing))
             {
                 return existing;
             }
 
-            var name = node.Name;
-            bool any = metadata.Any(_ => _.Node.Name == name);
+            bool any = metadata.Values.Any(_ => _.Node.Name == node.Name);
             if (any)
             {
-                var maxCount = metadata.Where(_ => _.Node.Name == name).Max(_ => _.count);
+                var maxCount = metadata.Values.Where(_ => _.Node.Name == node.Name).Max(_ => _.count);
                 maxCount++;
                 var newMetadata = new NodeMetadata
                 {
                     count = maxCount,
-                    Name = Quoted(name + ' ' + maxCount),
+                    Name = Quoted(node.Name + ' ' + maxCount),
                     Node = node,
                 };
-                metadata.Add(newMetadata);
+                metadata.Add(node, newMetadata);
                 return newMetadata;
             }
             else
@@ -79,10 +77,10 @@ digraph G {{ node [style=filled, shape=rec]
                 var newMetadata = new NodeMetadata
                 {
                     count = 0,
-                    Name = Quoted(name),
+                    Name = Quoted(node.Name),
                     Node = node,
                 };
-                metadata.Add(newMetadata);
+                metadata.Add(node, newMetadata);
                 return newMetadata;
             }
         }
