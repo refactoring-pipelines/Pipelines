@@ -30,6 +30,10 @@ namespace Pipelines
         private void ProcessTree(ILabeledNode node)
         {
             CheckNameUnique(node);
+            if (node is IFunctionPipe functionPipe)
+            {
+                CheckNameUnique(functionPipe.Output);
+            }
             foreach (var child in node.Listeners)
             {
                 ProcessTree(child);
@@ -38,12 +42,11 @@ namespace Pipelines
 
         public string GetQuotedUniqueName(ILabeledNode node)
         {
-            CheckNameUnique(node);
             return _values[node].QuotedUniqueName;
         }
+
         public int GetCount(ILabeledNode node)
         {
-            CheckNameUnique(node);
             return _values[node].count;
         }
 
