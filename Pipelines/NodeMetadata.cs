@@ -37,9 +37,7 @@ namespace Pipelines
 
         private void CheckNameUnique(IGraphNode node)
         {
-            var count = GetDisambiguatingCount(node);
-
-            _countsByNode.Add(node, count);
+            _countsByNode.Add(node, GetDisambiguatingCount(node));
         }
 
         private int GetDisambiguatingCount(IGraphNode node)
