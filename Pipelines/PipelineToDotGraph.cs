@@ -64,11 +64,11 @@ digraph G {{ node [style=filled, shape=rec]
                 return existing;
             }
 
-            IEnumerable<NodeMetadata> nmedataWithSameNodeNames = metadata.Values.Where(_ => _.Node.Name == node.Name);
-            bool any = nmedataWithSameNodeNames.Any();
+            IEnumerable<NodeMetadata> metadataWithSameNodeNames = metadata.Values.Where(_ => _.Node.Name == node.Name);
+            bool any = metadataWithSameNodeNames.Any();
             if (any)
             {
-                var maxCount = nmedataWithSameNodeNames.Max(_ => _.count);
+                var maxCount = metadataWithSameNodeNames.Max(_ => _.count);
                 maxCount++;
                 var newMetadata = new NodeMetadata
                 {
