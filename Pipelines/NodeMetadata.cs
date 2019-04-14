@@ -5,14 +5,14 @@ namespace Pipelines
 {
     public class NodeMetadata
     {
-        public readonly Dictionary<ILabeledNode, int> _values = new Dictionary<ILabeledNode, int>();
+        public readonly Dictionary<IGraphNode, int> _values = new Dictionary<IGraphNode, int>();
 
-        public NodeMetadata(ILabeledNode root)
+        public NodeMetadata(IGraphNode root)
         {
             ProcessTree(root);
         }
 
-        private void ProcessTree(ILabeledNode node)
+        private void ProcessTree(IGraphNode node)
         {
             CheckNameUnique(node);
             if (node is IFunctionPipe functionPipe)
@@ -25,17 +25,17 @@ namespace Pipelines
             }
         }
 
-        public string GetQuotedUniqueName(ILabeledNode node)
+        public string GetQuotedUniqueName(IGraphNode node)
         {
             return DotGraph.Quoted(_values[node] == 0 ? node.Name : node.Name + ' ' + _values[node]);
         }
 
-        public int GetCount(ILabeledNode node)
+        public int GetCount(IGraphNode node)
         {
             return _values[node];
         }
 
-        private void CheckNameUnique(ILabeledNode node)
+        private void CheckNameUnique(IGraphNode node)
         {
             if (_values.TryGetValue(node, out var existing))
             {

@@ -30,7 +30,7 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, NodeMetadata, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, NodeMetadata, StringBuilder> processChild, NodeMetadata metadata)
+        public static StringBuilder ProcessTree(IGraphNode node, StringBuilder result, Action<IGraphNode, NodeMetadata, StringBuilder> processNode, Action<IGraphNode, IGraphNode, NodeMetadata, StringBuilder> processChild, NodeMetadata metadata)
         {
             processNode(node, metadata, result);
 
