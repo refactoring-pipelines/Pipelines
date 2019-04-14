@@ -7,16 +7,16 @@ namespace Pipelines
     public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IFunctionPipe
     {
         private readonly Func<TInput, TOutput> _func;
-        private readonly Sender<TInput> predecessor;
+        private readonly Sender<TInput> _predecessor;
 
         public FunctionPipe(Func<TInput, TOutput> func, Sender<TInput> predecessor)
         {
             _func = func;
-            this.predecessor = predecessor;
+            this._predecessor = predecessor;
             predecessor.AddListener(this);
         }
 
-        IGraphNode IFunctionPipe.Predecessor => predecessor;
+        IGraphNode IFunctionPipe.Predecessor => _predecessor;
         IGraphNode IFunctionPipe.Collector => _listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
         IGraphNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
 
