@@ -22,6 +22,21 @@ namespace Pipelines
     {
         public readonly Dictionary<ILabeledNode, NodeMetadata> _values = new Dictionary<ILabeledNode, NodeMetadata>();
 
+        public NodeMetadataDictionary(ILabeledNode root)
+        {
+            ProcessTree(root);
+        }
+
+        private void ProcessTree(ILabeledNode node)
+        {
+            CheckNameUnique(node);
+            foreach (var child in node.Listeners)
+            {
+                ProcessTree(child);
+            }
+        }
+
+
         public NodeMetadata CheckNameUnique(ILabeledNode node)
         {
             if (_values.TryGetValue(node, out var existing))
@@ -60,7 +75,7 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var metadata = new NodeMetadataDictionary();
+            var metadata = new NodeMetadataDictionary(root);
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
