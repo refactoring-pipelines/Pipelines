@@ -16,13 +16,8 @@ namespace Pipelines
         {
             _countsByNode.Add(node, GetDisambiguatingCount(node));
             if (node is IFunctionPipe functionPipe)
-            {
                 _countsByNode.Add(functionPipe.Output, GetDisambiguatingCount(functionPipe.Output));
-            }
-            foreach (var child in node.Children)
-            {
-                ProcessTree(child);
-            }
+            foreach (var child in node.Children) ProcessTree(child);
         }
 
         public string GetQuotedUniqueName(IGraphNode node)
@@ -41,13 +36,9 @@ namespace Pipelines
 
             int count;
             if (nodesWithSameNamesAndCounts.Any())
-            {
                 count = nodesWithSameNamesAndCounts.Max(nodeAndCount => nodeAndCount.Value) + 1;
-            }
             else
-            {
                 count = 0;
-            }
 
             return count;
         }

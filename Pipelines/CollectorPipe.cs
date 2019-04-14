@@ -14,18 +14,17 @@ namespace Pipelines
             predecessor.AddListener(this);
         }
 
+        public T SingleResult => _results.Single();
+
 
         public void OnMessage(T value)
         {
             _results.Add(value);
         }
 
-        public T SingleResult => _results.Single();
-
 
         string IGraphNode.Name => "Collector";
 
         IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
-
     }
 }

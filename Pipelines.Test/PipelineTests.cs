@@ -32,7 +32,7 @@ namespace Pipelines.Test
             Verify(input);
         }
 
-        string LongToString(long value)
+        private string LongToString(long value)
         {
             return value.ToString();
         }

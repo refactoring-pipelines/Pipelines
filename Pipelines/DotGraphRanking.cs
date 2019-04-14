@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace Pipelines
 {
@@ -8,10 +7,10 @@ namespace Pipelines
         public static StringBuilder AppendRankings(IGraphNode node, NodeMetadata metadata)
         {
             return DotGraph.ProcessTree(node, new StringBuilder(), delegate { }, ProcessChildRanking, metadata);
-
         }
 
-        private static void ProcessChildRanking(IGraphNode node, IGraphNode listener, NodeMetadata metadata, StringBuilder result)
+        private static void ProcessChildRanking(IGraphNode node, IGraphNode listener, NodeMetadata metadata,
+            StringBuilder result)
         {
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {

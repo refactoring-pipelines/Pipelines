@@ -12,15 +12,12 @@ namespace Pipelines
 
         public void AddListener(IListener<T> listener)
         {
-            this._listeners.Add(listener);
+            _listeners.Add(listener);
         }
 
         protected void _Send(T value)
         {
-            foreach (var listener in _listeners)
-            {
-                listener.OnMessage(value);
-            }
+            foreach (var listener in _listeners) listener.OnMessage(value);
         }
     }
 }

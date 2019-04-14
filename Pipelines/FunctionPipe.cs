@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Pipelines
 {
@@ -17,11 +16,19 @@ namespace Pipelines
             predecessor.AddListener(this);
         }
 
+        IGraphNode IFunctionPipe.Predecessor => predecessor;
+        IGraphNode IFunctionPipe.Collector => _listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
+        IGraphNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
+
         public void OnMessage(TInput input)
         {
             var result = _func(input);
             _Send(result);
         }
+
+        public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
+
+        IEnumerable<IGraphNode> IGraphNode.Children => _listeners;
 
         public CollectorPipe<TOutput> Collect()
         {
@@ -32,20 +39,12 @@ namespace Pipelines
         {
             return new FunctionPipe<TOutput, TNext>(func, this);
         }
-
-        public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
-
-        IEnumerable<IGraphNode> IGraphNode.Children => this._listeners;
-
-        IGraphNode IFunctionPipe.Predecessor => this.predecessor;
-        IGraphNode IFunctionPipe.Collector => this._listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
-        IGraphNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
     }
 
-    class OutputNode : IGraphNode
+    internal class OutputNode : IGraphNode
     {
-        private IFunctionPipe functionPipe;
-        private string name;
+        private readonly IFunctionPipe functionPipe;
+        private readonly string name;
 
         public OutputNode(IFunctionPipe functionPipe, string name)
         {
@@ -60,10 +59,9 @@ namespace Pipelines
         public override bool Equals(object other)
         {
             var that = other as OutputNode;
-            return that != null && this.functionPipe == that.functionPipe;
+            return that != null && functionPipe == that.functionPipe;
         }
 
-        
 
         public override int GetHashCode()
         {
