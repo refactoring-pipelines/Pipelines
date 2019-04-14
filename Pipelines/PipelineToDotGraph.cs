@@ -64,7 +64,7 @@ digraph G {{ node [style=filled, shape=rec]
                 return existing;
             }
 
-            bool any = metadata.Values.Any(_ => _.Node.Name == node.Name);
+            bool any = metadata.Values.Where(_ => _.Node.Name == node.Name).Any();
             if (any)
             {
                 IEnumerable<NodeMetadata> nmedataWithSameNodeNames = metadata.Values.Where(_ => _.Node.Name == node.Name);
