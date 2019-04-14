@@ -21,9 +21,12 @@ namespace Pipelines
 
         public static StringBuilder AppendFormatting(IGraphNode node, NodeMetadata metadata)
         {
-            Action<IGraphNode, NodeMetadata, StringBuilder> processNode = (node_, metadata_, result_) =>
+            void ProcessNode(IGraphNode node_, NodeMetadata metadata_, StringBuilder result_)
+            {
                 PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, metadata_, result_);
-            return DotGraph.ProcessTree(node, new StringBuilder(), processNode, delegate { }, metadata);
+            }
+
+            return DotGraph.ProcessTree(node, new StringBuilder(), ProcessNode, delegate { }, metadata);
         }
 
         private static void AppendInputPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
