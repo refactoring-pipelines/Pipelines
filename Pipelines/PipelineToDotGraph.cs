@@ -8,7 +8,13 @@ namespace Pipelines
     public class NodeMetadata
     {
         public int count;
-        public string Name;
+        public string Name
+        {
+            get
+            {
+                return DotGraph.Quoted(count == 0 ? Node.Name : Node.Name + ' ' + count);
+            }
+        }
         public ILabeledNode Node;
     }
 
@@ -66,7 +72,6 @@ digraph G {{ node [style=filled, shape=rec]
                 var newMetadata = new NodeMetadata
                 {
                     count = maxCount,
-                    Name = Quoted(node.Name + ' ' + maxCount),
                     Node = node,
                 };
                 metadata.Add(node, newMetadata);
@@ -77,7 +82,6 @@ digraph G {{ node [style=filled, shape=rec]
                 var newMetadata = new NodeMetadata
                 {
                     count = 0,
-                    Name = Quoted(node.Name),
                     Node = node,
                 };
                 metadata.Add(node, newMetadata);
