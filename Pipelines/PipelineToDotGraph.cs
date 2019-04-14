@@ -70,26 +70,19 @@ digraph G {{ node [style=filled, shape=rec]
             if (any)
             {
                 count = metadataWithSameNodeNames.Max(_ => _.count) + 1;
-                
-                var newMetadata = new NodeMetadata
-                {
-                    count = count,
-                    Node = node,
-                };
-                metadata.Add(node, newMetadata);
-                return newMetadata;
             }
             else
             {
                 count = 0;
-                var newMetadata = new NodeMetadata
-                {
-                    count = count,
-                    Node = node,
-                };
-                metadata.Add(node, newMetadata);
-                return newMetadata;
             }
+
+            var newMetadata = new NodeMetadata
+            {
+                count = count,
+                Node = node,
+            };
+            metadata.Add(node, newMetadata);
+            return newMetadata;
         }
     }
 }
