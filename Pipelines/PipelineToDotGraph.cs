@@ -65,9 +65,8 @@ digraph G {{ node [style=filled, shape=rec]
             }
 
             IEnumerable<NodeMetadata> metadataWithSameNodeNames = metadata.Values.Where(_ => _.Node.Name == node.Name);
-            bool any = metadataWithSameNodeNames.Any();
             int count;
-            if (any)
+            if (metadataWithSameNodeNames.Any())
             {
                 count = metadataWithSameNodeNames.Max(_ => _.count) + 1;
             }
