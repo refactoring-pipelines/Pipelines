@@ -5,7 +5,7 @@ namespace Pipelines
 {
     public class NodeMetadata
     {
-        public readonly Dictionary<IGraphNode, int> _values = new Dictionary<IGraphNode, int>();
+        private readonly Dictionary<IGraphNode, int> _values = new Dictionary<IGraphNode, int>();
 
         public NodeMetadata(IGraphNode root)
         {
