@@ -17,7 +17,7 @@ namespace Pipelines
         }
 
         IGraphNode IFunctionPipe.Predecessor => _predecessor;
-        IGraphNode IFunctionPipe.Collector => _listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
+        IGraphNode IFunctionPipe.Collector => Listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
         IGraphNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
 
         public void OnMessage(TInput input)
@@ -28,7 +28,7 @@ namespace Pipelines
 
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
 
-        IEnumerable<IGraphNode> IGraphNode.Children => _listeners;
+        IEnumerable<IGraphNode> IGraphNode.Children => Listeners;
 
         public CollectorPipe<TOutput> Collect()
         {
@@ -43,23 +43,23 @@ namespace Pipelines
 
     internal class OutputNode : IGraphNode
     {
-        private readonly IFunctionPipe functionPipe;
-        private readonly string name;
+        private readonly IFunctionPipe _functionPipe;
+        private readonly string _name;
 
         public OutputNode(IFunctionPipe functionPipe, string name)
         {
-            this.functionPipe = functionPipe;
-            this.name = name;
+            this._functionPipe = functionPipe;
+            this._name = name;
         }
 
-        string IGraphNode.Name => name;
+        string IGraphNode.Name => _name;
 
         IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
 
         public override bool Equals(object other)
         {
             var that = other as OutputNode;
-            return that != null && functionPipe == that.functionPipe;
+            return that != null && _functionPipe == that._functionPipe;
         }
 
 

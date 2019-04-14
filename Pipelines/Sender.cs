@@ -4,20 +4,20 @@ namespace Pipelines
 {
     public abstract class Sender<T> : IGraphNode
     {
-        protected readonly List<IListener<T>> _listeners = new List<IListener<T>>();
+        protected readonly List<IListener<T>> Listeners = new List<IListener<T>>();
 
         public abstract string Name { get; }
 
-        IEnumerable<IGraphNode> IGraphNode.Children => _listeners;
+        IEnumerable<IGraphNode> IGraphNode.Children => Listeners;
 
         public void AddListener(IListener<T> listener)
         {
-            _listeners.Add(listener);
+            Listeners.Add(listener);
         }
 
         protected void _Send(T value)
         {
-            foreach (var listener in _listeners) listener.OnMessage(value);
+            foreach (var listener in Listeners) listener.OnMessage(value);
         }
     }
 }
