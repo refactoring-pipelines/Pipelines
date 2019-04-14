@@ -42,12 +42,12 @@ namespace Pipelines
                 return;
             }
 
-            var metadataWithSameNodeNames = _countsByNode.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
+            var nodesWithSameNamesAndCounts = _countsByNode.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
 
             int count;
-            if (metadataWithSameNodeNames.Any())
+            if (nodesWithSameNamesAndCounts.Any())
             {
-                count = metadataWithSameNodeNames.Max(nodeAndCount => nodeAndCount.Value) + 1;
+                count = nodesWithSameNamesAndCounts.Max(nodeAndCount => nodeAndCount.Value) + 1;
             }
             else
             {
