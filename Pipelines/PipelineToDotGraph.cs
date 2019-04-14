@@ -51,11 +51,12 @@ namespace Pipelines
                 return existing;
             }
 
-            IEnumerable<NodeMetadata> metadataWithSameNodeNames = _values.Values.Where(_ => _.Node.Name == node.Name);
+            var metadataWithSameNodeNames = _values.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
+
             int count;
             if (metadataWithSameNodeNames.Any())
             {
-                count = metadataWithSameNodeNames.Max(_ => _.count) + 1;
+                count = metadataWithSameNodeNames.Max(nodeAndCount => nodeAndCount.Value.count) + 1;
             }
             else
             {
