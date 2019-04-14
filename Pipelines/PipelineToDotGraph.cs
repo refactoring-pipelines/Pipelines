@@ -8,7 +8,13 @@ namespace Pipelines
     public class NodeMetadata
     {
         public int count;
-        public string Name;
+        public string UniqueQuotedName
+        {
+            get
+            {
+                return DotGraph.Quoted(count == 0 ? Node.Name : Node.Name + ' ' + count);
+            }
+        }
         public ILabeledNode Node;
     }
 
@@ -22,7 +28,7 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var metadata = new HashSet<NodeMetadata>();
+            var metadata = new Dictionary<ILabeledNode, NodeMetadata>();
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -39,7 +45,7 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, HashSet<NodeMetadata>, StringBuilder> processChild, HashSet<NodeMetadata> metadata)
+        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processChild, Dictionary<ILabeledNode, NodeMetadata> metadata)
         {
             processNode(node, metadata, result);
 
@@ -51,40 +57,31 @@ digraph G {{ node [style=filled, shape=rec]
             return result;
         }
 
-        internal static NodeMetadata CheckNameUnique(ILabeledNode node, HashSet<NodeMetadata> metadata)
+        internal static NodeMetadata CheckNameUnique(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
         {
-            var existing = metadata.FirstOrDefault(_ => _.Node.Equals(node));
-            if (existing != null)
+            if (metadata.TryGetValue(node, out var existing))
             {
                 return existing;
             }
 
-            var name = node.Name;
-            bool any = metadata.Any(_ => _.Node.Name == name);
-            if (any)
+            IEnumerable<NodeMetadata> metadataWithSameNodeNames = metadata.Values.Where(_ => _.Node.Name == node.Name);
+            int count;
+            if (metadataWithSameNodeNames.Any())
             {
-                var maxCount = metadata.Where(_ => _.Node.Name == name).Max(_ => _.count);
-                maxCount++;
-                var newMetadata = new NodeMetadata
-                {
-                    count = maxCount,
-                    Name = Quoted(name + ' ' + maxCount),
-                    Node = node,
-                };
-                metadata.Add(newMetadata);
-                return newMetadata;
+                count = metadataWithSameNodeNames.Max(_ => _.count) + 1;
             }
             else
             {
-                var newMetadata = new NodeMetadata
-                {
-                    count = 0,
-                    Name = Quoted(name),
-                    Node = node,
-                };
-                metadata.Add(newMetadata);
-                return newMetadata;
+                count = 0;
             }
+
+            var newMetadata = new NodeMetadata
+            {
+                count = count,
+                Node = node,
+            };
+            metadata.Add(node, newMetadata);
+            return newMetadata;
         }
     }
 }
