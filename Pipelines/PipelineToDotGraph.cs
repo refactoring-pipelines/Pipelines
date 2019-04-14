@@ -6,11 +6,11 @@ using System.Text;
 namespace Pipelines
 {
 
-    public class NodeMetadataDictionary
+    public class NodeMetadata
     {
         public readonly Dictionary<ILabeledNode, int> _values = new Dictionary<ILabeledNode, int>();
 
-        public NodeMetadataDictionary(ILabeledNode root)
+        public NodeMetadata(ILabeledNode root)
         {
             ProcessTree(root);
         }
@@ -71,7 +71,7 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var metadata = new NodeMetadataDictionary(root);
+            var metadata = new NodeMetadata(root);
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -88,7 +88,7 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, NodeMetadataDictionary, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, NodeMetadataDictionary, StringBuilder> processChild, NodeMetadataDictionary metadata)
+        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, NodeMetadata, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, NodeMetadata, StringBuilder> processChild, NodeMetadata metadata)
         {
             processNode(node, metadata, result);
 
