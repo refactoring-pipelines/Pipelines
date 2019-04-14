@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Pipelines.Test
 {
-    [UseReporter(typeof(VisualStudioReporter))]
+    //[UseReporter(typeof(VisualStudioReporter))]
     [TestClass]
     public class PipelineTests
     {

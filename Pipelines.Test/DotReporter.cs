@@ -1,4 +1,6 @@
-﻿using ApprovalTests.Reporters;
+﻿using System;
+using System.IO;
+using ApprovalTests.Reporters;
 
 namespace Pipelines.Test
 {
@@ -9,6 +11,8 @@ namespace Pipelines.Test
         {
         }
 
-        private static string VsCodeExePath => @"C:\Users\jbazuzi\AppData\Local\Programs\Microsoft VS Code\Code.exe";
+        private static string VsCodeExePath => Path.Join(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            @"Programs\Microsoft VS Code\Code.exe");
     }
 }
