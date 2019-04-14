@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Pipelines
 {
-
     public class NodeMetadata
     {
         public readonly Dictionary<ILabeledNode, int> _values = new Dictionary<ILabeledNode, int>();
@@ -58,46 +55,6 @@ namespace Pipelines
             }
 
             _values.Add(node, count);
-        }
-    }
-
-    public static class DotGraph
-    {
-        public static string Quoted(string value)
-        {
-            return $@"""{value}""";
-        }
-
-
-        public static string FromPipeline<T>(InputPipe<T> root)
-        {
-            var metadata = new NodeMetadata(root);
-
-            return $@"
-digraph G {{ node [style=filled, shape=rec]
-
-# Nodes
-{DotGraphNodes.AppendNodeAndChildren(root, metadata)}
-
-# Formatting
-{DotGraphFormatting.AppendFormatting(root, metadata)}
-{DotGraphRanking.AppendRankings(root, metadata)}
-
-}}
-".Trim();
-        }
-
-
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, NodeMetadata, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, NodeMetadata, StringBuilder> processChild, NodeMetadata metadata)
-        {
-            processNode(node, metadata, result);
-
-            foreach (var listener in node.Listeners)
-            {
-                processChild(node, listener, metadata, result);
-                ProcessTree(listener, result, processNode, processChild, metadata);
-            }
-            return result;
         }
     }
 }
