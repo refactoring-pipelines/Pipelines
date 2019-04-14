@@ -1,4 +1,4 @@
 ﻿using ApprovalTests.Reporters;
-using UnitTestProject1;
+using Pipelines.Test;
 
 [assembly: UseReporter(typeof(DotReporter))]

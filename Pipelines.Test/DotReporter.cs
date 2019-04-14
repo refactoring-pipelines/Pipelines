@@ -1,6 +1,6 @@
 ﻿using ApprovalTests.Reporters;
 
-namespace UnitTestProject1
+namespace Pipelines.Test
 {
     internal class DotReporter : GenericDiffReporter
     {
