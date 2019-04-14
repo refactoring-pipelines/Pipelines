@@ -8,13 +8,12 @@ namespace Pipelines
     public class NodeMetadata
     {
         public int count;
-        public string QuotedUniqueName
+
+        public string GetQuotedUniqueName()
         {
-            get
-            {
-                return DotGraph.Quoted(count == 0 ? Node.Name : Node.Name + ' ' + count);
-            }
+            return DotGraph.Quoted(count == 0 ? Node.Name : Node.Name + ' ' + count);
         }
+
         public ILabeledNode Node;
     }
 
@@ -42,7 +41,7 @@ namespace Pipelines
 
         public string GetQuotedUniqueName(ILabeledNode node)
         {
-            return _values[node].QuotedUniqueName;
+            return _values[node].GetQuotedUniqueName();
         }
 
         public int GetCount(ILabeledNode node)
