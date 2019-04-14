@@ -8,8 +8,6 @@ namespace Pipelines
     public class NodeMetadata
     {
         public int count;
-
-        public ILabeledNode Node;
     }
 
     public class NodeMetadataDictionary
@@ -66,7 +64,6 @@ namespace Pipelines
             var newMetadata = new NodeMetadata
             {
                 count = count,
-                Node = node,
             };
             _values.Add(node, newMetadata);
             return newMetadata;
