@@ -37,11 +37,6 @@ namespace Pipelines
 
         private void CheckNameUnique(IGraphNode node)
         {
-            if (_countsByNode.TryGetValue(node, out var existing))
-            {
-                return;
-            }
-
             var nodesWithSameNamesAndCounts = _countsByNode.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
 
             int count;
