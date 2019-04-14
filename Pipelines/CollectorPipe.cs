@@ -23,9 +23,9 @@ namespace Pipelines
         public T SingleResult => _results.Single();
 
 
-        string ILabeledNode.Name => "Collector";
+        string IGraphNode.Name => "Collector";
 
-        IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
+        IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
 
     }
 }

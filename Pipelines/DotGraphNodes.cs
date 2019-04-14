@@ -7,12 +7,12 @@ namespace Pipelines
     public static class DotGraphNodes
     {
 
-        public static StringBuilder AppendNodeAndChildren(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder AppendNodeAndChildren(IGraphNode node, NodeMetadata metadata)
         {
             return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionPipe, delegate { }, metadata);
         }
 
-        private static void AppendFunctionPipe(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata, StringBuilder result)
+        private static void AppendFunctionPipe(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
             var functionPipe = node as IFunctionPipe;
             if (functionPipe == null)
@@ -20,14 +20,14 @@ namespace Pipelines
 
             var predecessorFunctionPipe = functionPipe.Predecessor as IFunctionPipe;
 
-            string input = DotGraph.CheckNameUnique(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor, metadata).QuotedUniqueName;
-            string function = DotGraph.CheckNameUnique(node, metadata).QuotedUniqueName;
-            string output = DotGraph.CheckNameUnique(functionPipe.Output, metadata).QuotedUniqueName;
+            string input = metadata.GetQuotedUniqueName(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor);
+            string function = metadata.GetQuotedUniqueName(node);
+            string output = metadata.GetQuotedUniqueName(functionPipe.Output);
             var collectorNode = functionPipe.Collector;
             if (collectorNode != null)
             {
-                var nodeMetadata = DotGraph.CheckNameUnique(collectorNode, metadata);
-                output = $"{{{output}, {nodeMetadata.QuotedUniqueName}}}";
+                var collectorUniqueName = metadata.GetQuotedUniqueName(collectorNode);
+                output = $"{{{output}, {collectorUniqueName}}}";
             }
             result.AppendLine($"{input} -> {function} -> {output}");
         }

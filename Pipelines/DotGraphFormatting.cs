@@ -11,44 +11,45 @@ namespace Pipelines
             result.AppendLine($@"{name} [{format}]");
         }
 
-        static readonly Dictionary<Type, Action<ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder>> PipeAppendersByType =
-            new Dictionary<Type, Action<ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder>>
+        static readonly Dictionary<Type, Action<IGraphNode, NodeMetadata, StringBuilder>> PipeAppendersByType =
+            new Dictionary<Type, Action<IGraphNode, NodeMetadata, StringBuilder>>
             {
                 { typeof(CollectorPipe<>), AppendCollectorPipeFormatting },
                 { typeof(FunctionPipe<,>), AppendFunctionPipeFormatting },
                 { typeof(InputPipe<>), AppendInputPipeFormatting },
             };
 
-        public static StringBuilder AppendFormatting(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder AppendFormatting(IGraphNode node, NodeMetadata metadata)
         {
-            Action<ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processNode = (node_, metadata_, result_) => 
+            Action<IGraphNode, NodeMetadata, StringBuilder> processNode = (node_, metadata_, result_) => 
                 PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, metadata_, result_);
             return DotGraph.ProcessTree(node, new StringBuilder(), processNode, delegate { }, metadata);
         }
 
-        private static void AppendInputPipeFormatting(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata, StringBuilder result)
+        private static void AppendInputPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            AppendFormat(DotGraph.CheckNameUnique(node, metadata).QuotedUniqueName, @"color=green", result);
+            var uniqueName = metadata.GetQuotedUniqueName(node);
+            AppendFormat(uniqueName, @"color=green", result);
         }
 
-        private static void AppendFunctionPipeFormatting(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata, StringBuilder result)
+        private static void AppendFunctionPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            ILabeledNode output = ((IFunctionPipe)node).Output;
-            var nodeMetadata = DotGraph.CheckNameUnique(output, metadata);
-            NodeMetadata functionNodeMetadata = DotGraph.CheckNameUnique(node, metadata);
+            IGraphNode output = ((IFunctionPipe)node).Output;
 
-            string label = nodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(nodeMetadata.Node.Name)}, ";
-            AppendFormat(nodeMetadata.QuotedUniqueName, $@"{label}color=""#9fbff4""", result);
+            string label = metadata.GetCount(output) == 0 ? "" : $"label={DotGraph.Quoted(output.Name)}, ";
+            var outputUniqueName = metadata.GetQuotedUniqueName(output);
+            AppendFormat(outputUniqueName, $@"{label}color=""#9fbff4""", result);
 
-            string functionLabel = functionNodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(functionNodeMetadata.Node.Name)}, ";
-            AppendFormat(functionNodeMetadata.QuotedUniqueName, $@"{functionLabel}shape=invhouse", result);
+            string functionLabel = metadata.GetCount(node) == 0 ? "" : $"label={DotGraph.Quoted(node.Name)}, ";
+            var functionUniqueName = metadata.GetQuotedUniqueName(node);
+            AppendFormat(functionUniqueName, $@"{functionLabel}shape=invhouse", result);
         }
 
-        private static void AppendCollectorPipeFormatting(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata, StringBuilder result)
+        private static void AppendCollectorPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            var nodeMetadata = DotGraph.CheckNameUnique(node, metadata);
-            string label = nodeMetadata.count == 0 ? "" : "label=Collector, ";
-            AppendFormat(nodeMetadata.QuotedUniqueName, $@"{label}color = ""#c361f4""", result);
+            string label = metadata.GetCount(node) == 0 ? "" : "label=Collector, ";
+            var uniqueName = metadata.GetQuotedUniqueName(node);
+            AppendFormat(uniqueName, $@"{label}color = ""#c361f4""", result);
         }
     }
 }

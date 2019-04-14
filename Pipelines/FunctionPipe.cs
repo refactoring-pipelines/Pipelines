@@ -35,14 +35,14 @@ namespace Pipelines
 
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
 
-        IEnumerable<ILabeledNode> ILabeledNode.Listeners => this._listeners;
+        IEnumerable<IGraphNode> IGraphNode.Children => this._listeners;
 
-        ILabeledNode IFunctionPipe.Predecessor => this.predecessor;
-        ILabeledNode IFunctionPipe.Collector => this._listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
-        ILabeledNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
+        IGraphNode IFunctionPipe.Predecessor => this.predecessor;
+        IGraphNode IFunctionPipe.Collector => this._listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
+        IGraphNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
     }
 
-    class OutputNode : ILabeledNode
+    class OutputNode : IGraphNode
     {
         private IFunctionPipe functionPipe;
         private string name;
@@ -53,9 +53,9 @@ namespace Pipelines
             this.name = name;
         }
 
-        string ILabeledNode.Name => name;
+        string IGraphNode.Name => name;
 
-        IEnumerable<ILabeledNode> ILabeledNode.Listeners => Enumerable.Empty<ILabeledNode>();
+        IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
 
         public override bool Equals(object other)
         {

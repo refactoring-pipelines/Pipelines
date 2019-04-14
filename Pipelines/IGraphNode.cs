@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Pipelines
 {
-    public interface ILabeledNode
+    public interface IGraphNode
     {
         string Name { get; }
 
-        IEnumerable<ILabeledNode> Listeners { get; }
+        IEnumerable<IGraphNode> Children { get; }
     }
 }
