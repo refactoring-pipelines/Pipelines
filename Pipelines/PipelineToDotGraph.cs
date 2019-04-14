@@ -36,7 +36,18 @@ namespace Pipelines
             }
         }
 
-        public NodeMetadata CheckNameUnique(ILabeledNode node)
+        public string GetQuotedUniqueName(ILabeledNode node)
+        {
+            CheckNameUnique(node);
+            return _values[node].QuotedUniqueName;
+        }
+        public int GetCount(ILabeledNode node)
+        {
+            CheckNameUnique(node);
+            return _values[node].count;
+        }
+
+        private NodeMetadata CheckNameUnique(ILabeledNode node)
         {
             if (_values.TryGetValue(node, out var existing))
             {

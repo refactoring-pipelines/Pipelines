@@ -20,13 +20,13 @@ namespace Pipelines
 
             var predecessorFunctionPipe = functionPipe.Predecessor as IFunctionPipe;
 
-            string input = metadata.CheckNameUnique(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor).QuotedUniqueName;
-            string function = metadata.CheckNameUnique(node).QuotedUniqueName;
-            string output = metadata.CheckNameUnique(functionPipe.Output).QuotedUniqueName;
+            string input = metadata.GetQuotedUniqueName(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor);
+            string function = metadata.GetQuotedUniqueName(node);
+            string output = metadata.GetQuotedUniqueName(functionPipe.Output);
             var collectorNode = functionPipe.Collector;
             if (collectorNode != null)
             {
-                var collectorUniqueName = metadata.CheckNameUnique(collectorNode).QuotedUniqueName;
+                var collectorUniqueName = metadata.GetQuotedUniqueName(collectorNode);
                 output = $"{{{output}, {collectorUniqueName}}}";
             }
             result.AppendLine($"{input} -> {function} -> {output}");
