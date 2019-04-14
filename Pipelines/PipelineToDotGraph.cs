@@ -8,7 +8,7 @@ namespace Pipelines
     public class NodeMetadata
     {
         public int count;
-        public string UniqueQuotedName
+        public string QuotedUniqueName
         {
             get
             {
