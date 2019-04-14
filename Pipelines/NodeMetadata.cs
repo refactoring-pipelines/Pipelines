@@ -5,7 +5,7 @@ namespace Pipelines
 {
     public class NodeMetadata
     {
-        private readonly Dictionary<IGraphNode, int> _values = new Dictionary<IGraphNode, int>();
+        private readonly Dictionary<IGraphNode, int> _countsByNode = new Dictionary<IGraphNode, int>();
 
         public NodeMetadata(IGraphNode root)
         {
@@ -27,22 +27,22 @@ namespace Pipelines
 
         public string GetQuotedUniqueName(IGraphNode node)
         {
-            return DotGraph.Quoted(_values[node] == 0 ? node.Name : node.Name + ' ' + _values[node]);
+            return DotGraph.Quoted(_countsByNode[node] == 0 ? node.Name : node.Name + ' ' + _countsByNode[node]);
         }
 
         public int GetCount(IGraphNode node)
         {
-            return _values[node];
+            return _countsByNode[node];
         }
 
         private void CheckNameUnique(IGraphNode node)
         {
-            if (_values.TryGetValue(node, out var existing))
+            if (_countsByNode.TryGetValue(node, out var existing))
             {
                 return;
             }
 
-            var metadataWithSameNodeNames = _values.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
+            var metadataWithSameNodeNames = _countsByNode.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
 
             int count;
             if (metadataWithSameNodeNames.Any())
@@ -54,7 +54,7 @@ namespace Pipelines
                 count = 0;
             }
 
-            _values.Add(node, count);
+            _countsByNode.Add(node, count);
         }
     }
 }
