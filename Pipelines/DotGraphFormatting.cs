@@ -37,10 +37,10 @@ namespace Pipelines
             var nodeMetadata = metadata.CheckNameUnique(output);
             NodeMetadata functionNodeMetadata = metadata.CheckNameUnique(node);
 
-            string label = nodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(nodeMetadata.Node.Name)}, ";
+            string label = nodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(output.Name)}, ";
             AppendFormat(nodeMetadata.QuotedUniqueName, $@"{label}color=""#9fbff4""", result);
 
-            string functionLabel = functionNodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(functionNodeMetadata.Node.Name)}, ";
+            string functionLabel = functionNodeMetadata.count == 0 ? "" : $"label={DotGraph.Quoted(node.Name)}, ";
             AppendFormat(functionNodeMetadata.QuotedUniqueName, $@"{functionLabel}shape=invhouse", result);
         }
 

@@ -36,7 +36,6 @@ namespace Pipelines
             }
         }
 
-
         public NodeMetadata CheckNameUnique(ILabeledNode node)
         {
             if (_values.TryGetValue(node, out var existing))
