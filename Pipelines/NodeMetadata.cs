@@ -14,10 +14,10 @@ namespace Pipelines
 
         private void ProcessTree(IGraphNode node)
         {
-            CheckNameUnique(node);
+            _countsByNode.Add(node, GetDisambiguatingCount(node));
             if (node is IFunctionPipe functionPipe)
             {
-                CheckNameUnique(functionPipe.Output);
+                _countsByNode.Add(functionPipe.Output, GetDisambiguatingCount(functionPipe.Output));
             }
             foreach (var child in node.Children)
             {
@@ -33,11 +33,6 @@ namespace Pipelines
         public int GetCount(IGraphNode node)
         {
             return _countsByNode[node];
-        }
-
-        private void CheckNameUnique(IGraphNode node)
-        {
-            _countsByNode.Add(node, GetDisambiguatingCount(node));
         }
 
         private int GetDisambiguatingCount(IGraphNode node)
