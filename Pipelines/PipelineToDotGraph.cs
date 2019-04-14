@@ -5,14 +5,10 @@ using System.Text;
 
 namespace Pipelines
 {
-    public class NodeMetadata
-    {
-        public int count;
-    }
 
     public class NodeMetadataDictionary
     {
-        public readonly Dictionary<ILabeledNode, NodeMetadata> _values = new Dictionary<ILabeledNode, NodeMetadata>();
+        public readonly Dictionary<ILabeledNode, int> _values = new Dictionary<ILabeledNode, int>();
 
         public NodeMetadataDictionary(ILabeledNode root)
         {
@@ -34,19 +30,19 @@ namespace Pipelines
 
         public string GetQuotedUniqueName(ILabeledNode node)
         {
-            return DotGraph.Quoted(_values[node].count == 0 ? node.Name : node.Name + ' ' + _values[node].count);
+            return DotGraph.Quoted(_values[node] == 0 ? node.Name : node.Name + ' ' + _values[node]);
         }
 
         public int GetCount(ILabeledNode node)
         {
-            return _values[node].count;
+            return _values[node];
         }
 
-        private NodeMetadata CheckNameUnique(ILabeledNode node)
+        private void CheckNameUnique(ILabeledNode node)
         {
             if (_values.TryGetValue(node, out var existing))
             {
-                return existing;
+                return;
             }
 
             var metadataWithSameNodeNames = _values.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
@@ -54,19 +50,14 @@ namespace Pipelines
             int count;
             if (metadataWithSameNodeNames.Any())
             {
-                count = metadataWithSameNodeNames.Max(nodeAndCount => nodeAndCount.Value.count) + 1;
+                count = metadataWithSameNodeNames.Max(nodeAndCount => nodeAndCount.Value) + 1;
             }
             else
             {
                 count = 0;
             }
 
-            var newMetadata = new NodeMetadata
-            {
-                count = count,
-            };
-            _values.Add(node, newMetadata);
-            return newMetadata;
+            _values.Add(node, count);
         }
     }
 
