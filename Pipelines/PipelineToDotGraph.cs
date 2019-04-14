@@ -9,11 +9,6 @@ namespace Pipelines
     {
         public int count;
 
-        public static string GetQuotedUniqueName(ILabeledNode labeledNode, int i)
-        {
-            return DotGraph.Quoted(i == 0 ? labeledNode.Name : labeledNode.Name + ' ' + i);
-        }
-
         public ILabeledNode Node;
     }
 
@@ -42,7 +37,7 @@ namespace Pipelines
         public string GetQuotedUniqueName(ILabeledNode node)
         {
             NodeMetadata tempQualifier = _values[node];
-            return NodeMetadata.GetQuotedUniqueName(tempQualifier.Node, tempQualifier.count);
+            return DotGraph.Quoted(tempQualifier.count == 0 ? tempQualifier.Node.Name : tempQualifier.Node.Name + ' ' + tempQualifier.count);
         }
 
         public int GetCount(ILabeledNode node)
