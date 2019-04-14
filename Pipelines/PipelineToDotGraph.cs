@@ -18,6 +18,11 @@ namespace Pipelines
         public ILabeledNode Node;
     }
 
+    public class NodeMetadataDictionary
+    {
+        public readonly Dictionary<ILabeledNode, NodeMetadata> _values = new Dictionary<ILabeledNode, NodeMetadata>();
+    }
+
     public static class DotGraph
     {
         public static string Quoted(string value)
@@ -28,7 +33,7 @@ namespace Pipelines
 
         public static string FromPipeline<T>(InputPipe<T> root)
         {
-            var metadata = new Dictionary<ILabeledNode, NodeMetadata>();
+            var metadata = new NodeMetadataDictionary();
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -45,7 +50,7 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, Dictionary<ILabeledNode, NodeMetadata>, StringBuilder> processChild, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder ProcessTree(ILabeledNode node, StringBuilder result, Action<ILabeledNode, NodeMetadataDictionary, StringBuilder> processNode, Action<ILabeledNode, ILabeledNode, NodeMetadataDictionary, StringBuilder> processChild, NodeMetadataDictionary metadata)
         {
             processNode(node, metadata, result);
 
@@ -57,14 +62,14 @@ digraph G {{ node [style=filled, shape=rec]
             return result;
         }
 
-        internal static NodeMetadata CheckNameUnique(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        internal static NodeMetadata CheckNameUnique(ILabeledNode node, NodeMetadataDictionary metadata)
         {
-            if (metadata.TryGetValue(node, out var existing))
+            if (metadata._values.TryGetValue(node, out var existing))
             {
                 return existing;
             }
 
-            IEnumerable<NodeMetadata> metadataWithSameNodeNames = metadata.Values.Where(_ => _.Node.Name == node.Name);
+            IEnumerable<NodeMetadata> metadataWithSameNodeNames = metadata._values.Values.Where(_ => _.Node.Name == node.Name);
             int count;
             if (metadataWithSameNodeNames.Any())
             {
@@ -80,7 +85,7 @@ digraph G {{ node [style=filled, shape=rec]
                 count = count,
                 Node = node,
             };
-            metadata.Add(node, newMetadata);
+            metadata._values.Add(node, newMetadata);
             return newMetadata;
         }
     }

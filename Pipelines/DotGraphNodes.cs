@@ -7,12 +7,12 @@ namespace Pipelines
     public static class DotGraphNodes
     {
 
-        public static StringBuilder AppendNodeAndChildren(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata)
+        public static StringBuilder AppendNodeAndChildren(ILabeledNode node, NodeMetadataDictionary metadata)
         {
             return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionPipe, delegate { }, metadata);
         }
 
-        private static void AppendFunctionPipe(ILabeledNode node, Dictionary<ILabeledNode, NodeMetadata> metadata, StringBuilder result)
+        private static void AppendFunctionPipe(ILabeledNode node, NodeMetadataDictionary metadata, StringBuilder result)
         {
             var functionPipe = node as IFunctionPipe;
             if (functionPipe == null)
