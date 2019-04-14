@@ -16,7 +16,7 @@ namespace Pipelines
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {
                 var nodeMetadata = DotGraph.CheckNameUnique(listener, metadata);
-                result.AppendLine($@"{{ rank=same; {DotGraph.Quoted(node.Name)}, {nodeMetadata.Name}}}");
+                result.AppendLine($@"{{ rank=same; {DotGraph.Quoted(node.Name)}, {nodeMetadata.UniqueQuotedName}}}");
             }
         }
     }

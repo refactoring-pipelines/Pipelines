@@ -20,14 +20,14 @@ namespace Pipelines
 
             var predecessorFunctionPipe = functionPipe.Predecessor as IFunctionPipe;
 
-            string input = DotGraph.CheckNameUnique(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor, metadata).Name;
-            string function = DotGraph.CheckNameUnique(node, metadata).Name;
-            string output = DotGraph.CheckNameUnique(functionPipe.Output, metadata).Name;
+            string input = DotGraph.CheckNameUnique(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor, metadata).UniqueQuotedName;
+            string function = DotGraph.CheckNameUnique(node, metadata).UniqueQuotedName;
+            string output = DotGraph.CheckNameUnique(functionPipe.Output, metadata).UniqueQuotedName;
             var collectorNode = functionPipe.Collector;
             if (collectorNode != null)
             {
                 var nodeMetadata = DotGraph.CheckNameUnique(collectorNode, metadata);
-                output = $"{{{output}, {nodeMetadata.Name}}}";
+                output = $"{{{output}, {nodeMetadata.UniqueQuotedName}}}";
             }
             result.AppendLine($"{input} -> {function} -> {output}");
         }
