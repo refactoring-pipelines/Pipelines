@@ -8,7 +8,7 @@ namespace Pipelines
 
         public abstract string Name { get; }
 
-        IEnumerable<IGraphNode> IGraphNode.Listeners => _listeners;
+        IEnumerable<IGraphNode> IGraphNode.Children => _listeners;
 
         public void AddListener(IListener<T> listener)
         {

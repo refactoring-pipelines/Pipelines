@@ -19,7 +19,7 @@ namespace Pipelines
             {
                 CheckNameUnique(functionPipe.Output);
             }
-            foreach (var child in node.Listeners)
+            foreach (var child in node.Children)
             {
                 ProcessTree(child);
             }

@@ -8,6 +8,6 @@ namespace Pipelines
     {
         string Name { get; }
 
-        IEnumerable<IGraphNode> Listeners { get; }
+        IEnumerable<IGraphNode> Children { get; }
     }
 }

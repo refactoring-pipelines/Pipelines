@@ -25,7 +25,7 @@ namespace Pipelines
 
         string IGraphNode.Name => "Collector";
 
-        IEnumerable<IGraphNode> IGraphNode.Listeners => Enumerable.Empty<IGraphNode>();
+        IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
 
     }
 }

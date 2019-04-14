@@ -34,7 +34,7 @@ digraph G {{ node [style=filled, shape=rec]
         {
             processNode(node, metadata, result);
 
-            foreach (var listener in node.Listeners)
+            foreach (var listener in node.Children)
             {
                 processChild(node, listener, metadata, result);
                 ProcessTree(listener, result, processNode, processChild, metadata);
