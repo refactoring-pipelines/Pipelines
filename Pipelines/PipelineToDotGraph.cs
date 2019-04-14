@@ -37,7 +37,7 @@ namespace Pipelines
         public string GetQuotedUniqueName(ILabeledNode node)
         {
             NodeMetadata tempQualifier = _values[node];
-            return DotGraph.Quoted(tempQualifier.count == 0 ? tempQualifier.Node.Name : tempQualifier.Node.Name + ' ' + tempQualifier.count);
+            return DotGraph.Quoted(tempQualifier.count == 0 ? node.Name : node.Name + ' ' + tempQualifier.count);
         }
 
         public int GetCount(ILabeledNode node)
