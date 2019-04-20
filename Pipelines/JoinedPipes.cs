@@ -60,6 +60,6 @@ namespace Pipelines
 
         Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput> IJoinedPipes.Predecessors => new Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput>((IGraphNodeWithOutput)_sender1, (IGraphNodeWithOutput)_sender2);
         IGraphNode IJoinedPipes.Collector => Listeners.OfType<CollectorPipe<Tuple<TInput1, TInput2>>>().SingleOrDefault();
-        IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, typeof(Tuple<TInput1, TInput2>).Name);
+        IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, $"Tuple{{{typeof(TInput1).Name}, {typeof(TInput2).Name}}}");
     }
 }

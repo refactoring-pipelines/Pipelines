@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Pipelines
 {
@@ -15,14 +16,20 @@ namespace Pipelines
 
         private void ProcessTree(IGraphNode node)
         {
+            if (_countsByNode.ContainsKey(node))
+            {
+                return;
+            }
+
             _countsByNode[node] = GetDisambiguatingCount(node);
 
-            if (node is IFunctionPipe functionPipe)
-                _countsByNode[functionPipe.Output] = GetDisambiguatingCount(functionPipe.Output);
-            if (node is IJoinedPipes joinedPipes)
-                _countsByNode[joinedPipes.Output] = GetDisambiguatingCount(joinedPipes.Output);
+            if (node is IGraphNodeWithOutput graphNodeWithOutput)
+                _countsByNode[graphNodeWithOutput.Output] = GetDisambiguatingCount(graphNodeWithOutput.Output);
 
-            foreach (var child in node.Children) ProcessTree(child.CheckForwarding());
+            foreach (var child in node.Children)
+            {
+                ProcessTree(child.CheckForwarding());
+            }
         }
 
         public string GetQuotedUniqueName(IGraphNode node)
@@ -58,16 +65,16 @@ namespace Pipelines
             return $@"""{value}""";
         }
 
-        readonly HashSet<IGraphNode> _isNodeDataProcessed = new HashSet<IGraphNode>();
+        readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>> _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>();
 
-        public bool IsNodeDataProcessed(IGraphNode node)
+        public bool IsNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, StringBuilder> processChild)
         {
-            return _isNodeDataProcessed.Contains(node);
+            return _isNodeDataProcessed.Contains(Tuple.Create(node, processChild));
         }
 
-        public void SetNodeDataProcessed(IGraphNode node)
+        public void SetNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, StringBuilder> processChild)
         {
-            _isNodeDataProcessed.Add(node);
+            _isNodeDataProcessed.Add(Tuple.Create(node, processChild));
         }
     }
 }

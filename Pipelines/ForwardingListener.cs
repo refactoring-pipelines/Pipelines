@@ -8,24 +8,17 @@ namespace Pipelines
     {
         public static IGraphNode CheckForwarding(this IGraphNode that)
         {
-            if (that is IForwardingListener forwardingListener)
-            {
-                return forwardingListener.Owner;
-            }
-            else
-            {
-                return that;
-            }
+            return (that is IForwardingListener forwarding) ? forwarding.Owner : that;
         }
     }
+
     public class ForwardingListener<T> : IListener<T>, IForwardingListener
     {
-        private readonly IGraphNode _owner;
         private readonly Action<T> _onMessage;
 
         public ForwardingListener(IGraphNode owner, Action<T> onMessage)
         {
-            _owner = owner;
+            Owner = owner;
             _onMessage = onMessage;
         }
 
@@ -34,9 +27,9 @@ namespace Pipelines
             _onMessage(value);
         }
 
-        public string Name => _owner.Name;
+        public string Name => throw new Exception("Do not call");
 
-        public IEnumerable<IGraphNode> Children => _owner.Children;
-        public IGraphNode Owner => _owner;
+        public IEnumerable<IGraphNode> Children => throw new Exception("Do not call");
+        public IGraphNode Owner { get; }
     }
 }

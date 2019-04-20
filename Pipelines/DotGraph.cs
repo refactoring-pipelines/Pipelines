@@ -28,6 +28,9 @@ digraph G {{ node [style=filled, shape=rec]
             Action<IGraphNode, NodeMetadata, StringBuilder> processNode,
             Action<IGraphNode, IGraphNode, NodeMetadata, StringBuilder> processChild, NodeMetadata metadata)
         {
+            if (metadata.IsNodeDataProcessed(node, processNode)) { return result; }
+            metadata.SetNodeDataProcessed(node, processNode);
+
             processNode(node, metadata, result);
 
             foreach (var listener in node.Children)

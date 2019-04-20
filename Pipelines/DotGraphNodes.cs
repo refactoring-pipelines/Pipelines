@@ -40,9 +40,6 @@ namespace Pipelines
         }
         private static void AppendJoinedPipe(IJoinedPipes joinedPipes, NodeMetadata metadata, StringBuilder result)
         {
-            if (metadata.IsNodeDataProcessed(joinedPipes)) { return; }
-
-            metadata.SetNodeDataProcessed(joinedPipes);
 
             var predecessors = joinedPipes.Predecessors;
 
