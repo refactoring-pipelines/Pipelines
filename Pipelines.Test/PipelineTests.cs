@@ -44,8 +44,6 @@ namespace Pipelines.Test
             var joinedPipes = longToString.JoinTo(incrementLong).Collect();
 
             Verify(input);
-            input.Send("42");
-            Assert.AreEqual("(42, 43)", joinedPipes.SingleResult.ToString());
         }
 
         [TestMethod]
@@ -58,6 +56,21 @@ namespace Pipelines.Test
             Verify(input);
         }
 
+        [TestMethod]
+        public void JoinInputs()
+        {
+            var input1 = new InputPipe<long>("value1");
+            var input2 = new InputPipe<long>("value2");
+            var join = input1.JoinTo(input2);
+            var collector = join.Collect();
+
+            input1.Send(42);
+            Assert.IsTrue(collector.IsEmpty);
+
+            input2.Send(99);
+            Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
+        }
+
         private string LongToString(long value)
         {
             return value.ToString();
@@ -65,7 +78,8 @@ namespace Pipelines.Test
 
         long IncrementLong(long value)
         {
-            return value + 1;}
+            return value + 1;
+        }
 
         private static void Verify<T>(InputPipe<T> input)
         {
