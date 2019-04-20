@@ -1,9 +1,8 @@
 ﻿namespace Pipelines
 {
-    internal interface IFunctionPipe : IGraphNode
+    internal interface IFunctionPipe : IGraphNodeWithOutput
     {
         IGraphNode Predecessor { get; }
         IGraphNode Collector { get; }
-        IGraphNode Output { get; }
     }
 }

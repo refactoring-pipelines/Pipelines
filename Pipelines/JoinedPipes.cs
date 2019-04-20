@@ -12,12 +12,15 @@ namespace Pipelines
         }
     }
 
-    public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>
+    public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>, IJoinedPipes
     {
+        private readonly Sender<TInput1> _sender1;
+        private readonly Sender<TInput2> _sender2;
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<TInput2> _listener2;
         private readonly Queue<TInput1> _values1 = new Queue<TInput1>();
         private readonly Queue<TInput2> _values2 = new Queue<TInput2>();
+        private IGraphNode _output;
 
         private JoinedPipes()
         {
@@ -27,6 +30,8 @@ namespace Pipelines
 
         public JoinedPipes(Sender<TInput1> sender1, Sender<TInput2> sender2) : this()
         {
+            _sender1 = sender1;
+            _sender2 = sender2;
             sender1.AddListener(_listener1);
             sender2.AddListener(_listener2);
         }
@@ -52,5 +57,9 @@ namespace Pipelines
         }
 
         public override string Name => "Join";
+
+        Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput> IJoinedPipes.Predecessors => new Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput>((IGraphNodeWithOutput)_sender1, (IGraphNodeWithOutput)_sender2);
+        IGraphNode IJoinedPipes.Collector => Listeners.OfType<CollectorPipe<Tuple<TInput1, TInput2>>>().SingleOrDefault();
+        IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, typeof(Tuple<TInput1, TInput2>).Name);
     }
 }

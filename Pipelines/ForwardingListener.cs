@@ -4,7 +4,21 @@ using System.Linq;
 
 namespace Pipelines
 {
-    public class ForwardingListener<T> : IListener<T>
+    public static class ForwardingListener
+    {
+        public static IGraphNode CheckForwarding(this IGraphNode that)
+        {
+            if (that is IForwardingListener forwardingListener)
+            {
+                return forwardingListener.Owner;
+            }
+            else
+            {
+                return that;
+            }
+        }
+    }
+    public class ForwardingListener<T> : IListener<T>, IForwardingListener
     {
         private readonly IGraphNode _owner;
         private readonly Action<T> _onMessage;
@@ -23,5 +37,6 @@ namespace Pipelines
         public string Name => _owner.Name;
 
         public IEnumerable<IGraphNode> Children => _owner.Children;
+        public IGraphNode Owner => _owner;
     }
 }

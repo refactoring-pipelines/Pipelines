@@ -8,4 +8,9 @@ namespace Pipelines
 
         IEnumerable<IGraphNode> Children { get; }
     }
+
+    public interface IGraphNodeWithOutput : IGraphNode
+    {
+        IGraphNode Output { get; }
+    }
 }

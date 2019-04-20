@@ -32,8 +32,8 @@ digraph G {{ node [style=filled, shape=rec]
 
             foreach (var listener in node.Children)
             {
-                processChild(node, listener, metadata, result);
-                ProcessTree(listener, result, processNode, processChild, metadata);
+                processChild(node, listener.CheckForwarding(), metadata, result);
+                ProcessTree(listener.CheckForwarding(), result, processNode, processChild, metadata);
             }
 
             return result;

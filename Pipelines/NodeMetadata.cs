@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pipelines
@@ -15,9 +16,13 @@ namespace Pipelines
         private void ProcessTree(IGraphNode node)
         {
             _countsByNode[node] = GetDisambiguatingCount(node);
+
             if (node is IFunctionPipe functionPipe)
-                _countsByNode.Add(functionPipe.Output, GetDisambiguatingCount(functionPipe.Output));
-            foreach (var child in node.Children) ProcessTree(child);
+                _countsByNode[functionPipe.Output] = GetDisambiguatingCount(functionPipe.Output);
+            if (node is IJoinedPipes joinedPipes)
+                _countsByNode[joinedPipes.Output] = GetDisambiguatingCount(joinedPipes.Output);
+
+            foreach (var child in node.Children) ProcessTree(child.CheckForwarding());
         }
 
         public string GetQuotedUniqueName(IGraphNode node)
@@ -51,6 +56,18 @@ namespace Pipelines
         private static string Quoted(string value)
         {
             return $@"""{value}""";
+        }
+
+        readonly HashSet<IGraphNode> _isNodeDataProcessed = new HashSet<IGraphNode>();
+
+        public bool IsNodeDataProcessed(IGraphNode node)
+        {
+            return _isNodeDataProcessed.Contains(node);
+        }
+
+        public void SetNodeDataProcessed(IGraphNode node)
+        {
+            _isNodeDataProcessed.Add(node);
         }
     }
 }

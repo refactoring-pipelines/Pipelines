@@ -18,7 +18,7 @@ namespace Pipelines
 
         IGraphNode IFunctionPipe.Predecessor => _predecessor;
         IGraphNode IFunctionPipe.Collector => Listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
-        IGraphNode IFunctionPipe.Output => new OutputNode(this, _func.Method.ReturnType.Name);
+        IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, _func.Method.ReturnType.Name);
 
         public void OnMessage(TInput input)
         {
@@ -38,12 +38,12 @@ namespace Pipelines
 
     internal class OutputNode : IGraphNode
     {
-        private readonly IFunctionPipe _functionPipe;
+        private readonly IGraphNode _owner;
         private readonly string _name;
 
-        public OutputNode(IFunctionPipe functionPipe, string name)
+        public OutputNode(IGraphNode owner, string name)
         {
-            this._functionPipe = functionPipe;
+            this._owner = owner;
             this._name = name;
         }
 
@@ -54,7 +54,7 @@ namespace Pipelines
         public override bool Equals(object other)
         {
             var that = other as OutputNode;
-            return that != null && _functionPipe == that._functionPipe;
+            return that != null && _owner == that._owner;
         }
 
 

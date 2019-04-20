@@ -13,9 +13,15 @@ namespace Pipelines
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
                 {typeof(InputPipe<>), AppendInputPipeFormatting},
                 {typeof(ForwardingListener<>), AppendForwardingListener},
+                {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting},
             };
 
         private static void AppendForwardingListener(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        {
+            var forwardingListener = (IForwardingListener) node;
+            
+        }
+       private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
             
         }
