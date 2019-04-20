@@ -23,8 +23,8 @@ namespace Pipelines
 
             SetCountForNode(node);
 
-            if (node is IGraphNodeWithOutput graphNodeWithOutput)
-                SetCountForNode(graphNodeWithOutput.Output);
+            if (node is IGraphNodeWithOutput withOutput)
+                SetCountForNode(withOutput.Output);
 
             foreach (var child in node.Children)
             {
