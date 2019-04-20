@@ -48,6 +48,16 @@ namespace Pipelines.Test
             Assert.AreEqual("(42, 43)", joinedPipes.SingleResult.ToString());
         }
 
+        [TestMethod]
+        public void SplitInput()
+        {
+            var input = new InputPipe<long>("value");
+            input.Process(LongToString);
+            input.Process(IncrementLong);
+
+            Verify(input);
+        }
+
         private string LongToString(long value)
         {
             return value.ToString();
@@ -57,7 +67,7 @@ namespace Pipelines.Test
         {
             return value + 1;}
 
-        private static void Verify(InputPipe<string> input)
+        private static void Verify<T>(InputPipe<T> input)
         {
             Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.FromPipeline(input), "dot"));
         }
