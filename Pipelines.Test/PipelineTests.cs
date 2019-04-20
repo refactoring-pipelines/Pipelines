@@ -69,6 +69,9 @@ namespace Pipelines.Test
 
             input2.Send(99);
             Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
+
+            // TODO:
+            //Verify(join);
         }
 
         private string LongToString(long value)
