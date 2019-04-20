@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Pipelines
+﻿namespace Pipelines
 {
     public interface IGraphNode
     {
         string Name { get; }
-
     }
 
     public interface IGraphNodeWithOutput : IGraphNode

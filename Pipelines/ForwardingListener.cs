@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Pipelines
 {
@@ -8,7 +7,7 @@ namespace Pipelines
     {
         public static IGraphNode CheckForwarding(this IGraphNode that)
         {
-            return (that is IForwardingListener forwarding) ? forwarding.Owner : that;
+            return that is IForwardingListener forwarding ? forwarding.Owner : that;
         }
     }
 
@@ -22,14 +21,14 @@ namespace Pipelines
             _onMessage = onMessage;
         }
 
+        public IEnumerable<IGraphNode> Children => throw new Exception("Do not call");
+        public IGraphNode Owner { get; }
+
         public void OnMessage(T value)
         {
             _onMessage(value);
         }
 
         public string Name => throw new Exception("Do not call");
-
-        public IEnumerable<IGraphNode> Children => throw new Exception("Do not call");
-        public IGraphNode Owner { get; }
     }
 }

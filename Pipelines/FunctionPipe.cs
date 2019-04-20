@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Pipelines
 {
@@ -12,12 +11,14 @@ namespace Pipelines
         public FunctionPipe(Func<TInput, TOutput> func, Sender<TInput> predecessor)
         {
             _func = func;
-            this._predecessor = predecessor;
+            _predecessor = predecessor;
             predecessor.AddListener(this);
         }
 
         IGraphNode IFunctionPipe.Predecessor => _predecessor;
         IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, _func.Method.ReturnType.Name);
+
+        IEnumerable<IGraphNode> ISender.Children => Listeners;
 
         public void OnMessage(TInput input)
         {
@@ -27,8 +28,6 @@ namespace Pipelines
 
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
 
-        IEnumerable<IGraphNode> ISender.Children => Listeners;
-
         public FunctionPipe<TOutput, TNext> Process<TNext>(Func<TOutput, TNext> func)
         {
             return new FunctionPipe<TOutput, TNext>(func, this);
@@ -37,13 +36,13 @@ namespace Pipelines
 
     internal class OutputNode : IGraphNode
     {
-        private readonly IGraphNode _owner;
         private readonly string _name;
+        private readonly IGraphNode _owner;
 
         public OutputNode(IGraphNode owner, string name)
         {
-            this._owner = owner;
-            this._name = name;
+            _owner = owner;
+            _name = name;
         }
 
         string IGraphNode.Name => _name;

@@ -38,9 +38,9 @@ namespace Pipelines
 
             result.AppendLine($"{input} -> {function} -> {output}");
         }
+
         private static void AppendJoinedPipe(IJoinedPipes joinedPipes, NodeMetadata metadata, StringBuilder result)
         {
-
             var predecessors = joinedPipes.Predecessors;
 
             var input1 = metadata.GetQuotedUniqueName(predecessors.Item1.Output);

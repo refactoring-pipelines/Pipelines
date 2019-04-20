@@ -24,6 +24,8 @@ namespace Pipelines
 
         public T SingleResult => _results.Single();
 
+        public bool IsEmpty => !_results.Any();
+
 
         public void OnMessage(T value)
         {
@@ -31,7 +33,5 @@ namespace Pipelines
         }
 
         string IGraphNode.Name => "Collector";
-
-        public bool IsEmpty =>! _results.Any();
     }
 }

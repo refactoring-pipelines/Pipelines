@@ -6,7 +6,8 @@ namespace Pipelines
 {
     public static class JoinedPipes
     {
-        public static JoinedPipes<TOutput1, TOutput2> JoinTo<TOutput1, TOutput2>(this Sender<TOutput1> sender1, Sender<TOutput2> sender2)
+        public static JoinedPipes<TOutput1, TOutput2> JoinTo<TOutput1, TOutput2>(this Sender<TOutput1> sender1,
+            Sender<TOutput2> sender2)
         {
             return new JoinedPipes<TOutput1, TOutput2>(sender1, sender2);
         }
@@ -14,10 +15,10 @@ namespace Pipelines
 
     public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>, IJoinedPipes
     {
-        private readonly Sender<TInput1> _sender1;
-        private readonly Sender<TInput2> _sender2;
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<TInput2> _listener2;
+        private readonly Sender<TInput1> _sender1;
+        private readonly Sender<TInput2> _sender2;
         private readonly Queue<TInput1> _values1 = new Queue<TInput1>();
         private readonly Queue<TInput2> _values2 = new Queue<TInput2>();
 
@@ -35,13 +36,25 @@ namespace Pipelines
             sender2.AddListener(_listener2);
         }
 
-        void OnMessage1(TInput1 value)
+        public override string Name => "Join";
+
+        Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput> IJoinedPipes.Predecessors =>
+            new Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput>((IGraphNodeWithOutput) _sender1,
+                (IGraphNodeWithOutput) _sender2);
+
+        IGraphNode IJoinedPipes.Collector =>
+            Listeners.OfType<CollectorPipe<Tuple<TInput1, TInput2>>>().SingleOrDefault();
+
+        IGraphNode IGraphNodeWithOutput.Output =>
+            new OutputNode(this, $"Tuple{{{typeof(TInput1).Name}, {typeof(TInput2).Name}}}");
+
+        private void OnMessage1(TInput1 value)
         {
             _values1.Enqueue(value);
             _SendIfReady();
         }
 
-        void OnMessage2(TInput2 value)
+        private void OnMessage2(TInput2 value)
         {
             _values2.Enqueue(value);
             _SendIfReady();
@@ -49,16 +62,7 @@ namespace Pipelines
 
         private void _SendIfReady()
         {
-            if (_values1.Any() && _values2.Any())
-            {
-                _Send(Tuple.Create(_values1.Dequeue(), _values2.Dequeue()));
-            }
+            if (_values1.Any() && _values2.Any()) _Send(Tuple.Create(_values1.Dequeue(), _values2.Dequeue()));
         }
-
-        public override string Name => "Join";
-
-        Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput> IJoinedPipes.Predecessors => new Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput>((IGraphNodeWithOutput)_sender1, (IGraphNodeWithOutput)_sender2);
-        IGraphNode IJoinedPipes.Collector => Listeners.OfType<CollectorPipe<Tuple<TInput1, TInput2>>>().SingleOrDefault();
-        IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, $"Tuple{{{typeof(TInput1).Name}, {typeof(TInput2).Name}}}");
     }
 }

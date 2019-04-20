@@ -11,6 +11,8 @@ namespace Pipelines
 
         IEnumerable<IGraphNode> ISender.Children => Listeners;
 
+        public IGraphNode Collector => Listeners.OfType<CollectorPipe<T>>().SingleOrDefault();
+
         public void AddListener(IListener<T> listener)
         {
             Listeners.Add(listener);
@@ -20,7 +22,5 @@ namespace Pipelines
         {
             foreach (var listener in Listeners) listener.OnMessage(value);
         }
-
-        public IGraphNode Collector => Listeners.OfType<CollectorPipe<T>>().SingleOrDefault();
     }
 }

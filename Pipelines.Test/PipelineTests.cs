@@ -27,7 +27,8 @@ namespace Pipelines.Test
             var input = new InputPipe<string>("age");
             var parsePipe = input.Process(long.Parse);
             var collector = parsePipe.Collect();
-            parsePipe.Process(LongToString).WithCollector().Process(long.Parse).WithCollector().Process(LongToString).Collect();
+            parsePipe.Process(LongToString).WithCollector().Process(long.Parse).WithCollector().Process(LongToString)
+                .Collect();
 
             Verify(input);
         }
@@ -79,7 +80,7 @@ namespace Pipelines.Test
             return value.ToString();
         }
 
-        long IncrementLong(long value)
+        private long IncrementLong(long value)
         {
             return value + 1;
         }
@@ -90,7 +91,7 @@ namespace Pipelines.Test
         }
     }
 
-    static class _
+    internal static class _
     {
         public static FunctionPipe<TInput, TOutput> WithCollector<TInput, TOutput>(
             this FunctionPipe<TInput, TOutput> @this)
@@ -98,7 +99,5 @@ namespace Pipelines.Test
             @this.Collect();
             return @this;
         }
-
     }
-
 }

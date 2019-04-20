@@ -1,6 +1,6 @@
 ﻿namespace Pipelines
 {
-    interface IForwardingListener : IGraphNode
+    internal interface IForwardingListener : IGraphNode
     {
         IGraphNode Owner { get; }
     }

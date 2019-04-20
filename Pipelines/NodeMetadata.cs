@@ -9,6 +9,9 @@ namespace Pipelines
     {
         private readonly Dictionary<IGraphNode, int> _countsByNode = new Dictionary<IGraphNode, int>();
 
+        private readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>
+            _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>();
+
         public NodeMetadata(IGraphNode root)
         {
             ProcessTree(root);
@@ -16,10 +19,7 @@ namespace Pipelines
 
         private void ProcessTree(IGraphNode node)
         {
-            if (_countsByNode.ContainsKey(node))
-            {
-                return;
-            }
+            if (_countsByNode.ContainsKey(node)) return;
 
             SetCountForNode(node);
 
@@ -27,12 +27,8 @@ namespace Pipelines
                 SetCountForNode(withOutput.Output);
 
             if (node is ISender sender)
-            {
                 foreach (var child in sender.Children)
-                {
                     ProcessTree(child.CheckForwarding());
-                }
-            }
         }
 
         private void SetCountForNode(IGraphNode node)
@@ -72,8 +68,6 @@ namespace Pipelines
         {
             return $@"""{value}""";
         }
-
-        readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>> _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>();
 
         public bool IsNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, StringBuilder> processChild)
         {
