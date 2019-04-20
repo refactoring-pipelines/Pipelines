@@ -24,8 +24,8 @@
 
 { rank=same; "Int64.Parse()", "Collector"}
 { rank=same; "PipelineTests.LongToString()", "Collector 1"}
-{ rank=same; "Int64.Parse()", "Collector 2"}
-{ rank=same; "PipelineTests.LongToString()", "Collector 3"}
+{ rank=same; "Int64.Parse() 1", "Collector 2"}
+{ rank=same; "PipelineTests.LongToString() 1", "Collector 3"}
 
 
 }
