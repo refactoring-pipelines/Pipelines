@@ -21,15 +21,20 @@ namespace Pipelines
                 return;
             }
 
-            _countsByNode[node] = GetDisambiguatingCount(node);
+            SetCountForNode(node);
 
             if (node is IGraphNodeWithOutput graphNodeWithOutput)
-                _countsByNode[graphNodeWithOutput.Output] = GetDisambiguatingCount(graphNodeWithOutput.Output);
+                SetCountForNode(graphNodeWithOutput.Output);
 
             foreach (var child in node.Children)
             {
                 ProcessTree(child.CheckForwarding());
             }
+        }
+
+        private void SetCountForNode(IGraphNode node)
+        {
+            _countsByNode[node] = GetDisambiguatingCount(node);
         }
 
         public string GetQuotedUniqueName(IGraphNode node)
