@@ -6,7 +6,6 @@ namespace Pipelines
     {
         string Name { get; }
 
-        IEnumerable<IGraphNode> Children { get; }
     }
 
     public interface IGraphNodeWithOutput : IGraphNode

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pipelines
 {
-    public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IFunctionPipe
+    public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IFunctionPipe, ISender
     {
         private readonly Func<TInput, TOutput> _func;
         private readonly Sender<TInput> _predecessor;
@@ -17,7 +17,6 @@ namespace Pipelines
         }
 
         IGraphNode IFunctionPipe.Predecessor => _predecessor;
-        IGraphNode IFunctionPipe.Collector => Listeners.OfType<CollectorPipe<TOutput>>().SingleOrDefault();
         IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, _func.Method.ReturnType.Name);
 
         public void OnMessage(TInput input)
@@ -28,7 +27,7 @@ namespace Pipelines
 
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
 
-        IEnumerable<IGraphNode> IGraphNode.Children => Listeners;
+        IEnumerable<IGraphNode> ISender.Children => Listeners;
 
         public FunctionPipe<TOutput, TNext> Process<TNext>(Func<TOutput, TNext> func)
         {
@@ -49,14 +48,12 @@ namespace Pipelines
 
         string IGraphNode.Name => _name;
 
-        IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
 
         public override bool Equals(object other)
         {
             var that = other as OutputNode;
             return that != null && _owner == that._owner;
         }
-
 
         public override int GetHashCode()
         {

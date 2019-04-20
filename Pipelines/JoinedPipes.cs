@@ -20,7 +20,6 @@ namespace Pipelines
         private readonly ForwardingListener<TInput2> _listener2;
         private readonly Queue<TInput1> _values1 = new Queue<TInput1>();
         private readonly Queue<TInput2> _values2 = new Queue<TInput2>();
-        private IGraphNode _output;
 
         private JoinedPipes()
         {

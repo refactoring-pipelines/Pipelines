@@ -33,10 +33,13 @@ digraph G {{ node [style=filled, shape=rec]
 
             processNode(node, metadata, result);
 
-            foreach (var listener in node.Children)
+            if (node is ISender sender)
             {
-                processChild(node, listener.CheckForwarding(), metadata, result);
-                ProcessTree(listener.CheckForwarding(), result, processNode, processChild, metadata);
+                foreach (var listener in sender.Children)
+                {
+                    processChild(node, listener.CheckForwarding(), metadata, result);
+                    ProcessTree(listener.CheckForwarding(), result, processNode, processChild, metadata);
+                }
             }
 
             return result;

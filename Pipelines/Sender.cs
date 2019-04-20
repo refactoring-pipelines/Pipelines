@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Pipelines
 {
-    public abstract class Sender<T> : IGraphNode
+    public abstract class Sender<T> : ISender
     {
         protected readonly List<IListener<T>> Listeners = new List<IListener<T>>();
 
         public abstract string Name { get; }
 
-        IEnumerable<IGraphNode> IGraphNode.Children => Listeners;
+        IEnumerable<IGraphNode> ISender.Children => Listeners;
 
         public void AddListener(IListener<T> listener)
         {
@@ -19,5 +20,7 @@ namespace Pipelines
         {
             foreach (var listener in Listeners) listener.OnMessage(value);
         }
+
+        public IGraphNode Collector => Listeners.OfType<CollectorPipe<T>>().SingleOrDefault();
     }
 }

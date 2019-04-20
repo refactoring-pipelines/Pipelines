@@ -32,7 +32,6 @@ namespace Pipelines
 
         string IGraphNode.Name => "Collector";
 
-        IEnumerable<IGraphNode> IGraphNode.Children => Enumerable.Empty<IGraphNode>();
         public bool IsEmpty =>! _results.Any();
     }
 }

@@ -26,9 +26,12 @@ namespace Pipelines
             if (node is IGraphNodeWithOutput withOutput)
                 SetCountForNode(withOutput.Output);
 
-            foreach (var child in node.Children)
+            if (node is ISender sender)
             {
-                ProcessTree(child.CheckForwarding());
+                foreach (var child in sender.Children)
+                {
+                    ProcessTree(child.CheckForwarding());
+                }
             }
         }
 
