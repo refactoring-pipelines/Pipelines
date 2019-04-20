@@ -39,11 +39,11 @@ namespace Pipelines
         {
             var output = ((IFunctionPipe) node).Output;
 
-            var label = metadata.GetCount(output) == 0 ? "" : $"label={DotGraph.Quoted(output.Name)}, ";
+            var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
             var outputUniqueName = metadata.GetQuotedUniqueName(output);
             AppendFormat(outputUniqueName, $@"{label}color=""#9fbff4""", result);
 
-            var functionLabel = metadata.GetCount(node) == 0 ? "" : $"label={DotGraph.Quoted(node.Name)}, ";
+            var functionLabel = metadata.GetCount(node) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(node)}, ";
             var functionUniqueName = metadata.GetQuotedUniqueName(node);
             AppendFormat(functionUniqueName, $@"{functionLabel}shape=invhouse", result);
         }

@@ -2,9 +2,9 @@
 
 # Nodes
 "String age" -> "Int64.Parse()" -> {"Int64", "Collector"}
-"Int64" -> "PipelineTests.LongToString()" -> "String"
-"String" -> "Int64.Parse() 1" -> "Int64 1"
-"Int64 1" -> "PipelineTests.LongToString() 1" -> "String 1"
+"Int64" -> "PipelineTests.LongToString()" -> {"String", "Collector 1"}
+"String" -> "Int64.Parse() 1" -> {"Int64 1", "Collector 2"}
+"Int64 1" -> "PipelineTests.LongToString() 1" -> {"String 1", "Collector 3"}
 
 
 # Formatting
@@ -14,12 +14,18 @@
 "Collector" [color = "#c361f4"]
 "String" [color="#9fbff4"]
 "PipelineTests.LongToString()" [shape=invhouse]
+"Collector 1" [label=Collector, color = "#c361f4"]
 "Int64 1" [label="Int64", color="#9fbff4"]
 "Int64.Parse() 1" [label="Int64.Parse()", shape=invhouse]
+"Collector 2" [label=Collector, color = "#c361f4"]
 "String 1" [label="String", color="#9fbff4"]
 "PipelineTests.LongToString() 1" [label="PipelineTests.LongToString()", shape=invhouse]
+"Collector 3" [label=Collector, color = "#c361f4"]
 
 { rank=same; "Int64.Parse()", "Collector"}
+{ rank=same; "PipelineTests.LongToString()", "Collector 1"}
+{ rank=same; "Int64.Parse()", "Collector 2"}
+{ rank=same; "PipelineTests.LongToString()", "Collector 3"}
 
 
 }

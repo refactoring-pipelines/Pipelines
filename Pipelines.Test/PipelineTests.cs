@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Pipelines.Test
 {
-    //[UseReporter(typeof(VisualStudioReporter))]
+    [UseReporter(typeof(VisualStudioReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -27,7 +27,7 @@ namespace Pipelines.Test
             var input = new InputPipe<string>("age");
             var parsePipe = input.Process(long.Parse);
             var collector = parsePipe.Collect();
-            parsePipe.Process(LongToString).Process(long.Parse).Process(LongToString);
+            parsePipe.Process(LongToString).WithCollector().Process(long.Parse).WithCollector().Process(LongToString).Collect();
 
             Verify(input);
         }
@@ -42,4 +42,16 @@ namespace Pipelines.Test
             Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.FromPipeline(input), "dot"));
         }
     }
+
+    static class _
+    {
+        public static FunctionPipe<TInput, TOutput> WithCollector<TInput, TOutput>(
+            this FunctionPipe<TInput, TOutput> @this)
+        {
+            @this.Collect();
+            return @this;
+        }
+
+    }
+
 }

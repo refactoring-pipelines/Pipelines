@@ -5,12 +5,6 @@ namespace Pipelines
 {
     public static class DotGraph
     {
-        public static string Quoted(string value)
-        {
-            return $@"""{value}""";
-        }
-
-
         public static string FromPipeline<T>(InputPipe<T> root)
         {
             var metadata = new NodeMetadata(root);

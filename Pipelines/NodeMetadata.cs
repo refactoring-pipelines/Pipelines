@@ -22,7 +22,7 @@ namespace Pipelines
 
         public string GetQuotedUniqueName(IGraphNode node)
         {
-            return DotGraph.Quoted(_countsByNode[node] == 0 ? node.Name : node.Name + ' ' + _countsByNode[node]);
+            return Quoted(_countsByNode[node] == 0 ? node.Name : node.Name + ' ' + _countsByNode[node]);
         }
 
         public int GetCount(IGraphNode node)
@@ -41,6 +41,16 @@ namespace Pipelines
                 count = 0;
 
             return count;
+        }
+
+        public string GetQuotedDisplayName(IGraphNode node)
+        {
+            return Quoted(node.Name);
+        }
+
+        private static string Quoted(string value)
+        {
+            return $@"""{value}""";
         }
     }
 }
