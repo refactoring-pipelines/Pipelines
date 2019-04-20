@@ -3,6 +3,14 @@ using System.Linq;
 
 namespace Pipelines
 {
+    public static class CollectorPipe
+    {
+        public static CollectorPipe<T> Collect<T>(this Sender<T> sender)
+        {
+            return new CollectorPipe<T>(sender);
+        }
+    }
+
     public class CollectorPipe<T> : IListener<T>
     {
         private readonly Sender<T> _predecessor;

@@ -14,7 +14,7 @@ namespace Pipelines
 
         private void ProcessTree(IGraphNode node)
         {
-            _countsByNode.Add(node, GetDisambiguatingCount(node));
+            _countsByNode[node] = GetDisambiguatingCount(node);
             if (node is IFunctionPipe functionPipe)
                 _countsByNode.Add(functionPipe.Output, GetDisambiguatingCount(functionPipe.Output));
             foreach (var child in node.Children) ProcessTree(child);

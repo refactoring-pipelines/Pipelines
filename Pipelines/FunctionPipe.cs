@@ -30,11 +30,6 @@ namespace Pipelines
 
         IEnumerable<IGraphNode> IGraphNode.Children => Listeners;
 
-        public CollectorPipe<TOutput> Collect()
-        {
-            return new CollectorPipe<TOutput>(this);
-        }
-
         public FunctionPipe<TOutput, TNext> Process<TNext>(Func<TOutput, TNext> func)
         {
             return new FunctionPipe<TOutput, TNext>(func, this);

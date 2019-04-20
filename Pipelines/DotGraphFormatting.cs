@@ -11,8 +11,15 @@ namespace Pipelines
             {
                 {typeof(CollectorPipe<>), AppendCollectorPipeFormatting},
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
-                {typeof(InputPipe<>), AppendInputPipeFormatting}
+                {typeof(InputPipe<>), AppendInputPipeFormatting},
+                {typeof(ForwardingListener<>), AppendForwardingListener},
             };
+
+        private static void AppendForwardingListener(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        {
+            
+        }
+
 
         private static void AppendFormat(string name, string format, StringBuilder result)
         {

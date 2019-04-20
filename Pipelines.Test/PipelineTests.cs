@@ -32,10 +32,30 @@ namespace Pipelines.Test
             Verify(input);
         }
 
+
+        [TestMethod]
+        public void SplitAndJoin()
+        {
+            var input = new InputPipe<string>("age");
+            var parse = input.Process(long.Parse);
+            var longToString = parse.Process(LongToString);
+            var incrementLong = parse.Process(IncrementLong);
+
+            var joinedPipes = longToString.JoinTo(incrementLong).Collect();
+
+            Verify(input);
+            input.Send("42");
+            Assert.AreEqual("(42, 43)", joinedPipes.SingleResult.ToString());
+        }
+
         private string LongToString(long value)
         {
             return value.ToString();
         }
+
+        long IncrementLong(long value)
+        {
+            return value + 1;}
 
         private static void Verify(InputPipe<string> input)
         {
