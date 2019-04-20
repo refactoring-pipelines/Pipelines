@@ -13,8 +13,8 @@ namespace Pipelines.Test
         public void BasicPipelineTest()
         {
             var input = new InputPipe<string>("age");
-            var uppercase = input.Process(long.Parse);
-            var collector = uppercase.Collect();
+            var parse = input.Process(long.Parse);
+            var collector = parse.Collect();
 
             Verify(input);
             input.Send("42");
