@@ -7,6 +7,17 @@ To change this file edit the source file and then re-run the generation using ei
 
 ### Basic pipelines
 
+Let's say you have the following line of code:
+
+<!-- snippet: basic_code_line -->
+```cs
+var _result = long.Parse(age);
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L19-L21)</sup>
+<!-- endsnippet -->
+
+You can refactor this to pipelines with the following
+
 <!-- snippet: basic_pipeline -->
 ```cs
 var inputPipe = new InputPipe<string>("age");
@@ -19,14 +30,9 @@ var result = collector.SingleResult;
 <sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L25-L32)</sup>
 <!-- endsnippet -->
 
-will produce the same results as 
+These will produce the same results.
 
-<!-- snippet: basic_code_line -->
-```cs
-var _result = long.Parse(age);
-```
-<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L19-L21)</sup>
-<!-- endsnippet -->
+### But Why?!?!
 
 Dispite the complexity add of this code, this pattern has some advantages in refactoring to async 
 as well has advantages in monitoring. It also has advantages in testing and visualization.
