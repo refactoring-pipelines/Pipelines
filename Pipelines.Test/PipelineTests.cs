@@ -1,3 +1,4 @@
+using System;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
@@ -9,6 +10,30 @@ namespace Pipelines.Test
     [TestClass]
     public class PipelineTests
     {
+        [TestMethod]
+        public void BasicPipelineFunctionalTest()
+        {
+            Func<string, long> normal = (string age) =>
+            {
+                
+                    // startcode basic_code_line 
+                    var _result = long.Parse(age);
+                    // endcode 
+                    return _result;
+                
+            };
+            // startcode basic_pipeline
+            var inputPipe = new InputPipe<string>("age");
+            var parsePipe = inputPipe.Process(long.Parse);
+            var collector = parsePipe.Collect();
+
+            inputPipe.Send("42");
+            var result = collector.SingleResult;
+            // endcode
+        
+            Assert.AreEqual(normal("42"), result);
+        }
+
         [TestMethod]
         public void BasicPipelineTest()
         {
