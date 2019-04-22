@@ -32,4 +32,4 @@ Dispite the complexity add of this code, this pattern has some advantages in ref
 as well has advantages in monitoring. It also has advantages in testing and visualization.
 For example the pipeline can reder itself as the following dot file (Graphviz)
 
-[GraphViz of Pipeline](/Pipeline.Tests/PipelineTests.BasicPipelineTest.approved.dot.svg)
+![GraphViz of Pipeline](/Pipelines.Test/PipelineTests.BasicPipelineTest.approved.dot.svg)
