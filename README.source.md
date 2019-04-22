@@ -1,6 +1,6 @@
 # Pipelines for C#
-A utility to convert serial code to pipelines for refactoring to Async
 
+A library for implementing programs as Pipeline objects. Inspired by Arlo Belshee's talk, [Refactoring to Async](https://www.ustream.tv/recorded/114862163).
 
 ## Pipelines
 
@@ -8,4 +8,4 @@ A utility to convert serial code to pipelines for refactoring to Async
 
 ## Suggested Plugin
  
-Graphviz (dot) language support for Visual Studio Code by Jo„o Pinto is great, ctl+shft+v for visual  (no other thing needed)
+[Graphviz (dot) language support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz) by Jo√£o Pinto is great. CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
