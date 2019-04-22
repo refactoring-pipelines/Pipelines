@@ -15,23 +15,25 @@ namespace Pipelines.Test
         {
             Func<string, long> normal = (string age) =>
             {
-                
-                    // startcode basic_code_line 
-                    var _result = long.Parse(age);
-                    // endcode 
-                    return _result;
-                
+                // startcode basic_code_line 
+                var result = long.Parse(age);
+                // endcode 
+                return result;
             };
-            // startcode basic_pipeline
-            var inputPipe = new InputPipe<string>("age");
-            var parsePipe = inputPipe.Process(long.Parse);
-            var collector = parsePipe.Collect();
+            Func<string, long> piped = age =>
+            {
+                // startcode basic_pipeline
+                var inputPipe = new InputPipe<string>("age");
+                var parsePipe = inputPipe.Process(long.Parse);
+                var collector = parsePipe.Collect();
 
-            inputPipe.Send("42");
-            var result = collector.SingleResult;
-            // endcode
-        
-            Assert.AreEqual(normal("42"), result);
+                inputPipe.Send("42");
+                var result = collector.SingleResult;
+                // endcode
+                return result;
+            };
+
+            Assert.AreEqual(normal("42"), piped("42"));
         }
 
         [TestMethod]
