@@ -10,7 +10,6 @@ namespace Pipelines
         public static string FromPipeline(IGraphNode node)
         {
             var roots = GetRoots(node);
-            var root = roots.First();
 
             var metadata = new NodeMetadata(roots);
 
