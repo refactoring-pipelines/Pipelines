@@ -16,6 +16,9 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 [Read about pipelines here](docs/Pipelines.md) 
 
+
+[Details about actions here](docs/PipelineActions.md) 
+
 ## Suggested Plugin
  
 [Graphviz (dot) language support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz) by João Pinto is great. CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
