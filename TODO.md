@@ -9,3 +9,5 @@
 	var b = B(a); 
 	var c = C(a); // is it important that C comes *after* B?
 	var d = D(b, c);
+- Exceptions
+- Learn about Apache Beam
