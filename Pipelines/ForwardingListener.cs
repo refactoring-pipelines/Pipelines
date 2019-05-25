@@ -23,6 +23,7 @@ namespace Pipelines
 
         public IEnumerable<IGraphNode> Children => throw new Exception("Do not call");
         public IGraphNode Owner { get; }
+        IEnumerable<IGraphNode> IGraphNode.Parents => new[] { Owner };
 
         public void OnMessage(T value)
         {

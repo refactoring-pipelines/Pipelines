@@ -18,6 +18,8 @@ namespace Pipelines
             Listeners.Add(listener);
         }
 
+        public abstract IEnumerable<IGraphNode> Parents { get; }
+
         protected void _Send(T value)
         {
             foreach (var listener in Listeners) listener.OnMessage(value);

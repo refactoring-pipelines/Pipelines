@@ -42,6 +42,13 @@ digraph G {{ node [style=filled, shape=rec]
                     nodesToWalk.Remove(node);
                     graphNodes.Add(node);
                 }
+                else
+                {
+                    foreach (var parent in node.Parents)
+                    {
+                        nodesToWalk.Add(parent);
+                    }
+                }
             }
 
             return graphNodes;

@@ -25,7 +25,7 @@ namespace Pipelines
         public T SingleResult => _results.Single();
 
         public bool IsEmpty => !_results.Any();
-
+        IEnumerable<IGraphNode> IGraphNode.Parents => new[] { _predecessor };
 
         public void OnMessage(T value)
         {

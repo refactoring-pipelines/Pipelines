@@ -37,6 +37,7 @@ namespace Pipelines
         }
 
         public override string Name => "Join";
+        public override IEnumerable<IGraphNode> Parents => new IGraphNode[] {_sender1, _sender2};
 
         Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput> IJoinedPipes.Predecessors =>
             new Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput>((IGraphNodeWithOutput) _sender1,
