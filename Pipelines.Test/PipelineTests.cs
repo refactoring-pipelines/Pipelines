@@ -2,6 +2,7 @@ using System;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
+using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Pipelines.Test
@@ -98,6 +99,14 @@ namespace Pipelines.Test
             Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
 
             Verify(join);
+        }
+
+        [TestMethod]
+        public void CannotFindNodeExceptionHelpMessage()
+        {
+            var input1 = new InputPipe<long>("value1");
+            var subject = new NodeMetadata.CannotFindNodeException(input1);
+            Approvals.Verify(subject);
         }
 
         private string LongToString(long value)

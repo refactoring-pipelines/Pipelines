@@ -40,14 +40,22 @@ namespace Pipelines
             _countsByNode[node] = GetDisambiguatingCount(node);
         }
 
-        class CannotFindNodeException : Exception
+        public class CannotFindNodeException : Exception
         {
             public CannotFindNodeException(IGraphNode node) : base(FormatHelpMessage(node)) { }
 
             static string FormatHelpMessage(IGraphNode node)
             {
-                return
-                    $"Cannot find the '{node.GetType()}' node '{node.Name}'. Most likely you need to verify at a node that is a descendent of all inputs.";
+                return $@"
+Cannot find node.
+
+    Type: '{node.GetType()}'
+    Name: '{node.Name}'
+
+Most likely you need to Verify() at a node that is a descendent of all inputs.
+
+For example, if you are using a JoinedPipes, verify the join node."
+                    .Trim();
             }
         }
 
