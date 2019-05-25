@@ -1,12 +1,18 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Pipelines
 {
     public static class DotGraphNodes
     {
-        public static StringBuilder AppendNodeAndChildren(IGraphNode node, NodeMetadata metadata)
+        public static StringBuilder AppendNodeAndChildren(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
         {
-            return DotGraph.ProcessTree(node, new StringBuilder(), AppendFunctionalPipe, delegate { }, metadata);
+            var result = new StringBuilder();
+            foreach(var node in nodes)
+            {
+                DotGraph.ProcessTree(node, result, AppendFunctionalPipe, delegate { }, metadata);
+            }
+            return result;
         }
 
         private static void AppendFunctionalPipe(IGraphNode node, NodeMetadata metadata, StringBuilder result)

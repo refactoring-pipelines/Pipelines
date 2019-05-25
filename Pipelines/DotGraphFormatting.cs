@@ -17,7 +17,7 @@ namespace Pipelines
 
         private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            var output = ((IGraphNodeWithOutput) node).Output;
+            var output = ((IGraphNodeWithOutput)node).Output;
 
             var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
             var outputUniqueName = metadata.GetQuotedUniqueName(output);
@@ -34,14 +34,19 @@ namespace Pipelines
             result.AppendLine($@"{name} [{format}]");
         }
 
-        public static StringBuilder AppendFormatting(IGraphNode node, NodeMetadata metadata)
+        public static StringBuilder AppendFormatting(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
         {
             void ProcessNode(IGraphNode node_, NodeMetadata metadata_, StringBuilder result_)
             {
                 PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, metadata_, result_);
             }
 
-            return DotGraph.ProcessTree(node, new StringBuilder(), ProcessNode, delegate { }, metadata);
+            var result = new StringBuilder();
+            foreach (var node in nodes)
+            {
+                DotGraph.ProcessTree(node, result, ProcessNode, delegate { }, metadata);
+            }
+            return result;
         }
 
         private static void AppendInputPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
@@ -52,7 +57,7 @@ namespace Pipelines
 
         private static void AppendFunctionPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            var output = ((IFunctionPipe) node).Output;
+            var output = ((IFunctionPipe)node).Output;
 
             var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
             var outputUniqueName = metadata.GetQuotedUniqueName(output);

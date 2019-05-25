@@ -1,12 +1,18 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Pipelines
 {
     public static class DotGraphRanking
     {
-        public static StringBuilder AppendRankings(IGraphNode node, NodeMetadata metadata)
+        public static StringBuilder AppendRankings(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
         {
-            return DotGraph.ProcessTree(node, new StringBuilder(), delegate { }, ProcessChildRanking, metadata);
+            var result = new StringBuilder();
+            foreach (var node in nodes)
+            {
+                DotGraph.ProcessTree(node, result, delegate { }, ProcessChildRanking, metadata);
+            }
+            return result;
         }
 
         private static void ProcessChildRanking(IGraphNode node, IGraphNode listener, NodeMetadata metadata,

@@ -12,9 +12,12 @@ namespace Pipelines
         private readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>
             _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>();
 
-        public NodeMetadata(IGraphNode root)
+        public NodeMetadata(IEnumerable<IGraphNode> roots)
         {
-            ProcessTree(root);
+            foreach (var root in roots)
+            {
+                ProcessTree(root);
+            }
         }
 
         private void ProcessTree(IGraphNode node)
