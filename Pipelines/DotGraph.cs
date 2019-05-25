@@ -7,11 +7,12 @@ namespace Pipelines
 {
     public static class DotGraph
     {
-        public static string FromPipeline(IGraphNode root)
+        public static string FromPipeline(IGraphNode node)
         {
-            var roots = GetRoots(root);
+            var roots = GetRoots(node);
+            var root = roots.First();
 
-            var metadata = new NodeMetadata(roots.First());
+            var metadata = new NodeMetadata(root);
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -36,10 +37,10 @@ digraph G {{ node [style=filled, shape=rec]
             while (nodesToWalk.Any())
             {
                 var node = nodesToWalk.First();
+                nodesToWalk.Remove(node);
 
                 if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
                 {
-                    nodesToWalk.Remove(node);
                     graphNodes.Add(node);
                 }
                 else
