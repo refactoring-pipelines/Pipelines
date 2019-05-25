@@ -27,6 +27,7 @@ namespace Pipelines
         }
 
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
+        public override IEnumerable<IGraphNode> Parents => new[] {_predecessor};
 
         public FunctionPipe<TOutput, TNext> Process<TNext>(Func<TOutput, TNext> func)
         {
@@ -47,6 +48,7 @@ namespace Pipelines
 
         string IGraphNode.Name => _name;
 
+        IEnumerable<IGraphNode> IGraphNode.Parents => new[] { _owner };
 
         public override bool Equals(object other)
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pipelines
 {
@@ -22,5 +24,8 @@ namespace Pipelines
         {
             return new FunctionPipe<T, TOutput>(func, this);
         }
+
+        public override IEnumerable<IGraphNode> Parents => Enumerable.Empty<IGraphNode>();
+
     }
 }

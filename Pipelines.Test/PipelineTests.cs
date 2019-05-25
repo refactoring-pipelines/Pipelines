@@ -57,8 +57,10 @@ namespace Pipelines.Test
             parsePipe.Process(LongToString).WithCollector().Process(long.Parse).WithCollector().Process(LongToString)
                 .Collect();
 
-            Verify(input);
+            // TODO: Revert to `input` when JoinInputs test is done
+            Verify(collector);
         }
+
 
 
         [TestMethod]
@@ -98,8 +100,8 @@ namespace Pipelines.Test
             input2.Send(99);
             Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
 
-            // TODO:
-            //Verify(join);
+            // TODO: Fix ConnectedPipelinesTest when this is done
+            //Verify(input1);
         }
 
         private string LongToString(long value)
@@ -112,7 +114,7 @@ namespace Pipelines.Test
             return value + 1;
         }
 
-        private static void Verify<T>(InputPipe<T> input)
+        private static void Verify(IGraphNode input)
         {
             Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.FromPipeline(input), "dot"));
         }

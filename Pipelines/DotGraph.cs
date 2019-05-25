@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Pipelines
 {
     public static class DotGraph
     {
-        public static string FromPipeline<T>(InputPipe<T> root)
+        public static string FromPipeline(IGraphNode node)
         {
+            var roots = GetRoots(node);
+            var root = roots.First();
+
             var metadata = new NodeMetadata(root);
 
             return $@"
@@ -21,6 +26,33 @@ digraph G {{ node [style=filled, shape=rec]
 
 }}
 ".Trim();
+        }
+
+        private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
+        {
+            var nodesToWalk = new List<IGraphNode> { root };
+
+            var graphNodes = new HashSet<IGraphNode>();
+
+            while (nodesToWalk.Any())
+            {
+                var node = nodesToWalk.First();
+                nodesToWalk.Remove(node);
+
+                if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+                {
+                    graphNodes.Add(node);
+                }
+                else
+                {
+                    foreach (var parent in node.Parents)
+                    {
+                        nodesToWalk.Add(parent);
+                    }
+                }
+            }
+
+            return graphNodes;
         }
 
 
