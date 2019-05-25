@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contents**
+
+- [Creating Pipelines](#creating-pipelines)
+  - [Basic pipelines](#basic-pipelines)
+  - [But Why?!?!](#but-why)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Creating Pipelines
 
 ### Basic pipelines

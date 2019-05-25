@@ -87,9 +87,11 @@ namespace Pipelines.Test
         [TestMethod]
         public void JoinInputs()
         {
+            // startcode joined_pipeline 
             var input1 = new InputPipe<long>("value1");
             var input2 = new InputPipe<long>("value2");
             var join = input1.JoinTo(input2);
+            // endcode
             var collector = join.Collect();
 
             input1.Send(42);

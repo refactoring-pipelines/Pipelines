@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contents**
+
+- [Pipelines for C](#pipelines-for-c)
+  - [Pipelines](#pipelines)
+  - [Suggested Plugin](#suggested-plugin)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
 This file was generate by MarkdownSnippets.
 Source File: /README.source.md
