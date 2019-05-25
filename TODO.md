@@ -1,10 +1,8 @@
 - ApplyTo
 - Concat
-- Multiple Inputs
 - Nuget packages
 	- Pipes
 	- Approvals.Pipes (may contain graph)
-- docs
 - Async
 - sequencing for implicit dependencies through state
 	var a = A();
