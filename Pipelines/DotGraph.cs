@@ -12,7 +12,7 @@ namespace Pipelines
             var roots = GetRoots(node);
             var root = roots.First();
 
-            var metadata = new NodeMetadata(root);
+            var metadata = new NodeMetadata(roots);
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
