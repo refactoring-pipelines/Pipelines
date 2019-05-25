@@ -29,11 +29,21 @@ digraph G {{ node [style=filled, shape=rec]
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
         {
+            var nodesToWalk = new List<IGraphNode> { root };
+
             var graphNodes = new HashSet<IGraphNode>();
-            if (root.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+
+            while (nodesToWalk.Any())
             {
-                graphNodes.Add(root);
+                var node = nodesToWalk.First();
+
+                if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+                {
+                    nodesToWalk.Remove(node);
+                    graphNodes.Add(node);
+                }
             }
+
             return graphNodes;
         }
 
