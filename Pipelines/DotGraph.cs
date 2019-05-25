@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Pipelines
 {
     public static class DotGraph
     {
-        public static string FromPipeline<T>(InputPipe<T> root)
+        public static string FromPipeline(IGraphNode root)
         {
-            var metadata = new NodeMetadata(root);
+            var roots = GetRoots(root);
+
+            var metadata = new NodeMetadata(roots.First());
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -21,6 +25,11 @@ digraph G {{ node [style=filled, shape=rec]
 
 }}
 ".Trim();
+        }
+
+        private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
+        {
+            return new HashSet<IGraphNode>{root};
         }
 
 
