@@ -4,7 +4,7 @@ namespace Pipelines
 {
     public interface IJoinedPipes : IGraphNodeWithOutput
     {
-        Tuple<IGraphNodeWithOutput, IGraphNodeWithOutput> Predecessors { get; }
+        Tuple<IGraphNode, IGraphNode> Predecessors { get; }
         IGraphNode Collector { get; }
     }
 }

@@ -57,11 +57,8 @@ namespace Pipelines.Test
             parsePipe.Process(LongToString).WithCollector().Process(long.Parse).WithCollector().Process(LongToString)
                 .Collect();
 
-            // TODO: Revert to `input` when JoinInputs test is done
-            Verify(collector);
+            Verify(input);
         }
-
-
 
         [TestMethod]
         public void SplitAndJoin()
@@ -100,8 +97,7 @@ namespace Pipelines.Test
             input2.Send(99);
             Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
 
-            // TODO: Fix ConnectedPipelinesTest when this is done
-            //Verify(input1);
+            Verify(join);
         }
 
         private string LongToString(long value)

@@ -1,0 +1,17 @@
+﻿digraph G { node [style=filled, shape=rec]
+
+# Nodes
+{"Int64 value1", "Int64 value2"} -> "Join" -> {"Tuple{Int64, Int64}", "Collector"}
+
+
+# Formatting
+"Int64 value1" [color=green]
+"Tuple{Int64, Int64}" [color="#9fbff4"]
+"Join" [color=pink]
+"Collector" [color = "#c361f4"]
+"Int64 value2" [color=green]
+
+{ rank=same; "Join", "Collector"}
+
+
+}

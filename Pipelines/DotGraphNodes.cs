@@ -8,7 +8,7 @@ namespace Pipelines
         public static StringBuilder AppendNodeAndChildren(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
         {
             var result = new StringBuilder();
-            foreach(var node in nodes)
+            foreach (var node in nodes)
             {
                 DotGraph.ProcessTree(node, result, AppendFunctionalPipe, delegate { }, metadata);
             }
@@ -49,8 +49,8 @@ namespace Pipelines
         {
             var predecessors = joinedPipes.Predecessors;
 
-            var input1 = metadata.GetQuotedUniqueName(predecessors.Item1.Output);
-            var input2 = metadata.GetQuotedUniqueName(predecessors.Item2.Output);
+            var input1 = metadata.GetQuotedUniqueName(GetPredecessorOutput(predecessors.Item1));
+            var input2 = metadata.GetQuotedUniqueName(GetPredecessorOutput(predecessors.Item2));
             var function = metadata.GetQuotedUniqueName(joinedPipes);
             var output = metadata.GetQuotedUniqueName(joinedPipes.Output);
             var collectorNode = joinedPipes.Collector;
@@ -61,6 +61,15 @@ namespace Pipelines
             }
 
             result.AppendLine($"{{{input1}, {input2}}} -> {function} -> {output}");
+        }
+
+        private static IGraphNode GetPredecessorOutput(IGraphNode node)
+        {
+            if (node is IGraphNodeWithOutput graphNodeWithOutput)
+            {
+                return graphNodeWithOutput.Output;
+            }
+            return node;
         }
     }
 }
