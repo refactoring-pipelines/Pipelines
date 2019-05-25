@@ -41,6 +41,11 @@ namespace Pipelines
 
         public string GetQuotedUniqueName(IGraphNode node)
         {
+            if (!_countsByNode.ContainsKey(node))
+            {
+                string helpMessage = $"Cannot find the '{node.GetType()}' node '{node.Name}'. Most likely you need to verify at a node that is a descendent of all inputs.";
+                throw new Exception(helpMessage);
+            }
             return Quoted(_countsByNode[node] == 0 ? node.Name : node.Name + ' ' + _countsByNode[node]);
         }
 
