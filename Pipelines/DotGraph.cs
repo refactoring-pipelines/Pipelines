@@ -22,7 +22,7 @@ digraph G {{ node [style=filled, shape=rec]
 
 # Formatting
 {DotGraphFormatting.AppendFormatting(roots, metadata)}
-{DotGraphRanking.AppendRankings(root, metadata)}
+{DotGraphRanking.AppendRankings(roots, metadata)}
 
 }}
 ".Trim();
