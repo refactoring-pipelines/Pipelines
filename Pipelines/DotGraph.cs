@@ -21,7 +21,7 @@ digraph G {{ node [style=filled, shape=rec]
 {DotGraphNodes.AppendNodeAndChildren(roots, metadata)}
 
 # Formatting
-{DotGraphFormatting.AppendFormatting(root, metadata)}
+{DotGraphFormatting.AppendFormatting(roots, metadata)}
 {DotGraphRanking.AppendRankings(root, metadata)}
 
 }}
