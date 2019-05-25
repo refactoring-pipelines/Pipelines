@@ -29,7 +29,12 @@ digraph G {{ node [style=filled, shape=rec]
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
         {
-            return new HashSet<IGraphNode>{root};
+            var graphNodes = new HashSet<IGraphNode>();
+            if (root.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+            {
+                graphNodes.Add(root);
+            }
+            return graphNodes;
         }
 
 
