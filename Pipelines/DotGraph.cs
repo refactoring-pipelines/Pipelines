@@ -18,7 +18,7 @@ namespace Pipelines
 digraph G {{ node [style=filled, shape=rec]
 
 # Nodes
-{DotGraphNodes.AppendNodeAndChildren(root, metadata)}
+{DotGraphNodes.AppendNodeAndChildren(roots, metadata)}
 
 # Formatting
 {DotGraphFormatting.AppendFormatting(root, metadata)}
