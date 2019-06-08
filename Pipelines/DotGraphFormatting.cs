@@ -13,23 +13,10 @@ namespace Pipelines
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
                 {typeof(InputPipe<>), AppendInputPipeFormatting},
                 {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting},
-                {typeof(AppliedPipes<,>), AppendAppliedPipesFormatting},
+                {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting},
             };
 
         private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
-        {
-            var output = ((IGraphNodeWithOutput)node).Output;
-
-            var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
-            var outputUniqueName = metadata.GetQuotedUniqueName(output);
-            AppendFormat(outputUniqueName, $@"{label}color=""#9fbff4""", result);
-
-            var functionLabel = metadata.GetCount(node) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(node)}, ";
-            var functionUniqueName = metadata.GetQuotedUniqueName(node);
-            AppendFormat(functionUniqueName, $@"{functionLabel}color=pink", result);
-        }
-
-        private static void AppendAppliedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
             var output = ((IGraphNodeWithOutput)node).Output;
 
