@@ -38,7 +38,13 @@ namespace Pipelines
         {
             void ProcessNode(IGraphNode node_, NodeMetadata metadata_, StringBuilder result_)
             {
-                PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, metadata_, result_);
+                var genericTypeDefinition = node_.GetType().GetGenericTypeDefinition();
+                if (!PipeAppendersByType.ContainsKey(genericTypeDefinition))
+                {
+                    throw new NotImplementedException($@"No DotGraph formatting for {node_.GetType().Name}");
+                }
+
+                PipeAppendersByType[genericTypeDefinition](node_, metadata_, result_);
             }
 
             var result = new StringBuilder();
