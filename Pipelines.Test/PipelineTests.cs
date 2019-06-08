@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
@@ -15,7 +16,7 @@ namespace Pipelines.Test
         [TestMethod]
         public void BasicPipelineFunctionalTest()
         {
-            Func<string, long> normal = (string age) =>
+            Func<string, long> normal = age =>
             {
                 // startcode basic_code_line 
                 var result = long.Parse(age);
@@ -48,6 +49,29 @@ namespace Pipelines.Test
             Verify(input);
             input.Send("42");
             Assert.AreEqual(42, collector.SingleResult);
+        }
+
+        [TestMethod]
+        public void ProcessIsNotCovariant()
+        {
+            var input = new InputPipe<int>("i");
+            var collector = input
+                .Process(RangeArray)
+                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
+                .Process(SumEnumerable)
+                .Collect();
+            input.Send(4);
+            Assert.AreEqual(10, collector.SingleResult);
+        }
+
+        private int SumEnumerable(IEnumerable<int> _)
+        {
+            return _.Sum();
+        }
+
+        private int[] RangeArray(int count)
+        {
+            return Enumerable.Range(1, count).ToArray();
         }
 
         [TestMethod]
@@ -122,7 +146,7 @@ namespace Pipelines.Test
             var collector = result.Collect();
 
             prefix.Send("#");
-            values.Send(new [] { 1, 2 });
+            values.Send(new[] {1, 2});
             Assert.AreEqual("[(#, 1), (#, 2)]", collector.SingleResult.ToReadableString());
 
             Verify(result);
