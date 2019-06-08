@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
@@ -111,23 +112,21 @@ namespace Pipelines.Test
             Approvals.Verify(subject);
         }
 
-        // *** TODO***
-        //
-        // [TestMethod]
-        // public void ApplyTo()
-        // {
-        //     var prefix = new InputPipe<string>("prefix");
-        //     var values = new InputPipe<int[]>("values");
-            
-        //     var result = prefix.ApplyTo(values);
-        //     var collector = result.Collect();
+        [TestMethod]
+        public void ApplyTo()
+        {
+            var prefix = new InputPipe<string>("prefix");
+            var values = new InputPipe<IEnumerable<int>>("values");
 
-        //     prefix.Send("#");
-        //     values.Send(new[]{1, 2});
-        //     Assert.AreEqual(new []{"#1", "#2"}, collector.SingleResult);
+            var result = prefix.ApplyTo(values);
+            var collector = result.Collect();
 
-        //     Verify(result);
-        // }
+            prefix.Send("#");
+            values.Send(new[] { 1, 2 });
+            Assert.AreEqual("[(#, 1), (#, 2)]", collector.SingleResult.ToReadableString());
+
+            Verify(result);
+        }
 
         private string LongToString(long value)
         {
