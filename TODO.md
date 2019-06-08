@@ -11,3 +11,4 @@
 	var d = D(b, c);
 - Exceptions
 - Learn about Apache Beam
+- Join/Apply when one side never provides an input - does the system stall?
