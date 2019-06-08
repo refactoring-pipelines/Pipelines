@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pipelines
 {
-    public abstract class Sender<T> : ISender
+    public abstract class Sender<T> : ISender<T>
     {
         protected readonly List<IListener<T>> Listeners = new List<IListener<T>>();
 
