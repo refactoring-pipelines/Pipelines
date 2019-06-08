@@ -20,10 +20,6 @@ namespace Pipelines
             _Send(value);
         }
 
-        public FunctionPipe<T, TOutput> Process<TOutput>(Func<T, TOutput> func)
-        {
-            return new FunctionPipe<T, TOutput>(func, this);
-        }
 
         public override IEnumerable<IGraphNode> Parents => Enumerable.Empty<IGraphNode>();
 

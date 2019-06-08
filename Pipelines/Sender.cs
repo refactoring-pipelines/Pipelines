@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pipelines
@@ -24,5 +25,11 @@ namespace Pipelines
         {
             foreach (var listener in Listeners) listener.OnMessage(value);
         }
+
+        public FunctionPipe<T, TOutput> Process<TOutput>(Func<T, TOutput> func)
+        {
+            return new FunctionPipe<T, TOutput>(func, this);
+        }
+
     }
 }
