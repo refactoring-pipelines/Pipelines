@@ -1,4 +1,3 @@
-- ApplyTo
 - Concat
 - Nuget packages
 	- Pipes

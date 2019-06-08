@@ -168,6 +168,26 @@ namespace Pipelines.Test
             Assert.AreEqual(manualApplyToResult.SingleResult.ToReadableString(), collector.SingleResult.ToReadableString());
         }
 
+        [TestMethod]
+        public void Concat()
+        {
+            // -------------- TODO - next test
+
+            //var part1 = new InputPipe<List<int>>("part1");
+            //var part2 = new InputPipe<int[]>("part2");
+
+            //var concat = part1.ConcatWith(part2);
+            //var collector = concat.Collect();
+
+            //part1.Send(new List<int> { 1, 2 });
+            //part2.Send(new[] { 3, 4 });
+
+            //Assert.AreEqual(new[]{1, 2, 3, 4}, collector.SingleResult.ToReadableString());
+
+
+            //Verify(concat);
+        }
+
         private string LongToString(long value)
         {
             return value.ToString();
