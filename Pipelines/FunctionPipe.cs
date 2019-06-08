@@ -28,11 +28,6 @@ namespace Pipelines
 
         public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
         public override IEnumerable<IGraphNode> Parents => new[] {_predecessor};
-
-        public FunctionPipe<TOutput, TNext> Process<TNext>(Func<TOutput, TNext> func)
-        {
-            return new FunctionPipe<TOutput, TNext>(func, this);
-        }
     }
 
     internal class OutputNode : IGraphNode

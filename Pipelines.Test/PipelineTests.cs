@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
@@ -14,23 +16,23 @@ namespace Pipelines.Test
         [TestMethod]
         public void BasicPipelineFunctionalTest()
         {
-            Func<string, long> normal = (string age) =>
+            Func<string, long> normal = age =>
             {
-                // startcode basic_code_line 
+                // begin-snippet: basic_code_line 
                 var result = long.Parse(age);
-                // endcode 
+                // end-snippet 
                 return result;
             };
             Func<string, long> piped = age =>
             {
-                // startcode basic_pipeline
+                // begin-snippet: basic_pipeline
                 var inputPipe = new InputPipe<string>("age");
                 var parsePipe = inputPipe.Process(long.Parse);
                 var collector = parsePipe.Collect();
 
                 inputPipe.Send("42");
                 var result = collector.SingleResult;
-                // endcode
+                // end-snippet
                 return result;
             };
 
@@ -47,6 +49,29 @@ namespace Pipelines.Test
             Verify(input);
             input.Send("42");
             Assert.AreEqual(42, collector.SingleResult);
+        }
+
+        [TestMethod]
+        public void ProcessIsNotCovariant()
+        {
+            var input = new InputPipe<int>("i");
+            var collector = input
+                .Process(RangeArray)
+                .Process(_ => (IEnumerable<int>)_) // Would be nice not to need this
+                .Process(SumEnumerable)
+                .Collect();
+            input.Send(4);
+            Assert.AreEqual(10, collector.SingleResult);
+        }
+
+        private int SumEnumerable(IEnumerable<int> _)
+        {
+            return _.Sum();
+        }
+
+        private int[] RangeArray(int count)
+        {
+            return Enumerable.Range(1, count).ToArray();
         }
 
         [TestMethod]
@@ -87,11 +112,11 @@ namespace Pipelines.Test
         [TestMethod]
         public void JoinInputs()
         {
-            // startcode joined_pipeline 
+            // begin-snippet: joined_pipeline 
             var input1 = new InputPipe<long>("value1");
             var input2 = new InputPipe<long>("value2");
             var join = input1.JoinTo(input2);
-            // endcode
+            // end-snippet
             var collector = join.Collect();
 
             input1.Send(42);
@@ -111,23 +136,37 @@ namespace Pipelines.Test
             Approvals.Verify(subject);
         }
 
-        // *** TODO***
-        //
-        // [TestMethod]
-        // public void ApplyTo()
-        // {
-        //     var prefix = new InputPipe<string>("prefix");
-        //     var values = new InputPipe<int[]>("values");
-            
-        //     var result = prefix.ApplyTo(values);
-        //     var collector = result.Collect();
+        [TestMethod]
+        public void ApplyTo()
+        {
+            var prefix = new InputPipe<string>("prefix");
+            var values = new InputPipe<int[]>("values");
 
-        //     prefix.Send("#");
-        //     values.Send(new[]{1, 2});
-        //     Assert.AreEqual(new []{"#1", "#2"}, collector.SingleResult);
+            var applyToPipeline = prefix.ApplyTo(values);
+            var collector = applyToPipeline.Collect();
+            Verify(applyToPipeline);
 
-        //     Verify(result);
-        // }
+            // begin-snippet: ApplyTo_inputs
+            var apply = "#";
+            var to = new[] { 1, 2 };
+            // end-snippet
+
+            // begin-snippet: ApplyTo_outputs
+            var result = "[(#, 1), (#, 2)]";
+            // end-snippet
+
+            var manualApplyTo =
+                // begin-snippet: ApplyTo_manual
+                prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
+            // end-snippet
+            var manualApplyToResult = manualApplyTo.Collect();
+
+            prefix.Send(apply);
+            values.Send(to);
+            Assert.AreEqual(result, collector.SingleResult.ToReadableString());
+
+            Assert.AreEqual(manualApplyToResult.SingleResult.ToReadableString(), collector.SingleResult.ToReadableString());
+        }
 
         private string LongToString(long value)
         {

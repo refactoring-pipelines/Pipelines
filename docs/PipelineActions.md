@@ -9,6 +9,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 **Contents**
 
 - [Joining pipes](#joining-pipes)
+- [ApplyTo(list)](#applytolist)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -26,9 +27,46 @@ var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L90-L94)</sup>
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L115-L119)</sup>
 <!-- endsnippet -->
 
 will produce:
 
-![GraphViz of Pipeline](/Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
+![GraphViz of JoinedPipe](/Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
+
+## ApplyTo(list) 
+
+Sometimes you will want a special type of Join which takes one thing and applies it to each element of a separate list. 
+
+For example, if you had:
+
+<!-- snippet: ApplyTo_inputs -->
+```cs
+var apply = "#";
+var to = new[] { 1, 2 };
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L149-L152)</sup>
+<!-- endsnippet -->
+
+You can combine them to produce the following output:
+
+<!-- snippet: ApplyTo_outputs -->
+```cs
+var result = "[(#, 1), (#, 2)]";
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L154-L156)</sup>
+<!-- endsnippet -->
+
+For reference you can do this manually (although it creates a bad visualization):
+
+<!-- snippet: ApplyTo_manual -->
+```cs
+prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L159-L161)</sup>
+<!-- endsnippet -->
+
+However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
+
+![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
+

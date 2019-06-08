@@ -2,6 +2,11 @@
 
 namespace Pipelines
 {
+    public interface ISender<out T> : ISender
+    {
+        void AddListener(IListener<T> listener);
+    }
+
     public interface ISender : IGraphNode
     {
         IGraphNode Collector { get; }

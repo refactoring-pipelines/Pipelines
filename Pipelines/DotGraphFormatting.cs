@@ -12,7 +12,8 @@ namespace Pipelines
                 {typeof(CollectorPipe<>), AppendCollectorPipeFormatting},
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
                 {typeof(InputPipe<>), AppendInputPipeFormatting},
-                {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting}
+                {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting},
+                {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting},
             };
 
         private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
@@ -28,7 +29,6 @@ namespace Pipelines
             AppendFormat(functionUniqueName, $@"{functionLabel}color=pink", result);
         }
 
-
         private static void AppendFormat(string name, string format, StringBuilder result)
         {
             result.AppendLine($@"{name} [{format}]");
@@ -38,7 +38,13 @@ namespace Pipelines
         {
             void ProcessNode(IGraphNode node_, NodeMetadata metadata_, StringBuilder result_)
             {
-                PipeAppendersByType[node_.GetType().GetGenericTypeDefinition()](node_, metadata_, result_);
+                var genericTypeDefinition = node_.GetType().GetGenericTypeDefinition();
+                if (!PipeAppendersByType.ContainsKey(genericTypeDefinition))
+                {
+                    throw new NotImplementedException($@"No DotGraph formatting for {node_.GetType().Name}");
+                }
+
+                PipeAppendersByType[genericTypeDefinition](node_, metadata_, result_);
             }
 
             var result = new StringBuilder();
