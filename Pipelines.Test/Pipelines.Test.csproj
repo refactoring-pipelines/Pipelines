@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Pipeline.Approvals\Pipelines.Approvals.csproj" />
     <ProjectReference Include="..\Pipelines.DotGraph\Pipelines.DotGraph.csproj" />
     <ProjectReference Include="..\Pipelines\Pipelines.csproj" />
   </ItemGroup>

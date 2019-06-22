@@ -7,6 +7,7 @@ using ApprovalTests.Reporters.Windows;
 using ApprovalTests.Writers;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pipelines.Approvals;
 using Pipelines.DotGraph;
 
 namespace Pipelines.Test
@@ -132,7 +133,7 @@ namespace Pipelines.Test
         {
             var input1 = new InputPipe<long>("value1");
             var subject = new NodeMetadata.CannotFindNodeException(input1);
-            Approvals.Verify(subject);
+            ApprovalTests.Approvals.Verify(subject);
         }
 
         [TestMethod]

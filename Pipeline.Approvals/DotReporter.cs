@@ -2,7 +2,7 @@
 using System.IO;
 using ApprovalTests.Reporters;
 
-namespace Pipelines.Test
+namespace Pipelines.Approvals
 {
     public class DotReporter : GenericDiffReporter
     {
