@@ -13,7 +13,8 @@ namespace Pipelines
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
                 {typeof(InputPipe<>), AppendInputPipeFormatting},
                 {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting},
-                {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting}
+                {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting},
+                {typeof(ConcattedPipes<>), AppendJoinedPipesFormatting}
             };
 
         private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)

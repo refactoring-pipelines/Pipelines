@@ -1,4 +1,3 @@
-- Concat
 - Nuget packages
 	- Pipes
 	- Approvals.Pipes (may contain graph)
@@ -11,3 +10,4 @@
 - Exceptions
 - Learn about Apache Beam
 - Join/Apply when one side never provides an input - does the system stall?
+- `List` of things display better names (List`1 vs. List<int>)

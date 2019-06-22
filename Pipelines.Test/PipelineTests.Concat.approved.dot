@@ -1,15 +1,15 @@
 ﻿digraph G { node [style=filled, shape=rec]
 
 # Nodes
-{"List`1 part1", "Int32[] part2"} -> "ConcatWith" -> {"List`1", "Collector"}
+{"List`1 part1", "Int32[] part2"} -> "ConcatWith" -> {"List<Int32>", "Collector"}
+
 
 # Formatting
 "List`1 part1" [color=green]
-"Int32[] part2" [color=green]
-"List`1" [color="#9fbff4"]
+"List<Int32>" [color="#9fbff4"]
 "ConcatWith" [color=pink]
 "Collector" [color = "#c361f4"]
-
+"Int32[] part2" [color=green]
 
 { rank=same; "ConcatWith", "Collector"}
 
