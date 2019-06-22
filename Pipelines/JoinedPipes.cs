@@ -7,8 +7,8 @@ namespace Pipelines
     public static class JoinedPipes
     {
         public static JoinedPipes<TOutput1, TOutput2> JoinTo<TOutput1, TOutput2>(
-            this Sender<TOutput1> sender1,
-            Sender<TOutput2> sender2)
+            this ISender<TOutput1> sender1,
+            ISender<TOutput2> sender2)
         {
             return new JoinedPipes<TOutput1, TOutput2>(sender1, sender2);
         }
@@ -18,8 +18,8 @@ namespace Pipelines
     {
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<TInput2> _listener2;
-        private readonly Sender<TInput1> _sender1;
-        private readonly Sender<TInput2> _sender2;
+        private readonly ISender<TInput1> _sender1;
+        private readonly ISender<TInput2> _sender2;
         private readonly Queue<TInput1> _values1 = new Queue<TInput1>();
         private readonly Queue<TInput2> _values2 = new Queue<TInput2>();
 
@@ -29,7 +29,7 @@ namespace Pipelines
             _listener2 = new ForwardingListener<TInput2>(this, OnMessage2);
         }
 
-        public JoinedPipes(Sender<TInput1> sender1, Sender<TInput2> sender2) : this()
+        public JoinedPipes(ISender<TInput1> sender1, ISender<TInput2> sender2) : this()
         {
             _sender1 = sender1;
             _sender2 = sender2;
