@@ -44,10 +44,7 @@ digraph G {{ node [style=filled, shape=rec]
                 }
                 else
                 {
-                    foreach (var parent in node.Parents)
-                    {
-                        nodesToWalk.Add(parent);
-                    }
+                    nodesToWalk.AddRange(node.Parents);
                 }
             }
 
