@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="4.0.0" />
+    <PackageReference Include="Publicize.Fody" Version="1.7.0" />
+    <PackageReference Include="Virtuosity.Fody" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
