@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using ApprovalTests.Reporters.Windows;
 using ApprovalTests.Writers;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
