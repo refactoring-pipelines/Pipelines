@@ -4,6 +4,7 @@
 
 - [Joining pipes](#joining-pipes)
 - [ApplyTo(list)](#applytolist)
+- [ConcatWith(list)](#concatwithlist)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -40,4 +41,24 @@ snippet: ApplyTo_manual
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
 
 ![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
+
+## ConcatWith(list) 
+
+Sometimes you will want a special type of Join which takes two enumerables of the same element type and concatenates them into a list.
+
+For example, if you had:
+
+snippet: ConcatWith_inputs
+
+You can combine them to produce the following output:
+
+snippet: ConcatWith_outputs
+
+For reference you can do this manually (although it creates a bad visualization):
+
+snippet: ConcatWith_manual
+
+However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
+
+![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 

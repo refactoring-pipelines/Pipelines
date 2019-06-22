@@ -10,6 +10,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 - [Joining pipes](#joining-pipes)
 - [ApplyTo(list)](#applytolist)
+- [ConcatWith(list)](#concatwithlist)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -27,7 +28,7 @@ var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L115-L119)</sup>
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L112-L116)</sup>
 <!-- endsnippet -->
 
 will produce:
@@ -43,9 +44,9 @@ For example, if you had:
 <!-- snippet: ApplyTo_inputs -->
 ```cs
 var apply = "#";
-var to = new[] { 1, 2 };
+var to = new[] {1, 2};
 ```
-<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L149-L152)</sup>
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L146-L149)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -54,7 +55,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L154-L156)</sup>
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L151-L153)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -63,10 +64,46 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L159-L161)</sup>
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L156-L158)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
 
 ![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
+
+## ConcatWith(list) 
+
+Sometimes you will want a special type of Join which takes two enumerables of the same element type and concatenates them into a list.
+
+For example, if you had:
+
+<!-- snippet: ConcatWith_inputs -->
+```cs
+var concat = new List<int> { 1, 2 };
+var with = new[] { 3, 4 };
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L179-L182)</sup>
+<!-- endsnippet -->
+
+You can combine them to produce the following output:
+
+<!-- snippet: ConcatWith_outputs -->
+```cs
+var result = "[1, 2, 3, 4]";
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L184-L186)</sup>
+<!-- endsnippet -->
+
+For reference you can do this manually (although it creates a bad visualization):
+
+<!-- snippet: ConcatWith_manual -->
+```cs
+part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
+```
+<sup>[snippet source](/Pipelines.Test/PipelineTests.cs#L189-L191)</sup>
+<!-- endsnippet -->
+
+However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
+
+![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 
