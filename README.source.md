@@ -4,7 +4,8 @@
 
 - [Pipelines for C](#pipelines-for-c)
   - [Pipelines](#pipelines)
-  - [Suggested Plugin](#suggested-plugin)
+  - [Available on NuGet](#available-on-nuget)
+  - [Suggested VSCode Plugin](#suggested-vscode-plugin)
 - [Attribution](#attribution)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -22,7 +23,11 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 [Details about actions here](docs/PipelineActions.md) 
 
-## Suggested Plugin
+## Available on NuGet
+
+[Install-Package Refactoring.Pipelines](http://nuget.org/packages/Refactoring.Pipelines)
+
+## Suggested VSCode Plugin
  
 [Graphviz (dot) language support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz) by João Pinto is great. CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 
