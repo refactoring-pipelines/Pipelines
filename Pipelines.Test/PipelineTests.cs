@@ -47,7 +47,7 @@ namespace Pipelines.Test
             var parse = input.Process(long.Parse);
             var collector = parse.Collect();
 
-            Verify(input);
+            PipelineApprovals.Verify(input);
             input.Send("42");
             Assert.AreEqual(42, collector.SingleResult);
         }
@@ -81,7 +81,7 @@ namespace Pipelines.Test
                 .Process(LongToString)
                 .Collect();
 
-            Verify(input);
+            PipelineApprovals.Verify(input);
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace Pipelines.Test
 
             var joinedPipes = longToString.JoinTo(incrementLong).Collect();
 
-            Verify(input);
+            PipelineApprovals.Verify(input);
         }
 
         [TestMethod]
@@ -104,7 +104,7 @@ namespace Pipelines.Test
             input.Process(LongToString);
             input.Process(IncrementLong);
 
-            Verify(input);
+            PipelineApprovals.Verify(input);
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace Pipelines.Test
             input2.Send(99);
             Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
 
-            Verify(join);
+            PipelineApprovals.Verify(join);
         }
 
         [TestMethod]
@@ -142,7 +142,7 @@ namespace Pipelines.Test
 
             var applyToPipeline = prefix.ApplyTo(values);
             var collector = applyToPipeline.Collect();
-            Verify(applyToPipeline);
+            PipelineApprovals.Verify(applyToPipeline);
 
             // begin-snippet: ApplyTo_inputs
             var apply = "#";
@@ -175,7 +175,7 @@ namespace Pipelines.Test
             var part2 = new InputPipe<int[]>("part2");
             var concatWithPipeline = part1.ConcatWith(part2);
             var collector = concatWithPipeline.Collect();
-            Verify(concatWithPipeline);
+            PipelineApprovals.Verify(concatWithPipeline);
 
             // begin-snippet: ConcatWith_inputs
             var concat = new List<int> {1, 2};
@@ -204,11 +204,6 @@ namespace Pipelines.Test
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }
-
-        private static void Verify(IGraphNode input)
-        {
-            Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.DotGraph.FromPipeline(input), "dot"));
-        }
     }
 
     internal static class _
