@@ -20,7 +20,7 @@ snippet: joined_pipeline
 
 will produce:
 
-![GraphViz of JoinedPipe](/Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
+![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
 
 ## ApplyTo(list) 
 
@@ -40,7 +40,7 @@ snippet: ApplyTo_manual
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
 
-![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
 
 ## ConcatWith(list) 
 
@@ -60,5 +60,5 @@ snippet: ConcatWith_manual
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
 
-![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 
