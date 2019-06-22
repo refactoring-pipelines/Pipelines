@@ -12,6 +12,7 @@ namespace Pipelines
             {
                 DotGraph.ProcessTree(node, result, AppendFunctionalPipe, delegate { }, metadata);
             }
+
             return result;
         }
 
@@ -69,6 +70,7 @@ namespace Pipelines
             {
                 return graphNodeWithOutput.Output;
             }
+
             return node;
         }
     }

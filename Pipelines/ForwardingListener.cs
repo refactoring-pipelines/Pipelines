@@ -21,15 +21,17 @@ namespace Pipelines
             _onMessage = onMessage;
         }
 
-        public IEnumerable<IGraphNode> Children => throw new Exception("Do not call");
+        public IEnumerable<IGraphNode> Children =>
+            throw new Exception("Do not call");
+
         public IGraphNode Owner { get; }
-        IEnumerable<IGraphNode> IGraphNode.Parents => new[] { Owner };
 
-        public void OnMessage(T value)
-        {
-            _onMessage(value);
-        }
+        IEnumerable<IGraphNode> IGraphNode.Parents =>
+            new[] {Owner};
 
-        public string Name => throw new Exception("Do not call");
+        public void OnMessage(T value) { _onMessage(value); }
+
+        public string Name =>
+            throw new Exception("Do not call");
     }
 }

@@ -6,7 +6,8 @@ namespace Pipelines
 {
     public static class JoinedPipes
     {
-        public static JoinedPipes<TOutput1, TOutput2> JoinTo<TOutput1, TOutput2>(this Sender<TOutput1> sender1,
+        public static JoinedPipes<TOutput1, TOutput2> JoinTo<TOutput1, TOutput2>(
+            this Sender<TOutput1> sender1,
             Sender<TOutput2> sender2)
         {
             return new JoinedPipes<TOutput1, TOutput2>(sender1, sender2);
@@ -36,10 +37,14 @@ namespace Pipelines
             sender2.AddListener(_listener2);
         }
 
-        public override string Name => "Join";
-        public override IEnumerable<IGraphNode> Parents => new IGraphNode[] { _sender1, _sender2 };
+        public override string Name =>
+            "Join";
 
-        Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors => new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
+        public override IEnumerable<IGraphNode> Parents =>
+            new IGraphNode[] {_sender1, _sender2};
+
+        Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors =>
+            new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
 
         IGraphNode IJoinedPipes.Collector =>
             Listeners.OfType<CollectorPipe<Tuple<TInput1, TInput2>>>().SingleOrDefault();
@@ -61,7 +66,10 @@ namespace Pipelines
 
         private void _SendIfReady()
         {
-            if (_values1.Any() && _values2.Any()) _Send(Tuple.Create(_values1.Dequeue(), _values2.Dequeue()));
+            if (_values1.Any() && _values2.Any())
+            {
+                _Send(Tuple.Create(_values1.Dequeue(), _values2.Dequeue()));
+            }
         }
     }
 }

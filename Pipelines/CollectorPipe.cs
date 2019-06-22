@@ -5,10 +5,7 @@ namespace Pipelines
 {
     public static class CollectorPipe
     {
-        public static CollectorPipe<T> Collect<T>(this Sender<T> sender)
-        {
-            return new CollectorPipe<T>(sender);
-        }
+        public static CollectorPipe<T> Collect<T>(this Sender<T> sender) { return new CollectorPipe<T>(sender); }
     }
 
     public class CollectorPipe<T> : IListener<T>
@@ -22,16 +19,18 @@ namespace Pipelines
             predecessor.AddListener(this);
         }
 
-        public T SingleResult => _results.Single();
+        public T SingleResult =>
+            _results.Single();
 
-        public bool IsEmpty => !_results.Any();
-        IEnumerable<IGraphNode> IGraphNode.Parents => new[] { _predecessor };
+        public bool IsEmpty =>
+            !_results.Any();
 
-        public void OnMessage(T value)
-        {
-            _results.Add(value);
-        }
+        IEnumerable<IGraphNode> IGraphNode.Parents =>
+            new[] {_predecessor};
 
-        string IGraphNode.Name => "Collector";
+        public void OnMessage(T value) { _results.Add(value); }
+
+        string IGraphNode.Name =>
+            "Collector";
     }
 }

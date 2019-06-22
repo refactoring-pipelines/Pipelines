@@ -13,12 +13,12 @@ namespace Pipelines
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
                 {typeof(InputPipe<>), AppendInputPipeFormatting},
                 {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting},
-                {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting},
+                {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting}
             };
 
         private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            var output = ((IGraphNodeWithOutput)node).Output;
+            var output = ((IGraphNodeWithOutput) node).Output;
 
             var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
             var outputUniqueName = metadata.GetQuotedUniqueName(output);
@@ -52,6 +52,7 @@ namespace Pipelines
             {
                 DotGraph.ProcessTree(node, result, ProcessNode, delegate { }, metadata);
             }
+
             return result;
         }
 
@@ -63,7 +64,7 @@ namespace Pipelines
 
         private static void AppendFunctionPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            var output = ((IFunctionPipe)node).Output;
+            var output = ((IFunctionPipe) node).Output;
 
             var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
             var outputUniqueName = metadata.GetQuotedUniqueName(output);

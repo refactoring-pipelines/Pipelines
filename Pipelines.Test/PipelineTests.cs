@@ -55,24 +55,17 @@ namespace Pipelines.Test
         public void ProcessIsNotCovariant()
         {
             var input = new InputPipe<int>("i");
-            var collector = input
-                .Process(RangeArray)
-                .Process(_ => (IEnumerable<int>)_) // Would be nice not to need this
+            var collector = input.Process(RangeArray)
+                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
                 .Process(SumEnumerable)
                 .Collect();
             input.Send(4);
             Assert.AreEqual(10, collector.SingleResult);
         }
 
-        private int SumEnumerable(IEnumerable<int> _)
-        {
-            return _.Sum();
-        }
+        private int SumEnumerable(IEnumerable<int> _) { return _.Sum(); }
 
-        private int[] RangeArray(int count)
-        {
-            return Enumerable.Range(1, count).ToArray();
-        }
+        private int[] RangeArray(int count) { return Enumerable.Range(1, count).ToArray(); }
 
         [TestMethod]
         public void ConnectedPipelinesTest()
@@ -80,7 +73,11 @@ namespace Pipelines.Test
             var input = new InputPipe<string>("age");
             var parsePipe = input.Process(long.Parse);
             var collector = parsePipe.Collect();
-            parsePipe.Process(LongToString).WithCollector().Process(long.Parse).WithCollector().Process(LongToString)
+            parsePipe.Process(LongToString)
+                .WithCollector()
+                .Process(long.Parse)
+                .WithCollector()
+                .Process(LongToString)
                 .Collect();
 
             Verify(input);
@@ -148,7 +145,7 @@ namespace Pipelines.Test
 
             // begin-snippet: ApplyTo_inputs
             var apply = "#";
-            var to = new[] { 1, 2 };
+            var to = new[] {1, 2};
             // end-snippet
 
             // begin-snippet: ApplyTo_outputs
@@ -165,7 +162,9 @@ namespace Pipelines.Test
             values.Send(to);
             Assert.AreEqual(result, collector.SingleResult.ToReadableString());
 
-            Assert.AreEqual(manualApplyToResult.SingleResult.ToReadableString(), collector.SingleResult.ToReadableString());
+            Assert.AreEqual(
+                manualApplyToResult.SingleResult.ToReadableString(),
+                collector.SingleResult.ToReadableString());
         }
 
         [TestMethod]
@@ -188,15 +187,9 @@ namespace Pipelines.Test
             //Verify(concat);
         }
 
-        private string LongToString(long value)
-        {
-            return value.ToString();
-        }
+        private string LongToString(long value) { return value.ToString(); }
 
-        private long IncrementLong(long value)
-        {
-            return value + 1;
-        }
+        private long IncrementLong(long value) { return value + 1; }
 
         private static void Verify(IGraphNode input)
         {

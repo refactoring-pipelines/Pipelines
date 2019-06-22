@@ -12,10 +12,14 @@ namespace Pipelines
             {
                 DotGraph.ProcessTree(node, result, delegate { }, ProcessChildRanking, metadata);
             }
+
             return result;
         }
 
-        private static void ProcessChildRanking(IGraphNode node, IGraphNode listener, NodeMetadata metadata,
+        private static void ProcessChildRanking(
+            IGraphNode node,
+            IGraphNode listener,
+            NodeMetadata metadata,
             StringBuilder result)
         {
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))

@@ -6,7 +6,8 @@ namespace Pipelines
 {
     public static class AppliedPipes
     {
-        public static AppliedPipes<TOutput1, TOutput2> ApplyTo<TOutput1, TOutput2>(this Sender<TOutput1> sender1,
+        public static AppliedPipes<TOutput1, TOutput2> ApplyTo<TOutput1, TOutput2>(
+            this Sender<TOutput1> sender1,
             ISender<IEnumerable<TOutput2>> sender2)
         {
             return new AppliedPipes<TOutput1, TOutput2>(sender1, sender2);
@@ -36,10 +37,14 @@ namespace Pipelines
             sender2.AddListener(_listener2);
         }
 
-        public override string Name => "ApplyTo";
-        public override IEnumerable<IGraphNode> Parents => new IGraphNode[] { _sender1, _sender2 };
+        public override string Name =>
+            "ApplyTo";
 
-        Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors => new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
+        public override IEnumerable<IGraphNode> Parents =>
+            new IGraphNode[] {_sender1, _sender2};
+
+        Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors =>
+            new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
 
         IGraphNode IJoinedPipes.Collector =>
             Listeners.OfType<CollectorPipe<IEnumerable<Tuple<TInput1, TInput2>>>>().SingleOrDefault();

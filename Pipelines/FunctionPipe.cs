@@ -15,10 +15,14 @@ namespace Pipelines
             predecessor.AddListener(this);
         }
 
-        IGraphNode IFunctionPipe.Predecessor => _predecessor;
-        IGraphNode IGraphNodeWithOutput.Output => new OutputNode(this, _func.Method.ReturnType.Name);
+        IGraphNode IFunctionPipe.Predecessor =>
+            _predecessor;
 
-        IEnumerable<IGraphNode> ISender.Children => Listeners;
+        IGraphNode IGraphNodeWithOutput.Output =>
+            new OutputNode(this, _func.Method.ReturnType.Name);
+
+        IEnumerable<IGraphNode> ISender.Children =>
+            Listeners;
 
         public void OnMessage(TInput input)
         {
@@ -26,8 +30,11 @@ namespace Pipelines
             _Send(result);
         }
 
-        public override string Name => $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
-        public override IEnumerable<IGraphNode> Parents => new[] {_predecessor};
+        public override string Name =>
+            $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
+
+        public override IEnumerable<IGraphNode> Parents =>
+            new[] {_predecessor};
     }
 
     internal class OutputNode : IGraphNode
@@ -41,9 +48,11 @@ namespace Pipelines
             _name = name;
         }
 
-        string IGraphNode.Name => _name;
+        string IGraphNode.Name =>
+            _name;
 
-        IEnumerable<IGraphNode> IGraphNode.Parents => new[] { _owner };
+        IEnumerable<IGraphNode> IGraphNode.Parents =>
+            new[] {_owner};
 
         public override bool Equals(object other)
         {
@@ -51,9 +60,6 @@ namespace Pipelines
             return that != null && _owner == that._owner;
         }
 
-        public override int GetHashCode()
-        {
-            return 0;
-        }
+        public override int GetHashCode() { return 0; }
     }
 }
