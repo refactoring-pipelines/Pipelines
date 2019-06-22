@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipelines.Test", "Pipelines.Test\Pipelines.Test.csproj", "{45994991-F439-4D0B-8518-3A9B8E8B66C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Refactoring.Pipelines.Test", "Refactoring.Pipelines.Test\Refactoring.Pipelines.Test.csproj", "{45994991-F439-4D0B-8518-3A9B8E8B66C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipelines", "Pipelines\Pipelines.csproj", "{29A821A7-3E4A-448B-B93D-FD2FC4C8C9B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Refactoring.Pipelines", "Refactoring.Pipelines\Refactoring.Pipelines.csproj", "{29A821A7-3E4A-448B-B93D-FD2FC4C8C9B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelines.DotGraph", "Pipelines.DotGraph\Pipelines.DotGraph.csproj", "{26320607-24EE-4D27-A697-A7B4F0EF0751}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.Pipelines.DotGraph", "Refactoring.Pipelines.DotGraph\Refactoring.Pipelines.DotGraph.csproj", "{26320607-24EE-4D27-A697-A7B4F0EF0751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelines.Approvals", "Pipeline.Approvals\Pipelines.Approvals.csproj", "{256DD1C2-5852-4D32-B547-7256564A16CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.Pipelines.Approvals", "Refactoring.Pipelines.Approvals\Refactoring.Pipelines.Approvals.csproj", "{256DD1C2-5852-4D32-B547-7256564A16CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

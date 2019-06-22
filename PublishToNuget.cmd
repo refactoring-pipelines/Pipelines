@@ -1,9 +1,11 @@
-:: nuget_cli\NuGet.exe setapikey e39ea-get-the-full-key-on-nuget.org
-:: inc::ent version in Directory.Build.props
-:: delete nuget_packages and rebuild
-:: choco install nuget.commandline
+:: 1. choco install nuget.commandline
+:: 2. NuGet.exe setapikey e39ea-get-the-full-key-on-nuget.org
+:: 3. increment version in Directory.Build.props
+:: 4. delete nuget_packages\
+:: 5. rebuild
 
-NuGet push nuget_packages\Pipe.?.?.?.nupkg -Source nuget.org
-NuGet push nuget_packages\ApprovalTests.?.?.?.nupkg -Source nuget.org
+NuGet push nuget_packages\Refactoring.Pipelines.?.?.?.nupkg -Source nuget.org
+NuGet push nuget_packages\Refactoring.Pipelines.Approvals.?.?.?.nupkg -Source nuget.org
+NuGet push nuget_packages\Refactoring.Pipelines.DotGraph.?.?.?.nupkg -Source nuget.org
 
 pause 

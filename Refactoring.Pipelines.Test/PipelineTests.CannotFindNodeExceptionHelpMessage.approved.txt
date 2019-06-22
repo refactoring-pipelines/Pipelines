@@ -1,0 +1,8 @@
+﻿Refactoring.Pipelines.DotGraph.NodeMetadata+CannotFindNodeException: Cannot find node.
+
+    Type: 'Refactoring.Pipelines.InputPipe`1[System.Int64]'
+    Name: 'Int64 value1'
+
+Most likely you need to Verify() at a node that is a descendent of all inputs.
+
+For example, if you are using a JoinedPipes, verify the join node.

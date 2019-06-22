@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Common helper classes developed with ApprovalTests</Description>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ApprovalTests" Version="4.0.0" />
+    <PackageReference Include="Publicize.Fody" Version="1.7.0" />
+    <PackageReference Include="Virtuosity.Fody" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Refactoring.Pipelines.DotGraph\Refactoring.Pipelines.DotGraph.csproj" />
+    <ProjectReference Include="..\Refactoring.Pipelines\Refactoring.Pipelines.csproj" />
+  </ItemGroup>
+
+</Project>

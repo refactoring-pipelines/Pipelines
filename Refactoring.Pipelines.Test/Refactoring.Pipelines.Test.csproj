@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="*.received.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ApprovalTests" Version="4.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Refactoring.Pipelines.Approvals\Refactoring.Pipelines.Approvals.csproj" />
+    <ProjectReference Include="..\Refactoring.Pipelines.DotGraph\Refactoring.Pipelines.DotGraph.csproj" />
+    <ProjectReference Include="..\Refactoring.Pipelines\Refactoring.Pipelines.csproj" />
+  </ItemGroup>
+
+</Project>
