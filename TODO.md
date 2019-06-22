@@ -1,6 +1,3 @@
-- Nuget packages
-	- Pipes
-	- Approvals.Pipes (may contain graph)
 - Async
 - sequencing for implicit dependencies through state
 	var a = A();
@@ -12,4 +9,3 @@
 - Join/Apply when one side never provides an input - does the system stall?
 - `List` of things display better names (List`1 vs. List<int>)
 - extract base class for Joined/Applied/Concatted pipes
-- Add fody weavers
