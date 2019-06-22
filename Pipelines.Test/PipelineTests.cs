@@ -6,6 +6,7 @@ using ApprovalTests.Reporters;
 using ApprovalTests.Writers;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pipelines.DotGraph;
 
 namespace Pipelines.Test
 {
@@ -206,7 +207,7 @@ namespace Pipelines.Test
 
         private static void Verify(IGraphNode input)
         {
-            Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.FromPipeline(input), "dot"));
+            Approvals.Verify(WriterFactory.CreateTextWriter(DotGraph.DotGraph.FromPipeline(input), "dot"));
         }
     }
 

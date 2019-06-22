@@ -1,4 +1,4 @@
-﻿Pipelines.NodeMetadata+CannotFindNodeException: Cannot find node.
+﻿Pipelines.DotGraph.NodeMetadata+CannotFindNodeException: Cannot find node.
 
     Type: 'Pipelines.InputPipe`1[System.Int64]'
     Name: 'Int64 value1'

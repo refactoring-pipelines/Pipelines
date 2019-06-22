@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pipelines
+namespace Pipelines.DotGraph
 {
     public static class DotGraphFormatting
     {
