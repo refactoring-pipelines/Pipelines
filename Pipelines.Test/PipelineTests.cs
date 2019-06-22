@@ -170,14 +170,20 @@ namespace Pipelines.Test
         [TestMethod]
         public void Concat()
         {
-            // -------------- TODO - next test
-
             var part1 = new InputPipe<List<int>>("part1");
             var part2 = new InputPipe<int[]>("part2");
+            var concatWithPipeline = part1.ConcatWith(part2);
+            var collector = concatWithPipeline.Collect();
+            //Verify(concatWithPipeline);
 
-            var concat = part1.ConcatWith(part2);
-            var collector = concat.Collect();
-            //Verify(concat);
+            // begin-snippet: ConcatWith_inputs
+            var concat = new List<int> { 1, 2 };
+            var with = new[] { 3, 4 };
+            // end-snippet
+
+            // begin-snippet: ConcatWith_outputs
+            var result = "[1, 2, 3, 4]";
+            // end-snippet
 
             var manualConcatWith =
                 // begin-snippet: ConcatWith_manual
@@ -185,10 +191,9 @@ namespace Pipelines.Test
             // end-snippet
             var manualConcatWithResult = manualConcatWith.Collect();
 
-            part1.Send(new List<int> {1, 2});
-            part2.Send(new[] {3, 4});
-
-            Assert.AreEqual("[1, 2, 3, 4]", collector.SingleResult.ToReadableString());
+            part1.Send(concat);
+            part2.Send(with);
+            Assert.AreEqual(result, collector.SingleResult.ToReadableString());
 
             Assert.AreEqual(
                 manualConcatWithResult.SingleResult.ToReadableString(),
