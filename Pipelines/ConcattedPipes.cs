@@ -41,7 +41,7 @@ namespace Pipelines
             "ConcatWith";
 
         public override IEnumerable<IGraphNode> Parents =>
-            new IGraphNode[] { _sender1, _sender2 };
+            new IGraphNode[] {_sender1, _sender2};
 
         Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors =>
             new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
@@ -70,10 +70,9 @@ namespace Pipelines
             {
                 var values1 = _values1.Dequeue();
                 var values2 = _values2.Dequeue();
-                var result = values1.Concat<T>(values2).ToList();
+                var result = values1.Concat(values2).ToList();
                 _Send(result);
             }
         }
     }
 }
-

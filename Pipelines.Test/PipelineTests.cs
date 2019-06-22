@@ -178,8 +178,8 @@ namespace Pipelines.Test
             Verify(concatWithPipeline);
 
             // begin-snippet: ConcatWith_inputs
-            var concat = new List<int> { 1, 2 };
-            var with = new[] { 3, 4 };
+            var concat = new List<int> {1, 2};
+            var with = new[] {3, 4};
             // end-snippet
 
             // begin-snippet: ConcatWith_outputs
