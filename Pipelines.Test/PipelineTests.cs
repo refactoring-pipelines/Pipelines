@@ -172,19 +172,27 @@ namespace Pipelines.Test
         {
             // -------------- TODO - next test
 
-            //var part1 = new InputPipe<List<int>>("part1");
-            //var part2 = new InputPipe<int[]>("part2");
+            var part1 = new InputPipe<List<int>>("part1");
+            var part2 = new InputPipe<int[]>("part2");
 
-            //var concat = part1.ConcatWith(part2);
-            //var collector = concat.Collect();
-
-            //part1.Send(new List<int> { 1, 2 });
-            //part2.Send(new[] { 3, 4 });
-
-            //Assert.AreEqual(new[]{1, 2, 3, 4}, collector.SingleResult.ToReadableString());
-
-
+            var concat = part1.ConcatWith(part2);
+            var collector = concat.Collect();
             //Verify(concat);
+
+            var manualConcatWith =
+                // begin-snippet: ConcatWith_manual
+                part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
+            // end-snippet
+            var manualConcatWithResult = manualConcatWith.Collect();
+
+            part1.Send(new List<int> {1, 2});
+            part2.Send(new[] {3, 4});
+
+            Assert.AreEqual("[1, 2, 3, 4]", collector.SingleResult.ToReadableString());
+
+            Assert.AreEqual(
+                manualConcatWithResult.SingleResult.ToReadableString(),
+                collector.SingleResult.ToReadableString());
         }
 
         private string LongToString(long value) { return value.ToString(); }
