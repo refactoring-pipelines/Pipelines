@@ -25,6 +25,8 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 ## Available on NuGet
 
+[Install-Package Refactoring.Pipelines.Approvals](http://nuget.org/packages/Refactoring.Pipelines.Approvals)
+[Install-Package Refactoring.Pipelines.DotGraph](http://nuget.org/packages/Refactoring.Pipelines.DotGraph)
 [Install-Package Refactoring.Pipelines](http://nuget.org/packages/Refactoring.Pipelines)
 
 ## Suggested VSCode Plugin
