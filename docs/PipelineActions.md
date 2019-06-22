@@ -33,7 +33,7 @@ var join = input1.JoinTo(input2);
 
 will produce:
 
-![GraphViz of JoinedPipe](/Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
+![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
 
 ## ApplyTo(list) 
 
@@ -69,7 +69,7 @@ prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i))
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
 
-![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
 
 ## ConcatWith(list) 
 
@@ -105,5 +105,5 @@ part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
 
-![GraphViz of AppliedPipe](/Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 
