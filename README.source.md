@@ -25,9 +25,9 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 ## Available on NuGet
 
-[Install-Package Refactoring.Pipelines.Approvals](http://nuget.org/packages/Refactoring.Pipelines.Approvals)
-[Install-Package Refactoring.Pipelines.DotGraph](http://nuget.org/packages/Refactoring.Pipelines.DotGraph)
-[Install-Package Refactoring.Pipelines](http://nuget.org/packages/Refactoring.Pipelines)
+ * [Install-Package Refactoring.Pipelines.Approvals](http://nuget.org/packages/Refactoring.Pipelines.Approvals)
+ * [Install-Package Refactoring.Pipelines.DotGraph](http://nuget.org/packages/Refactoring.Pipelines.DotGraph)
+ * [Install-Package Refactoring.Pipelines](http://nuget.org/packages/Refactoring.Pipelines)
 
 ## Suggested VSCode Plugin
  
@@ -35,4 +35,4 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 # Attribution
 
-pipeline icon by Francisco Javier Diaz Montejano from the Noun Project
+[pipeline icon](https://thenounproject.com/term/pipeline/2508171/) by [Francisco Javier Diaz Montejano](https://thenounproject.com/pac0diaz/) from [the Noun Project](https://thenounproject.com/)
