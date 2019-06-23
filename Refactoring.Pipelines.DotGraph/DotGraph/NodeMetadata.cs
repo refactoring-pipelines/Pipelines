@@ -59,7 +59,7 @@ namespace Refactoring.Pipelines.DotGraph
 
         private int GetDisambiguatingCount(IGraphNode node)
         {
-            var nodesWithSameNamesAndCounts = _countsByNode.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name);
+            var nodesWithSameNamesAndCounts = _countsByNode.Where(nodeAndCount => nodeAndCount.Key.Name == node.Name).ToList();
 
             int count;
             if (nodesWithSameNamesAndCounts.Any())

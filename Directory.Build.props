@@ -3,25 +3,21 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <NoWarn>CS1591</NoWarn>
-
     <Version>3.0.0</Version>
     <AssemblyVersion>1.0</AssemblyVersion>
     <AssemblyInformationalVersion>$(Version)</AssemblyInformationalVersion>
-
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Authors>Llewellyn Falco &amp; Jay Bazuzi</Authors>
-    <PackageLicense>Apache-2.0</PackageLicense>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) Llewellyn Falco &amp; Jay Bazuzi. All rights reserved.</Copyright>
     <PackageTags>async pipeline</PackageTags>
     <PackageIconUrl>https://github.com/JayBazuzi/Pipelines/blob/master/docs/images/pipeline_icon.png?raw=true</PackageIconUrl>
     <PackageProjectUrl>https://github.com/JayBazuzi/Pipelines</PackageProjectUrl>
     <PackageOutputPath>$(SolutionDir)nuget_packages</PackageOutputPath>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludePDBsInPackage</TargetsForTfmSpecificContentInPackage>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PackageReference Condition="$(Configuration) == 'Release'" Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01" PrivateAssets="All" />
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
-  <Target Name="IncludePDBsInPackage">
-    <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\$(AssemblyName).pdb" PackagePath="lib/$(TargetFramework)" />
-    </ItemGroup>
-  </Target>
 </Project>

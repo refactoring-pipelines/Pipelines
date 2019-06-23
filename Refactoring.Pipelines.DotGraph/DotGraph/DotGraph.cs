@@ -9,7 +9,7 @@ namespace Refactoring.Pipelines.DotGraph
     {
         public static string FromPipeline(IGraphNode node)
         {
-            var roots = GetRoots(node);
+            var roots = GetRoots(node).ToList();
 
             var metadata = new NodeMetadata(roots);
 
