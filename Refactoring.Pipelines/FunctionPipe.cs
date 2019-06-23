@@ -56,8 +56,7 @@ namespace Refactoring.Pipelines
 
         public override bool Equals(object other)
         {
-            var that = other as OutputNode;
-            return that != null && _owner == that._owner;
+            return other is OutputNode that && _owner == that._owner;
         }
 
         public override int GetHashCode() { return 0; }

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalTests.Reporters.Windows;
-using ApprovalTests.Writers;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
@@ -112,7 +110,7 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void JoinInputs()
         {
-            // begin-snippet: joined_pipeline 
+            // begin-snippet: joined_pipeline
             var input1 = new InputPipe<long>("value1");
             var input2 = new InputPipe<long>("value2");
             var join = input1.JoinTo(input2);
