@@ -19,9 +19,9 @@ namespace Refactoring.Pipelines.Test
         {
             Func<string, long> normal = age =>
             {
-                // begin-snippet: basic_code_line 
+                // begin-snippet: basic_code_line
                 var result = long.Parse(age);
-                // end-snippet 
+                // end-snippet
                 return result;
             };
             Func<string, long> piped = age =>
