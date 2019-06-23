@@ -10,3 +10,4 @@
 - `List` of things display better names (List`1 vs. List<int>)
 - extract base class for Joined/Applied/Concatted pipes
 - verify file exists in DotReporter
+- multiple input pipe convience functions
