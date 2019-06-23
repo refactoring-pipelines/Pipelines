@@ -17,5 +17,7 @@
     <PackageOutputPath>$(SolutionDir)nuget_packages</PackageOutputPath>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <PackageReference Condition="$(Configuration) == 'Release'" Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01" PrivateAssets="All" />
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 </Project>
