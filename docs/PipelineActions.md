@@ -28,7 +28,7 @@ var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L115-L119)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L113-L117)</sup>
 <!-- endsnippet -->
 
 will produce:
@@ -46,7 +46,7 @@ For example, if you had:
 var apply = "#";
 var to = new[] {1, 2};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L149-L152)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L147-L150)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -55,7 +55,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L154-L156)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L152-L154)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -64,7 +64,7 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L159-L161)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L157-L159)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
@@ -82,7 +82,7 @@ For example, if you had:
 var concat = new List<int> {1, 2};
 var with = new[] {3, 4};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L182-L185)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L180-L183)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -91,7 +91,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[1, 2, 3, 4]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L187-L189)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L185-L187)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -100,7 +100,7 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L192-L194)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L190-L192)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
