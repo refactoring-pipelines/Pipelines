@@ -16,6 +16,7 @@
     - [7. Process and Collect the next step in the pipeline](#7-process-and-collect-the-next-step-in-the-pipeline)
     - [8. (optional) Delete dead code](#8-optional-delete-dead-code)
     - [9. Goto step 7](#9-goto-step-7)
+  - [Handling multiple parameters](#handling-multiple-parameters)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -96,3 +97,6 @@ Do this above the approvals.Verify(). Run it again for feedback
 
 ### 9. Goto step 7
 
+## Handling multiple parameters
+
+Everything is a single parameter. To use multiple, you'll have to join them into tuples. If this is requires new inputs, you'll need multiple input pipes
