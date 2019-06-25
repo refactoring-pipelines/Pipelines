@@ -11,6 +11,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 - [Creating Pipelines](#creating-pipelines)
   - [Basic pipelines](#basic-pipelines)
   - [But Why?!?!](#but-why)
+- [Actions](#actions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -50,3 +51,7 @@ as well has advantages in monitoring. It also has advantages in testing and visu
 For example the pipeline can reder itself as the following dot file (Graphviz)
 
 ![GraphViz of Pipeline](/Refactoring.Pipelines.Test/PipelineTests.BasicPipelineTest.approved.dot.svg)
+
+## Actions
+
+[Joins, ApplyTo, Concate](/docs/PipelineActions.md)
