@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contents**
+
+- [Refactoring To Async Tutorial](#refactoring-to-async-tutorial)
+  - [Step by Step](#step-by-step)
+    - [1. Call the method in question from a test](#1-call-the-method-in-question-from-a-test)
+    - [2. Take the 1st thing that fails and create an `InputPipe` of it's parameters](#2-take-the-1st-thing-that-fails-and-create-an-inputpipe-of-its-parameters)
+    - [3. Place a ApprovalTests to get insight into the pipeline.](#3-place-a-approvaltests-to-get-insight-into-the-pipeline)
+    - [4. Add a process as a delegate](#4-add-a-process-as-a-delegate)
+    - [4. Add a collector, and send input in](#4-add-a-collector-and-send-input-in)
+    - [5. Repeat](#5-repeat)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Refactoring To Async Tutorial
 
 ## Step by Step

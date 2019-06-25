@@ -10,6 +10,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 - [Pipelines for C](#pipelines-for-c)
   - [Pipelines](#pipelines)
+  - [Refactoring To Async](#refactoring-to-async)
   - [Available on NuGet](#available-on-nuget)
   - [Suggested VSCode Plugin](#suggested-vscode-plugin)
 - [Attribution](#attribution)
@@ -28,6 +29,10 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 
 [Details about actions here](docs/PipelineActions.md) 
+
+## Refactoring To Async
+
+[Tutorial Here](docs/RefactoringTutorial.md)
 
 ## Available on NuGet
 

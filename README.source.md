@@ -4,6 +4,7 @@
 
 - [Pipelines for C](#pipelines-for-c)
   - [Pipelines](#pipelines)
+  - [Refactoring To Async](#refactoring-to-async)
   - [Available on NuGet](#available-on-nuget)
   - [Suggested VSCode Plugin](#suggested-vscode-plugin)
 - [Attribution](#attribution)
