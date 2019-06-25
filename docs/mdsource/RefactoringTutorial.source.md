@@ -6,11 +6,12 @@
   - [Prep](#prep)
   - [Step by Step](#step-by-step)
     - [1. Call the method in question from a test](#1-call-the-method-in-question-from-a-test)
-    - [2. Take the 1st thing that fails and create an `InputPipe` of it's parameters](#2-take-the-1st-thing-that-fails-and-create-an-inputpipe-of-its-parameters)
+    - [2. Take the 1st thing to move to async and create an `InputPipe` of it's parameters directly above it.](#2-take-the-1st-thing-to-move-to-async-and-create-an-inputpipe-of-its-parameters-directly-above-it)
     - [3. Place a ApprovalTests to get insight into the pipeline.](#3-place-a-approvaltests-to-get-insight-into-the-pipeline)
-    - [4. Add a process as a delegate](#4-add-a-process-as-a-delegate)
-    - [4. Add a collector, and send input in](#4-add-a-collector-and-send-input-in)
-    - [5. Repeat](#5-repeat)
+    - [4. Inspect result in VsCode](#4-inspect-result-in-vscode)
+    - [5. Add a process as a delegate](#5-add-a-process-as-a-delegate)
+    - [6. Add a collector, and send input in](#6-add-a-collector-and-send-input-in)
+    - [7. Repeat](#7-repeat)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -31,10 +32,10 @@ CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 Simply call the method you wish to refactor from a test.
 Don't think of this as a traditonal unit test. Think of it more as a specialized `main()` method
 
-### 2. Take the 1st thing that fails and create an `InputPipe` of it's parameters
+### 2. Take the 1st thing to move to async and create an `InputPipe` of it's parameters directly above it.
 
 ``` cs
- var startingPoint = new InputPipe<InputType>("InputNamme");
+ var startingPointInput = new InputPipe<InputType>("InputName");
  ```
  
  ### 3. Place a ApprovalTests to get insight into the pipeline.
@@ -42,22 +43,24 @@ Don't think of this as a traditonal unit test. Think of it more as a specialized
  Place this right in the middle of the production code you want to refactor. It is a temporary step.
  
  ``` cs 
-  PipelineApprovals.verify(startingPoint);
+  PipelineApprovals.Verify(startingPointInput);
  ```
  
- With a DotReporter
+ With a DotReporter (on the test)
  
  ``` cs 
  [UseReporter(typeof(DotReporter))]
  ```
 
-### 4. Add a process as a delegate
+### 4. Inspect result in VsCode
+
+### 5. Add a process as a delegate
 
 ``` cs
  var methodCallPipe = startingPoint.process(TheMethodCall)
 ```
 
-### 4. Add a collector, and send input in
+### 6. Add a collector, and send input in
 
 ``` cs
  var methodCallCollector = methodCallPipe.Collect();
@@ -65,5 +68,5 @@ Don't think of this as a traditonal unit test. Think of it more as a specialized
  var variable = methodCallCollector.SingleOrDefault;
 ```
 
-### 5. Repeat
+### 7. Repeat
 
