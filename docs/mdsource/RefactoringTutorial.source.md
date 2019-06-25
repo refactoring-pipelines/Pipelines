@@ -18,7 +18,7 @@
 
 ## Prep
 
-Download the [sample exercise](https://github.com/arlobelshee/legacycharexample)
+Download the [sample exercise]https://github.com/ondjuric/PipelinesExercise)
 
 ## Step by Step
 
