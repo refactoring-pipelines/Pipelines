@@ -76,7 +76,7 @@ Do this above the approvals.Verify(). Run it again for feedback
 ``` cs
  var methodCallCollector = methodCallPipe.Collect();
  startingPoint.Send(firstParameter);
- var variable = methodCallCollector.SingleOrDefault;
+ var variable = methodCallCollector.SingleResult;
 ```
 
 ### 7. Repeat

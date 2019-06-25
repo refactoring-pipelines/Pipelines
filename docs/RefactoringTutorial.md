@@ -11,6 +11,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 - [Refactoring To Async Tutorial](#refactoring-to-async-tutorial)
   - [Prep](#prep)
   - [Step by Step](#step-by-step)
+  - [Notes](#notes)
     - [1. Call the method in question from a test](#1-call-the-method-in-question-from-a-test)
     - [2. Take the 1st thing to move to async and create an `InputPipe` of it's parameters directly above it.](#2-take-the-1st-thing-to-move-to-async-and-create-an-inputpipe-of-its-parameters-directly-above-it)
     - [3. Place a ApprovalTests to get insight into the pipeline.](#3-place-a-approvaltests-to-get-insight-into-the-pipeline)
@@ -32,6 +33,12 @@ CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 
 
 ## Step by Step
+
+## Notes
+
+ 1. All pipeline setup code occurs at the top of the method.  
+ 2. Then the approvals call  
+ 3. Then the sending thru the pipeline
 
 ### 1. Call the method in question from a test
 
@@ -62,16 +69,20 @@ Don't think of this as a traditonal unit test. Think of it more as a specialized
 
 ### 5. Add a process as a delegate
 
+If the code isn't in a method, extract it to one first
+
 ``` cs
- var methodCallPipe = startingPoint.process(TheMethodCall)
+ var methodCallPipe = startingPoint.Process(TheMethodCall)
 ```
+
+Do this above the approvals.Verify(). Run it again for feedback
 
 ### 6. Add a collector, and send input in
 
 ``` cs
  var methodCallCollector = methodCallPipe.Collect();
  startingPoint.Send(firstParameter);
- var variable = methodCallCollector.SingleOrDefault;
+ var variable = methodCallCollector.SingleResult;
 ```
 
 ### 7. Repeat
