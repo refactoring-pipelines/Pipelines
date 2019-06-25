@@ -18,7 +18,11 @@
 
 ## Prep
 
-Download the [sample exercise]https://github.com/ondjuric/PipelinesExercise)
+* Download the [sample exercise]https://github.com/ondjuric/PipelinesExercise) 
+* Install the VsCode plugin [Graphviz (dot) language support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz) by João Pinto 
+CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
+
+
 
 ## Step by Step
 
