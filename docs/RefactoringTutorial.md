@@ -12,13 +12,16 @@ To change this file edit the source file and then run MarkdownSnippets.
   - [Prep](#prep)
   - [Step by Step](#step-by-step)
   - [Notes](#notes)
+    - [Template](#template)
     - [1. Call the method in question from a test](#1-call-the-method-in-question-from-a-test)
     - [2. Take the 1st thing to move to async and create an `InputPipe` of it's parameters directly above it.](#2-take-the-1st-thing-to-move-to-async-and-create-an-inputpipe-of-its-parameters-directly-above-it)
     - [3. Place a ApprovalTests to get insight into the pipeline.](#3-place-a-approvaltests-to-get-insight-into-the-pipeline)
     - [4. Inspect result in VsCode](#4-inspect-result-in-vscode)
     - [5. Add a process as a delegate](#5-add-a-process-as-a-delegate)
     - [6. Add a collector, and send input in](#6-add-a-collector-and-send-input-in)
-    - [7. Repeat](#7-repeat)
+    - [7. Process and Collect the next step in the pipeline](#7-process-and-collect-the-next-step-in-the-pipeline)
+    - [8. (optional) Delete dead code](#8-optional-delete-dead-code)
+    - [9. Goto step 7](#9-goto-step-7)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -40,6 +43,14 @@ CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
  2. Then the approvals call  
  3. Then the sending thru the pipeline
 
+### Template 
+
+```cs
+// Setup Pipeline
+// ApprovalPipeline
+// Send thru pipeline
+// Original code
+```
 ### 1. Call the method in question from a test
 
 Simply call the method you wish to refactor from a test.
@@ -85,5 +96,9 @@ Do this above the approvals.Verify(). Run it again for feedback
  var variable = methodCallCollector.SingleResult;
 ```
 
-### 7. Repeat
+### 7. Process and Collect the next step in the pipeline
+
+### 8. (optional) Delete dead code
+
+### 9. Goto step 7
 
