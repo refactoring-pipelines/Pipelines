@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Refactoring.Pipelines
@@ -10,7 +11,20 @@ namespace Refactoring.Pipelines
         public InputPipe(string label) { _label = label; }
 
         public override string Name =>
-            $@"{typeof(T).Name} {_label}";
+            $@"{PrettyTypeName(typeof(T))} {_label}";
+
+        public static string PrettyTypeName(Type type)
+        {
+            if (type.IsGenericType)
+            {
+                return string.Format(
+                    "{0}<{1}>",
+                    type.Name.Substring(0, type.Name.LastIndexOf("`", StringComparison.InvariantCulture)),
+                    string.Join(", ", type.GetGenericArguments().Select(PrettyTypeName)));
+            }
+
+            return type.Name;
+        }
 
 
         public override IEnumerable<IGraphNode> Parents =>
