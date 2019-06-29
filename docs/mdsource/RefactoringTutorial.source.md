@@ -24,7 +24,7 @@
 
 ## Prep
 
-* Download the [sample exercise](https://github.com/ondjuric/PipelinesExercise) 
+* Download the [sample exercise](https://github.com/refactoring-pipelines/PipelinesExercise) 
 * Install the VsCode and the plugin [Graphviz (dot) language support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz) by João Pinto 
 CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 
@@ -41,7 +41,7 @@ CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 ### Template 
 
 ```cs
-// Setup Pipeline
+// Set up Pipeline
 // ApprovalPipeline
 // Send thru pipeline
 // Original code
