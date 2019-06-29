@@ -201,6 +201,18 @@ namespace Refactoring.Pipelines.Test
                 collector.SingleResult.ToReadableString());
         }
 
+        [TestMethod]
+        public void ForEach()
+        {
+            var part1 = new InputPipe<List<long>>("part1");
+            var collector = part1.ProcessForEach(IncrementLong).Collect();
+            part1.Send(new List<long> { 1, 2 });
+            Assert.AreEqual("[2, 3]", collector.SingleResult.ToReadableString());
+
+            // TODO:
+            //PipelineApprovals.Verify(part1);
+        }
+
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }
