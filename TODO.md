@@ -16,4 +16,12 @@
 - verify file exists in DotReporter
 - multiple input pipe convience functions
 - handle lambdas
+- var pipeline = result.GetInputsAndOutputs();
+
+- Tuple`2 vs. Tuple { ... }
+- Sender vs. ISender for function
+- Properties
+-  Tuple { ... } 
+- DotReporter doesn't open
 - progress reporting hooks
+

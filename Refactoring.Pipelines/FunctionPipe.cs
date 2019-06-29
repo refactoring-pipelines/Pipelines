@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Refactoring.Pipelines
 {
-    public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IFunctionPipe, ISender
+    public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IFunctionPipe
     {
         private readonly Func<TInput, TOutput> _func;
-        private readonly Sender<TInput> _predecessor;
+        private readonly ISender<TInput> _predecessor;
 
-        public FunctionPipe(Func<TInput, TOutput> func, Sender<TInput> predecessor)
+        public FunctionPipe(Func<TInput, TOutput> func, ISender<TInput> predecessor)
         {
             _func = func;
             _predecessor = predecessor;

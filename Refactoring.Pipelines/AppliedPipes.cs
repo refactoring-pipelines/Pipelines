@@ -7,7 +7,7 @@ namespace Refactoring.Pipelines
     public static class AppliedPipes
     {
         public static AppliedPipes<TOutput1, TOutput2> ApplyTo<TOutput1, TOutput2>(
-            this Sender<TOutput1> sender1,
+            this ISender<TOutput1> sender1,
             ISender<IEnumerable<TOutput2>> sender2)
         {
             return new AppliedPipes<TOutput1, TOutput2>(sender1, sender2);
@@ -18,7 +18,7 @@ namespace Refactoring.Pipelines
     {
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<IEnumerable<TInput2>> _listener2;
-        private readonly Sender<TInput1> _sender1;
+        private readonly ISender<TInput1> _sender1;
         private readonly ISender<IEnumerable<TInput2>> _sender2;
         private readonly Queue<TInput1> _values1 = new Queue<TInput1>();
         private readonly Queue<IEnumerable<TInput2>> _values2 = new Queue<IEnumerable<TInput2>>();
@@ -29,7 +29,7 @@ namespace Refactoring.Pipelines
             _listener2 = new ForwardingListener<IEnumerable<TInput2>>(this, OnMessage2);
         }
 
-        public AppliedPipes(Sender<TInput1> sender1, ISender<IEnumerable<TInput2>> sender2) : this()
+        public AppliedPipes(ISender<TInput1> sender1, ISender<IEnumerable<TInput2>> sender2) : this()
         {
             _sender1 = sender1;
             _sender2 = sender2;

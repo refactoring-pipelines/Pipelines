@@ -5,15 +5,15 @@ namespace Refactoring.Pipelines
 {
     public static class CollectorPipe
     {
-        public static CollectorPipe<T> Collect<T>(this Sender<T> sender) { return new CollectorPipe<T>(sender); }
+        public static CollectorPipe<T> Collect<T>(this ISender<T> sender) { return new CollectorPipe<T>(sender); }
     }
 
     public class CollectorPipe<T> : IListener<T>
     {
-        private readonly Sender<T> _predecessor;
+        private readonly ISender<T> _predecessor;
         private readonly List<T> _results = new List<T>();
 
-        public CollectorPipe(Sender<T> predecessor)
+        public CollectorPipe(ISender<T> predecessor)
         {
             _predecessor = predecessor;
             predecessor.AddListener(this);
