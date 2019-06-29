@@ -11,20 +11,7 @@ namespace Refactoring.Pipelines
         public InputPipe(string label) { _label = label; }
 
         public override string Name =>
-            $@"{PrettyTypeName(typeof(T))} {_label}";
-
-        public static string PrettyTypeName(Type type)
-        {
-            if (type.IsGenericType)
-            {
-                var mainType = type.Name.Substring(0, type.Name.LastIndexOf("`", StringComparison.InvariantCulture));
-                var typeParameters = string.Join(", ", type.GetGenericArguments().Select(PrettyTypeName));
-                return $"{mainType}<{typeParameters}>";
-            }
-
-            return type.Name;
-        }
-
+            $@"{typeof(T).ToReadableString()} {_label}";
 
         public override IEnumerable<IGraphNode> Parents =>
             Enumerable.Empty<IGraphNode>();

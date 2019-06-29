@@ -50,7 +50,7 @@ namespace Refactoring.Pipelines
             Listeners.OfType<CollectorPipe<List<T>>>().SingleOrDefault();
 
         IGraphNode IGraphNodeWithOutput.Output =>
-            new OutputNode(this, $"List<{typeof(T).Name}>");
+            new OutputNode(this, $"List<{typeof(T).ToReadableString()}>");
 
         private void OnMessage1(IEnumerable<T> value)
         {

@@ -19,7 +19,7 @@ namespace Refactoring.Pipelines
             _predecessor;
 
         IGraphNode IGraphNodeWithOutput.Output =>
-            new OutputNode(this, _func.Method.ReturnType.Name);
+            new OutputNode(this, _func.Method.ReturnType.ToReadableString());
 
         IEnumerable<IGraphNode> ISender.Children =>
             Listeners;
@@ -31,7 +31,7 @@ namespace Refactoring.Pipelines
         }
 
         public override string Name =>
-            $@"{_func.Method.DeclaringType.Name}.{_func.Method.Name}()";
+            $@"{_func.Method.DeclaringType.ToReadableString()}.{_func.Method.Name}()";
 
         public override IEnumerable<IGraphNode> Parents =>
             new[] {_predecessor};
