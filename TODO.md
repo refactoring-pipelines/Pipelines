@@ -16,3 +16,4 @@
 - verify file exists in DotReporter
 - multiple input pipe convience functions
 - handle lambdas
+- progress reporting hooks
