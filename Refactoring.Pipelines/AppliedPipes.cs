@@ -14,7 +14,7 @@ namespace Refactoring.Pipelines
         }
     }
 
-    public class AppliedPipes<TInput1, TInput2> : Sender<IEnumerable<Tuple<TInput1, TInput2>>>, IJoinedPipes
+    public class AppliedPipes<TInput1, TInput2> : Sender<List<Tuple<TInput1, TInput2>>>, IJoinedPipes
     {
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<IEnumerable<TInput2>> _listener2;
@@ -47,10 +47,10 @@ namespace Refactoring.Pipelines
             new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
 
         IGraphNode IJoinedPipes.Collector =>
-            Listeners.OfType<CollectorPipe<IEnumerable<Tuple<TInput1, TInput2>>>>().SingleOrDefault();
+            Listeners.OfType<ICollectorGraphNode>().SingleOrDefault();
 
         IGraphNode IGraphNodeWithOutput.Output =>
-            new OutputNode(this, $"List<Tuple{{{typeof(TInput1).ToReadableString()}, {typeof(TInput2).ToReadableString()}}}>");
+            new OutputNode(this, OutputType.ToReadableString());
 
         private void OnMessage1(TInput1 value)
         {

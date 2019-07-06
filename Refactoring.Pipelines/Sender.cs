@@ -8,6 +8,9 @@ namespace Refactoring.Pipelines
     {
         protected readonly List<IListener<T>> Listeners = new List<IListener<T>>();
 
+        public Type OutputType =>
+            typeof(T);
+
         public abstract string Name { get; }
 
         IEnumerable<IGraphNode> ISender.Children =>

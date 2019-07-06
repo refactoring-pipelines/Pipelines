@@ -19,8 +19,7 @@ namespace Refactoring.Pipelines
             _predecessor;
 
         IGraphNode IGraphNodeWithOutput.Output =>
-            new OutputNode(this, _func.Method.ReturnType.ToReadableString());
-
+            new OutputNode(this, OutputType.ToReadableString());
         IEnumerable<IGraphNode> ISender.Children =>
             Listeners;
 

@@ -50,7 +50,7 @@ namespace Refactoring.Pipelines
             Listeners.OfType<CollectorPipe<Tuple<TInput1, TInput2>>>().SingleOrDefault();
 
         IGraphNode IGraphNodeWithOutput.Output =>
-            new OutputNode(this, typeof(Tuple<TInput1, TInput2>).ToReadableString());
+            new OutputNode(this, OutputType.ToReadableString());
 
         private void OnMessage1(TInput1 value)
         {
