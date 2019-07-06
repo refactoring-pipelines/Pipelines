@@ -1,3 +1,7 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/vii59lkgef4amwek/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/pipelines/branch/master)
+
+![Icon](/docs/images/pipeline_icon.png)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
@@ -10,10 +14,6 @@
 - [Attribution](#attribution)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-[![Build status](https://ci.appveyor.com/api/projects/status/vii59lkgef4amwek/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/pipelines/branch/master)
-
-![Icon](/docs/images/pipeline_icon.png)
 
 # Pipelines for C#
 
