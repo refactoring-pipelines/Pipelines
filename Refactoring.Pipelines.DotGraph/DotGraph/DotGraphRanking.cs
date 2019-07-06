@@ -25,7 +25,7 @@ namespace Refactoring.Pipelines.DotGraph
             if (listener.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
             {
                 var listenerUniqueName = metadata.GetQuotedUniqueName(listener);
-                result.AppendLine($@"{{ rank=same; {metadata.GetQuotedUniqueName(node)}, {listenerUniqueName}}}");
+                result.Append($"{{ rank=same; {metadata.GetQuotedUniqueName(node)}, {listenerUniqueName}}}\n");
             }
         }
     }

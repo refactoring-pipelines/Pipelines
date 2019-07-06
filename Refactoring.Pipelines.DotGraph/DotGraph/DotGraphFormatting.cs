@@ -32,7 +32,7 @@ namespace Refactoring.Pipelines.DotGraph
 
         private static void AppendFormat(string name, string format, StringBuilder result)
         {
-            result.AppendLine($@"{name} [{format}]");
+            result.Append($"{name} [{format}]\n");
         }
 
         public static StringBuilder AppendFormatting(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)

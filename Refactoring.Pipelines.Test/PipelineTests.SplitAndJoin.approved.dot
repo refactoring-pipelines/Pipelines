@@ -3,7 +3,7 @@
 # Nodes
 "String age" -> "Int64.Parse()" -> "Int64"
 "Int64" -> "PipelineTests.LongToString()" -> "String"
-{"String", "Int64 1"} -> "Join" -> {"Tuple{String, Int64}", "Collector"}
+{"String", "Int64 1"} -> "Join" -> {"Tuple<String, Int64>", "Collector"}
 "Int64" -> "PipelineTests.IncrementLong()" -> "Int64 1"
 
 
@@ -13,7 +13,7 @@
 "Int64.Parse()" [shape=invhouse]
 "String" [color="#9fbff4"]
 "PipelineTests.LongToString()" [shape=invhouse]
-"Tuple{String, Int64}" [color="#9fbff4"]
+"Tuple<String, Int64>" [color="#9fbff4"]
 "Join" [color=pink]
 "Collector" [color = "#c361f4"]
 "Int64 1" [label="Int64", color="#9fbff4"]

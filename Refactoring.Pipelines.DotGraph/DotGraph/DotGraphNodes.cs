@@ -43,7 +43,7 @@ namespace Refactoring.Pipelines.DotGraph
                 output = $"{{{output}, {collectorUniqueName}}}";
             }
 
-            result.AppendLine($"{input} -> {function} -> {output}");
+            result.Append($"{input} -> {function} -> {output}\n");
         }
 
         private static void AppendJoinedPipe(IJoinedPipes joinedPipes, NodeMetadata metadata, StringBuilder result)
@@ -61,7 +61,7 @@ namespace Refactoring.Pipelines.DotGraph
                 output = $"{{{output}, {collectorUniqueName}}}";
             }
 
-            result.AppendLine($"{{{input1}, {input2}}} -> {function} -> {output}");
+            result.Append($"{{{input1}, {input2}}} -> {function} -> {output}\n");
         }
 
         private static IGraphNode GetPredecessorOutput(IGraphNode node)
