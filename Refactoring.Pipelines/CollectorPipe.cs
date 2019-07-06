@@ -8,12 +8,8 @@ namespace Refactoring.Pipelines
         public static CollectorPipe<T> Collect<T>(this ISender<T> sender) { return new CollectorPipe<T>(sender); }
     }
 
-    interface ICollectorGraphNode : IGraphNode
-    {
 
-    }
-
-    public class CollectorPipe<T> : IListener<T>, ICollectorGraphNode
+    public class CollectorPipe<T> : IListener<T>
     {
         private readonly ISender<T> _predecessor;
         private readonly List<T> _results = new List<T>();
