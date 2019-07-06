@@ -56,7 +56,7 @@ namespace Refactoring.Pipelines.Test
         {
             var input = new InputPipe<int>("i");
             var collector = input.Process(RangeArray)
-                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
+                .Process(_ => (IEnumerable<int>)_) // Would be nice not to need this
                 .Process(SumEnumerable)
                 .Collect();
             input.Send(4);
@@ -109,18 +109,28 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void JoinInputs()
         {
-            // begin-snippet: joined_pipeline
             var input1 = new InputPipe<long>("value1");
             var input2 = new InputPipe<long>("value2");
             var join = input1.JoinTo(input2);
-            // end-snippet
-            var collector = join.Collect();
+            var collector = join.Process(Echo).Collect();
 
             input1.Send(42);
             Assert.IsTrue(collector.IsEmpty);
 
             input2.Send(99);
             Assert.AreEqual("(42, 99)", collector.SingleResult.ToString());
+
+            PipelineApprovals.Verify(join);
+        }
+
+        [TestMethod]
+        public void JoinInputsSample()
+        {
+            // begin-snippet: joined_pipeline
+            var input1 = new InputPipe<long>("value1");
+            var input2 = new InputPipe<long>("value2");
+            var join = input1.JoinTo(input2);
+            // end-snippet
 
             PipelineApprovals.Verify(join);
         }
@@ -145,7 +155,7 @@ namespace Refactoring.Pipelines.Test
 
             // begin-snippet: ApplyTo_inputs
             var apply = "#";
-            var to = new[] {1, 2};
+            var to = new[] { 1, 2 };
             // end-snippet
 
             // begin-snippet: ApplyTo_outputs
@@ -177,8 +187,8 @@ namespace Refactoring.Pipelines.Test
             PipelineApprovals.Verify(concatWithPipeline);
 
             // begin-snippet: ConcatWith_inputs
-            var concat = new List<int> {1, 2};
-            var with = new[] {3, 4};
+            var concat = new List<int> { 1, 2 };
+            var with = new[] { 3, 4 };
             // end-snippet
 
             // begin-snippet: ConcatWith_outputs
@@ -205,7 +215,7 @@ namespace Refactoring.Pipelines.Test
         {
             var part1 = new InputPipe<List<long>>("part1");
             var collector = part1.ProcessForEach(IncrementLong).Collect();
-            part1.Send(new List<long> {1, 2});
+            part1.Send(new List<long> { 1, 2 });
             Assert.AreEqual("[2, 3]", collector.SingleResult.ToReadableString());
 
             // TODO:
@@ -215,6 +225,9 @@ namespace Refactoring.Pipelines.Test
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }
+
+        private T Echo<T>(T t) { return t; }
+
     }
 
     internal static class _

@@ -20,7 +20,7 @@ snippet: joined_pipeline
 
 will produce:
 
-![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/PipelineTests.JoinInputs.approved.dot.svg)
+![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/PipelineTests.JoinInputsSample.approved.dot.svg)
 
 ## ApplyTo(list) 
 
