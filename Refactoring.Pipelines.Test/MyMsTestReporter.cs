@@ -1,7 +1,10 @@
-﻿using ApprovalTests.Core;
+﻿using System.IO;
+using System.Text;
+using ApprovalTests.Core;
 using ApprovalTests.Reporters;
 using ApprovalTests.Reporters.ContinuousIntegration;
 using ApprovalTests.Reporters.TestFrameworks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Refactoring.Pipelines.Test
 {
@@ -14,6 +17,21 @@ namespace Refactoring.Pipelines.Test
             "AreEqual",
             "Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute")
         {
+        }
+
+        public override void Report(string approved, string received)
+        {
+            string approvedContent = File.Exists(approved) ? File.ReadAllText(approved) : "";
+            string receivedContent = File.ReadAllText(received);
+
+            Assert.AreEqual(PrintStringWithLengthAndVisibleNewlines(approvedContent), PrintStringWithLengthAndVisibleNewlines(receivedContent));
+
+            //base.Report(approved, received);
+        }
+
+        public static string PrintStringWithLengthAndVisibleNewlines(string content)
+        {
+            return $@"Length: {content.Length}, {content.Replace("\n", "\\n").Replace("\r", "\\r")}";
         }
     }
 
