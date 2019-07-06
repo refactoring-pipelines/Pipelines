@@ -35,6 +35,5 @@ namespace Refactoring.Pipelines
         {
             return new FunctionPipe<T, TOutput>(func, this);
         }
-
     }
 }

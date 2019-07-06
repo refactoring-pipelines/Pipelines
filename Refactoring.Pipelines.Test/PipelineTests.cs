@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.TestFrameworks;
 using ApprovalTests.Reporters.Windows;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,7 +10,7 @@ using Refactoring.Pipelines.DotGraph;
 
 namespace Refactoring.Pipelines.Test
 {
-    [ UseReporter(typeof(VisualStudioReporter))]
+    [UseReporter(typeof(VisualStudioReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -58,7 +57,7 @@ namespace Refactoring.Pipelines.Test
         {
             var input = new InputPipe<int>("i");
             var collector = input.Process(RangeArray)
-                .Process(_ => (IEnumerable<int>)_) // Would be nice not to need this
+                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
                 .Process(SumEnumerable)
                 .Collect();
             input.Send(4);
@@ -126,6 +125,23 @@ namespace Refactoring.Pipelines.Test
         }
 
         [TestMethod]
+        public void MultipleParameters()
+        {
+            var input1 = new InputPipe<long>("value1");
+            var input2 = new InputPipe<long>("value2");
+            var join = input1.JoinTo(input2);
+            var collector = join.Process((a, b) => a + b).Collect();
+
+            input1.Send(3);
+            Assert.IsTrue(collector.IsEmpty);
+
+            input2.Send(4);
+            Assert.AreEqual(7, collector.SingleResult);
+
+            PipelineApprovals.Verify(join);
+        }
+
+        [TestMethod]
         public void JoinInputsSample()
         {
             // begin-snippet: joined_pipeline
@@ -157,7 +173,7 @@ namespace Refactoring.Pipelines.Test
 
             // begin-snippet: ApplyTo_inputs
             var apply = "#";
-            var to = new[] { 1, 2 };
+            var to = new[] {1, 2};
             // end-snippet
 
             // begin-snippet: ApplyTo_outputs
@@ -189,8 +205,8 @@ namespace Refactoring.Pipelines.Test
             PipelineApprovals.Verify(concatWithPipeline);
 
             // begin-snippet: ConcatWith_inputs
-            var concat = new List<int> { 1, 2 };
-            var with = new[] { 3, 4 };
+            var concat = new List<int> {1, 2};
+            var with = new[] {3, 4};
             // end-snippet
 
             // begin-snippet: ConcatWith_outputs
@@ -217,7 +233,7 @@ namespace Refactoring.Pipelines.Test
         {
             var part1 = new InputPipe<List<long>>("part1");
             var collector = part1.ProcessForEach(IncrementLong).Collect();
-            part1.Send(new List<long> { 1, 2 });
+            part1.Send(new List<long> {1, 2});
             Assert.AreEqual("[2, 3]", collector.SingleResult.ToReadableString());
 
             // TODO:
@@ -229,7 +245,6 @@ namespace Refactoring.Pipelines.Test
         private long IncrementLong(long value) { return value + 1; }
 
         private T Echo<T>(T t) { return t; }
-
     }
 
     internal static class _
