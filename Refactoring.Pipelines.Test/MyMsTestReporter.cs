@@ -17,6 +17,7 @@ namespace Refactoring.Pipelines.Test
             "AreEqual",
             "Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute")
         {
+            GenericDiffReporter.TEXT_FILE_TYPES.Add(".dot");
         }
 
         public override void Report(string approved, string received)
