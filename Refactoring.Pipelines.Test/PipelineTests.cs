@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.Windows;
+using ApprovalTests.Reporters.TestFrameworks;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
@@ -10,7 +10,6 @@ using Refactoring.Pipelines.DotGraph;
 
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(VisualStudioReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -206,7 +205,7 @@ namespace Refactoring.Pipelines.Test
         {
             var part1 = new InputPipe<List<long>>("part1");
             var collector = part1.ProcessForEach(IncrementLong).Collect();
-            part1.Send(new List<long> { 1, 2 });
+            part1.Send(new List<long> {1, 2});
             Assert.AreEqual("[2, 3]", collector.SingleResult.ToReadableString());
 
             // TODO:
