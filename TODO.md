@@ -1,3 +1,4 @@
+- ability to give custom names to Process() nodes
 - Verify(ForEach)
 - Async
 - sequencing for implicit dependencies through state
@@ -21,4 +22,3 @@
 -  Tuple { ... } 
 - DotReporter doesn't open
 - progress reporting hooks
-

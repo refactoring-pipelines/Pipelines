@@ -142,6 +142,26 @@ namespace Refactoring.Pipelines.Test
         }
 
         [TestMethod]
+        public void Flatten()
+        {
+            var input1 = new InputPipe<long>("value1");
+            var input2 = new InputPipe<long>("value2");
+            var join = input1.JoinTo(input2);
+            var input3 = new InputPipe<long>("value3");
+
+            Sender<Tuple<long, long, long>> all = join.JoinTo(input3).Flatten();
+            var collector = all.Collect();
+
+            input1.Send(1);
+            input2.Send(2);
+            input3.Send(3);
+
+            Assert.AreEqual("(1, 2, 3)", collector.SingleResult.ToString());
+
+            PipelineApprovals.Verify(collector);
+        }
+
+        [TestMethod]
         public void JoinInputsSample()
         {
             // begin-snippet: joined_pipeline

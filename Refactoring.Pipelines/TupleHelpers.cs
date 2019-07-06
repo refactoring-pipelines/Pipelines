@@ -10,5 +10,10 @@ namespace Refactoring.Pipelines
         {
             return sender.Process(t => func(t.Item1, t.Item2));
         }
+
+        public static FunctionPipe<Tuple<Tuple<A, B>, C>, Tuple<A, B, C>> Flatten<A, B, C>(this Sender<Tuple<Tuple<A, B>, C>> sender)
+        {
+            return sender.Process(t => Tuple.Create(t.Item1.Item1, t.Item1.Item2, t.Item2));
+        }
     }
 }
