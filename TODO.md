@@ -1,3 +1,5 @@
+- Something that connects to a Join doesn't draw the right graph - https://github.com/JayBazuzi/Pipelines/issues/5
+- Verify(Verify)
 - Async
 - sequencing for implicit dependencies through state
 ```
