@@ -46,8 +46,6 @@ namespace Refactoring.Pipelines
         Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors =>
             new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
 
-        IGraphNode IJoinedPipes.Collector =>
-            Listeners.OfType<CollectorPipe<List<T>>>().SingleOrDefault();
 
         IGraphNode IGraphNodeWithOutput.Output =>
             new OutputNode(this, OutputType.ToReadableString());

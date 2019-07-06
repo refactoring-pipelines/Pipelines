@@ -2,9 +2,8 @@
 
 namespace Refactoring.Pipelines
 {
-    public interface IJoinedPipes : IGraphNodeWithOutput
+    public interface IJoinedPipes : IGraphNodeWithOutput, ISender
     {
         Tuple<IGraphNode, IGraphNode> Predecessors { get; }
-        IGraphNode Collector { get; }
     }
 }
