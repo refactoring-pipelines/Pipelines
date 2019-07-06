@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Text;
 using ApprovalTests.Core;
 using ApprovalTests.Reporters;
 using ApprovalTests.Reporters.ContinuousIntegration;
@@ -22,10 +21,12 @@ namespace Refactoring.Pipelines.Test
 
         public override void Report(string approved, string received)
         {
-            string approvedContent = File.Exists(approved) ? File.ReadAllText(approved) : "";
-            string receivedContent = File.ReadAllText(received);
+            var approvedContent = File.Exists(approved) ? File.ReadAllText(approved) : "";
+            var receivedContent = File.ReadAllText(received);
 
-            Assert.AreEqual(PrintStringWithLengthAndVisibleNewlines(approvedContent), PrintStringWithLengthAndVisibleNewlines(receivedContent));
+            Assert.AreEqual(
+                PrintStringWithLengthAndVisibleNewlines(approvedContent),
+                PrintStringWithLengthAndVisibleNewlines(receivedContent));
 
             //base.Report(approved, received);
         }

@@ -1,5 +1,4 @@
-- Something that connects to a Join doesn't draw the right graph - https://github.com/JayBazuzi/Pipelines/issues/5
-- Verify(Verify)
+- Verify(ForEach)
 - Async
 - sequencing for implicit dependencies through state
 ```
@@ -11,8 +10,6 @@
 - Exceptions
 - Learn about Apache Beam
 - Join/Apply when one side never provides an input - does the system stall?
-- Need a ProcessForEach()
-- `List` of things display better names (List`1 vs. List<int>)
 - Convience functions for Tuples on Process & InputPipes
 - extract base class for Joined/Applied/Concatted pipes
 - verify file exists in DotReporter
@@ -20,8 +17,6 @@
 - handle lambdas
 - var pipeline = result.GetInputsAndOutputs();
 
-- Tuple`2 vs. Tuple { ... }
-- Sender vs. ISender for function
 - Properties
 -  Tuple { ... } 
 - DotReporter doesn't open

@@ -10,7 +10,7 @@ namespace Refactoring.Pipelines
             if (type.IsGenericType)
             {
                 var mainType = type.Name.Substring(0, type.Name.LastIndexOf("`", StringComparison.InvariantCulture));
-                var typeParameters = String.Join(", ", type.GetGenericArguments().Select(ToReadableString));
+                var typeParameters = string.Join(", ", type.GetGenericArguments().Select(ToReadableString));
                 return $"{mainType}<{typeParameters}>";
             }
 

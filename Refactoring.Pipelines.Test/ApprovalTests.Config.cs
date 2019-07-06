@@ -1,6 +1,4 @@
 ﻿using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.TestFrameworks;
-using Refactoring.Pipelines.Approvals;
 using Refactoring.Pipelines.Test;
 
 //[assembly: UseReporter(typeof(DotReporter))]

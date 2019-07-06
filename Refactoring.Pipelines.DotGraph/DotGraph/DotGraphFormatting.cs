@@ -42,7 +42,8 @@ namespace Refactoring.Pipelines.DotGraph
                 var genericTypeDefinition = node_.GetType().GetGenericTypeDefinition();
                 if (!PipeAppendersByType.ContainsKey(genericTypeDefinition))
                 {
-                    throw new NotImplementedException($@"No DotGraph formatting for {node_.GetType().ToReadableString()}");
+                    throw new NotImplementedException(
+                        $@"No DotGraph formatting for {node_.GetType().ToReadableString()}");
                 }
 
                 PipeAppendersByType[genericTypeDefinition](node_, metadata_, result_);
