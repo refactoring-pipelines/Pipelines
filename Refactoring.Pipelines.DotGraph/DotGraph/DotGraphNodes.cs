@@ -31,9 +31,7 @@ namespace Refactoring.Pipelines.DotGraph
 
         private static void AppendFunctionPipe(IFunctionPipe functionPipe, NodeMetadata metadata, StringBuilder result)
         {
-            var predecessorFunctionPipe = functionPipe.Predecessor as IFunctionPipe;
-
-            var input = metadata.GetQuotedUniqueName(predecessorFunctionPipe?.Output ?? functionPipe.Predecessor);
+            var input = metadata.GetQuotedUniqueName(GetPredecessorOutput(functionPipe.Predecessor));
             var function = metadata.GetQuotedUniqueName(functionPipe);
             var output = metadata.GetQuotedUniqueName(functionPipe.Output);
             var collectorNode = functionPipe.Collector;
