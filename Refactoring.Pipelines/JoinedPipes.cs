@@ -14,7 +14,7 @@ namespace Refactoring.Pipelines
         }
     }
 
-    public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>, IJoinedPipes
+    public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>, IGraphNodeWithOutput
     {
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<TInput2> _listener2;
@@ -42,10 +42,6 @@ namespace Refactoring.Pipelines
 
         public override IEnumerable<IGraphNode> Parents =>
             new IGraphNode[] {_sender1, _sender2};
-
-        Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors =>
-            new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
-
 
         IGraphNode IGraphNodeWithOutput.Output =>
             new OutputNode(this, OutputType.ToReadableString());

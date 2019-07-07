@@ -14,7 +14,7 @@ namespace Refactoring.Pipelines
         }
     }
 
-    public class ConcattedPipes<T> : Sender<List<T>>, IJoinedPipes
+    public class ConcattedPipes<T> : Sender<List<T>>, IGraphNodeWithOutput
     {
         private readonly ForwardingListener<IEnumerable<T>> _listener1;
         private readonly ForwardingListener<IEnumerable<T>> _listener2;
@@ -42,10 +42,6 @@ namespace Refactoring.Pipelines
 
         public override IEnumerable<IGraphNode> Parents =>
             new IGraphNode[] {_sender1, _sender2};
-
-        Tuple<IGraphNode, IGraphNode> IJoinedPipes.Predecessors =>
-            new Tuple<IGraphNode, IGraphNode>(_sender1, _sender2);
-
 
         IGraphNode IGraphNodeWithOutput.Output =>
             new OutputNode(this, OutputType.ToReadableString());
