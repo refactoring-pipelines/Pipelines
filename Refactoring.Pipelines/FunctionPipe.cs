@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Refactoring.Pipelines
 {
-    public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IFunctionPipe
+    public class FunctionPipe<TInput, TOutput> : Sender<TOutput>, IListener<TInput>, IGraphNodeWithOutput
     {
         private readonly Func<TInput, TOutput> _func;
         private readonly ISender<TInput> _predecessor;
@@ -14,9 +14,6 @@ namespace Refactoring.Pipelines
             _predecessor = predecessor;
             predecessor.AddListener(this);
         }
-
-        IGraphNode IFunctionPipe.Predecessor =>
-            _predecessor;
 
         IGraphNode IGraphNodeWithOutput.Output =>
             new OutputNode(this, OutputType.ToReadableString());

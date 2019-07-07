@@ -66,7 +66,7 @@ namespace Refactoring.Pipelines.DotGraph
 
         private static void AppendFunctionPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
         {
-            var output = ((IFunctionPipe) node).Output;
+            var output = ((IGraphNodeWithOutput) node).Output;
 
             var label = metadata.GetCount(output) == 0 ? "" : $"label={metadata.GetQuotedDisplayName(output)}, ";
             var outputUniqueName = metadata.GetQuotedUniqueName(output);

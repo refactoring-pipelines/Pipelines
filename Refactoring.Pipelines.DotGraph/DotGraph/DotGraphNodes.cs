@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Refactoring.Pipelines.DotGraph
@@ -20,18 +21,16 @@ namespace Refactoring.Pipelines.DotGraph
         {
             switch (node)
             {
-                case IFunctionPipe functionPipe:
+                case IGraphNodeWithOutput functionPipe:
                     AppendFunctionPipe(functionPipe, metadata, result);
-                    break;
-                case IJoinedPipes joinedPipes:
-                    AppendJoinedPipe(joinedPipes, metadata, result);
                     break;
             }
         }
 
-        private static void AppendFunctionPipe(IFunctionPipe functionPipe, NodeMetadata metadata, StringBuilder result)
+        private static void AppendFunctionPipe(IGraphNodeWithOutput functionPipe, NodeMetadata metadata, StringBuilder result)
         {
-            var input = metadata.GetQuotedUniqueName(GetPredecessorOutput(functionPipe.Predecessor));
+            var inputs = functionPipe.Parents.Select(GetPredecessorOutput).Select(metadata.GetQuotedUniqueName).ToArray();
+
             var function = metadata.GetQuotedUniqueName(functionPipe);
             var output = metadata.GetQuotedUniqueName(functionPipe.Output);
             var collectorNode = functionPipe.Collector;
@@ -41,26 +40,16 @@ namespace Refactoring.Pipelines.DotGraph
                 output = $"{{{output}, {collectorUniqueName}}}";
             }
 
-            result.Append($"{input} -> {function} -> {output}\n");
-        }
-
-        private static void AppendJoinedPipe(IJoinedPipes joinedPipes, NodeMetadata metadata, StringBuilder result)
-        {
-            var predecessors = joinedPipes.Predecessors;
-
-            var input1 = metadata.GetQuotedUniqueName(GetPredecessorOutput(predecessors.Item1));
-            var input2 = metadata.GetQuotedUniqueName(GetPredecessorOutput(predecessors.Item2));
-            var function = metadata.GetQuotedUniqueName(joinedPipes);
-            var output = metadata.GetQuotedUniqueName(joinedPipes.Output);
-            var collectorNode = joinedPipes.Collector;
-            if (collectorNode != null)
+            if (inputs.Count() == 1)
             {
-                var collectorUniqueName = metadata.GetQuotedUniqueName(collectorNode);
-                output = $"{{{output}, {collectorUniqueName}}}";
+                result.Append($"{inputs.Single()} -> {function} -> {output}\n");
             }
-
-            result.Append($"{{{input1}, {input2}}} -> {function} -> {output}\n");
+            else
+            {
+                result.Append($"{{{string.Join(", ", inputs)}}} -> {function} -> {output}\n");
+            }
         }
+
 
         private static IGraphNode GetPredecessorOutput(IGraphNode node)
         {

@@ -8,7 +8,7 @@ namespace Refactoring.Pipelines
         IEnumerable<IGraphNode> Parents { get; }
     }
 
-    public interface IGraphNodeWithOutput : IGraphNode
+    public interface IGraphNodeWithOutput : ISender
     {
         IGraphNode Output { get; }
     }
