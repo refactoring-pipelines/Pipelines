@@ -264,7 +264,8 @@ namespace Refactoring.Pipelines.Test
 
         private long IncrementLong(long value) { return value + 1; }
 
-        private T Echo<T>(T t) { return t; }
+        private T Echo<T>(T t) =>
+            t;
     }
 
     internal static class _
