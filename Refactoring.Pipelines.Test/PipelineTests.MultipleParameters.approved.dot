@@ -2,7 +2,7 @@
 
 # Nodes
 {"Int64 value1", "Int64 value2"} -> "Join" -> "Tuple<Int64, Int64>"
-"Tuple<Int64, Int64>" -> "<>c__DisplayClass0_0<Int64, Int64, Int64>.<Process>b__0()" -> {"Int64", "Collector"}
+"Tuple<Int64, Int64>" -> "(a + b)" -> {"Int64", "Collector"}
 
 
 # Formatting
@@ -10,11 +10,11 @@
 "Tuple<Int64, Int64>" [color="#9fbff4"]
 "Join" [color=pink]
 "Int64" [color="#9fbff4"]
-"<>c__DisplayClass0_0<Int64, Int64, Int64>.<Process>b__0()" [shape=invhouse]
+"(a + b)" [shape=invhouse]
 "Collector" [color = "#c361f4"]
 "Int64 value2" [color=green]
 
-{ rank=same; "<>c__DisplayClass0_0<Int64, Int64, Int64>.<Process>b__0()", "Collector"}
+{ rank=same; "(a + b)", "Collector"}
 
 
 }

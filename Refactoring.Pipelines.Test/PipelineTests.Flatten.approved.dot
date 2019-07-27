@@ -2,7 +2,7 @@
 
 # Nodes
 {"Tuple<Int64, Int64>", "Int64 value3"} -> "Join" -> "Tuple<Tuple<Int64, Int64>, Int64>"
-"Tuple<Tuple<Int64, Int64>, Int64>" -> "<>c__1<Int64, Int64, Int64>.<Flatten>b__1_0()" -> {"Tuple<Int64, Int64, Int64>", "Collector"}
+"Tuple<Tuple<Int64, Int64>, Int64>" -> "Flatten" -> {"Tuple<Int64, Int64, Int64>", "Collector"}
 {"Int64 value1", "Int64 value2"} -> "Join 1" -> "Tuple<Int64, Int64>"
 
 
@@ -11,14 +11,14 @@
 "Tuple<Tuple<Int64, Int64>, Int64>" [color="#9fbff4"]
 "Join" [color=pink]
 "Tuple<Int64, Int64, Int64>" [color="#9fbff4"]
-"<>c__1<Int64, Int64, Int64>.<Flatten>b__1_0()" [shape=invhouse]
+"Flatten" [shape=invhouse]
 "Collector" [color = "#c361f4"]
 "Int64 value1" [color=green]
 "Tuple<Int64, Int64>" [color="#9fbff4"]
 "Join 1" [label="Join", color=pink]
 "Int64 value2" [color=green]
 
-{ rank=same; "<>c__1<Int64, Int64, Int64>.<Flatten>b__1_0()", "Collector"}
+{ rank=same; "Flatten", "Collector"}
 
 
 }
