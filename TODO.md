@@ -1,5 +1,4 @@
-- ability to give custom names to Process() nodes
-- Verify(ForEach)
+- var pipeline = result.GetInputsAndOutputs();
 - Async
 - sequencing for implicit dependencies through state
 ```
@@ -15,8 +14,6 @@
 - extract base class for Joined/Applied/Concatted pipes
 - verify file exists in DotReporter
 - multiple input pipe convience functions
-- handle lambdas
-- var pipeline = result.GetInputsAndOutputs();
 
 - Properties
 -  Tuple { ... } 

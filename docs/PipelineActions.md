@@ -11,6 +11,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 - [Joining pipes](#joining-pipes)
 - [ApplyTo(list)](#applytolist)
 - [ConcatWith(list)](#concatwithlist)
+- [Processing a Lambda](#processing-a-lambda)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -28,7 +29,7 @@ var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L131-L135)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L167-L171)</sup>
 <!-- endsnippet -->
 
 will produce:
@@ -44,9 +45,9 @@ For example, if you had:
 <!-- snippet: ApplyTo_inputs -->
 ```cs
 var apply = "#";
-var to = new[] { 1, 2 };
+var to = new[] {1, 2};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L158-L161)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L194-L197)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -55,16 +56,16 @@ You can combine them to produce the following output:
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L163-L165)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L199-L201)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
 <!-- snippet: ApplyTo_manual -->
 ```cs
-prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
+prefix.JoinTo(values).ProcessFunction(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L168-L170)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L204-L206)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
@@ -79,10 +80,10 @@ For example, if you had:
 
 <!-- snippet: ConcatWith_inputs -->
 ```cs
-var concat = new List<int> { 1, 2 };
-var with = new[] { 3, 4 };
+var concat = new List<int> {1, 2};
+var with = new[] {3, 4};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L191-L194)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L227-L230)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -91,19 +92,34 @@ You can combine them to produce the following output:
 ```cs
 var result = "[1, 2, 3, 4]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L196-L198)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L232-L234)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
 <!-- snippet: ConcatWith_manual -->
 ```cs
-part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
+part1.JoinTo(part2).ProcessFunction(t => t.Item1.Concat(t.Item2).ToList());
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L201-L203)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L237-L239)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
 
 ![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 
+## Processing a Lambda
+
+the `FunctionPipe` uses the name of the function, but if you pass in a lambda it will format that nicely. For example:
+
+<!-- snippet: process_lambda -->
+```cs
+var input = new InputPipe<int>("input");
+input.Process(p => p.ToString());
+```
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L265-L268)</sup>
+<!-- endsnippet -->
+
+will look like:
+
+![GraphViz of Lambda](/Refactoring.Pipelines.Test/PipelineTests.Lambda.approved.dot.svg)

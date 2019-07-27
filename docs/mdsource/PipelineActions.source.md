@@ -5,6 +5,7 @@
 - [Joining pipes](#joining-pipes)
 - [ApplyTo(list)](#applytolist)
 - [ConcatWith(list)](#concatwithlist)
+- [Processing a Lambda](#processing-a-lambda)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -66,14 +67,8 @@ However, if you use the `ConcatWith()` method, you will end up with a much bette
 
 the `FunctionPipe` uses the name of the function, but if you pass in a lambda it will format that nicely. For example:
 
-```
-var input = new InputPipe<int>("input");
-input.Process(p => p.ToString());
-var result = input.Collect();
-```
+snippet: process_lambda
 
 will look like:
 
-```
-"int input" -> "p.ToString()" -> {"string", "Collector"}
-```
+![GraphViz of Lambda](/Refactoring.Pipelines.Test/PipelineTests.Lambda.approved.dot.svg)

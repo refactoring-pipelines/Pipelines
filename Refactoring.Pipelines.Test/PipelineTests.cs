@@ -262,7 +262,7 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void Lambda()
         {
-            // begin-snippet: lambda
+            // begin-snippet: process_lambda
             var input = new InputPipe<int>("input");
             input.Process(p => p.ToString());
             // end-snippet
