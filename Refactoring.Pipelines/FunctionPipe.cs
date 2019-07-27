@@ -8,8 +8,16 @@ namespace Refactoring.Pipelines
         private readonly Func<TInput, TOutput> _func;
         private readonly ISender<TInput> _predecessor;
 
-        public FunctionPipe(Func<TInput, TOutput> func, ISender<TInput> predecessor)
+        public FunctionPipe(Func<TInput, TOutput> func, ISender<TInput> predecessor) : this(
+            FunctionNameToReadableString(func),
+            func,
+            predecessor)
         {
+        }
+
+        public FunctionPipe(string name, Func<TInput, TOutput> func, ISender<TInput> predecessor)
+        {
+            Name = name;
             _func = func;
             _predecessor = predecessor;
             predecessor.AddListener(this);
@@ -17,6 +25,7 @@ namespace Refactoring.Pipelines
 
         IGraphNode IGraphNodeWithOutput.Output =>
             new OutputNode(this, OutputType.ToReadableString());
+
         IEnumerable<IGraphNode> ISender.Children =>
             Listeners;
 
@@ -26,11 +35,15 @@ namespace Refactoring.Pipelines
             _Send(result);
         }
 
-        public override string Name =>
-            $@"{_func.Method.DeclaringType.ToReadableString()}.{_func.Method.Name}()";
+        public override string Name { get; }
 
         public override IEnumerable<IGraphNode> Parents =>
             new[] {_predecessor};
+
+        public static string FunctionNameToReadableString(Func<TInput, TOutput> func)
+        {
+            return $@"{func.Method.DeclaringType.ToReadableString()}.{func.Method.Name}()";
+        }
     }
 
     internal class OutputNode : IGraphNode
@@ -50,10 +63,7 @@ namespace Refactoring.Pipelines
         IEnumerable<IGraphNode> IGraphNode.Parents =>
             new[] {_owner};
 
-        public override bool Equals(object other)
-        {
-            return other is OutputNode that && _owner == that._owner;
-        }
+        public override bool Equals(object other) { return other is OutputNode that && _owner == that._owner; }
 
         public override int GetHashCode() { return 0; }
     }
