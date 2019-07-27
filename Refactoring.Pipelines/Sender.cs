@@ -39,15 +39,14 @@ namespace Refactoring.Pipelines
 
         public FunctionPipe<T, TOutput> ProcessExpression<TOutput>(Expression<Func<T, TOutput>> func)
         {
-            var name = func.ToString();
-            name = name.Substring(name.IndexOf("=>") + 3);
+            var name = func.ToString().EverythingAfter("=> ");
             return new FunctionPipe<T, TOutput>(name, func.Compile(), this);
         }
 
+ 
         public FunctionPipe<T, TOutput> Process<TOutput>(string name, Func<T, TOutput> func)
         {
             return new FunctionPipe<T, TOutput>(name, func, this);
         }
-
     }
 }
