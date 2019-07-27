@@ -1,4 +1,6 @@
 - var pipeline = result.GetInputsAndOutputs();
+- Fix DotReporter on every other computer in the world
+- Repeat Arlo's exercise
 - Async
 - sequencing for implicit dependencies through state
 ```
