@@ -19,3 +19,4 @@
 -  Tuple { ... } 
 - DotReporter doesn't open
 - progress reporting hooks
+- Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz

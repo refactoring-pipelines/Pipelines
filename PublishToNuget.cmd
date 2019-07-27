@@ -18,3 +18,4 @@ NuGet push nuget_packages\Refactoring.Pipelines.Approvals.?.?.?.nupkg -Source nu
 NuGet push nuget_packages\Refactoring.Pipelines.DotGraph.?.?.?.nupkg -Source nuget.org
 
 pause 
+
