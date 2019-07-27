@@ -39,15 +39,15 @@
 <path fill="none" stroke="#000000" d="M138.6966,-143.8314C132.3618,-135.5386 124.737,-125.557 117.7828,-116.4533"/>
 <polygon fill="#000000" stroke="#000000" points="120.4929,-114.2353 111.6411,-108.4133 114.9302,-118.4847 120.4929,-114.2353"/>
 </g>
-<!-- List&lt;Tuple{String, Int32}&gt; -->
+<!-- List&lt;Tuple&lt;String, Int32&gt;&gt; -->
 <g id="node4" class="node">
-<title>List&lt;Tuple{String, Int32}&gt;</title>
-<polygon fill="#9fbff4" stroke="#9fbff4" points="183.0142,-36 12.1366,-36 12.1366,0 183.0142,0 183.0142,-36"/>
-<text text-anchor="middle" x="97.5754" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">List&lt;Tuple{String, Int32}&gt;</text>
+<title>List&lt;Tuple&lt;String, Int32&gt;&gt;</title>
+<polygon fill="#9fbff4" stroke="#9fbff4" points="183.8657,-36 11.2851,-36 11.2851,0 183.8657,0 183.8657,-36"/>
+<text text-anchor="middle" x="97.5754" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">List&lt;Tuple&lt;String, Int32&gt;&gt;</text>
 </g>
-<!-- ApplyTo&#45;&gt;List&lt;Tuple{String, Int32}&gt; -->
+<!-- ApplyTo&#45;&gt;List&lt;Tuple&lt;String, Int32&gt;&gt; -->
 <g id="edge3" class="edge">
-<title>ApplyTo&#45;&gt;List&lt;Tuple{String, Int32}&gt;</title>
+<title>ApplyTo&#45;&gt;List&lt;Tuple&lt;String, Int32&gt;&gt;</title>
 <path fill="none" stroke="#000000" d="M97.5754,-71.8314C97.5754,-64.131 97.5754,-54.9743 97.5754,-46.4166"/>
 <polygon fill="#000000" stroke="#000000" points="101.0755,-46.4132 97.5754,-36.4133 94.0755,-46.4133 101.0755,-46.4132"/>
 </g>
