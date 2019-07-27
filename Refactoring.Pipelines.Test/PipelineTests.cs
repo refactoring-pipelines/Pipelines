@@ -256,8 +256,7 @@ namespace Refactoring.Pipelines.Test
             part1.Send(new List<long> {1, 2});
             Assert.AreEqual("[2, 3]", collector.SingleResult.ToReadableString());
 
-            // TODO:
-            //PipelineApprovals.Verify(part1);
+            PipelineApprovals.Verify(part1);
         }
 
         private string LongToString(long value) { return value.ToString(); }
