@@ -62,3 +62,18 @@ However, if you use the `ConcatWith()` method, you will end up with a much bette
 
 ![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 
+## Processing a Lambda
+
+the `FunctionPipe` uses the name of the function, but if you pass in a lambda it will format that nicely. For example:
+
+```
+var input = new InputPipe<int>("input");
+input.Process(p => p.ToString());
+var result = input.Collect();
+```
+
+will look like:
+
+```
+"int input" -> "p.ToString()" -> {"string", "Collector"}
+```

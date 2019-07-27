@@ -259,6 +259,17 @@ namespace Refactoring.Pipelines.Test
             PipelineApprovals.Verify(part1);
         }
 
+        [TestMethod]
+        public void Lambda()
+        {
+            // begin-snippet: lambda
+            var input = new InputPipe<int>("input");
+            input.ProcessExpression(p => p.ToString());
+            // end-snippet
+
+            PipelineApprovals.Verify(input);
+        }
+
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }

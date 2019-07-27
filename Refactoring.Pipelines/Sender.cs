@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Refactoring.Pipelines
 {
@@ -35,5 +36,18 @@ namespace Refactoring.Pipelines
         {
             return new FunctionPipe<T, TOutput>(func, this);
         }
+
+        public FunctionPipe<T, TOutput> ProcessExpression<TOutput>(Expression<Func<T, TOutput>> func)
+        {
+            var name = func.ToString();
+            name = name.Substring(name.IndexOf("=>") + 3);
+            return new FunctionPipe<T, TOutput>(name, func.Compile(), this);
+        }
+
+        public FunctionPipe<T, TOutput> Process<TOutput>(string name, Func<T, TOutput> func)
+        {
+            return new FunctionPipe<T, TOutput>(name, func, this);
+        }
+
     }
 }
