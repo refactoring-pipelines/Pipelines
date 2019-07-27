@@ -28,7 +28,7 @@ namespace Refactoring.Pipelines.Test
             {
                 // begin-snippet: basic_pipeline
                 var inputPipe = new InputPipe<string>("age");
-                var parsePipe = inputPipe.Process(long.Parse);
+                var parsePipe = inputPipe.ProcessFunction(long.Parse);
                 var collector = parsePipe.Collect();
 
                 inputPipe.Send("42");
@@ -44,7 +44,7 @@ namespace Refactoring.Pipelines.Test
         public void BasicPipelineTest()
         {
             var input = new InputPipe<string>("age");
-            var parse = input.Process(long.Parse);
+            var parse = input.ProcessFunction(long.Parse);
             var collector = parse.Collect();
 
             PipelineApprovals.Verify(input);
@@ -56,9 +56,9 @@ namespace Refactoring.Pipelines.Test
         public void ProcessIsNotCovariant()
         {
             var input = new InputPipe<int>("i");
-            var collector = input.Process(RangeArray)
-                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
-                .Process(SumEnumerable)
+            var collector = input.ProcessFunction(RangeArray)
+                .ProcessFunction(_ => (IEnumerable<int>) _) // Would be nice not to need this
+                .ProcessFunction(SumEnumerable)
                 .Collect();
             input.Send(4);
             Assert.AreEqual(10, collector.SingleResult);
@@ -72,13 +72,13 @@ namespace Refactoring.Pipelines.Test
         public void ConnectedPipelinesTest()
         {
             var input = new InputPipe<string>("age");
-            var parsePipe = input.Process(long.Parse);
+            var parsePipe = input.ProcessFunction(long.Parse);
             var collector = parsePipe.Collect();
-            parsePipe.Process(LongToString)
+            parsePipe.ProcessFunction(LongToString)
                 .WithCollector()
-                .Process(long.Parse)
+                .ProcessFunction(long.Parse)
                 .WithCollector()
-                .Process(LongToString)
+                .ProcessFunction(LongToString)
                 .Collect();
 
             PipelineApprovals.Verify(input);
@@ -88,9 +88,9 @@ namespace Refactoring.Pipelines.Test
         public void SplitAndJoin()
         {
             var input = new InputPipe<string>("age");
-            var parse = input.Process(long.Parse);
-            var longToString = parse.Process(LongToString);
-            var incrementLong = parse.Process(IncrementLong);
+            var parse = input.ProcessFunction(long.Parse);
+            var longToString = parse.ProcessFunction(LongToString);
+            var incrementLong = parse.ProcessFunction(IncrementLong);
 
             var joinedPipes = longToString.JoinTo(incrementLong).Collect();
 
@@ -101,8 +101,8 @@ namespace Refactoring.Pipelines.Test
         public void SplitInput()
         {
             var input = new InputPipe<long>("value");
-            input.Process(LongToString);
-            input.Process(IncrementLong);
+            input.ProcessFunction(LongToString);
+            input.ProcessFunction(IncrementLong);
 
             PipelineApprovals.Verify(input);
         }
@@ -113,7 +113,7 @@ namespace Refactoring.Pipelines.Test
             var input1 = new InputPipe<long>("value1");
             var input2 = new InputPipe<long>("value2");
             var join = input1.JoinTo(input2);
-            var collector = join.Process(Echo).Collect();
+            var collector = join.ProcessFunction(Echo).Collect();
 
             input1.Send(42);
             Assert.IsTrue(collector.IsEmpty);
@@ -202,7 +202,7 @@ namespace Refactoring.Pipelines.Test
 
             var manualApplyTo =
                 // begin-snippet: ApplyTo_manual
-                prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
+                prefix.JoinTo(values).ProcessFunction(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
             // end-snippet
             var manualApplyToResult = manualApplyTo.Collect();
 
@@ -235,7 +235,7 @@ namespace Refactoring.Pipelines.Test
 
             var manualConcatWith =
                 // begin-snippet: ConcatWith_manual
-                part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
+                part1.JoinTo(part2).ProcessFunction(t => t.Item1.Concat(t.Item2).ToList());
             // end-snippet
             var manualConcatWithResult = manualConcatWith.Collect();
 

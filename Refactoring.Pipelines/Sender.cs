@@ -32,7 +32,7 @@ namespace Refactoring.Pipelines
             }
         }
 
-        public FunctionPipe<T, TOutput> Process<TOutput>(Func<T, TOutput> func)
+        public FunctionPipe<T, TOutput> ProcessFunction<TOutput>(Func<T, TOutput> func)
         {
             return new FunctionPipe<T, TOutput>(func, this);
         }
