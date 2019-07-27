@@ -38,7 +38,7 @@ namespace Refactoring.Pipelines
             return new FunctionPipe<T, TOutput>(func, this);
         }
 
-        public FunctionPipe<T, TOutput> ProcessExpression<TOutput>(Expression<Func<T, TOutput>> func)
+        public FunctionPipe<T, TOutput> Process<TOutput>(Expression<Func<T, TOutput>> func)
         {
             var name = func.ExpressionToReadableString();
             return new FunctionPipe<T, TOutput>(name, func.Compile(), this);

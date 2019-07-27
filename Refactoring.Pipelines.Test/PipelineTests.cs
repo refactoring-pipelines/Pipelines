@@ -264,7 +264,7 @@ namespace Refactoring.Pipelines.Test
         {
             // begin-snippet: lambda
             var input = new InputPipe<int>("input");
-            input.ProcessExpression(p => p.ToString());
+            input.Process(p => p.ToString());
             // end-snippet
 
             PipelineApprovals.Verify(input);
