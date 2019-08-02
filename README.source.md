@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/refactoring-pipelines/Pipelines/master/docs/images/pipeline_icon.png" height="40px"> Pipelines for C#
+# <img src="/docs/images/pipeline_icon.png" height="40px"> Pipelines for C#
 
 A library for implementing programs as Pipeline objects. Inspired by Arlo Belshee's talk, [Refactoring to Async](https://www.ustream.tv/recorded/114862163).
 
