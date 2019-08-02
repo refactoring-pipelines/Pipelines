@@ -1,30 +1,18 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/vii59lkgef4amwek/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/pipelines/branch/master)
-
-![Icon](/docs/images/pipeline_icon.png)
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [Pipelines for C](#pipelines-for-c)
-  - [Pipelines](#pipelines)
-  - [Refactoring To Async](#refactoring-to-async)
-  - [Available on NuGet](#available-on-nuget)
-  - [Suggested VSCode Plugin](#suggested-vscode-plugin)
-- [Attribution](#attribution)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Pipelines for C#
+# <img src="https://raw.githubusercontent.com/refactoring-pipelines/Pipelines/master/docs/images/pipeline_icon.png" height="40px"> Pipelines for C#
 
 A library for implementing programs as Pipeline objects. Inspired by Arlo Belshee's talk, [Refactoring to Async](https://www.ustream.tv/recorded/114862163).
 
+[![Build status](https://ci.appveyor.com/api/projects/status/vii59lkgef4amwek/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/pipelines/branch/master)
+
+toc
+
+
 ## Pipelines
 
-[Read about pipelines here](docs/Pipelines.md) 
+[Read about pipelines here](docs/Pipelines.md)
 
 
-[Details about actions here](docs/PipelineActions.md) 
+[Details about actions here](docs/PipelineActions.md)
 
 ## Refactoring To Async
 
@@ -40,6 +28,6 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
  
 [Graphviz (dot) language support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=joaompinto.vscode-graphviz) by João Pinto is great. CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 
-# Attribution
+## Attribution
 
 [pipeline icon](https://thenounproject.com/term/pipeline/2508171/) by [Francisco Javier Diaz Montejano](https://thenounproject.com/pac0diaz/) from [the Noun Project](https://thenounproject.com/)

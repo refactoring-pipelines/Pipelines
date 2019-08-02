@@ -1,13 +1,6 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
+# Pipelines
 
-- [Creating Pipelines](#creating-pipelines)
-  - [Basic pipelines](#basic-pipelines)
-  - [But Why?!?!](#but-why)
-- [Actions](#actions)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+toc
 
 ## Creating Pipelines
 
@@ -25,9 +18,9 @@ These will produce the same results.
 
 ### But Why?!?!
 
-Dispite the complexity add of this code, this pattern has some advantages in refactoring to async 
+Despite the complexity add of this code, this pattern has some advantages in refactoring to async 
 as well has advantages in monitoring. It also has advantages in testing and visualization.
-For example the pipeline can reder itself as the following dot file (Graphviz)
+For example the pipeline can render itself as the following dot file (Graphviz)
 
 ![GraphViz of Pipeline](/Refactoring.Pipelines.Test/PipelineTests.BasicPipelineTest.approved.dot.svg)
 

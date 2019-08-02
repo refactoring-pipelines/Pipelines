@@ -1,17 +1,10 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
+# Pipeline Actions
 
-- [Joining pipes](#joining-pipes)
-- [ApplyTo(list)](#applytolist)
-- [ConcatWith(list)](#concatwithlist)
-- [Processing a Lambda](#processing-a-lambda)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+toc
 
 ## Joining pipes
 
-When you have two inputs that are needed for the next piece of functionality, you need a `JoinedPipe`. 
+When you have two inputs that are needed for the next piece of functionality, you need a `JoinedPipe`.
 
 `JoinedPipe`s produce a `Tuple` of two inputs.
 
@@ -23,9 +16,9 @@ will produce:
 
 ![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/PipelineTests.JoinInputsSample.approved.dot.svg)
 
-## ApplyTo(list) 
+## ApplyTo(list)
 
-Sometimes you will want a special type of Join which takes one thing and applies it to each element of a separate list. 
+Sometimes you will want a special type of Join which takes one thing and applies it to each element of a separate list.
 
 For example, if you had:
 
@@ -39,11 +32,11 @@ For reference you can do this manually (although it creates a bad visualization)
 
 snippet: ApplyTo_manual
 
-However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result. 
+However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
 
 ![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
 
-## ConcatWith(list) 
+## ConcatWith(list)
 
 Sometimes you will want a special type of Join which takes two enumerables of the same element type and concatenates them into a list.
 
@@ -59,7 +52,7 @@ For reference you can do this manually (although it creates a bad visualization)
 
 snippet: ConcatWith_manual
 
-However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result. 
+However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
 
 ![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
 
