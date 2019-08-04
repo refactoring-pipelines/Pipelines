@@ -10,7 +10,7 @@
 ::   dotnet tool update  -g MarkdownSnippets.Tool
 
 call dotnet tool update  -g MarkdownSnippets.Tool
-call mdsnippets
+call mdsnippets --readonly true
 
 :: Custom Markdown linting
 :: todo: fix
