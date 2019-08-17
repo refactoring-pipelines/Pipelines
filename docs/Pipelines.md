@@ -24,15 +24,17 @@ To change this file edit the source file and then run MarkdownSnippets.
 Let's say you have the following line of code:
 
 <!-- snippet: basic_code_line -->
+<a id='snippet-basic_code_line'/></a>
 ```cs
 var result = long.Parse(age);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24) / [anchor](#snippet-basic_code_line)</sup>
 <!-- endsnippet -->
 
 You can refactor this to pipelines with the following
 
 <!-- snippet: basic_pipeline -->
+<a id='snippet-basic_pipeline'/></a>
 ```cs
 var inputPipe = new InputPipe<string>("age");
 var parsePipe = inputPipe.ProcessFunction(long.Parse);
@@ -41,7 +43,7 @@ var collector = parsePipe.Collect();
 inputPipe.Send("42");
 var result = collector.SingleResult;
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36) / [anchor](#snippet-basic_pipeline)</sup>
 <!-- endsnippet -->
 
 These will produce the same results.

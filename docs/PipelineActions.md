@@ -26,12 +26,13 @@ When you have two inputs that are needed for the next piece of functionality, yo
 Note: If you are using `JoinedPipe` you need to call `Verify()` with the join.
 
 <!-- snippet: joined_pipeline -->
+<a id='snippet-joined_pipeline'/></a>
 ```cs
 var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L167-L171)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L167-L171) / [anchor](#snippet-joined_pipeline)</sup>
 <!-- endsnippet -->
 
 will produce:
@@ -45,29 +46,32 @@ Sometimes you will want a special type of Join which takes one thing and applies
 For example, if you had:
 
 <!-- snippet: ApplyTo_inputs -->
+<a id='snippet-applyto_inputs'/></a>
 ```cs
 var apply = "#";
 var to = new[] {1, 2};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L194-L197)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L194-L197) / [anchor](#snippet-applyto_inputs)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
 
 <!-- snippet: ApplyTo_outputs -->
+<a id='snippet-applyto_outputs'/></a>
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L199-L201)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L199-L201) / [anchor](#snippet-applyto_outputs)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
 <!-- snippet: ApplyTo_manual -->
+<a id='snippet-applyto_manual'/></a>
 ```cs
 prefix.JoinTo(values).ProcessFunction(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L204-L206)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L204-L206) / [anchor](#snippet-applyto_manual)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
@@ -81,29 +85,32 @@ Sometimes you will want a special type of Join which takes two enumerables of th
 For example, if you had:
 
 <!-- snippet: ConcatWith_inputs -->
+<a id='snippet-concatwith_inputs'/></a>
 ```cs
 var concat = new List<int> {1, 2};
 var with = new[] {3, 4};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L227-L230)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L227-L230) / [anchor](#snippet-concatwith_inputs)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
 
 <!-- snippet: ConcatWith_outputs -->
+<a id='snippet-concatwith_outputs'/></a>
 ```cs
 var result = "[1, 2, 3, 4]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L232-L234)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L232-L234) / [anchor](#snippet-concatwith_outputs)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
 <!-- snippet: ConcatWith_manual -->
+<a id='snippet-concatwith_manual'/></a>
 ```cs
 part1.JoinTo(part2).ProcessFunction(t => t.Item1.Concat(t.Item2).ToList());
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L237-L239)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L237-L239) / [anchor](#snippet-concatwith_manual)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
@@ -115,11 +122,12 @@ However, if you use the `ConcatWith()` method, you will end up with a much bette
 the `FunctionPipe` uses the name of the function, but if you pass in a lambda it will format that nicely. For example:
 
 <!-- snippet: process_lambda -->
+<a id='snippet-process_lambda'/></a>
 ```cs
 var input = new InputPipe<int>("input");
 input.Process(p => p.ToString());
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L265-L268)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L265-L268) / [anchor](#snippet-process_lambda)</sup>
 <!-- endsnippet -->
 
 will look like:
