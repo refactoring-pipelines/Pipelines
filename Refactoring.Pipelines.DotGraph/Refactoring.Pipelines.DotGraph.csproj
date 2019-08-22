@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fody" Version="5.2.0" PrivateAssets="All" />
-    <PackageReference Include="Publicize.Fody" Version="1.7.0" PrivateAssets="All" />
-    <PackageReference Include="Virtuosity.Fody" Version="3.0.0" PrivateAssets="All" />
+    <PackageReference Include="Fody" Version="6.0.0" PrivateAssets="All" />
+    <PackageReference Include="Publicize.Fody" Version="1.8.0" PrivateAssets="All" />
+    <PackageReference Include="Virtuosity.Fody" Version="3.1.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
