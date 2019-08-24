@@ -25,6 +25,14 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
 
 ## Pipelines
 
+Pipelines are a mechanism of separating a function that produces something into two things: 
+    - an object that represents the process of that function (the "pipeline") 
+    - executing that pipeline to produce the result
+
+The advantage of doing this is that the pipeline is easy to test, easy to visualize, and easy to modify globally such as adding logging or converting to async.
+
+This library also allows for simple, small-step transformations to incrementally refactor existing procedural code, making it practical to do in your current production code.
+
 [Read about pipelines here](docs/Pipelines.md)
 
 
