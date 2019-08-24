@@ -1,6 +1,4 @@
 ﻿using ApprovalTests.Reporters;
-using Refactoring.Pipelines.Test;
+using ApprovalTests.Reporters.TestFrameworks;
 
-//[assembly: UseReporter(typeof(DotReporter))]
-[assembly: UseReporter(typeof(MyMsTestReporter))]
-[assembly: FrontLoadedReporter(typeof(MyFrontLoadedReporter))]
+[assembly: UseReporter(typeof(MsTestReporter))]
