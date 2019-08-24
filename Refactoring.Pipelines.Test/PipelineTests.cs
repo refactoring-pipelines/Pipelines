@@ -1,16 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using ApprovalTests.Reporters;
+using ApprovalTests.Reporters.TestFrameworks;
 using ApprovalTests.Reporters.Windows;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
 using Refactoring.Pipelines.DotGraph;
 
+
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(VisualStudioReporter))]
+    [UseReporter(typeof(DotReporter))]
     [TestClass]
     public class PipelineTests
     {

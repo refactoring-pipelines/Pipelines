@@ -8,11 +8,7 @@ namespace Refactoring.Pipelines.Approvals
     {
         public static readonly DotReporter INSTANCE = new DotReporter();
 
-        public DotReporter() : base(new DiffInfo(VsCodeExePath, "-r {0}", () => new[] {"dot"})) { }
+        public DotReporter() : base(new DiffInfo("{ProgramFiles}Microsoft VS Code\\bin\\Code.cmd", "-r {0}", () => new[] {"dot"})) { }
 
-        private static string VsCodeExePath =>
-            Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                @"Programs\Microsoft VS Code\Code.exe");
     }
 }
