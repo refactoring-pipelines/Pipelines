@@ -1,6 +1,6 @@
+* var pipeline = result.GetInputsAndOutputs();
 - Repeat Arlo's exercise
 - Async
-- var pipeline = result.GetInputsAndOutputs();
 - sequencing for implicit dependencies through state
 ```
 	var a = A();
@@ -18,6 +18,9 @@
 
 - Properties
 -  Tuple { ... } 
-- DotReporter doesn't open
 - progress reporting hooks
 - Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
+
+# Safeguarding
+- run_markdown
+- imported .svg
