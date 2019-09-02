@@ -11,6 +11,11 @@ namespace Refactoring.Pipelines.DotGraph
         {
             var (nodes, formatting, rankings) = GetDotGraph(node);
 
+            return ToString(nodes, formatting, rankings);
+        }
+
+        private static string ToString(string nodes, string formatting, string rankings)
+        {
             return $@"
 digraph G {{ node [style=filled, shape=rec]
 
