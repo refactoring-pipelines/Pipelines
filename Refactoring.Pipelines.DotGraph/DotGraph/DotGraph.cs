@@ -26,7 +26,7 @@ digraph G {{ node [style=filled, shape=rec]
 ".Trim();
         }
 
-        private static (StringBuilder nodes, StringBuilder formatting, StringBuilder rankings) GetDotGraph(IGraphNode node)
+        private static (string nodes, string formatting, string rankings) GetDotGraph(IGraphNode node)
         {
             var roots = GetRoots(node).ToList();
 
@@ -35,7 +35,7 @@ digraph G {{ node [style=filled, shape=rec]
             var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
             var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
             var rankings = DotGraphRanking.AppendRankings(roots, metadata);
-            return (nodes, formatting, rankings);
+            return (nodes.ToString(), formatting.ToString(), rankings.ToString());
         }
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
