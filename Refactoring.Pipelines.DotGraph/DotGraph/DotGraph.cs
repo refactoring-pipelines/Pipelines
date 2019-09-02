@@ -11,13 +11,6 @@ namespace Refactoring.Pipelines.DotGraph
         public string formatting;
         public string rankings;
 
-        public static string FromPipeline(IGraphNode node)
-        {
-            var dotGraph = GetDotGraph(node);
-
-            return dotGraph.ToString();
-        }
-
         public string ToString()
         {
             return $@"
@@ -34,7 +27,7 @@ digraph G {{ node [style=filled, shape=rec]
 ".Trim();
         }
 
-        private static DotGraph GetDotGraph(IGraphNode node)
+        public static DotGraph GetDotGraph(IGraphNode node)
         {
             var roots = GetRoots(node).ToList();
 

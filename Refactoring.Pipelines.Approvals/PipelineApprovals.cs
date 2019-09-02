@@ -6,8 +6,9 @@ namespace Refactoring.Pipelines.Approvals
     {
         public static void Verify(IGraphNode input)
         {
+            var dotGraph = DotGraph.DotGraph.GetDotGraph(input);
             ApprovalTests.Approvals.Verify(
-                WriterFactory.CreateTextWriter(DotGraph.DotGraph.FromPipeline(input), "dot"));
+                WriterFactory.CreateTextWriter(dotGraph.ToString(), "dot"));
         }
     }
 }
