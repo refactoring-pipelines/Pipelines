@@ -14,7 +14,7 @@ using Refactoring.Pipelines.DotGraph;
 
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(DotReporter))]
+    [UseReporter(typeof(DiffReporter))]
     [TestClass]
     public class PipelineTests
     {

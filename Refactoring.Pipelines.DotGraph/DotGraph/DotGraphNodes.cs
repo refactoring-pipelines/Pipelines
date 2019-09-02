@@ -6,9 +6,9 @@ namespace Refactoring.Pipelines.DotGraph
 {
     public static class DotGraphNodes
     {
-        public static StringBuilder AppendNodeAndChildren(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
+        public static List<string> AppendNodeAndChildren(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
         {
-            var result = new StringBuilder();
+            var result = new List<string>();
             foreach (var node in nodes)
             {
                 DotGraph.ProcessTree(node, result, AppendFunctionalPipe, delegate { }, metadata);
@@ -17,7 +17,7 @@ namespace Refactoring.Pipelines.DotGraph
             return result;
         }
 
-        private static void AppendFunctionalPipe(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        private static void AppendFunctionalPipe(IGraphNode node, NodeMetadata metadata, List<string> result)
         {
             switch (node)
             {
@@ -27,7 +27,7 @@ namespace Refactoring.Pipelines.DotGraph
             }
         }
 
-        private static void AppendFunctionPipe(IGraphNodeWithOutput functionPipe, NodeMetadata metadata, StringBuilder result)
+        private static void AppendFunctionPipe(IGraphNodeWithOutput functionPipe, NodeMetadata metadata, List<string> result)
         {
             var inputs = functionPipe.Parents.Select(GetPredecessorOutput).Select(metadata.GetQuotedUniqueName).ToArray();
 
@@ -42,11 +42,11 @@ namespace Refactoring.Pipelines.DotGraph
 
             if (inputs.Count() == 1)
             {
-                result.Append($"{inputs.Single()} -> {function} -> {output}\n");
+                result.Add($"{inputs.Single()} -> {function} -> {output}\n");
             }
             else
             {
-                result.Append($"{{{string.Join(", ", inputs)}}} -> {function} -> {output}\n");
+                result.Add($"{{{string.Join(", ", inputs)}}} -> {function} -> {output}\n");
             }
         }
 

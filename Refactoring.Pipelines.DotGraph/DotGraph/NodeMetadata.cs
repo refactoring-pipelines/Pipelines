@@ -9,8 +9,8 @@ namespace Refactoring.Pipelines.DotGraph
     {
         private readonly Dictionary<IGraphNode, int> _countsByNode = new Dictionary<IGraphNode, int>();
 
-        private readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>
-            _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, StringBuilder>>>();
+        private readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, List<string>>>>
+            _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, List<string>>>>();
 
         public NodeMetadata(IEnumerable<IGraphNode> roots)
         {
@@ -79,12 +79,12 @@ namespace Refactoring.Pipelines.DotGraph
 
         private static string Quoted(string value) { return $@"""{value}"""; }
 
-        public bool IsNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, StringBuilder> processChild)
+        public bool IsNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, List<string>> processChild)
         {
             return _isNodeDataProcessed.Contains(Tuple.Create(node, processChild));
         }
 
-        public void SetNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, StringBuilder> processChild)
+        public void SetNodeDataProcessed(IGraphNode node, Action<IGraphNode, NodeMetadata, List<string>> processChild)
         {
             _isNodeDataProcessed.Add(Tuple.Create(node, processChild));
         }

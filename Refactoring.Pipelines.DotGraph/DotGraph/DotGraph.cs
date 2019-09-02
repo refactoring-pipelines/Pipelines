@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ApprovalUtilities.Utilities;
 
 namespace Refactoring.Pipelines.DotGraph
 {
     public class DotGraph
     {
-        public string nodes;
-        public string formatting;
-        public string rankings;
+        public List<string> nodes = new List<string>();
+        public List<string> formatting = new List<string>();
+        public List<string> rankings = new List<string>();
 
         public string ToString()
         {
@@ -17,11 +18,11 @@ namespace Refactoring.Pipelines.DotGraph
 digraph G {{ node [style=filled, shape=rec]
 
 # Nodes
-{nodes}
+{nodes.JoinWith("")}
 
 # Formatting
-{formatting}
-{rankings}
+{formatting.JoinWith("")}
+{rankings.JoinWith("")}
 
 }}
 ".Trim();
@@ -38,7 +39,9 @@ digraph G {{ node [style=filled, shape=rec]
             var rankings = DotGraphRanking.AppendRankings(roots, metadata);
             return new DotGraph()
             {
-                nodes = nodes.ToString(), formatting = formatting.ToString(), rankings = rankings.ToString()
+                nodes = nodes,
+                formatting = formatting,
+                rankings = rankings,
             };
         }
 
@@ -67,11 +70,11 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(
+        public static List<string> ProcessTree(
             IGraphNode node,
-            StringBuilder result,
-            Action<IGraphNode, NodeMetadata, StringBuilder> processNode,
-            Action<IGraphNode, IGraphNode, NodeMetadata, StringBuilder> processChild,
+            List<string> result,
+            Action<IGraphNode, NodeMetadata, List<string>> processNode,
+            Action<IGraphNode, IGraphNode, NodeMetadata, List<string>> processChild,
             NodeMetadata metadata)
         {
             if (metadata.IsNodeDataProcessed(node, processNode))
