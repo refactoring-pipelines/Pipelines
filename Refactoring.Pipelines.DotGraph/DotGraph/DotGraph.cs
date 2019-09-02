@@ -27,7 +27,7 @@ digraph G {{ node [style=filled, shape=rec]
 ".Trim();
         }
 
-        public static DotGraph GetDotGraph(IGraphNode node)
+        public static DotGraph FromPipeline(IGraphNode node)
         {
             var roots = GetRoots(node).ToList();
 
