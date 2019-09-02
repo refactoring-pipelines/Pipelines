@@ -13,15 +13,20 @@ namespace Refactoring.Pipelines.DotGraph
 
             var metadata = new NodeMetadata(roots);
 
+            var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
+            var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
+            var rankings = DotGraphRanking.AppendRankings(roots, metadata);
+
             return $@"
 digraph G {{ node [style=filled, shape=rec]
 
 # Nodes
-{DotGraphNodes.AppendNodeAndChildren(roots, metadata)}
+{nodes}
 
 # Formatting
-{DotGraphFormatting.AppendFormatting(roots, metadata)}
-{DotGraphRanking.AppendRankings(roots, metadata)}
+{formatting}
+{rankings
+                }
 
 }}
 ".Trim();
