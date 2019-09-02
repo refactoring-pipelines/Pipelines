@@ -15,20 +15,20 @@ namespace Refactoring.Pipelines.DotGraph
         {
             var dotGraph = GetDotGraph(node);
 
-            return ToString(dotGraph);
+            return dotGraph.ToString();
         }
 
-        private static string ToString(DotGraph dotGraph)
+        public string ToString()
         {
             return $@"
 digraph G {{ node [style=filled, shape=rec]
 
 # Nodes
-{dotGraph.nodes}
+{nodes}
 
 # Formatting
-{dotGraph.formatting}
-{dotGraph.rankings}
+{formatting}
+{rankings}
 
 }}
 ".Trim();
