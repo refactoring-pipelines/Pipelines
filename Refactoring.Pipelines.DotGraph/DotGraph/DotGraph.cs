@@ -9,13 +9,7 @@ namespace Refactoring.Pipelines.DotGraph
     {
         public static string FromPipeline(IGraphNode node)
         {
-            var roots = GetRoots(node).ToList();
-
-            var metadata = new NodeMetadata(roots);
-
-            var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
-            var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
-            var rankings = DotGraphRanking.AppendRankings(roots, metadata);
+            var (nodes, formatting, rankings) = GetDotGraph(node);
 
             return $@"
 digraph G {{ node [style=filled, shape=rec]
@@ -30,6 +24,18 @@ digraph G {{ node [style=filled, shape=rec]
 
 }}
 ".Trim();
+        }
+
+        private static (StringBuilder nodes, StringBuilder formatting, StringBuilder rankings) GetDotGraph(IGraphNode node)
+        {
+            var roots = GetRoots(node).ToList();
+
+            var metadata = new NodeMetadata(roots);
+
+            var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
+            var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
+            var rankings = DotGraphRanking.AppendRankings(roots, metadata);
+            return (nodes, formatting, rankings);
         }
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
