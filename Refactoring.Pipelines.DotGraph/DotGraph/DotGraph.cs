@@ -5,33 +5,36 @@ using System.Text;
 
 namespace Refactoring.Pipelines.DotGraph
 {
-    public static class DotGraph
+    public class DotGraph
     {
+        public string nodes;
+        public string formatting;
+        public string rankings;
+
         public static string FromPipeline(IGraphNode node)
         {
-            var (nodes, formatting, rankings) = GetDotGraph(node);
+            var dotGraph = GetDotGraph(node);
 
-            return ToString(nodes, formatting, rankings);
+            return ToString(dotGraph);
         }
 
-        private static string ToString(string nodes, string formatting, string rankings)
+        private static string ToString(DotGraph dotGraph)
         {
             return $@"
 digraph G {{ node [style=filled, shape=rec]
 
 # Nodes
-{nodes}
+{dotGraph.nodes}
 
 # Formatting
-{formatting}
-{rankings
-                }
+{dotGraph.formatting}
+{dotGraph.rankings}
 
 }}
 ".Trim();
         }
 
-        private static (string nodes, string formatting, string rankings) GetDotGraph(IGraphNode node)
+        private static DotGraph GetDotGraph(IGraphNode node)
         {
             var roots = GetRoots(node).ToList();
 
@@ -40,7 +43,10 @@ digraph G {{ node [style=filled, shape=rec]
             var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
             var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
             var rankings = DotGraphRanking.AppendRankings(roots, metadata);
-            return (nodes.ToString(), formatting.ToString(), rankings.ToString());
+            return new DotGraph()
+            {
+                nodes = nodes.ToString(), formatting = formatting.ToString(), rankings = rankings.ToString()
+            };
         }
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
