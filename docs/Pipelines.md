@@ -28,7 +28,7 @@ Let's say you have the following line of code:
 ```cs
 var result = long.Parse(age);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L26-L28) / [anchor](#snippet-basic_code_line)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L21-L23) / [anchor](#snippet-basic_code_line)</sup>
 <!-- endsnippet -->
 
 You can refactor this to pipelines with the following
@@ -43,7 +43,7 @@ var collector = parsePipe.Collect();
 inputPipe.Send("42");
 var result = collector.SingleResult;
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L33-L40) / [anchor](#snippet-basic_pipeline)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L28-L35) / [anchor](#snippet-basic_pipeline)</sup>
 <!-- endsnippet -->
 
 These will produce the same results.
