@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Refactoring.Pipelines.ReflectionUtilities;
 
 namespace Refactoring.Pipelines.DotGraph
 {
     public static class DotGraphFormatting
     {
-        private static readonly Dictionary<Type, Action<IGraphNode, NodeMetadata, StringBuilder>> PipeAppendersByType =
-            new Dictionary<Type, Action<IGraphNode, NodeMetadata, StringBuilder>>
+        private static readonly Dictionary<Type, Action<IGraphNode, NodeMetadata, List<string>>> PipeAppendersByType =
+            new Dictionary<Type, Action<IGraphNode, NodeMetadata, List<string>>>
             {
                 {typeof(CollectorPipe<>), AppendCollectorPipeFormatting},
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
@@ -17,7 +17,7 @@ namespace Refactoring.Pipelines.DotGraph
                 {typeof(ConcattedPipes<>), AppendJoinedPipesFormatting}
             };
 
-        private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        private static void AppendJoinedPipesFormatting(IGraphNode node, NodeMetadata metadata, List<string> result)
         {
             var output = ((IGraphNodeWithOutput) node).Output;
 
@@ -30,14 +30,14 @@ namespace Refactoring.Pipelines.DotGraph
             AppendFormat(functionUniqueName, $@"{functionLabel}color=pink", result);
         }
 
-        private static void AppendFormat(string name, string format, StringBuilder result)
+        private static void AppendFormat(string name, string format, List<string> result)
         {
-            result.Append($"{name} [{format}]\n");
+            result.Add($"{name} [{format}]\n");
         }
 
-        public static StringBuilder AppendFormatting(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
+        public static List<string> AppendFormatting(IEnumerable<IGraphNode> nodes, NodeMetadata metadata)
         {
-            void ProcessNode(IGraphNode node_, NodeMetadata metadata_, StringBuilder result_)
+            void ProcessNode(IGraphNode node_, NodeMetadata metadata_, List<string> result_)
             {
                 var genericTypeDefinition = node_.GetType().GetGenericTypeDefinition();
                 if (!PipeAppendersByType.ContainsKey(genericTypeDefinition))
@@ -49,7 +49,7 @@ namespace Refactoring.Pipelines.DotGraph
                 PipeAppendersByType[genericTypeDefinition](node_, metadata_, result_);
             }
 
-            var result = new StringBuilder();
+            var result = new List<string>();
             foreach (var node in nodes)
             {
                 DotGraph.ProcessTree(node, result, ProcessNode, delegate { }, metadata);
@@ -58,13 +58,13 @@ namespace Refactoring.Pipelines.DotGraph
             return result;
         }
 
-        private static void AppendInputPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        private static void AppendInputPipeFormatting(IGraphNode node, NodeMetadata metadata, List<string> result)
         {
             var uniqueName = metadata.GetQuotedUniqueName(node);
             AppendFormat(uniqueName, @"color=green", result);
         }
 
-        private static void AppendFunctionPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        private static void AppendFunctionPipeFormatting(IGraphNode node, NodeMetadata metadata, List<string> result)
         {
             var output = ((IGraphNodeWithOutput) node).Output;
 
@@ -77,7 +77,7 @@ namespace Refactoring.Pipelines.DotGraph
             AppendFormat(functionUniqueName, $@"{functionLabel}shape=invhouse", result);
         }
 
-        private static void AppendCollectorPipeFormatting(IGraphNode node, NodeMetadata metadata, StringBuilder result)
+        private static void AppendCollectorPipeFormatting(IGraphNode node, NodeMetadata metadata, List<string> result)
         {
             var label = metadata.GetCount(node) == 0 ? "" : "label=Collector, ";
             var uniqueName = metadata.GetQuotedUniqueName(node);

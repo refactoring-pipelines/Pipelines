@@ -1,30 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using ApprovalUtilities.Utilities;
 
 namespace Refactoring.Pipelines.DotGraph
 {
-    public static class DotGraph
+    public class DotGraph
     {
-        public static string FromPipeline(IGraphNode node)
+        public List<string> formatting = new List<string>();
+        public List<string> nodes = new List<string>();
+        public List<string> rankings = new List<string>();
+
+        public string ToString()
+        {
+            return $@"
+digraph G {{ node [style=filled, shape=rec]
+
+# Nodes
+{nodes.JoinWith("")}
+
+# Formatting
+{formatting.JoinWith("")}
+{rankings.JoinWith("")}
+
+}}
+".Trim();
+        }
+
+        public static DotGraph FromPipeline(IGraphNode node)
         {
             var roots = GetRoots(node).ToList();
 
             var metadata = new NodeMetadata(roots);
 
-            return $@"
-digraph G {{ node [style=filled, shape=rec]
-
-# Nodes
-{DotGraphNodes.AppendNodeAndChildren(roots, metadata)}
-
-# Formatting
-{DotGraphFormatting.AppendFormatting(roots, metadata)}
-{DotGraphRanking.AppendRankings(roots, metadata)}
-
-}}
-".Trim();
+            var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
+            var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
+            var rankings = DotGraphRanking.AppendRankings(roots, metadata);
+            return new DotGraph {nodes = nodes, formatting = formatting, rankings = rankings};
         }
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
@@ -52,11 +64,11 @@ digraph G {{ node [style=filled, shape=rec]
         }
 
 
-        public static StringBuilder ProcessTree(
+        public static List<string> ProcessTree(
             IGraphNode node,
-            StringBuilder result,
-            Action<IGraphNode, NodeMetadata, StringBuilder> processNode,
-            Action<IGraphNode, IGraphNode, NodeMetadata, StringBuilder> processChild,
+            List<string> result,
+            Action<IGraphNode, NodeMetadata, List<string>> processNode,
+            Action<IGraphNode, IGraphNode, NodeMetadata, List<string>> processChild,
             NodeMetadata metadata)
         {
             if (metadata.IsNodeDataProcessed(node, processNode))

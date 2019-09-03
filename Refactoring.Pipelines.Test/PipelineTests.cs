@@ -1,20 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.TestFrameworks;
-using ApprovalTests.Reporters.Windows;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
 using Refactoring.Pipelines.DotGraph;
 
-
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(DotReporter))]
+    [UseReporter(typeof(DiffReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -278,8 +273,7 @@ namespace Refactoring.Pipelines.Test
 
         private long IncrementLong(long value) { return value + 1; }
 
-        private T Echo<T>(T t) =>
-            t;
+        private T Echo<T>(T t) { return t; }
     }
 
     internal static class _

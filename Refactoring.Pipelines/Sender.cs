@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Refactoring.Pipelines;
+using Refactoring.Pipelines.ExpressionUtilities;
 
 namespace Refactoring.Pipelines
 {
@@ -45,19 +45,9 @@ namespace Refactoring.Pipelines
         }
 
 
-
         public FunctionPipe<T, TOutput> Process<TOutput>(string name, Func<T, TOutput> func)
         {
             return new FunctionPipe<T, TOutput>(name, func, this);
         }
     }
-}
-
-static class NameUtilities
-{
-    public static string ExpressionToReadableString<T>(this Expression<T> func)
-    {
-        return func.ToString().EverythingAfter("=> ");
-    }
-
 }
