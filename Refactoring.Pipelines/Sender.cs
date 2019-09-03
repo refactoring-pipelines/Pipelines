@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Refactoring.Pipelines;
+using Refactoring.Pipelines.ExpressionUtilities;
 
 namespace Refactoring.Pipelines
 {
@@ -53,11 +53,14 @@ namespace Refactoring.Pipelines
     }
 }
 
-static class NameUtilities
+namespace Refactoring.Pipelines.ExpressionUtilities
 {
-    public static string ExpressionToReadableString<T>(this Expression<T> func)
+    static class NameUtilities
     {
-        return func.ToString().EverythingAfter("=> ");
-    }
+        public static string ExpressionToReadableString<T>(this Expression<T> func)
+        {
+            return func.ToString().EverythingAfter("=> ");
+        }
 
+    }
 }
