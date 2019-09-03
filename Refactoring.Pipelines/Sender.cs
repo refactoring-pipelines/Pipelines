@@ -52,7 +52,3 @@ namespace Refactoring.Pipelines
         }
     }
 }
-
-namespace Refactoring.Pipelines.ExpressionUtilities
-{
-}
