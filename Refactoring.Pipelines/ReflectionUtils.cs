@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Refactoring.Pipelines.ReflectionUtilities
 {
-    public static class ReflectionUtils
+    public static class _
     {
         public static string ToReadableString(this Type type)
         {
