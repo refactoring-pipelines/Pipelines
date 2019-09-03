@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Refactoring.Pipelines.DotGraph
 {
@@ -9,8 +8,8 @@ namespace Refactoring.Pipelines.DotGraph
     {
         private readonly Dictionary<IGraphNode, int> _countsByNode = new Dictionary<IGraphNode, int>();
 
-        private readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, List<string>>>>
-            _isNodeDataProcessed = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, List<string>>>>();
+        private readonly HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, List<string>>>> _isNodeDataProcessed
+            = new HashSet<Tuple<IGraphNode, Action<IGraphNode, NodeMetadata, List<string>>>>();
 
         public NodeMetadata(IEnumerable<IGraphNode> roots)
         {

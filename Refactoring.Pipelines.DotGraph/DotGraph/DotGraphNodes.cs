@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Refactoring.Pipelines.DotGraph
 {
@@ -27,9 +26,14 @@ namespace Refactoring.Pipelines.DotGraph
             }
         }
 
-        private static void AppendFunctionPipe(IGraphNodeWithOutput functionPipe, NodeMetadata metadata, List<string> result)
+        private static void AppendFunctionPipe(
+            IGraphNodeWithOutput functionPipe,
+            NodeMetadata metadata,
+            List<string> result)
         {
-            var inputs = functionPipe.Parents.Select(GetPredecessorOutput).Select(metadata.GetQuotedUniqueName).ToArray();
+            var inputs = functionPipe.Parents.Select(GetPredecessorOutput)
+                .Select(metadata.GetQuotedUniqueName)
+                .ToArray();
 
             var function = metadata.GetQuotedUniqueName(functionPipe);
             var output = metadata.GetQuotedUniqueName(functionPipe.Output);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Refactoring.Pipelines.ReflectionUtilities;
 
 namespace Refactoring.Pipelines.DotGraph

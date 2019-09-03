@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ApprovalUtilities.Utilities;
 
 namespace Refactoring.Pipelines.DotGraph
 {
     public class DotGraph
     {
-        public List<string> nodes = new List<string>();
         public List<string> formatting = new List<string>();
+        public List<string> nodes = new List<string>();
         public List<string> rankings = new List<string>();
 
         public string ToString()
@@ -37,12 +36,7 @@ digraph G {{ node [style=filled, shape=rec]
             var nodes = DotGraphNodes.AppendNodeAndChildren(roots, metadata);
             var formatting = DotGraphFormatting.AppendFormatting(roots, metadata);
             var rankings = DotGraphRanking.AppendRankings(roots, metadata);
-            return new DotGraph()
-            {
-                nodes = nodes,
-                formatting = formatting,
-                rankings = rankings,
-            };
+            return new DotGraph {nodes = nodes, formatting = formatting, rankings = rankings};
         }
 
         private static IEnumerable<IGraphNode> GetRoots(IGraphNode root)
