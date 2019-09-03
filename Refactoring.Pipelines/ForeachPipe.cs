@@ -10,7 +10,10 @@ namespace Refactoring.Pipelines
             this ISender<IEnumerable<TInput>> sender,
             Func<TInput, TOutput> func)
         {
-            return new FunctionPipe<IEnumerable<TInput>, List<TOutput>>($"Foreach({FunctionPipe<TInput, TOutput>.FunctionNameToReadableString(func)})", p => p.Select(func).ToList(), sender);
+            return new FunctionPipe<IEnumerable<TInput>, List<TOutput>>(
+                $"Foreach({FunctionPipe<TInput, TOutput>.FunctionNameToReadableString(func)})",
+                p => p.Select(func).ToList(),
+                sender);
         }
     }
 }
