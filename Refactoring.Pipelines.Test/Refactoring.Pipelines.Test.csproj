@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApprovalTests" Version="4.2.0" />
+    <PackageReference Include="ApprovalTests" Version="4.2.2" />
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
