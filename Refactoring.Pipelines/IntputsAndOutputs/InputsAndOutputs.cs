@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Refactoring.Pipelines.Test
+namespace Refactoring.Pipelines.IntputsAndOutputs
 {
     internal static class InputsAndOutputsExtensions
     {

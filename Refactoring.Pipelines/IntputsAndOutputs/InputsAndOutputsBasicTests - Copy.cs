@@ -1,14 +1,7 @@
 using System;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using ApprovalTests.Reporters.TestFrameworks;
-using ApprovalTests.Reporters.Windows;
-using ApprovalUtilities.Utilities;
-using Refactoring.Pipelines.DotGraph;
 
-
-namespace Refactoring.Pipelines.Test
+namespace Refactoring.Pipelines.IntputsAndOutputs
 {
     static class Inputs1AndOutputs1Extensions
     {

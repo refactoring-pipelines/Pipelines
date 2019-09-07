@@ -2,6 +2,7 @@ using System;
 using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
+using Refactoring.Pipelines.IntputsAndOutputs;
 
 namespace Refactoring.Pipelines.Test
 {
@@ -18,7 +19,7 @@ namespace Refactoring.Pipelines.Test
 
 
             //var inputsAndOutputs = middle.GetInputsAndOutputs();
-            var inputsAndOutputs = middle.GetInputAndOutput<int, string>();
+            var inputsAndOutputs = Inputs1AndOutputs1Extensions.GetInputAndOutput<int, string>(middle);
             //var inputsAndOutputs = middle.Get2InputsAnd2Outputs<int, int, string, string>();
 
 
@@ -46,7 +47,7 @@ namespace Refactoring.Pipelines.Test
             var sumCollector = joinedPipes.Process((a, b) => a + b).Collect();
             var productCollector = joinedPipes.Process((a, b) => a * b).Collect();
 
-            var inputsAndOutputs = joinedPipes.GetInputsAndOutputs();
+            var inputsAndOutputs = InputsAndOutputsExtensions.GetInputsAndOutputs(joinedPipes);
 
             ((InputPipe<int>)(inputsAndOutputs.Inputs[0])).Send(3);
             ((InputPipe<int>)(inputsAndOutputs.Inputs[1])).Send(4);
