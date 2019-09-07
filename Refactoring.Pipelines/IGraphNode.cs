@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Refactoring.Pipelines
 {
@@ -11,5 +12,57 @@ namespace Refactoring.Pipelines
     public interface IGraphNodeWithOutput : ISender
     {
         IGraphNode Output { get; }
+    }
+
+    public static class IGraphNodeHelper
+    {
+        public static IEnumerable<IGraphNode> GetRoots(IGraphNode start)
+        {
+            var nodesToWalk = new List<IGraphNode> {start};
+
+            var inputPipes = new HashSet<IGraphNode>();
+
+            while (nodesToWalk.Any())
+            {
+                var node = nodesToWalk.First();
+                nodesToWalk.Remove(node);
+
+                if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+                {
+                    inputPipes.Add(node);
+                }
+                else
+                {
+                    nodesToWalk.AddRange(node.Parents);
+                }
+            }
+
+
+            return inputPipes;
+        }
+
+        public static IEnumerable<IGraphNode> GetOutputs(IGraphNode start)
+        {
+            var nodesToWalk = new List<IGraphNode> {start};
+
+            var collectorPipes = new HashSet<IGraphNode>();
+
+            while (nodesToWalk.Any())
+            {
+                var node = nodesToWalk.First();
+                nodesToWalk.Remove(node);
+
+                if (node.GetType().GetGenericTypeDefinition() == typeof(CollectorPipe<>))
+                {
+                    collectorPipes.Add(node);
+                }
+                else if (node is IGraphNodeWithOutput graphNodeWithOutput)
+                {
+                    nodesToWalk.AddRange(graphNodeWithOutput.Children);
+                }
+            }
+
+            return collectorPipes;
+        }
     }
 }
