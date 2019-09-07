@@ -36,24 +36,23 @@ namespace Refactoring.Pipelines.Test
             Assert.AreEqual("2", singleResult);
         }
 
-        //[TestMethod]
-        //public void MultipleBranchesPipe()
-        //{
-        //    var input1 = new InputPipe<int>("input1");
-        //    var input2 = new InputPipe<int>("input2");
-        //    var joinedPipes = input1.JoinTo(input2);
-        //    var sumCollector = joinedPipes.Process((a, b) => a + b).Collect();
-        //    var productCollector = joinedPipes.Process((a, b) => a * b).Collect();
+        [TestMethod]
+        public void MultipleBranchesPipe()
+        {
+            var input1 = new InputPipe<int>("input1");
+            var input2 = new InputPipe<int>("input2");
+            var joinedPipes = input1.JoinTo(input2);
+            var sumCollector = joinedPipes.Process((a, b) => a + b).Collect();
+            var productCollector = joinedPipes.Process((a, b) => a * b).Collect();
 
-        //    var inputsAndOutputs = joinedPipes.GetInputsAndOutputs<int, int, Tuple<int, int>>();
+            var inputsAndOutputs = joinedPipes.GetInputsAndOutputs();
 
+            ((InputPipe<int>)(inputsAndOutputs.Inputs[0])).Send(3);
+            ((InputPipe<int>)(inputsAndOutputs.Inputs[1])).Send(4);
 
-        //    ((InputPipe<int>) (inputsAndOutputs.Inputs[0])).Send(3);
-        //    ((InputPipe<int>) (inputsAndOutputs.Inputs[1])).Send(4);
-
-        //    Assert.AreEqual(7, ((CollectorPipe<int>) inputsAndOutputs.Outputs[0]).SingleResult);
-        //    Assert.AreEqual(12, ((CollectorPipe<int>) inputsAndOutputs.Outputs[1]).SingleResult);
-        //}
+            Assert.AreEqual(7, ((CollectorPipe<int>)inputsAndOutputs.Outputs[0]).SingleResult);
+            Assert.AreEqual(12, ((CollectorPipe<int>)inputsAndOutputs.Outputs[1]).SingleResult);
+        }
     }
 
     internal static class __
