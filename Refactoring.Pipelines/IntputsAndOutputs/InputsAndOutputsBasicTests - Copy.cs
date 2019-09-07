@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Refactoring.Pipelines.IntputsAndOutputs
 {
-    static class Inputs1AndOutputs1Extensions
+    public static class Inputs1AndOutputs1Extensions
     {
         public static Inputs1AndOutputs1<TInput1, TOutput1> GetInputAndOutput<TInput1, TOutput1>(this IGraphNode node)
         {

@@ -19,7 +19,7 @@ namespace Refactoring.Pipelines.Test
 
 
             //var inputsAndOutputs = middle.GetInputsAndOutputs();
-            var inputsAndOutputs = Inputs1AndOutputs1Extensions.GetInputAndOutput<int, string>(middle);
+            var inputsAndOutputs = middle.GetInputAndOutput<int, string>();
             //var inputsAndOutputs = middle.Get2InputsAnd2Outputs<int, int, string, string>();
 
 
