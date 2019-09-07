@@ -36,13 +36,14 @@ namespace Refactoring.Pipelines.Test
             var sumCollector = joinedPipes.Process((a, b) => a + b).Collect();
             var productCollector = joinedPipes.Process((a, b) => a * b).Collect();
 
-            var inputsAndOutputs = InputsAndOutputsExtensions.GetInputsAndOutputs(joinedPipes);
+            var inputsAndOutputs = joinedPipes.GetInputs<int, int>().AndOutputs<int, int>();
 
-            ((InputPipe<int>) (inputsAndOutputs.Inputs[0])).Send(3);
-            ((InputPipe<int>) (inputsAndOutputs.Inputs[1])).Send(4);
+            inputsAndOutputs.Send(3, 4);
+            var (_, __, sum, product) = inputsAndOutputs.AsTuple();
 
-            Assert.AreEqual(7, ((CollectorPipe<int>) inputsAndOutputs.Outputs[0]).SingleResult);
-            Assert.AreEqual(12, ((CollectorPipe<int>) inputsAndOutputs.Outputs[1]).SingleResult);
+
+            Assert.AreEqual(7, sum.SingleResult);
+            Assert.AreEqual(12, product.SingleResult);
         }
     }
 }
