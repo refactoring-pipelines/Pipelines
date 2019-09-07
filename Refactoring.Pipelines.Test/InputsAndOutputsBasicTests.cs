@@ -55,7 +55,7 @@ namespace Refactoring.Pipelines.Test
         }
     }
 
-    internal static class __
+    internal static class InputsAndOutputsExtensions
     {
         public static InputsAndOutputs GetInputsAndOutputs(this IGraphNode node) { return new InputsAndOutputs(node); }
     }
