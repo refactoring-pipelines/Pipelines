@@ -1,6 +1,6 @@
 ﻿using ApprovalTests.Reporters;
 
-namespace Refactoring.Pipelines.Approvals
+namespace Refactoring.Pipelines.ApprovalTests
 {
     public class DotReporter : GenericDiffReporter
     {

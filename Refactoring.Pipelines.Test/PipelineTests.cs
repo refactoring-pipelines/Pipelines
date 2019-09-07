@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Refactoring.Pipelines.Approvals;
+using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.DotGraph;
 
 namespace Refactoring.Pipelines.Test
@@ -177,7 +178,7 @@ namespace Refactoring.Pipelines.Test
         {
             var input1 = new InputPipe<long>("value1");
             var subject = new NodeMetadata.CannotFindNodeException(input1);
-            ApprovalTests.Approvals.Verify(subject);
+            Approvals.Verify(subject);
         }
 
         [TestMethod]
