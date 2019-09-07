@@ -67,6 +67,22 @@ namespace Refactoring.Pipelines.InputsAndOutputs
             }
         }
 
+        public Tuple<InputPipe<TInput1>, InputPipe<TInput2>> Inputs
+        {
+            get
+            {
+                return Tuple.Create(Input1, Input2);
+            }
+        }
+
+        public Tuple<CollectorPipe<TOutput1>, CollectorPipe<TOutput2>> Outputs
+        {
+            get
+            {
+                return Tuple.Create(Output1, Output2);
+            }
+        }
+
         public Tuple<InputPipe<TInput1>, InputPipe<TInput2>, CollectorPipe<TOutput1>, CollectorPipe<TOutput2>> AsTuple()
         {
             return Tuple.Create(Input1, Input2, Output1, Output2);

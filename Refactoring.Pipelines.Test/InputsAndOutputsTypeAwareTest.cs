@@ -39,11 +39,20 @@ namespace Refactoring.Pipelines.Test
             var inputsAndOutputs = joinedPipes.GetInputs<int, int>().AndOutputs<int, int>();
 
             inputsAndOutputs.Send(3, 4);
-            var (_, __, sum, product) = inputsAndOutputs.AsTuple();
+            var (in1, in2, sum, product) = inputsAndOutputs.AsTuple();
 
 
             Assert.AreEqual(7, sum.SingleResult);
             Assert.AreEqual(12, product.SingleResult);
+
+            var (in1_, in2_) = inputsAndOutputs.Inputs;
+            Assert.AreEqual(in1_, in1);
+            Assert.AreEqual(in2_, in2);
+
+            var (out1_, out2_) = inputsAndOutputs.Outputs;
+            Assert.AreEqual(out1_, sum);
+            Assert.AreEqual(out2_, product);
+
         }
     }
 }
