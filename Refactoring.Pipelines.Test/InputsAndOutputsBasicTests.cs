@@ -53,9 +53,4 @@ namespace Refactoring.Pipelines.Test
             Assert.AreEqual(12, ((CollectorPipe<int>)inputsAndOutputs.Outputs[1]).SingleResult);
         }
     }
-
-    internal static class InputsAndOutputsExtensions
-    {
-        public static InputsAndOutputs GetInputsAndOutputs(this IGraphNode node) { return new InputsAndOutputs(node); }
-    }
 }
