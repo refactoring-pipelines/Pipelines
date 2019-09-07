@@ -1,15 +1,8 @@
-using System;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.TestFrameworks;
-using ApprovalTests.Reporters.Windows;
-using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
-using Refactoring.Pipelines.DotGraph;
-using Refactoring.Pipelines.IntputsAndOutputs;
+using Refactoring.Pipelines.InputsAndOutputs;
 
 
 namespace Refactoring.Pipelines.Test
@@ -25,7 +18,7 @@ namespace Refactoring.Pipelines.Test
             var middle = input.Process(p => p + 1);
             var end = middle.Process(p => p.ToString()).Collect();
 
-            var inputsAndOutputs = InputsAndOutputsExtensions.GetInputsAndOutputs(middle);
+            var inputsAndOutputs = middle.GetInputsAndOutputs();
             CollectorPipe<string> collectorPipe = (CollectorPipe<string>)inputsAndOutputs.Outputs.Single();
             InputPipe<int> inputPipe = (InputPipe<int>) inputsAndOutputs.Inputs.Single();
 
@@ -45,7 +38,7 @@ namespace Refactoring.Pipelines.Test
             var sumCollector = joinedPipes.Process((a, b) => a + b).Collect();
             var productCollector = joinedPipes.Process((a, b) => a * b).Collect();
 
-            var inputsAndOutputs = InputsAndOutputsExtensions.GetInputsAndOutputs(joinedPipes);
+            var inputsAndOutputs = joinedPipes.GetInputsAndOutputs();
 
             ((InputPipe<int>)(inputsAndOutputs.Inputs[0])).Send(3);
             ((InputPipe<int>)(inputsAndOutputs.Inputs[1])).Send(4);

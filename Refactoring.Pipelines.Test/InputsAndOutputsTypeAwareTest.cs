@@ -2,7 +2,7 @@ using System;
 using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.Approvals;
-using Refactoring.Pipelines.IntputsAndOutputs;
+using Refactoring.Pipelines.InputsAndOutputs;
 
 namespace Refactoring.Pipelines.Test
 {

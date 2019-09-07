@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
-    internal static class InputsAndOutputsExtensions
+    public static class InputsAndOutputsExtensions
     {
         public static InputsAndOutputs GetInputsAndOutputs(this IGraphNode node) { return new InputsAndOutputs(node); }
     }
