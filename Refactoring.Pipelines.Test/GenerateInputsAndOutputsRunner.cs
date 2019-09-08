@@ -15,16 +15,16 @@ namespace Refactoring.Pipelines.Test
         {
             var inputCount = 2;
             var outputCount = 2;
-            var subject = new InputsAndOutputsGenerator(inputCount, outputCount);
-            Approvals.Verify(subject);
+            var generator = new InputsAndOutputsGenerator(inputCount, outputCount);
+            Approvals.Verify(generator);
         }
 
         [TestMethod]
         public void GenerateInputsExtensions()
         {
             var inputCount = 2;
-            var subject = new InputsExtensionsGenerator(inputCount);
-            Approvals.Verify(subject);
+            var generator = new InputsExtensionsGenerator(inputCount);
+            Approvals.Verify(generator);
         }
 
         [TestMethod]
@@ -32,8 +32,8 @@ namespace Refactoring.Pipelines.Test
         {
             var inputCount = 1;
             var outputCounts = new[] {1, 2};
-            var subject = new InputsGenerator(inputCount, outputCounts);
-            Approvals.Verify(subject);
+            var generator = new InputsGenerator(inputCount, outputCounts);
+            Approvals.Verify(generator);
         }
     }
 }
