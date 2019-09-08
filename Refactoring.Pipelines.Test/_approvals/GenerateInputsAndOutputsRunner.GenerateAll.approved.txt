@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Diagnostics;
+
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public static class Inputs1Extensions
@@ -38,9 +40,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs1AndOutputs1<TInput1, TOutput1>
@@ -98,9 +97,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs1AndOutputs2<TInput1, TOutput1, TOutput2>
@@ -166,9 +162,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs1AndOutputs3<TInput1, TOutput1, TOutput2, TOutput3>
@@ -242,9 +235,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs1AndOutputs4<TInput1, TOutput1, TOutput2, TOutput3, TOutput4>
@@ -366,9 +356,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs2AndOutputs1<TInput1, TInput2, TOutput1>
@@ -435,9 +422,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs2AndOutputs2<TInput1, TInput2, TOutput1, TOutput2>
@@ -512,9 +496,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs2AndOutputs3<TInput1, TInput2, TOutput1, TOutput2, TOutput3>
@@ -597,9 +578,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs2AndOutputs4<TInput1, TInput2, TOutput1, TOutput2, TOutput3, TOutput4>
@@ -730,9 +708,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs3AndOutputs1<TInput1, TInput2, TInput3, TOutput1>
@@ -808,9 +783,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs3AndOutputs2<TInput1, TInput2, TInput3, TOutput1, TOutput2>
@@ -894,9 +866,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs3AndOutputs3<TInput1, TInput2, TInput3, TOutput1, TOutput2, TOutput3>
@@ -988,9 +957,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs3AndOutputs4<TInput1, TInput2, TInput3, TOutput1, TOutput2, TOutput3, TOutput4>
@@ -1130,9 +1096,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs4AndOutputs1<TInput1, TInput2, TInput3, TInput4, TOutput1>
@@ -1217,9 +1180,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs4AndOutputs2<TInput1, TInput2, TInput3, TInput4, TOutput1, TOutput2>
@@ -1312,9 +1272,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs4AndOutputs3<TInput1, TInput2, TInput3, TInput4, TOutput1, TOutput2, TOutput3>
@@ -1415,9 +1372,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
 
     }
 }
-using System;
-using System.Diagnostics;
-
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs4AndOutputs4<TInput1, TInput2, TInput3, TInput4, TOutput1, TOutput2, TOutput3, TOutput4>

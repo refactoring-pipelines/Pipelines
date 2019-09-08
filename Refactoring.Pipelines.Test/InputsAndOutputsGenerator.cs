@@ -30,8 +30,7 @@ namespace Refactoring.Pipelines.Test
             members.Add(AsTupleMethod);
             members.Add(SendMethod);
 
-            return $@"{GetUsingDirectives()}
-namespace Refactoring.Pipelines.InputsAndOutputs
+            return $@"namespace Refactoring.Pipelines.InputsAndOutputs
 {{
     public class {ClassName}<{CommaSeparated(InputTypeParameters)}, {CommaSeparated(OutputTypeParameters)}>
     {{
@@ -202,13 +201,6 @@ namespace Refactoring.Pipelines.InputsAndOutputs
                 return ({type}<T{inputOrOutput}{index}>) this._inputsAndOutputs.{inputOrOutput}s[{index - 1}];
             }}
         }}
-";
-        }
-
-        private string GetUsingDirectives()
-        {
-            return @"using System;
-using System.Diagnostics;
 ";
         }
     }

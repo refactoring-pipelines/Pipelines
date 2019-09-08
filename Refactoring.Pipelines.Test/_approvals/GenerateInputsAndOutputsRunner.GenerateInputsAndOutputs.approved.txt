@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace Refactoring.Pipelines.InputsAndOutputs
+﻿namespace Refactoring.Pipelines.InputsAndOutputs
 {
     public class Inputs2AndOutputs2<TInput1, TInput2, TOutput1, TOutput2>
     {

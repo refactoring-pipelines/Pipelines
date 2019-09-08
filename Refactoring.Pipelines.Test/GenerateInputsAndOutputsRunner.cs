@@ -49,6 +49,9 @@ namespace Refactoring.Pipelines.Test
         public void GenerateAll()
         {
             var result = new StringBuilder();
+            result.AppendLine("using System;");
+            result.AppendLine("using System.Diagnostics;");
+
             for (int inputCount = 1; inputCount <= 4; inputCount++)
             {
                 result.Append(new InputsExtensionsGenerator(inputCount));
