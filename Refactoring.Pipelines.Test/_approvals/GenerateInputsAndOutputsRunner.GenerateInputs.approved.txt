@@ -1,0 +1,16 @@
+﻿    public class Inputs<TInput1>
+    {
+        private readonly IGraphNode _node;
+        public Inputs(IGraphNode node) { this._node = node; }
+
+        public Inputs1AndOutputs1<TInput1, TOutput1> AndOutputs<TOutput1>()
+        {
+            return new Inputs1AndOutputs1<TInput1, TOutput1>(this._node);
+        }
+
+        public Inputs1AndOutputs2<TInput1, TOutput1, TOutput2> AndOutputs<TOutput1, TOutput2>()
+        {
+            return new Inputs1AndOutputs2<TInput1, TOutput1, TOutput2>(this._node);
+        }
+
+    }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ApprovalTests;
 using ApprovalTests.Core;
@@ -26,6 +24,15 @@ namespace Refactoring.Pipelines.Test
         {
             var inputCount = 2;
             var subject = new InputsExtensionsGenerator(inputCount);
+            Approvals.Verify(subject);
+        }
+
+        [TestMethod]
+        public void GenerateInputs()
+        {
+            var inputCount = 1;
+            var outputCounts = new[] {1, 2};
+            var subject = new InputsGenerator(inputCount, outputCounts);
             Approvals.Verify(subject);
         }
     }
