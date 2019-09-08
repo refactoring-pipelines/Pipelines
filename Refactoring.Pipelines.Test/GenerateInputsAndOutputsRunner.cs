@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ApprovalTests;
@@ -40,6 +41,24 @@ namespace Refactoring.Pipelines.Test
             var generator = new InputsGenerator(inputCount, outputCounts);
             var result = new StringBuilder();
             result.Append(generator.ToString());
+            Approvals.Verify(result);
+        }
+
+
+        [TestMethod]
+        public void GenerateAll()
+        {
+            var result = new StringBuilder();
+            for (int inputCount = 1; inputCount <= 4; inputCount++)
+            {
+                result.Append(new InputsExtensionsGenerator(inputCount));
+                result.Append(new InputsGenerator(inputCount, Enumerable.Range(1, 4)));
+                for (int outputCount = 1; outputCount <= 4; outputCount++)
+                {
+                    result.Append(new InputsAndOutputsGenerator(inputCount, outputCount));
+                }
+            }
+
             Approvals.Verify(result);
         }
     }
