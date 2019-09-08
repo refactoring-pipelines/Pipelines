@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ApprovalTests;
 using ApprovalTests.Core;
@@ -16,8 +17,8 @@ namespace Refactoring.Pipelines.Test
             var inputCount = 2;
             var outputCount = 2;
             var generator = new InputsAndOutputsGenerator(inputCount, outputCount);
-            string result;
-            result = generator.ToString();
+            var result = new StringBuilder();
+            result.Append(generator.ToString());
             Approvals.Verify(result);
         }
 
@@ -26,8 +27,8 @@ namespace Refactoring.Pipelines.Test
         {
             var inputCount = 2;
             var generator = new InputsExtensionsGenerator(inputCount);
-            string result;
-            result = generator.ToString();
+            var result = new StringBuilder();
+            result.Append(generator.ToString());
             Approvals.Verify(result);
         }
 
@@ -37,8 +38,8 @@ namespace Refactoring.Pipelines.Test
             var inputCount = 1;
             var outputCounts = new[] {1, 2};
             var generator = new InputsGenerator(inputCount, outputCounts);
-            string result;
-            result = generator.ToString();
+            var result = new StringBuilder();
+            result.Append(generator.ToString());
             Approvals.Verify(result);
         }
     }
