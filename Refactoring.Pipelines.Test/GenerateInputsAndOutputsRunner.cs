@@ -19,7 +19,7 @@ namespace Refactoring.Pipelines.Test
             var outputCount = 2;
             var generator = new InputsAndOutputsGenerator(inputCount, outputCount);
             var result = new StringBuilder();
-            result.Append(generator.ToString());
+            result.Append(generator);
             Approvals.Verify(result);
         }
 
@@ -29,7 +29,7 @@ namespace Refactoring.Pipelines.Test
             var inputCount = 2;
             var generator = new InputsExtensionsGenerator(inputCount);
             var result = new StringBuilder();
-            result.Append(generator.ToString());
+            result.Append(generator);
             Approvals.Verify(result);
         }
 
@@ -40,7 +40,7 @@ namespace Refactoring.Pipelines.Test
             var outputCounts = new[] {1, 2};
             var generator = new InputsGenerator(inputCount, outputCounts);
             var result = new StringBuilder();
-            result.Append(generator.ToString());
+            result.Append(generator);
             Approvals.Verify(result);
         }
 
