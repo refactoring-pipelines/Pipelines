@@ -16,7 +16,9 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void MyTestMethod()
         {
-            var subject = new InputsAndOutputsGenerator(2, 2);
+            var inputCount = 2;
+            var outputCount = 2;
+            var subject = new InputsAndOutputsGenerator(inputCount, outputCount);
             Approvals.Verify(subject);
         }
     }
