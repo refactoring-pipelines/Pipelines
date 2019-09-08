@@ -1,4 +1,6 @@
-﻿    public class Inputs<TInput1>
+﻿namespace Refactoring.Pipelines.InputsAndOutputs
+{
+    public class Inputs<TInput1>
     {
         private readonly IGraphNode _node;
         public Inputs(IGraphNode node) { this._node = node; }
@@ -14,3 +16,4 @@
         }
 
     }
+}

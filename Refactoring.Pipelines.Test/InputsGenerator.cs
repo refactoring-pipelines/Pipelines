@@ -22,6 +22,10 @@ namespace Refactoring.Pipelines.Test
             var inputTypeParameters = Enumerable.Range(1, _inputCount).Select(_ => $"TInput{_}").JoinWith(", ");
 
             result.AppendLine(
+                @"namespace Refactoring.Pipelines.InputsAndOutputs
+{");
+
+            result.AppendLine(
                 $@"    public class Inputs<{inputTypeParameters}>
     {{
         private readonly IGraphNode _node;
@@ -40,7 +44,8 @@ namespace Refactoring.Pipelines.Test
 ");
             }
 
-            result.AppendLine($@"    }}");
+            result.AppendLine("    }");
+            result.AppendLine("}");
 
             return result.ToString();
         }
