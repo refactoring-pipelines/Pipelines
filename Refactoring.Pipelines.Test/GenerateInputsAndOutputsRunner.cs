@@ -16,7 +16,8 @@ namespace Refactoring.Pipelines.Test
             var inputCount = 2;
             var outputCount = 2;
             var generator = new InputsAndOutputsGenerator(inputCount, outputCount);
-            var result = generator.ToString();
+            string result;
+            result = generator.ToString();
             Approvals.Verify(result);
         }
 
@@ -25,7 +26,8 @@ namespace Refactoring.Pipelines.Test
         {
             var inputCount = 2;
             var generator = new InputsExtensionsGenerator(inputCount);
-            var result = generator.ToString();
+            string result;
+            result = generator.ToString();
             Approvals.Verify(result);
         }
 
@@ -35,7 +37,8 @@ namespace Refactoring.Pipelines.Test
             var inputCount = 1;
             var outputCounts = new[] {1, 2};
             var generator = new InputsGenerator(inputCount, outputCounts);
-            var result = generator.ToString();
+            string result;
+            result = generator.ToString();
             Approvals.Verify(result);
         }
     }
