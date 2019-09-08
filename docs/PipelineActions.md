@@ -32,7 +32,7 @@ var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L166-L170) / [anchor](#snippet-joined_pipeline)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L167-L171) / [anchor](#snippet-joined_pipeline)</sup>
 <!-- endsnippet -->
 
 will produce:
@@ -51,7 +51,7 @@ For example, if you had:
 var apply = "#";
 var to = new[] {1, 2};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L193-L196) / [anchor](#snippet-applyto_inputs)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L194-L197) / [anchor](#snippet-applyto_inputs)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -61,7 +61,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L198-L200) / [anchor](#snippet-applyto_outputs)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L199-L201) / [anchor](#snippet-applyto_outputs)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -71,7 +71,7 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 prefix.JoinTo(values).ProcessFunction(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L203-L205) / [anchor](#snippet-applyto_manual)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L204-L206) / [anchor](#snippet-applyto_manual)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
@@ -90,7 +90,7 @@ For example, if you had:
 var concat = new List<int> {1, 2};
 var with = new[] {3, 4};
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L226-L229) / [anchor](#snippet-concatwith_inputs)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L227-L230) / [anchor](#snippet-concatwith_inputs)</sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -100,7 +100,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[1, 2, 3, 4]";
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L231-L233) / [anchor](#snippet-concatwith_outputs)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L232-L234) / [anchor](#snippet-concatwith_outputs)</sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -110,7 +110,7 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 part1.JoinTo(part2).ProcessFunction(t => t.Item1.Concat(t.Item2).ToList());
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L236-L238) / [anchor](#snippet-concatwith_manual)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L237-L239) / [anchor](#snippet-concatwith_manual)</sup>
 <!-- endsnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
@@ -127,7 +127,7 @@ the `FunctionPipe` uses the name of the function, but if you pass in a lambda it
 var input = new InputPipe<int>("input");
 input.Process(p => p.ToString());
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L264-L267) / [anchor](#snippet-process_lambda)</sup>
+<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L265-L268) / [anchor](#snippet-process_lambda)</sup>
 <!-- endsnippet -->
 
 will look like:
