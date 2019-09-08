@@ -35,7 +35,7 @@ namespace Refactoring.Pipelines.Test
                 result.AppendLine(
                     $@"        public Inputs{_inputCount}AndOutputs{outputCount}<{inputTypeParameters}, {outputTypeParameters}> AndOutputs<{outputTypeParameters}>()
         {{
-            return new Inputs1AndOutputs{outputCount}<{inputTypeParameters}, {outputTypeParameters}>(this._node);
+            return new Inputs{_inputCount}AndOutputs{outputCount}<{inputTypeParameters}, {outputTypeParameters}>(this._node);
         }}
 ");
             }
