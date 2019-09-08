@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 
 namespace Refactoring.Pipelines.InputsAndOutputs
@@ -14,12 +14,11 @@ namespace Refactoring.Pipelines.InputsAndOutputs
             Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
         }
 
-
         public InputPipe<TInput1> Input1
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -27,7 +26,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -43,7 +42,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -51,7 +50,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -63,12 +62,10 @@ namespace Refactoring.Pipelines.InputsAndOutputs
             }
         }
 
-
         public Tuple<InputPipe<TInput1>, InputPipe<TInput2>, CollectorPipe<TOutput1>, CollectorPipe<TOutput2>> AsTuple()
         {
             return Tuple.Create(Input1, Input2, Output1, Output2);
         }
-
 
         public void Send(TInput1 value1, TInput2 value2)
         {

@@ -11,7 +11,7 @@ namespace Refactoring.Pipelines.DotGraph
         public List<string> nodes = new List<string>();
         public List<string> rankings = new List<string>();
 
-        public string ToString()
+        public override string ToString()
         {
             return $@"
 digraph G {{ node [style=filled, shape=rec]
