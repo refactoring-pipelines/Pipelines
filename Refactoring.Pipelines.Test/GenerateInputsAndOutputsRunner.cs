@@ -14,7 +14,7 @@ namespace Refactoring.Pipelines.Test
     public class GenerateInputsAndOutputsRunner
     {
         [TestMethod]
-        public void MyTestMethod()
+        public void GenerateInputsAndOutputs()
         {
             var inputCount = 2;
             var outputCount = 2;
