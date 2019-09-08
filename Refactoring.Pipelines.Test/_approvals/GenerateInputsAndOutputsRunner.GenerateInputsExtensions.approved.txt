@@ -1,0 +1,11 @@
+﻿
+namespace Refactoring.Pipelines.InputsAndOutputs
+{
+    public static class Inputs2Extensions
+    {
+        public static Inputs<TInput1, TInput2> GetInputs<TInput1, TInput2>(this IGraphNode node)
+        {
+            return new Inputs<TInput1, TInput2>(node);
+        }
+    }
+}
