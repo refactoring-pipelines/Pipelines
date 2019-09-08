@@ -61,7 +61,7 @@ If the code isn't in a method, extract it to one first
  var methodCallPipe = startingPoint.Process(TheMethodCall)
 ```
 
-Do this above the `approvals.Verify()`. Run it again for feedback
+Do this above the `PipelineApprovals.Verify()`. Run it again for feedback.
 
 ### 6. Add a collector, and send input in
 
@@ -73,10 +73,28 @@ Do this above the `approvals.Verify()`. Run it again for feedback
 
 ### 7. Process and Collect the next step in the pipeline
 
-### 8. (optional) Delete dead code
+### 8. Delete any newly-dead code
 
-### 9. Goto step 7
+Previously you were using `.Collect()` to pull out values from intermediate steps, but as they become unnecessary you can delete them. ReSharper is good for finding dead code.
+
+### 9. Repeat until all code is converted
+
+### 10. Use `GetInputs<>` to collect all the inputs and outputs in a single object:
+
+``` cs
+        var inputsAndOutputs = bestSandwichCollector.GetInputs<ZipCode>().AndOutputs<Sandwich>().AsTuple();
+        inputsAndOutputs.Send(zipCode);
+        inputsAndOutputs.Outputs...
+```
+### 10. Extract a CreatePipe function 
+
+### 11. Move the `PipelineApprovals.Verify()` call into a unit test
+
+``` cs
+    var pipe = SimpleCalls.CreatePipe();
+    PipelineApprovals.Verify(pipe.Input1);
+```
 
 ## Handling multiple parameters
 
-Everything is a single parameter. To use multiple, you'll have to join them into tuples. If this is requires new inputs, you'll need multiple input pipes
+Every function has a single input and a single output. To use multiple input parameters, you'll have to join them into `Tuple`s. If this requires new inputs, you'll need multiple `InputPipe`s.
