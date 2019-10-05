@@ -6,6 +6,7 @@ using System.Threading;
 using ApprovalTests;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.Async;
 
 namespace Refactoring.PipelinesAsync.Test
@@ -33,6 +34,8 @@ namespace Refactoring.PipelinesAsync.Test
             inputPipe.Send(list2);
             Assert.AreNotEqual(list1.ToReadableString(), list2.ToReadableString());
             Assert.AreEqual(list1.OrderBy(_ => _).ToReadableString(), list2.OrderBy(_ => _).ToReadableString());
+
+            PipelineApprovals.Verify(inputPipe);
         }
 
         private static readonly Random random = new Random();

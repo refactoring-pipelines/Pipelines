@@ -1,0 +1,35 @@
+﻿digraph G { node [style=filled, shape=rec]
+
+# Nodes
+"List<Int32> inputs" -> "_" -> "List<Int32>"
+"List<Int32>" -> "AddToList(l, 1)" -> "Int32"
+"List<Int32>" -> "AddToList(l, 2)" -> "Int32 1"
+"List<Int32>" -> "AddToList(l, 3)" -> "Int32 2"
+"List<Int32>" -> "AddToList(l, 4)" -> "Int32 3"
+"List<Int32>" -> "AddToList(l, 5)" -> "Int32 4"
+"List<Int32>" -> "AddToList(l, 6)" -> "Int32 5"
+"List<Int32>" -> "AddToList(l, 7)" -> "Int32 6"
+
+
+# Formatting
+"List<Int32> inputs" [color=green]
+"List<Int32>" [color="#9fbff4"]
+"_" [shape=invhouse]
+"Int32" [color="#9fbff4"]
+"AddToList(l, 1)" [shape=invhouse]
+"Int32 1" [label="Int32", color="#9fbff4"]
+"AddToList(l, 2)" [shape=invhouse]
+"Int32 2" [label="Int32", color="#9fbff4"]
+"AddToList(l, 3)" [shape=invhouse]
+"Int32 3" [label="Int32", color="#9fbff4"]
+"AddToList(l, 4)" [shape=invhouse]
+"Int32 4" [label="Int32", color="#9fbff4"]
+"AddToList(l, 5)" [shape=invhouse]
+"Int32 5" [label="Int32", color="#9fbff4"]
+"AddToList(l, 6)" [shape=invhouse]
+"Int32 6" [label="Int32", color="#9fbff4"]
+"AddToList(l, 7)" [shape=invhouse]
+
+
+
+}
