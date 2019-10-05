@@ -52,7 +52,6 @@ namespace Refactoring.Pipelines.Test
             var (out1_, out2_) = inputsAndOutputs.Outputs;
             Assert.AreEqual(out1_, sum);
             Assert.AreEqual(out2_, product);
-
         }
     }
 }

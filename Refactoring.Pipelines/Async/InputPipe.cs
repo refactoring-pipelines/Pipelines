@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Refactoring.Pipelines.Async
 {
-    public class InputPipe<T> : Refactoring.Pipelines.InputPipe<T>
+    public class InputPipe<T> : Pipelines.InputPipe<T>
     {
         public InputPipe(string label) : base(label) { }
 

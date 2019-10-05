@@ -1,7 +1,6 @@
 ﻿using ApprovalTests.Maintenance;
 using ApprovalTests.Namers;
 using ApprovalTests.Reporters;
-using ApprovalTests.Reporters.TestFrameworks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [assembly: UseApprovalSubdirectory("_approvals")]

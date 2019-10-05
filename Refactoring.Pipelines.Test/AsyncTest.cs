@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using ApprovalTests;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.ApprovalTests;
@@ -14,6 +12,8 @@ namespace Refactoring.PipelinesAsync.Test
     [TestClass]
     public class AsyncTest
     {
+        private static readonly Random random = new Random();
+
         [TestMethod]
         public void ParallelRuns()
         {
@@ -28,8 +28,8 @@ namespace Refactoring.PipelinesAsync.Test
             var listAddPipe7 = echoPipe.Process(l => AddToList(l, 7));
 
 
-            var list1 = new List<int> { };
-            var list2 = new List<int> { };
+            var list1 = new List<int>();
+            var list2 = new List<int>();
             inputPipe.Send(list1);
             inputPipe.Send(list2);
             Assert.AreNotEqual(list1.ToReadableString(), list2.ToReadableString());
@@ -37,8 +37,6 @@ namespace Refactoring.PipelinesAsync.Test
 
             PipelineApprovals.Verify(inputPipe);
         }
-
-        private static readonly Random random = new Random();
 
         private static int AddToList(List<int> l, int value)
         {
