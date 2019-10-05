@@ -17,7 +17,7 @@ namespace Refactoring.PipelinesAsync.Test
         public void ParallelRuns()
         {
             var inputPipe = new InputPipe<List<int>>("inputs");
-            var echoPipe = inputPipe /*.Process(_ =>_)*/;
+            var echoPipe = inputPipe.Process(_ => _);
             var listAddPipe1 = echoPipe.Process(l => AddToList(l, 1));
             var listAddPipe2 = echoPipe.Process(l => AddToList(l, 2));
             var listAddPipe3 = echoPipe.Process(l => AddToList(l, 3));

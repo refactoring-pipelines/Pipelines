@@ -277,7 +277,7 @@ namespace Refactoring.Pipelines.Test
         private T Echo<T>(T t) { return t; }
     }
 
-    internal static class _
+    public static class _
     {
         public static FunctionPipe<TInput, TOutput> WithCollector<TInput, TOutput>(
             this FunctionPipe<TInput, TOutput> @this)
