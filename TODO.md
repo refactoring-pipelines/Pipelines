@@ -1,4 +1,5 @@
 * var pipeline = result.GetInputsAndOutputs();
+	- move to own project
 - Repeat Arlo's exercise
 - Async
 - sequencing for implicit dependencies through state
