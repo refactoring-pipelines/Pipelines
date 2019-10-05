@@ -25,7 +25,7 @@ namespace Refactoring.Pipelines
 
         public abstract IEnumerable<IGraphNode> Parents { get; }
 
-        protected void _Send(T value)
+        protected virtual void _Send(T value)
         {
             foreach (var listener in Listeners)
             {
