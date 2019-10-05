@@ -32,22 +32,5 @@ namespace Refactoring.Pipelines
                 listener.OnMessage(value);
             }
         }
-
-        public FunctionPipe<T, TOutput> ProcessFunction<TOutput>(Func<T, TOutput> func)
-        {
-            return new FunctionPipe<T, TOutput>(func, this);
-        }
-
-        public FunctionPipe<T, TOutput> Process<TOutput>(Expression<Func<T, TOutput>> func)
-        {
-            var name = func.ExpressionToReadableString();
-            return new FunctionPipe<T, TOutput>(name, func.Compile(), this);
-        }
-
-
-        public FunctionPipe<T, TOutput> Process<TOutput>(string name, Func<T, TOutput> func)
-        {
-            return new FunctionPipe<T, TOutput>(name, func, this);
-        }
     }
 }
