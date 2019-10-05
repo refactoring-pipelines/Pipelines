@@ -4,7 +4,7 @@ using Refactoring.Pipelines.ReflectionUtilities;
 
 namespace Refactoring.Pipelines
 {
-    public class InputPipe<T> : Sender<T>
+    public class InputPipe<T> : Sender<T>, IInputNode
     {
         private readonly string _label;
 
@@ -17,5 +17,9 @@ namespace Refactoring.Pipelines
             Enumerable.Empty<IGraphNode>();
 
         public void Send(T value) { _Send(value); }
+    }
+
+    public interface IInputNode
+    {
     }
 }

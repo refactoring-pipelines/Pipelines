@@ -3,7 +3,7 @@
 :: 2. Get API key from https://www.nuget.org/account/apikeys
 :: 3. NuGet.exe setapikey BLAH-BLAH-BLAH
 ::
-:: Remember to update version number in Directory.Build.props before running this script
+:: Remember to update version number in `Directory.Build.props` before running this script
 
 IF EXIST nuget_packages (
     DEL /S /Q nuget_packages\

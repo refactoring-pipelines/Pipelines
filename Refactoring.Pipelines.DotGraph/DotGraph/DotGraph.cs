@@ -50,7 +50,7 @@ digraph G {{ node [style=filled, shape=rec]
                 var node = nodesToWalk.First();
                 nodesToWalk.Remove(node);
 
-                if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+                if (node is IInputNode)
                 {
                     graphNodes.Add(node);
                 }

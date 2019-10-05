@@ -1,10 +1,10 @@
-﻿using System;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ApprovalTests;
-using ApprovalTests.Core;
 using ApprovalTests.Reporters;
+using ApprovalUtilities.Utilities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Refactoring.Pipelines.Test
 {
@@ -46,23 +46,28 @@ namespace Refactoring.Pipelines.Test
 
 
         [TestMethod]
+        [Ignore("This writes to a file that gets compiled, which can create a loop or slowness. Only run manually.")]
         public void GenerateAll()
         {
             var result = new StringBuilder();
             result.AppendLine("using System;");
             result.AppendLine("using System.Diagnostics;");
 
-            for (int inputCount = 1; inputCount <= 4; inputCount++)
+            for (var inputCount = 1; inputCount <= 6; inputCount++)
             {
                 result.Append(new InputsExtensionsGenerator(inputCount));
                 result.Append(new InputsGenerator(inputCount, Enumerable.Range(1, 4)));
-                for (int outputCount = 1; outputCount <= 4; outputCount++)
+                for (var outputCount = 1; outputCount <= 6; outputCount++)
                 {
                     result.Append(new InputsAndOutputsGenerator(inputCount, outputCount));
                 }
             }
 
             Approvals.Verify(result);
+
+            var sourceFilePath =
+                PathUtilities.GetAdjacentFile(@"..\Refactoring.Pipelines\InputsAndOutputs\Generated.cs");
+            File.WriteAllText(sourceFilePath, result.ToString());
         }
     }
 }

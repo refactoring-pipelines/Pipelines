@@ -12,6 +12,8 @@ namespace Refactoring.Pipelines.DotGraph
                 {typeof(CollectorPipe<>), AppendCollectorPipeFormatting},
                 {typeof(FunctionPipe<,>), AppendFunctionPipeFormatting},
                 {typeof(InputPipe<>), AppendInputPipeFormatting},
+                {typeof(Async.FunctionPipe<,>), AppendFunctionPipeFormatting},
+                {typeof(Async.InputPipe<>), AppendInputPipeFormatting},
                 {typeof(JoinedPipes<,>), AppendJoinedPipesFormatting},
                 {typeof(AppliedPipes<,>), AppendJoinedPipesFormatting},
                 {typeof(ConcattedPipes<>), AppendJoinedPipesFormatting}

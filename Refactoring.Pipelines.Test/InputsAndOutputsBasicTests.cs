@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.InputsAndOutputs;
 
-
 namespace Refactoring.Pipelines.Test
 {
     [UseReporter(typeof(DotReporter))]
@@ -19,8 +18,8 @@ namespace Refactoring.Pipelines.Test
             var end = middle.Process(p => p.ToString()).Collect();
 
             var inputsAndOutputs = middle.GetInputsAndOutputs();
-            CollectorPipe<string> collectorPipe = (CollectorPipe<string>)inputsAndOutputs.Outputs.Single();
-            InputPipe<int> inputPipe = (InputPipe<int>) inputsAndOutputs.Inputs.Single();
+            var collectorPipe = (CollectorPipe<string>) inputsAndOutputs.Outputs.Single();
+            var inputPipe = (InputPipe<int>) inputsAndOutputs.Inputs.Single();
 
             Assert.AreEqual(input, inputPipe);
             Assert.AreEqual(end, collectorPipe);
@@ -40,11 +39,11 @@ namespace Refactoring.Pipelines.Test
 
             var inputsAndOutputs = joinedPipes.GetInputsAndOutputs();
 
-            ((InputPipe<int>)(inputsAndOutputs.Inputs[0])).Send(3);
-            ((InputPipe<int>)(inputsAndOutputs.Inputs[1])).Send(4);
+            ((InputPipe<int>) inputsAndOutputs.Inputs[0]).Send(3);
+            ((InputPipe<int>) inputsAndOutputs.Inputs[1]).Send(4);
 
-            Assert.AreEqual(7, ((CollectorPipe<int>)inputsAndOutputs.Outputs[0]).SingleResult);
-            Assert.AreEqual(12, ((CollectorPipe<int>)inputsAndOutputs.Outputs[1]).SingleResult);
+            Assert.AreEqual(7, ((CollectorPipe<int>) inputsAndOutputs.Outputs[0]).SingleResult);
+            Assert.AreEqual(12, ((CollectorPipe<int>) inputsAndOutputs.Outputs[1]).SingleResult);
         }
     }
 }

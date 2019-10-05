@@ -2,7 +2,7 @@
 
 namespace Refactoring.Pipelines
 {
-    internal class OutputNode : IGraphNode
+    public class OutputNode : IGraphNode
     {
         private readonly string _name;
         private readonly IGraphNode _owner;

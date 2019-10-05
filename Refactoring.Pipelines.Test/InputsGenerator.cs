@@ -18,7 +18,7 @@ namespace Refactoring.Pipelines.Test
 
         public override string ToString()
         {
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
             var inputTypeParameters = Enumerable.Range(1, _inputCount).Select(_ => $"TInput{_}").JoinWith(", ");
 
             result.AppendLine(

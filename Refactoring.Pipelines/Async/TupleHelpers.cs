@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using Refactoring.Pipelines.ExpressionUtilities;
 
-namespace Refactoring.Pipelines
+namespace Refactoring.Pipelines.Async
 {
     public static class TupleHelpers
     {

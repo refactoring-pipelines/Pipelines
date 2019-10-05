@@ -1,6 +1,6 @@
 ﻿namespace Refactoring.Pipelines
 {
-    internal interface IForwardingListener : IGraphNode
+    public interface IForwardingListener : IGraphNode
     {
         IGraphNode Owner { get; }
     }

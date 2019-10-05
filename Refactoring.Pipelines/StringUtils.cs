@@ -1,6 +1,6 @@
 ﻿namespace Refactoring.Pipelines
 {
-    internal static class StringUtils
+    public static class StringUtils
     {
         public static string EverythingAfter(this string @this, string s)
         {

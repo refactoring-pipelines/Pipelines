@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using ApprovalUtilities.Utilities;
-using FluentAssertions;
 
 namespace Refactoring.Pipelines.Test
 {
-    class InputsAndOutputsGenerator
+    internal class InputsAndOutputsGenerator
     {
         private readonly int inputCount;
         private readonly int outputCount;
@@ -18,47 +15,16 @@ namespace Refactoring.Pipelines.Test
             this.outputCount = outputCount;
         }
 
-        public override string ToString()
-        {
-            var members = new List<string>();
-
-            members.Add(Constructor);
-            members.AddRange(InputRange.Select(GetInputAccessor));
-            members.Add(AllInputsAccessor);
-            members.AddRange(OutputRange.Select(GetOutputAccessor));
-            members.Add(AllOutputsAccessor);
-            members.Add(AsTupleMethod);
-            members.Add(SendMethod);
-
-            return $@"namespace Refactoring.Pipelines.InputsAndOutputs
-{{
-    public class {ClassName}<{CommaSeparated(InputTypeParameters)}, {CommaSeparated(OutputTypeParameters)}>
-    {{
-        private readonly InputsAndOutputs _inputsAndOutputs;
-
-{members.JoinWith("\n")}
-    }}
-}}
-";
-        }
-
-        private string ClassName
-        {
-            get
-            {
-                return $@"Inputs{inputCount}AndOutputs{outputCount}";
-            }
-        }
+        private string ClassName =>
+            $@"Inputs{inputCount}AndOutputs{outputCount}";
 
         private string SendMethod
         {
             get
             {
-                string ParameterDeclaration(int _) =>
-                    $"TInput{_} value{_}";
+                string ParameterDeclaration(int _) { return $"TInput{_} value{_}"; }
 
-                string SendStatement(int _) =>
-                    $"            this.Input{_}.Send(value{_});";
+                string SendStatement(int _) { return $"            this.Input{_}.Send(value{_});"; }
 
                 return $@"        public void Send({CommaSeparated(InputRange.Select(ParameterDeclaration))})
         {{
@@ -69,10 +35,10 @@ namespace Refactoring.Pipelines.Test
         }
 
         private IEnumerable<int> InputRange =>
-            Enumerable.Range(1, this.inputCount);
+            Enumerable.Range(1, inputCount);
 
         private IEnumerable<int> OutputRange =>
-            Enumerable.Range(1, this.outputCount);
+            Enumerable.Range(1, outputCount);
 
         private IEnumerable<string> OutputTypeParameters
         {
@@ -90,12 +56,15 @@ namespace Refactoring.Pipelines.Test
             }
         }
 
-        private static string CommaSeparated(IEnumerable<string> enumerable) { return enumerable.JoinWith(", "); }
-
         private string AsTupleMethod
         {
             get
             {
+                if (7 < InputRange.Count() + OutputRange.Count())
+                {
+                    return "        // AsTuple() not valid for more than 7 parameters\n";
+                }
+
                 return $@"        public Tuple<{InputPipes}, {CollectorPipes}> AsTuple()
         {{
             return Tuple.Create({CommaSeparated(InputAccessorNames)}, {CommaSeparated(OutputAccessorNames)});
@@ -104,19 +73,14 @@ namespace Refactoring.Pipelines.Test
             }
         }
 
-        private string Constructor
-        {
-            get
-            {
-                return $@"        public {ClassName}(IGraphNode node)
+        private string Constructor =>
+            $@"        public {ClassName}(IGraphNode node)
         {{
             this._inputsAndOutputs = new InputsAndOutputs(node);
             Debug.Assert(_inputsAndOutputs.Inputs.Count == {inputCount});
             Debug.Assert(_inputsAndOutputs.Outputs.Count == {outputCount});
         }}
 ";
-            }
-        }
 
         private string AllOutputsAccessor
         {
@@ -151,16 +115,8 @@ namespace Refactoring.Pipelines.Test
             }
         }
 
-        private static string GetOutputAccessor(int index)
-        {
-            return GetAccessor(index, "CollectorPipe", "Output");
-        }
-
-        private string AllInputsAccessor
-        {
-            get
-            {
-                return $@"        public Tuple<{InputPipes}> Inputs
+        private string AllInputsAccessor =>
+            $@"        public Tuple<{InputPipes}> Inputs
         {{
             get
             {{
@@ -168,8 +124,6 @@ namespace Refactoring.Pipelines.Test
             }}
         }}
 ";
-            }
-        }
 
         private IEnumerable<string> InputAccessorNames
         {
@@ -187,10 +141,35 @@ namespace Refactoring.Pipelines.Test
             }
         }
 
-        private static string GetInputAccessor(int index)
+        public override string ToString()
         {
-            return GetAccessor(index, "InputPipe", "Input");
+            var members = new List<string>();
+
+            members.Add(Constructor);
+            members.AddRange(InputRange.Select(GetInputAccessor));
+            members.Add(AllInputsAccessor);
+            members.AddRange(OutputRange.Select(GetOutputAccessor));
+            members.Add(AllOutputsAccessor);
+            members.Add(AsTupleMethod);
+            members.Add(SendMethod);
+
+            return $@"namespace Refactoring.Pipelines.InputsAndOutputs
+{{
+    public class {ClassName}<{CommaSeparated(InputTypeParameters)}, {CommaSeparated(OutputTypeParameters)}>
+    {{
+        private readonly InputsAndOutputs _inputsAndOutputs;
+
+{members.JoinWith("\n")}
+    }}
+}}
+";
         }
+
+        private static string CommaSeparated(IEnumerable<string> enumerable) { return enumerable.JoinWith(", "); }
+
+        private static string GetOutputAccessor(int index) { return GetAccessor(index, "CollectorPipe", "Output"); }
+
+        private static string GetInputAccessor(int index) { return GetAccessor(index, "InputPipe", "Input"); }
 
         private static string GetAccessor(int index, string type, string inputOrOutput)
         {
