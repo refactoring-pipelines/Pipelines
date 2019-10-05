@@ -12,11 +12,6 @@ namespace Refactoring.Pipelines.Async
         protected override void _Send(T value)
         {
             Parallel.ForEach(Listeners, listener => { listener.OnMessage(value); });
-
-            //foreach (var listener in Listeners)
-            //{
-            //    listener.OnMessage(value);
-            //}
         }
     }
 }
