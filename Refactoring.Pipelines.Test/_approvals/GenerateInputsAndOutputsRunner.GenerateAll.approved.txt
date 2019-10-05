@@ -1465,10 +1465,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
             }
         }
 
-        public Tuple<InputPipe<TInput1>, InputPipe<TInput2>, InputPipe<TInput3>, InputPipe<TInput4>, CollectorPipe<TOutput1>, CollectorPipe<TOutput2>, CollectorPipe<TOutput3>, CollectorPipe<TOutput4>> AsTuple()
-        {
-            return Tuple.Create(Input1, Input2, Input3, Input4, Output1, Output2, Output3, Output4);
-        }
+        // AsTuple() not valid for more than 7 parameters
 
         public void Send(TInput1 value1, TInput2 value2, TInput3 value3, TInput4 value4)
         {

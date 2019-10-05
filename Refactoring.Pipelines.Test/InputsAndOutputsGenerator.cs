@@ -96,6 +96,11 @@ namespace Refactoring.Pipelines.Test
         {
             get
             {
+                if (7 < InputRange.Count() + OutputRange.Count())
+                {
+                    return "        // AsTuple() not valid for more than 7 parameters\n";
+                }
+
                 return $@"        public Tuple<{InputPipes}, {CollectorPipes}> AsTuple()
         {{
             return Tuple.Create({CommaSeparated(InputAccessorNames)}, {CommaSeparated(OutputAccessorNames)});
@@ -151,10 +156,7 @@ namespace Refactoring.Pipelines.Test
             }
         }
 
-        private static string GetOutputAccessor(int index)
-        {
-            return GetAccessor(index, "CollectorPipe", "Output");
-        }
+        private static string GetOutputAccessor(int index) { return GetAccessor(index, "CollectorPipe", "Output"); }
 
         private string AllInputsAccessor
         {
@@ -187,10 +189,7 @@ namespace Refactoring.Pipelines.Test
             }
         }
 
-        private static string GetInputAccessor(int index)
-        {
-            return GetAccessor(index, "InputPipe", "Input");
-        }
+        private static string GetInputAccessor(int index) { return GetAccessor(index, "InputPipe", "Input"); }
 
         private static string GetAccessor(int index, string type, string inputOrOutput)
         {
