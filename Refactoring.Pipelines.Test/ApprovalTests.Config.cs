@@ -7,12 +7,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 //[assembly: UseReporter(typeof(MsTestReporter))]
 [assembly: UseReporter(typeof(DiffReporter))]
 
-namespace Refactoring.Pipelines.Test
+[TestClass]
+public class ApprovalMaintenanceChecks
 {
-    [TestClass]
-    public class ApprovalMaintenance_
+    [TestMethod]
+    public void VerifyNoAbandonedFiles()
     {
-        [TestMethod]
-        public void VerifyNoAbandonedFiles() { ApprovalMaintenance.VerifyNoAbandonedFiles(); }
+        //ApprovalMaintenance.CleanUpAbandonedFiles();
+        ApprovalMaintenance.VerifyNoAbandonedFiles();
     }
 }
