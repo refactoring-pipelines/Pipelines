@@ -1,7 +1,9 @@
+- Async
+	- TEST: pipeline that writes to side effect
+	- Make async, see it break (order has changed)
 * var pipeline = result.GetInputsAndOutputs();
 	- move to own project
 - Repeat Arlo's exercise
-- Async
 - sequencing for implicit dependencies through state
 ```
 	var a = A();
