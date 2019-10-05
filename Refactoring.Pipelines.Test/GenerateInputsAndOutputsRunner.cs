@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ApprovalTests;
 using ApprovalTests.Core;
 using ApprovalTests.Reporters;
+using ApprovalUtilities.Utilities;
 
 namespace Refactoring.Pipelines.Test
 {
@@ -63,6 +65,9 @@ namespace Refactoring.Pipelines.Test
             }
 
             Approvals.Verify(result);
+
+            var sourceFilePath = PathUtilities.GetAdjacentFile(@"..\Refactoring.Pipelines\InputsAndOutputs\Generated.cs");
+            File.WriteAllText(sourceFilePath, result.ToString());
         }
     }
 }

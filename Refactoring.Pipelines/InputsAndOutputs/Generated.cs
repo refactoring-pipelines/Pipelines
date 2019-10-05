@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 
 namespace Refactoring.Pipelines.InputsAndOutputs
@@ -57,7 +57,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -73,7 +73,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -114,7 +114,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -130,7 +130,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -138,7 +138,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -179,7 +179,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -195,7 +195,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -203,7 +203,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -211,7 +211,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -252,7 +252,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -268,7 +268,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -276,7 +276,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -284,7 +284,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -292,7 +292,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput4>)this._inputsAndOutputs.Outputs[3];
+                return (CollectorPipe<TOutput4>) this._inputsAndOutputs.Outputs[3];
             }
         }
 
@@ -373,7 +373,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -381,7 +381,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -397,7 +397,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -439,7 +439,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -447,7 +447,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -463,7 +463,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -471,7 +471,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -513,7 +513,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -521,7 +521,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -537,7 +537,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -545,7 +545,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -553,7 +553,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -595,7 +595,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -603,7 +603,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -619,7 +619,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -627,7 +627,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -635,7 +635,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -643,7 +643,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput4>)this._inputsAndOutputs.Outputs[3];
+                return (CollectorPipe<TOutput4>) this._inputsAndOutputs.Outputs[3];
             }
         }
 
@@ -725,7 +725,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -733,7 +733,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -741,7 +741,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -757,7 +757,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -800,7 +800,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -808,7 +808,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -816,7 +816,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -832,7 +832,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -840,7 +840,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -883,7 +883,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -891,7 +891,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -899,7 +899,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -915,7 +915,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -923,7 +923,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -931,7 +931,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -974,7 +974,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -982,7 +982,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -990,7 +990,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -1006,7 +1006,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -1014,7 +1014,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -1022,7 +1022,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -1030,7 +1030,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput4>)this._inputsAndOutputs.Outputs[3];
+                return (CollectorPipe<TOutput4>) this._inputsAndOutputs.Outputs[3];
             }
         }
 
@@ -1113,7 +1113,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -1121,7 +1121,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -1129,7 +1129,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -1137,7 +1137,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput4>)this._inputsAndOutputs.Inputs[3];
+                return (InputPipe<TInput4>) this._inputsAndOutputs.Inputs[3];
             }
         }
 
@@ -1153,7 +1153,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -1197,7 +1197,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -1205,7 +1205,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -1213,7 +1213,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -1221,7 +1221,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput4>)this._inputsAndOutputs.Inputs[3];
+                return (InputPipe<TInput4>) this._inputsAndOutputs.Inputs[3];
             }
         }
 
@@ -1237,7 +1237,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -1245,7 +1245,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -1289,7 +1289,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -1297,7 +1297,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -1305,7 +1305,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -1313,7 +1313,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput4>)this._inputsAndOutputs.Inputs[3];
+                return (InputPipe<TInput4>) this._inputsAndOutputs.Inputs[3];
             }
         }
 
@@ -1329,7 +1329,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -1337,7 +1337,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -1345,7 +1345,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -1389,7 +1389,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput1>)this._inputsAndOutputs.Inputs[0];
+                return (InputPipe<TInput1>) this._inputsAndOutputs.Inputs[0];
             }
         }
 
@@ -1397,7 +1397,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput2>)this._inputsAndOutputs.Inputs[1];
+                return (InputPipe<TInput2>) this._inputsAndOutputs.Inputs[1];
             }
         }
 
@@ -1405,7 +1405,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput3>)this._inputsAndOutputs.Inputs[2];
+                return (InputPipe<TInput3>) this._inputsAndOutputs.Inputs[2];
             }
         }
 
@@ -1413,7 +1413,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (InputPipe<TInput4>)this._inputsAndOutputs.Inputs[3];
+                return (InputPipe<TInput4>) this._inputsAndOutputs.Inputs[3];
             }
         }
 
@@ -1429,7 +1429,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput1>)this._inputsAndOutputs.Outputs[0];
+                return (CollectorPipe<TOutput1>) this._inputsAndOutputs.Outputs[0];
             }
         }
 
@@ -1437,7 +1437,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput2>)this._inputsAndOutputs.Outputs[1];
+                return (CollectorPipe<TOutput2>) this._inputsAndOutputs.Outputs[1];
             }
         }
 
@@ -1445,7 +1445,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput3>)this._inputsAndOutputs.Outputs[2];
+                return (CollectorPipe<TOutput3>) this._inputsAndOutputs.Outputs[2];
             }
         }
 
@@ -1453,7 +1453,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             get
             {
-                return (CollectorPipe<TOutput4>)this._inputsAndOutputs.Outputs[3];
+                return (CollectorPipe<TOutput4>) this._inputsAndOutputs.Outputs[3];
             }
         }
 
@@ -1465,6 +1465,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
             }
         }
 
+        // AsTuple() not valid for more than 7 parameters
 
         public void Send(TInput1 value1, TInput2 value2, TInput3 value3, TInput4 value4)
         {
