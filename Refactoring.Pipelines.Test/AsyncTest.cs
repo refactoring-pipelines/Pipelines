@@ -28,6 +28,7 @@ namespace Refactoring.PipelinesAsync.Test
             var listAddPipe5 = echoPipe.Process(l => AddToList(l, 5));
             var listAddPipe6 = echoPipe.Process(l => AddToList(l, 6));
             var listAddPipe7 = echoPipe.Process(l => AddToList(l, 7));
+
             var joinedPipe = listAddPipe1.JoinTo(listAddPipe2);
 
             var list1 = new List<int>();
