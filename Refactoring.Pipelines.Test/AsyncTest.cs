@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.ApprovalTests;
@@ -9,6 +10,7 @@ using Refactoring.Pipelines.Async;
 
 namespace Refactoring.PipelinesAsync.Test
 {
+    [UseReporter(typeof(DotReporter))]
     [TestClass]
     public class AsyncTest
     {
@@ -26,7 +28,7 @@ namespace Refactoring.PipelinesAsync.Test
             var listAddPipe5 = echoPipe.Process(l => AddToList(l, 5));
             var listAddPipe6 = echoPipe.Process(l => AddToList(l, 6));
             var listAddPipe7 = echoPipe.Process(l => AddToList(l, 7));
-
+            var joinedPipe = listAddPipe1.JoinTo(listAddPipe2);
 
             var list1 = new List<int>();
             var list2 = new List<int>();
