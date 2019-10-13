@@ -3,7 +3,7 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <NoWarn>CS1591</NoWarn>
-    <Version>7.1.0</Version>
+    <Version>7.3.0</Version>
     <AssemblyVersion>1.0</AssemblyVersion>
     <AssemblyInformationalVersion>$(Version)</AssemblyInformationalVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
