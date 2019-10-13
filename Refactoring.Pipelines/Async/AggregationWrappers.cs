@@ -49,4 +49,9 @@ namespace Refactoring.Pipelines.Async
             return new AppliedPipes<TOutput1, TOutput2>(sender1, sender2);
         }
     }
+
+    public static class CollectorPipe
+    {
+        public static CollectorPipe<T> Collect<T>(this ISender<T> sender) { return new CollectorPipe<T>(sender); }
+    }
 }
