@@ -22,7 +22,6 @@
 - Convenience functions for Tuples on Process & InputPipes
 - verify file exists in DotReporter
 
-
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
@@ -33,3 +32,4 @@
 - ensure imported .svg really exist at that name
 - verify .svg are up to date in CI
 - generate NuGet packages in CI
+- https://aka.ms/deprecateIconUrl
