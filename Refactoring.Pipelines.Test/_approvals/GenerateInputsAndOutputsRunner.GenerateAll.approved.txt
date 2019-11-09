@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using ApprovalUtilities.Utilities;
 
 namespace Refactoring.Pipelines.InputsAndOutputs
 {
@@ -49,8 +50,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs1AndOutputs1(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 1);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 1);
+            Assert(_inputsAndOutputs.Inputs, 1, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 1, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -106,8 +116,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs1AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 1);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 1, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -171,8 +190,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs1AndOutputs3(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 1);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 3);
+            Assert(_inputsAndOutputs.Inputs, 1, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 3, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -244,8 +272,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs1AndOutputs4(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 1);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 4);
+            Assert(_inputsAndOutputs.Inputs, 1, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 4, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -325,8 +362,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs1AndOutputs5(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 1);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 5);
+            Assert(_inputsAndOutputs.Inputs, 1, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 5, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -414,8 +460,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs1AndOutputs6(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 1);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 6);
+            Assert(_inputsAndOutputs.Inputs, 1, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 6, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -551,8 +606,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs2AndOutputs1(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 1);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 1, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -617,8 +681,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs2AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -691,8 +764,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs2AndOutputs3(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 3);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 3, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -773,8 +855,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs2AndOutputs4(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 4);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 4, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -863,8 +954,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs2AndOutputs5(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 5);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 5, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -961,8 +1061,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs2AndOutputs6(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 6);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 6, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1104,8 +1213,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs3AndOutputs1(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 3);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 1);
+            Assert(_inputsAndOutputs.Inputs, 3, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 1, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1179,8 +1297,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs3AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 3);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 3, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1262,8 +1389,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs3AndOutputs3(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 3);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 3);
+            Assert(_inputsAndOutputs.Inputs, 3, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 3, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1353,8 +1489,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs3AndOutputs4(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 3);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 4);
+            Assert(_inputsAndOutputs.Inputs, 3, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 4, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1452,8 +1597,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs3AndOutputs5(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 3);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 5);
+            Assert(_inputsAndOutputs.Inputs, 3, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 5, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1556,8 +1710,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs3AndOutputs6(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 3);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 6);
+            Assert(_inputsAndOutputs.Inputs, 3, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 6, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1708,8 +1871,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs4AndOutputs1(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 4);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 1);
+            Assert(_inputsAndOutputs.Inputs, 4, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 1, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1792,8 +1964,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs4AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 4);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 4, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1884,8 +2065,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs4AndOutputs3(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 4);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 3);
+            Assert(_inputsAndOutputs.Inputs, 4, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 3, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -1984,8 +2174,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs4AndOutputs4(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 4);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 4);
+            Assert(_inputsAndOutputs.Inputs, 4, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 4, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2089,8 +2288,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs4AndOutputs5(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 4);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 5);
+            Assert(_inputsAndOutputs.Inputs, 4, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 5, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2202,8 +2410,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs4AndOutputs6(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 4);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 6);
+            Assert(_inputsAndOutputs.Inputs, 4, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 6, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2363,8 +2580,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs5AndOutputs1(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 5);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 1);
+            Assert(_inputsAndOutputs.Inputs, 5, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 1, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2456,8 +2682,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs5AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 5);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 5, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2557,8 +2792,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs5AndOutputs3(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 5);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 3);
+            Assert(_inputsAndOutputs.Inputs, 5, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 3, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2663,8 +2907,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs5AndOutputs4(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 5);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 4);
+            Assert(_inputsAndOutputs.Inputs, 5, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 4, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2777,8 +3030,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs5AndOutputs5(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 5);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 5);
+            Assert(_inputsAndOutputs.Inputs, 5, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 5, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -2899,8 +3161,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs5AndOutputs6(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 5);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 6);
+            Assert(_inputsAndOutputs.Inputs, 5, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 6, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -3069,8 +3340,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs6AndOutputs1(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 6);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 1);
+            Assert(_inputsAndOutputs.Inputs, 6, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 1, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -3171,8 +3451,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs6AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 6);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 6, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -3278,8 +3567,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs6AndOutputs3(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 6);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 3);
+            Assert(_inputsAndOutputs.Inputs, 6, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 3, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -3393,8 +3691,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs6AndOutputs4(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 6);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 4);
+            Assert(_inputsAndOutputs.Inputs, 6, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 4, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -3516,8 +3823,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs6AndOutputs5(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 6);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 5);
+            Assert(_inputsAndOutputs.Inputs, 6, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 5, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
@@ -3647,8 +3963,17 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         public Inputs6AndOutputs6(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 6);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 6);
+            Assert(_inputsAndOutputs.Inputs, 6, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 6, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1

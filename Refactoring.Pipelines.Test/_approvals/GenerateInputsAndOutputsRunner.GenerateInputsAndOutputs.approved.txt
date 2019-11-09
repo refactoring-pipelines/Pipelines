@@ -7,8 +7,17 @@
         public Inputs2AndOutputs2(IGraphNode node)
         {
             this._inputsAndOutputs = new InputsAndOutputs(node);
-            Debug.Assert(_inputsAndOutputs.Inputs.Count == 2);
-            Debug.Assert(_inputsAndOutputs.Outputs.Count == 2);
+            Assert(_inputsAndOutputs.Inputs, 2, "input(s)");
+            Assert(_inputsAndOutputs.Outputs, 2, "output(s)");
+        }
+
+        static private void Assert(List<IGraphNode> nodes, int expectedCount, string name)
+        {
+            if (nodes.Count != expectedCount)
+            {
+                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
+            }
         }
 
         public InputPipe<TInput1> Input1
