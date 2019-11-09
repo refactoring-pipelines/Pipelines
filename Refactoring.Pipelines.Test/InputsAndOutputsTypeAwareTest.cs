@@ -59,19 +59,14 @@ namespace Refactoring.Pipelines.Test
         public void MultipleJoinedBranches()
         {
             var input1 = new InputPipe<int>("input1");
-            var numbers1 = input1.Process(_ => _);
-            var numbers2 = input1.Process(_ => _);
+            var numbers1 = input1.Process(i1 => i1);
+            var numbers2 = input1.Process(i2 => i2);
+
             var joinedPipes = numbers1.JoinTo(numbers2).Process((a, b) => a + b);
             var collector = joinedPipes.Collect();
 
             //PipelineApprovals.Verify(input1);
-            //var inputs1AndOutputs1 = input1.GetInputs<int>().AndOutputs<int>();
-
-
-            //var sumCollector = joinedPipes.Process((a, b) => a + b).Collect();
-            //var productCollector = joinedPipes.Process((a, b) => a * b).Collect();
-
-            //var inputsAndOutputs = joinedPipes.GetInputs<int, int>().AndOutputs<int, int>();
+            var inputs1AndOutputs1 = input1.GetInputs<int>().AndOutputs<int>();
         }
     }
 }

@@ -56,9 +56,9 @@ namespace Refactoring.Pipelines
                 {
                     collectorPipes.Add(node);
                 }
-                else if (node is IGraphNodeWithOutput graphNodeWithOutput)
+                else if (node is ISender graphNodeWithOutput)
                 {
-                    nodesToWalk.AddRange(graphNodeWithOutput.Children);
+                    nodesToWalk.AddRange(graphNodeWithOutput.Children.Select(_ => _.CheckForwarding()));
                 }
             }
 
