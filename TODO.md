@@ -28,6 +28,8 @@
 - progress reporting hooks
 - Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
 
-# Safeguarding
-- run_markdown
-- imported .svg
+# Safeguarding / automation
+- run_markdown as part of CI
+- ensure imported .svg really exist at that name
+- verify .svg are up to date in CI
+- generate NuGet packages in CI
