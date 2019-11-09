@@ -62,11 +62,24 @@ namespace Refactoring.Pipelines.Test
             var numbers1 = input1.Process(i1 => i1);
             var numbers2 = input1.Process(i2 => i2);
 
-            var joinedPipes = numbers1.JoinTo(numbers2).Process((a, b) => a + b);
-            var collector = joinedPipes.Collect();
+            var joinedPipes = numbers1.JoinTo(numbers2);
+            var addPipe = joinedPipes.Process((a, b) => a + b);
+            var collector = addPipe.Collect();
 
-            //PipelineApprovals.Verify(input1);
-            var inputs1AndOutputs1 = input1.GetInputs<int>().AndOutputs<int>();
+            AssertInputsAndOutputs(input1, input1, collector);
+            AssertInputsAndOutputs(numbers1, input1, collector);
+            AssertInputsAndOutputs(numbers2, input1, collector);
+            AssertInputsAndOutputs(joinedPipes, input1, collector);
+            AssertInputsAndOutputs(addPipe, input1, collector);
+            AssertInputsAndOutputs(collector, input1, collector);
+        }
+
+        private static void AssertInputsAndOutputs(IGraphNode startingPoint, IGraphNode input1, IGraphNode output1)
+        {
+            var endPoints = startingPoint.GetInputs<int>().AndOutputs<int>();
+
+            Assert.AreEqual(input1, endPoints.Input1);
+            Assert.AreEqual(output1, endPoints.Output1);
         }
     }
 }
