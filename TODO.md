@@ -21,6 +21,8 @@
 - multiple input pipe convenience functions
 - Convenience functions for Tuples on Process & InputPipes
 - verify file exists in DotReporter
+- blog the PB&J example in code vs. pipelines to show differences and advantages
+	- these are equivalent executable programs
 
 - Properties
 -  Tuple { ... } 
