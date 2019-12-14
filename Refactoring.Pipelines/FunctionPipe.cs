@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Refactoring.Pipelines.ReflectionUtilities;
 
 namespace Refactoring.Pipelines
@@ -43,7 +44,7 @@ namespace Refactoring.Pipelines
 
         public static string FunctionNameToReadableString(Func<TInput, TOutput> func)
         {
-            return $@"{func.Method.DeclaringType.ToReadableString()}.{func.Method.Name}()";
+            return MethodNameVisualizer.FunctionNameToReadableString(func.Method);
         }
     }
 }

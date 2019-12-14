@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
@@ -270,12 +273,93 @@ namespace Refactoring.Pipelines.Test
             PipelineApprovals.Verify(input);
         }
 
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            var methods = QueryMethodsFromAssembly<ISender>();
+
+            //var methodsWhichReturnStrings = methods.Where(_ => _.ReturnType == typeof(string));
+            //methods = methods.Where(_ => _.GetParameters().Length >= 1);
+            //methods = methods.OrderBy(_ => _.GetParameters().Length);
+
+            //methods = methods.Where(_ => _.GetParameters().All(parameterInfo => parameterInfo.ParameterType.IsPrimitive));
+
+            //methods = methods.Where(_ => _.ReturnType.Assembly != typeof(ISender).Assembly);
+            methods = methods.Where(_ => _.ToCodeMetics().LinesOfCode > 1000)
+
+            Approvals.VerifyAll(methods, method => Visualizer.Of(method));
+            methods.Visualize();
+        }
+
+        private static IEnumerable<MethodInfo> QueryMethodsFromAssembly(object instance)
+        {
+            return QueryMethodFromAssembly(instance.GetType());
+        }
+
+        private static IEnumerable<MethodInfo> QueryMethodsFromAssembly<T>()
+        {
+            return QueryMethodFromAssembly(typeof(T));
+        }
+
+        private static IEnumerable<MethodInfo> QueryMethodFromAssembly(Type type)
+        {
+            var methods = type.Assembly.GetTypes()
+                .SelectMany(
+                    _ => _.GetMethods(
+                        BindingFlags.Instance
+                        | BindingFlags.Static
+                        | BindingFlags.Public
+                        | BindingFlags.NonPublic
+                        | BindingFlags.DeclaredOnly));
+
+            Predicate<MethodInfo> isClosure = methodInfo => Attribute.IsDefined(
+                methodInfo.DeclaringType,
+                typeof(CompilerGeneratedAttribute));
+
+            Predicate<MethodInfo> isFoo = methodInfo => Attribute.IsDefined(
+                methodInfo,
+                typeof(CompilerGeneratedAttribute));
+
+            methods = methods.Where(_ => !isClosure(_)).Where(_ => !isFoo(_));
+            return methods;
+        }
+
+
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }
 
         private T Echo<T>(T t) { return t; }
     }
+
+
+    public static class Visualizer
+    {
+        static List<IVisualizer> visualizers = new List<IVisualizer>
+        {
+            new MethodInfoVisualizer(), new MethodNameVisualizer(),
+        };
+
+        public static string Of(object instance)
+        {
+            return visualizers.First(_ => _.IsValidFor(instance)).Visualize(instance);
+        }
+
+        public static string Visualize(this object instance) { return Of(instance).Visualize(); }
+    }
+
+    internal class MethodInfoVisualizer : IVisualizer
+    {
+        public bool IsValidFor(object instance) { return instance is MethodInfo; }
+
+        public string Visualize(object instance)
+        {
+            var methodInfo = (MethodInfo) instance;
+            var parameters = methodInfo.GetParameters().JoinStringsWith(_ => $"{_.ParameterType.Name} {_.Name}", ", ");
+            return $"{methodInfo.ReturnType.Name} {methodInfo.DeclaringType.Name}.{methodInfo.Name} ({parameters})";
+        }
+    }
+
 
     public static class _
     {
