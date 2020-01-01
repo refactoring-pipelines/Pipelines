@@ -10,9 +10,11 @@ namespace Refactoring.Pipelines.Test
 {
     public class PipelineGenerator : CSharpSyntaxWalker
     {
-        private readonly StringBuilder _stringBuilder;
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
 
-        public PipelineGenerator(StringBuilder stringBuilder) { _stringBuilder = stringBuilder; }
+        public string Result =>
+            _stringBuilder.ToString();
+
 
         public override void VisitParameter(ParameterSyntax node)
         {
@@ -71,13 +73,16 @@ namespace Refactoring.Pipelines.Test
         public static string Generate(string input)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(input);
-            syntaxTree.GetDiagnostics().Count().Should().Be(0);
-            var rootSyntaxNode = (CompilationUnitSyntax) syntaxTree.GetRoot();
-            var memberDeclarationSyntax = rootSyntaxNode.Members.Single();
+            if (syntaxTree.GetDiagnostics().Count() > 0)
+            {
+                throw new Exception("parse error");
+            }
 
-            var stringBuilder = new StringBuilder();
-            new PipelineGenerator(stringBuilder).Visit(memberDeclarationSyntax);
-            return stringBuilder.ToString().Trim();
+            var rootSyntaxNode = (CompilationUnitSyntax) syntaxTree.GetRoot();
+
+            var pipelineGenerator = new PipelineGenerator();
+            pipelineGenerator.Visit(rootSyntaxNode);
+            return pipelineGenerator.Result.Trim();
         }
     }
 }
