@@ -15,7 +15,6 @@ namespace Refactoring.Pipelines.Test
         public string Result =>
             _stringBuilder.ToString();
 
-
         public override void VisitParameter(ParameterSyntax node)
         {
             _stringBuilder.AppendLine("// Parameter: " + node);
