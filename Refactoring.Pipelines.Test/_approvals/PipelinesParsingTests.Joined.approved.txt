@@ -1,0 +1,8 @@
+﻿// Parameter: int value1
+var value1Pipe = new InputPipe<int>("value1");
+
+// Parameter: int value2
+var value2Pipe = new InputPipe<int>("value2");
+
+// var result = F(value1, value2);
+var resultPipe = value1Pipe.JoinTo(value2Pipe).Process((value1, value2) => F(value1, value2));

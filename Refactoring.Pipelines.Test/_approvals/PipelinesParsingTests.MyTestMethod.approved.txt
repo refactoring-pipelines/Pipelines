@@ -1,0 +1,5 @@
+﻿var peanutButtersPipe = zipCodePipe.Process(PeanutButterShop.GetAvailable);
+var jelliesPipe = zipCodePipe.Process(JellyShop.GetAvailable);
+var bestSandwichPipe = peanutButtersPipe.JoinTo(jelliesPipe).Process((p, j) => Sandwich.Create(p.BestPeanutButter, j.BestJelly))
+var resultCollector = bestSandwichPipe.Collect();
+

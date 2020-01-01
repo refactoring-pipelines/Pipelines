@@ -1,3 +1,12 @@
 ﻿<ProjectConfiguration>
-  <Settings />
+  <Settings>
+    <IgnoredTests>
+      <NamedTestSelector>
+        <TestName>Refactoring.PipelinesAsync.Test.AsyncTest.ParallelRuns</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>Refactoring.Pipelines.Test.PipelinesParsingTests.JoinedArguments</TestName>
+      </NamedTestSelector>
+    </IgnoredTests>
+  </Settings>
 </ProjectConfiguration>

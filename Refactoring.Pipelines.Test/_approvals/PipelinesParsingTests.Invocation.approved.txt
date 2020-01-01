@@ -1,0 +1,2 @@
+﻿// var peanutButters = PeanutButterShop.GetAvailable(zipCode);
+var peanutButtersPipe = zipCodePipe.Process((zipCode) => PeanutButterShop.GetAvailable(zipCode));
