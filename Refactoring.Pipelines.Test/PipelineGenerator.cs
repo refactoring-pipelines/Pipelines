@@ -10,22 +10,19 @@ namespace Refactoring.Pipelines.Test
 {
     public class PipelineGenerator : CSharpSyntaxWalker
     {
-        private readonly StringBuilder _stringBuilder = new StringBuilder();
-
-        public string Result =>
-            _stringBuilder.ToString();
+        public string Result;
 
         public override void VisitParameter(ParameterSyntax node)
         {
-            _stringBuilder.AppendLine("// Parameter: " + node);
+            Result += "// Parameter: " + node + "\n";
 
             string Generate(ParameterSyntax syntax)
             {
                 return $@"var {syntax.Identifier}Pipe = new InputPipe<{syntax.Type}>(""{syntax.Identifier}"");";
             }
 
-            _stringBuilder.AppendLine(Generate(node));
-            _stringBuilder.AppendLine();
+            Result += Generate(node) + "\n";
+            Result += "\n";
 
             base.VisitParameter(node);
         }
@@ -42,19 +39,18 @@ namespace Refactoring.Pipelines.Test
                 .Cast<IdentifierNameSyntax>()
                 .Select(_ => _.Identifier.Text);
 
-            this._stringBuilder.Append($"{identifierNames.First()}Pipe");
+            Result += ($"{identifierNames.First()}Pipe");
 
             if (identifierNames.Count() > 1)
             {
-                this._stringBuilder.Append(
-                    $".JoinTo({identifierNames.Skip(1).Select(_ => _ + "Pipe").JoinWith(", ")})");
+                Result += ($".JoinTo({identifierNames.Skip(1).Select(_ => _ + "Pipe").JoinWith(", ")})");
             }
 
             var parameterList = "(" + identifierNames.JoinWith(", ") + ")";
             var expression = node.Expression;
-            this._stringBuilder.Append($".Process({parameterList} => {expression}{parameterList});");
+            Result += ($".Process({parameterList} => {expression}{parameterList});");
 
-            this._stringBuilder.AppendLine();
+            this.Result += "\n";
 
 
             base.VisitInvocationExpression(node);
@@ -62,11 +58,11 @@ namespace Refactoring.Pipelines.Test
 
         public override void VisitLocalDeclarationStatement(LocalDeclarationStatementSyntax node)
         {
-            _stringBuilder.AppendLine("// " + node);
+            Result += "// " + node + "\n";
             var variableDeclaratorSyntax = node.Declaration.Variables.Single();
-            _stringBuilder.Append($"var {variableDeclaratorSyntax.Identifier}Pipe = ");
+            Result += ($"var {variableDeclaratorSyntax.Identifier}Pipe = ");
             base.VisitLocalDeclarationStatement(node);
-            _stringBuilder.AppendLine();
+            Result += "\n";
         }
 
         public static string Generate(string input)
