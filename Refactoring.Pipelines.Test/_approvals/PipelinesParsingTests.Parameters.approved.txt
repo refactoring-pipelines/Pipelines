@@ -1,2 +1,1 @@
-﻿// Parameter: ZipCode zipCode
-var zipCodePipe = new InputPipe<ZipCode>("zipCode");
+﻿var zipCodePipe = new InputPipe<ZipCode>("zipCode");

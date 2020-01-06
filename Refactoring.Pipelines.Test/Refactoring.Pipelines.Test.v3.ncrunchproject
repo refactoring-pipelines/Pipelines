@@ -1,5 +1,8 @@
 ﻿<ProjectConfiguration>
   <Settings>
+    <HiddenComponentWarnings>
+      <Value>MicrosoftNetCompilersNotSupported</Value>
+    </HiddenComponentWarnings>
     <IgnoredTests>
       <NamedTestSelector>
         <TestName>Refactoring.PipelinesAsync.Test.AsyncTest.ParallelRuns</TestName>
