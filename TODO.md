@@ -38,3 +38,4 @@
 - verify .svg are up to date in CI
 - generate NuGet packages in CI
 - https://aka.ms/deprecateIconUrl
+- detect `ProcessFunction(l => ambda)` - should throw an exception to catch this mistake
