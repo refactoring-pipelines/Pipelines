@@ -39,3 +39,4 @@
 - generate NuGet packages in CI
 - https://aka.ms/deprecateIconUrl
 - detect `ProcessFunction(l => ambda)` - should throw an exception to catch this mistake
+- GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
