@@ -15,6 +15,7 @@ IF ERRORLEVEL 1 exit /b 1
 
 FOR %%f IN (nuget_packages\*.nupkg) DO (
     NuGet push %%f -Source nuget.org
+    IF ERRORLEVEL 1 exit /b 1
 )
 
 pause 
