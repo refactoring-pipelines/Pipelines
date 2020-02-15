@@ -27,7 +27,7 @@ namespace Refactoring.Pipelines
                 var node = nodesToWalk.First();
                 nodesToWalk.Remove(node);
 
-                if (node.GetType().GetGenericTypeDefinition() == typeof(InputPipe<>))
+                if (node is IInputNode)
                 {
                     inputPipes.Add(node);
                 }

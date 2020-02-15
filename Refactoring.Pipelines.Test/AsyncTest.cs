@@ -7,6 +7,7 @@ using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.Async;
+using Refactoring.Pipelines.InputsAndOutputs;
 
 namespace Refactoring.PipelinesAsync.Test
 {
@@ -39,6 +40,16 @@ namespace Refactoring.PipelinesAsync.Test
             Assert.AreEqual(list1.OrderBy(_ => _).ToReadableString(), list2.OrderBy(_ => _).ToReadableString());
 
             PipelineApprovals.Verify(inputPipe);
+        }
+
+        [TestMethod]
+        public void InputsAndOutputs()
+        {
+            var inputPipe = new InputPipe<int>("input1");
+            var collectorPipe = inputPipe.Collect();
+            var subject = inputPipe.GetInputs<int>().AndOutputs<int>();
+            Assert.AreEqual(inputPipe, subject.Input1);
+            Assert.AreEqual(collectorPipe, subject.Output1);
         }
 
         private static int AddToList(List<int> l, int value)
