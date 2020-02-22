@@ -178,7 +178,7 @@ namespace Refactoring.Pipelines.Test
         {
             var input1 = new InputPipe<long>("value1");
             var subject = new NodeMetadata.CannotFindNodeException(input1);
-            Approvals.Verify(subject);
+            Approvals.VerifyException(subject);
         }
 
         [TestMethod]
