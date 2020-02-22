@@ -18,9 +18,7 @@ A library for implementing programs as Pipeline objects. Inspired by Arlo Belshe
   * [Refactoring To Async](#refactoring-to-async)
   * [Available on NuGet](#available-on-nuget)
   * [Suggested VSCode Plugin](#suggested-vscode-plugin)
-  * [Attribution](#attribution)
-<!-- endtoc -->
-
+  * [Attribution](#attribution)<!-- endtoc -->
 
 
 ## Pipelines

@@ -13,9 +13,7 @@ To change this file edit the source file and then run MarkdownSnippets.
   * [Creating Pipelines](#creating-pipelines)
     * [Basic pipelines](#basic-pipelines)
     * [But Why?!?!](#but-why)
-  * [Actions](#actions)
-<!-- endtoc -->
-
+  * [Actions](#actions)<!-- endtoc -->
 
 ## Creating Pipelines
 
@@ -28,7 +26,7 @@ Let's say you have the following line of code:
 ```cs
 var result = long.Parse(age);
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24) / [anchor](#snippet-basic_code_line)</sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24' title='File snippet `basic_code_line` was extracted from'>snippet source</a> | <a href='#snippet-basic_code_line' title='Navigate to start of snippet `basic_code_line`'>anchor</a></sup>
 <!-- endsnippet -->
 
 You can refactor this to pipelines with the following
@@ -43,7 +41,7 @@ var collector = parsePipe.Collect();
 inputPipe.Send("42");
 var result = collector.SingleResult;
 ```
-<sup>[snippet source](/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36) / [anchor](#snippet-basic_pipeline)</sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36' title='File snippet `basic_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-basic_pipeline' title='Navigate to start of snippet `basic_pipeline`'>anchor</a></sup>
 <!-- endsnippet -->
 
 These will produce the same results.

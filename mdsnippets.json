@@ -1,0 +1,15 @@
+{
+    "ReadOnly": true,
+    "WriteHeader": true,
+    "TreatMissingSnippetAsWarning": true,
+    "TreatMissingIncludeAsWarning": true,
+
+    "// LinkFormat": "Tfs",
+    "// TocLevel": 3,
+    "// Exclude": [ "Dir1", "Dir2" ],
+    "// UrlsAsSnippets": [ "Url1", "Url2" ],
+    "// TocExcludes": [ "Exclude Heading1", "Exclude Heading2" ],
+    "// MaxWidth": 80,
+    "// Header": "GENERATED FILE - Source File: {relativePath}",
+    "// UrlPrefix": "TheUrlPrefix"
+}
