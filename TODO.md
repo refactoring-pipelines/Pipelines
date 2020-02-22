@@ -34,7 +34,5 @@
 - ensure imported .svg really exist at that name
 - verify .svg are up to date in CI
 - generate NuGet packages in CI
-- Warn-as-error in CI
-- https://aka.ms/deprecateIconUrl
 - detect `ProcessFunction(l => ambda)` - should throw an exception to catch this mistake
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
