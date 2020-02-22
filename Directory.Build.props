@@ -12,7 +12,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) Llewellyn Falco &amp; Jay Bazuzi. All rights reserved.</Copyright>
     <PackageTags>async pipeline</PackageTags>
-    <PackageIconUrl>https://github.com/refactoring-pipelines/Pipelines/blob/master/docs/images/pipeline_icon.png?raw=true</PackageIconUrl>
+    <PackageIcon>pipeline_icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/refactoring-pipelines/Pipelines</PackageProjectUrl>
     <PackageOutputPath>$(SolutionDir)nuget_packages</PackageOutputPath>
     <DebugType>embedded</DebugType>
@@ -20,4 +20,11 @@
     <!-- <PackageReference Condition="$(Configuration) == 'Release'" Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01" PrivateAssets="All" /> -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
+
+ <ItemGroup>
+   <None Include="..\docs\images\pipeline_icon.png">
+     <Pack>True</Pack>
+     <PackagePath />
+   </None>
+ </ItemGroup>
 </Project>
