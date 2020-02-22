@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ApprovalUtilities.Utilities;
 
 namespace Refactoring.Pipelines.InputsAndOutputs
@@ -58,7 +59,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -124,7 +125,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -198,7 +199,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -280,7 +281,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -370,7 +371,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -468,7 +469,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -614,7 +615,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -689,7 +690,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -772,7 +773,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -863,7 +864,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -962,7 +963,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1069,7 +1070,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1221,7 +1222,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1305,7 +1306,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1397,7 +1398,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1497,7 +1498,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1605,7 +1606,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1718,7 +1719,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1879,7 +1880,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -1972,7 +1973,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2073,7 +2074,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2182,7 +2183,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2296,7 +2297,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2418,7 +2419,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2588,7 +2589,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2690,7 +2691,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2800,7 +2801,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -2915,7 +2916,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3038,7 +3039,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3169,7 +3170,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3348,7 +3349,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3459,7 +3460,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3575,7 +3576,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3699,7 +3700,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3831,7 +3832,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }
@@ -3971,7 +3972,7 @@ namespace Refactoring.Pipelines.InputsAndOutputs
         {
             if (nodes.Count != expectedCount)
             {
-                var names = nodes.JoinStringsWith(_ => _.Name, ", ");
+                var names = nodes.Select(_ => _.Name).JoinWith(", ");
                 throw new Exception($"{expectedCount} {name} expected, but got [{names}]");
             }
         }

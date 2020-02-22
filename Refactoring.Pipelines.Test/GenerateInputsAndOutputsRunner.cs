@@ -52,6 +52,7 @@ namespace Refactoring.Pipelines.Test
             var result = new StringBuilder();
             result.AppendLine("using System;");
             result.AppendLine("using System.Collections.Generic;");
+            result.AppendLine("using System.Linq;");
             result.AppendLine("using ApprovalUtilities.Utilities;");
 
             for (var inputCount = 1; inputCount <= 6; inputCount++)
