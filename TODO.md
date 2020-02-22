@@ -16,7 +16,7 @@
 		var c = C(a); // is it important that C comes *after* B?
 		var d = D(b, c);
 	```
-- Exceptions
+- Propagate Exceptions through a pipeline
 - Learn about Apache Beam
 - Join/Apply when one side never provides an input - does the system stall?
 - multiple input pipe convenience functions
