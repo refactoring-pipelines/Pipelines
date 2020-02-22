@@ -1,5 +1,3 @@
-
-- update approvals
 - Roslyn code converter
 - Async
 	- test sometimes fails, missing a value (flaky)
