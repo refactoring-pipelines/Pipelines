@@ -4,6 +4,7 @@ using System.Linq;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.DotGraph;
@@ -57,7 +58,7 @@ namespace Refactoring.Pipelines.Test
         {
             var input = new InputPipe<int>("i");
             var collector = input.ProcessFunction(RangeArray)
-                .ProcessFunction(_ => (IEnumerable<int>) _) // Would be nice not to need this
+                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
                 .ProcessFunction(SumEnumerable)
                 .Collect();
             input.Send(4);
@@ -202,7 +203,7 @@ namespace Refactoring.Pipelines.Test
 
             var manualApplyTo =
                 // begin-snippet: ApplyTo_manual
-                prefix.JoinTo(values).ProcessFunction(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
+                prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
             // end-snippet
             var manualApplyToResult = manualApplyTo.Collect();
 
@@ -235,7 +236,7 @@ namespace Refactoring.Pipelines.Test
 
             var manualConcatWith =
                 // begin-snippet: ConcatWith_manual
-                part1.JoinTo(part2).ProcessFunction(t => t.Item1.Concat(t.Item2).ToList());
+                part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
             // end-snippet
             var manualConcatWithResult = manualConcatWith.Collect();
 
@@ -268,6 +269,14 @@ namespace Refactoring.Pipelines.Test
             // end-snippet
 
             PipelineApprovals.Verify(input);
+        }
+
+        [TestMethod]
+        public void LambdaWithProcessFunction_ShouldThrow()
+        {
+            var input = new InputPipe<int>("input");
+            var exception = ExceptionUtilities.GetException(() => input.ProcessFunction(p => p.ToString()));
+            Approvals.VerifyException(exception);
         }
 
         private string LongToString(long value) { return value.ToString(); }

@@ -29,10 +29,15 @@
 -  Tuple { ... } 
 - progress reporting hooks
 - Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
+- Consider adding `.Cast<>`. See `PipelineTests.ProcessIsNotCovariant()`:
+```
+                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
+```
 
 # Safeguarding / automation
 - ensure imported .svg really exist at that name
 - verify .svg are up to date in CI
 - generate NuGet packages in CI
-- detect `ProcessFunction(l => ambda)` - should throw an exception to catch this mistake
+* detect `ProcessFunction(l => ambda)` - should throw an exception to catch this mistake
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
+- Run same tests against both Sync and Async APIs

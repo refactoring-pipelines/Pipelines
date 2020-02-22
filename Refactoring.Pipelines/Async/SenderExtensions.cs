@@ -8,6 +8,7 @@ namespace Refactoring.Pipelines.Async
     {
         public static FunctionPipe<T, TOutput> ProcessFunction<T, TOutput>(this Sender<T> @this, Func<T, TOutput> func)
         {
+            Pipelines.SenderExtensions.AssertNotLambda(func);
             return new FunctionPipe<T, TOutput>(func, @this);
         }
 
@@ -18,7 +19,6 @@ namespace Refactoring.Pipelines.Async
             var name = func.ExpressionToReadableString();
             return new FunctionPipe<T, TOutput>(name, func.Compile(), @this);
         }
-
 
         public static FunctionPipe<T, TOutput> Process<T, TOutput>(
             this Sender<T> @this,
