@@ -11,6 +11,13 @@ before_build:
 build:
   verbosity: minimal
 
+after_build:
+  # check if any files were modified by the build. Known causes:
+  #   - MarkdownSnippets was updated but .md files weren't regenerated
+  #   - .source.md files were modified but .md files weren't regenerated
+  - git add -A --renormalize
+  - git diff-index --quiet HEAD
+
 artifacts:
 - path: '**\*.dot'
   name: Files
