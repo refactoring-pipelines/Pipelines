@@ -8,6 +8,7 @@ using ApprovalTests;
 using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mono.Cecil;
 using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.DotGraph;
 
@@ -276,7 +277,7 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void MyTestMethod()
         {
-            var methods = QueryMethodsFromAssembly<ISender>();
+            //var methods = QueryMethodsFromAssembly<ISender>();
 
             //var methodsWhichReturnStrings = methods.Where(_ => _.ReturnType == typeof(string));
             //methods = methods.Where(_ => _.GetParameters().Length >= 1);
@@ -285,10 +286,22 @@ namespace Refactoring.Pipelines.Test
             //methods = methods.Where(_ => _.GetParameters().All(parameterInfo => parameterInfo.ParameterType.IsPrimitive));
 
             //methods = methods.Where(_ => _.ReturnType.Assembly != typeof(ISender).Assembly);
-            methods = methods.Where(_ => _.ToCodeMetics().LinesOfCode > 1000)
+            ModuleDefinition module = ModuleDefinition.ReadModule(typeof(ISender).Assembly.Location);
+            var methodDefinitions = module.Types.SelectMany(_ => _.Methods)
+                .Where(_ => _.HasBody)
+                .OrderByDescending(_ => _.Body.Instructions.Count)
+                .Select(
+                    _ => new
+                    {
+                        BodyInstructionCount = _.Body.Instructions.Count,
+                        MethodName = _.DeclaringType.Name + ' ' + _.Name,
+                    });
+            Approvals.VerifyAll(methodDefinitions, "method definitions");
 
-            Approvals.VerifyAll(methods, method => Visualizer.Of(method));
-            methods.Visualize();
+            //methods = methods.Where(_ => _.ToCodeMetics().LinesOfCode > 1000)
+
+            //Approvals.VerifyAll(methods, method => Visualizer.Of(method));
+            //methods.Visualize();
         }
 
         private static IEnumerable<MethodInfo> QueryMethodsFromAssembly(object instance)
