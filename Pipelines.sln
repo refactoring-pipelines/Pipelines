@@ -7,9 +7,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Refactoring.Pipelines.Test"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Refactoring.Pipelines", "Refactoring.Pipelines\Refactoring.Pipelines.csproj", "{29A821A7-3E4A-448B-B93D-FD2FC4C8C9B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.Pipelines.DotGraph", "Refactoring.Pipelines.DotGraph\Refactoring.Pipelines.DotGraph.csproj", "{26320607-24EE-4D27-A697-A7B4F0EF0751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Refactoring.Pipelines.DotGraph", "Refactoring.Pipelines.DotGraph\Refactoring.Pipelines.DotGraph.csproj", "{26320607-24EE-4D27-A697-A7B4F0EF0751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.Pipelines.Approvals", "Refactoring.Pipelines.Approvals\Refactoring.Pipelines.Approvals.csproj", "{256DD1C2-5852-4D32-B547-7256564A16CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Refactoring.Pipelines.Approvals", "Refactoring.Pipelines.Approvals\Refactoring.Pipelines.Approvals.csproj", "{256DD1C2-5852-4D32-B547-7256564A16CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{01BE10E3-171D-4E53-8B8C-0A463A49D340}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		Directory.Build.props = Directory.Build.props
+		mdsnippets.json = mdsnippets.json
+		PublishToNuget.cmd = PublishToNuget.cmd
+		README.md = README.md
+		TODO.md = TODO.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
