@@ -11,7 +11,6 @@ using Refactoring.Pipelines.InputsAndOutputs;
 
 namespace Refactoring.PipelinesAsync.Test
 {
-    [UseReporter(typeof(DotReporter))]
     [TestClass]
     public class AsyncTest
     {

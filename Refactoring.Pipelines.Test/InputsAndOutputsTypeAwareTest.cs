@@ -6,7 +6,6 @@ using Refactoring.Pipelines.InputsAndOutputs;
 
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(DotReporter))]
     [TestClass]
     public class InputsAndOutputsTypeAwareTest
     {
@@ -55,7 +54,6 @@ namespace Refactoring.Pipelines.Test
         }
 
         [TestMethod]
-        [UseReporter(typeof(DotReporter))]
         public void MultipleJoinedBranches()
         {
             var input1 = new InputPipe<int>("input1");

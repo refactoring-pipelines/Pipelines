@@ -6,7 +6,6 @@ using Refactoring.Pipelines.InputsAndOutputs;
 
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(DotReporter))]
     [TestClass]
     public class InputsAndOutputsBasicTests
     {
