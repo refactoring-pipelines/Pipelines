@@ -33,6 +33,9 @@
 ```
                 .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
 ```
+- Update Approvaltests:
+	DotReporter.cs(5,32): error CS0619: 'GenericDiffReporter' is obsolete: 'Use `DiffTools.AddCustomTool` instead. Will be removed in version 5.1.0.' [C:\projects\pipelines\Refactoring.Pipelines.Approvals\Refactoring.Pipelines.Approvals.csproj]
+
 
 # Safeguarding / automation
 - ensure imported .svg really exist at that name
