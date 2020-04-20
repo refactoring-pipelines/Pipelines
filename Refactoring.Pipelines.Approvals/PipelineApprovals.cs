@@ -23,7 +23,7 @@ namespace Refactoring.Pipelines.ApprovalTests
             var exePath = exePaths.FirstOrDefault(File.Exists);
             if (exePath !=null)
             {
-                DiffTools.AddCustomTool(DiffTool.VisualStudioCode
+                DiffTools.AddCustomTool(DiffTool.VisualStudioCode,
                     buildArguments: (tempFile, targetFile) => { return $"-r \"{tempFile}\""; });
             }
         }
