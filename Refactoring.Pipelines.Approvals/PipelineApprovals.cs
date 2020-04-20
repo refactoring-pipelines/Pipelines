@@ -37,10 +37,10 @@ namespace Refactoring.Pipelines.ApprovalTests
 }
 
 
-using ApprovalTests.Reporters;
-
 namespace Refactoring.Pipelines.ApprovalTests
 {
+    using ApprovalTests.Reporters;
+
     public class DotReporter : IEnvironmentAwareReporter
     {
         public static readonly DotReporter INSTANCE = new DotReporter();
