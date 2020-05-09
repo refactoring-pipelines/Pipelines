@@ -54,7 +54,7 @@ namespace Refactoring.Pipelines.Test
         }
 
         [TestMethod]
-        public void ProcessIsNotCovariant()
+        public void ProcessIsCovariant()
         {
             var input = new InputPipe<int>("i");
             var collector = input.ProcessFunction(RangeArray)
@@ -63,8 +63,6 @@ namespace Refactoring.Pipelines.Test
             input.Send(4);
             Assert.AreEqual(10, collector.SingleResult);
         }
-
-        //[UseReporter(typeof(DiffReporter), typeof(VisualStudioReporter))]
 
         [TestMethod]
         public void Cast()
@@ -81,7 +79,6 @@ namespace Refactoring.Pipelines.Test
         private int SumEnumerable(IEnumerable<int> _) { return _.Sum(); }
 
         private int[] RangeArray(int count) { return Enumerable.Range(1, count).ToArray(); }
-        private IEnumerable<int> RangeArray2(int count) { return Enumerable.Range(1, count).ToArray(); }
 
         [TestMethod]
         public void ConnectedPipelinesTest()
