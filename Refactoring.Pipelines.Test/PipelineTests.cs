@@ -57,9 +57,9 @@ namespace Refactoring.Pipelines.Test
         public void ProcessIsCovariant()
         {
             var input = new InputPipe<int>("i");
-            var collector = input.ProcessFunction(RangeArray)
-                .ProcessFunction(SumEnumerable)
-                .Collect();
+            var intArrayPipe = input.ProcessFunction(RangeArray);
+            var iEnumerableIntPipe = intArrayPipe.ProcessFunction(SumEnumerable);
+            var collector = iEnumerableIntPipe.Collect();
             input.Send(4);
             Assert.AreEqual(10, collector.SingleResult);
         }
