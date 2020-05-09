@@ -64,17 +64,13 @@ namespace Refactoring.Pipelines.Test
             Assert.AreEqual(10, collector.SingleResult);
         }
 
-        [UseReporter(typeof(DiffReporter), typeof(VisualStudioReporter))]
+        //[UseReporter(typeof(DiffReporter), typeof(VisualStudioReporter))]
 
         [TestMethod]
-        public void Foo()
+        public void Cast()
         {
-            // set input of animal
             var input = new InputPipe<Animal>("animal");
-            // cast to dog
             var dog = input.Cast<Animal, Dog>();
-            // var dog = input.Process(_ => (Dog) _);
-            // check if the dog is a good boy
             var collector = dog.Process(d => d.IsGoodBoy).Collect();
             input.Send(new Dog());
             Assert.IsTrue(collector.SingleResult);

@@ -30,7 +30,7 @@ var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L186-L190' title='File snippet `joined_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-joined_pipeline' title='Navigate to start of snippet `joined_pipeline`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L182-L186' title='File snippet `joined_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-joined_pipeline' title='Navigate to start of snippet `joined_pipeline`'>anchor</a></sup>
 <!-- endsnippet -->
 
 will produce:
@@ -49,7 +49,7 @@ For example, if you had:
 var apply = "#";
 var to = new[] {1, 2};
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L213-L216' title='File snippet `applyto_inputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_inputs' title='Navigate to start of snippet `applyto_inputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L209-L212' title='File snippet `applyto_inputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_inputs' title='Navigate to start of snippet `applyto_inputs`'>anchor</a></sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -59,7 +59,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L218-L220' title='File snippet `applyto_outputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_outputs' title='Navigate to start of snippet `applyto_outputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L214-L216' title='File snippet `applyto_outputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_outputs' title='Navigate to start of snippet `applyto_outputs`'>anchor</a></sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -69,7 +69,7 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L223-L225' title='File snippet `applyto_manual` was extracted from'>snippet source</a> | <a href='#snippet-applyto_manual' title='Navigate to start of snippet `applyto_manual`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L219-L221' title='File snippet `applyto_manual` was extracted from'>snippet source</a> | <a href='#snippet-applyto_manual' title='Navigate to start of snippet `applyto_manual`'>anchor</a></sup>
 <!-- endsnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
@@ -88,7 +88,7 @@ For example, if you had:
 var concat = new List<int> {1, 2};
 var with = new[] {3, 4};
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L246-L249' title='File snippet `concatwith_inputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_inputs' title='Navigate to start of snippet `concatwith_inputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L242-L245' title='File snippet `concatwith_inputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_inputs' title='Navigate to start of snippet `concatwith_inputs`'>anchor</a></sup>
 <!-- endsnippet -->
 
 You can combine them to produce the following output:
@@ -98,7 +98,7 @@ You can combine them to produce the following output:
 ```cs
 var result = "[1, 2, 3, 4]";
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L251-L253' title='File snippet `concatwith_outputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_outputs' title='Navigate to start of snippet `concatwith_outputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L247-L249' title='File snippet `concatwith_outputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_outputs' title='Navigate to start of snippet `concatwith_outputs`'>anchor</a></sup>
 <!-- endsnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
@@ -108,7 +108,7 @@ For reference you can do this manually (although it creates a bad visualization)
 ```cs
 part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L256-L258' title='File snippet `concatwith_manual` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_manual' title='Navigate to start of snippet `concatwith_manual`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L252-L254' title='File snippet `concatwith_manual` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_manual' title='Navigate to start of snippet `concatwith_manual`'>anchor</a></sup>
 <!-- endsnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
@@ -125,7 +125,7 @@ the `FunctionPipe` uses the name of the function, but if you pass in a lambda it
 var input = new InputPipe<int>("input");
 input.Process(p => p.ToString());
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L284-L287' title='File snippet `process_lambda` was extracted from'>snippet source</a> | <a href='#snippet-process_lambda' title='Navigate to start of snippet `process_lambda`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L280-L283' title='File snippet `process_lambda` was extracted from'>snippet source</a> | <a href='#snippet-process_lambda' title='Navigate to start of snippet `process_lambda`'>anchor</a></sup>
 <!-- endsnippet -->
 
 will look like:
