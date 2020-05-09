@@ -16,4 +16,17 @@ namespace Refactoring.Pipelines
                 sender);
         }
     }
+
+    public static class CastPipe
+    {
+        public static FunctionPipe<TInput, TOutput> Cast<TInput, TOutput>(
+            this ISender<TInput> sender)
+        {
+            //return new FunctionPipe<TInput, TOutput>(
+            //    $"Cast({typeof(<TOutput>)})",
+            //    p => p.Select(func).ToList(),
+            //    sender);
+            return null;
+        }
+    }
 }

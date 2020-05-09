@@ -1,0 +1,19 @@
+﻿digraph G { node [style=filled, shape=rec]
+
+# Nodes
+"Animal animal" -> "Cast<Dog>" -> "Dog"
+"Dog" -> "d.IsGoodBoy" -> {"Boolean", "Collector"}
+
+
+# Formatting
+"Animal animal" [color=green]
+"Dog" [color="#9fbff4"]
+"Cast<Dog>" [shape=invhouse]
+"Boolean" [color="#9fbff4"]
+"d.IsGoodBoy" [shape=invhouse]
+"Collector" [color = "#c361f4"]
+
+{ rank=same; "d.IsGoodBoy", "Collector"}
+
+
+}

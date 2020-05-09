@@ -1,4 +1,4 @@
-- Consider adding `.Cast<>`. See `PipelineTests.ProcessIsNotCovariant()`:
+* Consider adding `.Cast<>`. See `PipelineTests.ProcessIsNotCovariant()`:
 ```
                 .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
 ```

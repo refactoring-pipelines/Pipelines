@@ -58,16 +58,32 @@ namespace Refactoring.Pipelines.Test
         {
             var input = new InputPipe<int>("i");
             var collector = input.ProcessFunction(RangeArray)
-                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
                 .ProcessFunction(SumEnumerable)
                 .Collect();
             input.Send(4);
             Assert.AreEqual(10, collector.SingleResult);
         }
 
+        [TestMethod]
+        public void Foo()
+        {
+            // set input of animal
+            var input = new InputPipe<Animal>("animal");
+            // cast to dog
+            var dog = input.Cast<Animal, Dog>();
+            // var dog = input.Process(_ => (Dog) _);
+            // check if the dog is a good boy
+            var collector = dog.Process(d => d.IsGoodBoy).Collect();
+            input.Send(new Dog());
+            Assert.IsTrue(collector.SingleResult);
+            PipelineApprovals.Verify(input);
+        }
+
+
         private int SumEnumerable(IEnumerable<int> _) { return _.Sum(); }
 
         private int[] RangeArray(int count) { return Enumerable.Range(1, count).ToArray(); }
+        private IEnumerable<int> RangeArray2(int count) { return Enumerable.Range(1, count).ToArray(); }
 
         [TestMethod]
         public void ConnectedPipelinesTest()
@@ -284,6 +300,16 @@ namespace Refactoring.Pipelines.Test
         private long IncrementLong(long value) { return value + 1; }
 
         private T Echo<T>(T t) { return t; }
+    }
+
+    public class Dog : Animal
+    {
+        public bool IsGoodBoy =>
+            true;
+    }
+
+    public class Animal
+    {
     }
 
     public static class _
