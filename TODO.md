@@ -1,3 +1,10 @@
+- Consider adding `.Cast<>`. See `PipelineTests.ProcessIsNotCovariant()`:
+```
+                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
+```
+- Propagate Exceptions through a pipeline
+- GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
+- Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
 - Roslyn code converter
 - Async
 	- test sometimes fails, missing a value (flaky)
@@ -16,29 +23,21 @@
 		var c = C(a); // is it important that C comes *after* B?
 		var d = D(b, c);
 	```
-- Propagate Exceptions through a pipeline
 - Learn about Apache Beam
 - Join/Apply when one side never provides an input - does the system stall?
 - multiple input pipe convenience functions
 - Convenience functions for Tuples on Process & InputPipes
-- verify file exists in DotReporter
 - blog the PB&J example in code vs. pipelines to show differences and advantages
 	- these are equivalent executable programs
 
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
-- Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
-- Consider adding `.Cast<>`. See `PipelineTests.ProcessIsNotCovariant()`:
-```
-                .Process(_ => (IEnumerable<int>) _) // Would be nice not to need this
-```
 
 
 # Safeguarding / automation
 - ensure imported .svg really exist at that name
 - verify .svg are up to date in CI
 - generate NuGet packages in CI
-- GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
 - Run same tests against both Sync and Async APIs
 - Create CI for PipelinesExercise (use GitHub Actions to learn about them)
