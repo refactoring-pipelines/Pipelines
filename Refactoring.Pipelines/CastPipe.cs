@@ -2,10 +2,10 @@
 {
     public static class CastPipe
     {
-        public static FunctionPipe<TInput, TOutput> Cast<TInput, TOutput>(
-            this ISender<TInput> sender) where TOutput : TInput 
+        public static Sender<TOutput> Cast<TOutput>(
+            this ISender<object> sender) 
         {
-            return new FunctionPipe<TInput, TOutput>(
+            return new FunctionPipe<object, TOutput>(
                 $"Cast<{typeof(TOutput).Name}>",
                 p => (TOutput)p,
                 sender);

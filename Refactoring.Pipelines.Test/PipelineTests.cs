@@ -70,7 +70,7 @@ namespace Refactoring.Pipelines.Test
         public void Cast()
         {
             var input = new InputPipe<Animal>("animal");
-            var dog = input.Cast<Animal, Dog>();
+            var dog = input.Cast<Dog>();
             var collector = dog.Process(d => d.IsGoodBoy).Collect();
             input.Send(new Dog());
             Assert.IsTrue(collector.SingleResult);
