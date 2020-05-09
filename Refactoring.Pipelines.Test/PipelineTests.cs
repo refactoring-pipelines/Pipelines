@@ -64,6 +64,8 @@ namespace Refactoring.Pipelines.Test
             Assert.AreEqual(10, collector.SingleResult);
         }
 
+        [UseReporter(typeof(DiffReporter), typeof(VisualStudioReporter))]
+
         [TestMethod]
         public void Foo()
         {
