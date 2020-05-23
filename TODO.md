@@ -1,8 +1,9 @@
-- generate svg/png programatically
+* generate svg/png programatically
+	https://github.com/timothy-shields/graphviz
 - code converter (Roslyn or Mono.Cecil)
 - Propagate Exceptions through a pipeline
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
-- Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
+
 - Async
 	- test sometimes fails, missing a value (flaky)
 	- TEST: pipeline that writes to side effect
