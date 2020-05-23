@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Refactoring.Pipelines.ApprovalsWithGraphViz\Refactoring.Pipelines.ApprovalsWithGraphViz.csproj" />
     <ProjectReference Include="..\Refactoring.Pipelines.Approvals\Refactoring.Pipelines.Approvals.csproj" />
     <ProjectReference Include="..\Refactoring.Pipelines.DotGraph\Refactoring.Pipelines.DotGraph.csproj" />
     <ProjectReference Include="..\Refactoring.Pipelines\Refactoring.Pipelines.csproj" />

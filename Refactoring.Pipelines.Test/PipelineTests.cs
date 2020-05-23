@@ -6,6 +6,7 @@ using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Refactoring.Pipelines.ApprovalsWithGraphViz;
 using Refactoring.Pipelines.ApprovalTests;
 using Refactoring.Pipelines.DotGraph;
 
@@ -39,6 +40,20 @@ namespace Refactoring.Pipelines.Test
             };
 
             Assert.AreEqual(normal("42"), piped("42"));
+        }
+
+        [TestMethod]
+        [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
+        public void TestPng()
+        {
+            // Create a quick pipeline with an input
+            var input = new InputPipe<string>("age");
+            var parse = input.ProcessFunction(long.Parse);
+            var collector = parse.Collect();
+
+
+            // Verify the pipeline as PNG
+            PipelineApprovalsWithGraphViz.VerifyAsPng(input);
         }
 
         [TestMethod]

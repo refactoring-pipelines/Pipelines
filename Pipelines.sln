@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TODO.md = TODO.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refactoring.Pipelines.ApprovalsWithGraphViz", "Refactoring.Pipelines.ApprovalsWithGraphViz\Refactoring.Pipelines.ApprovalsWithGraphViz.csproj", "{867BED7E-2C83-45F7-9A29-2316F1BC655A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{256DD1C2-5852-4D32-B547-7256564A16CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{256DD1C2-5852-4D32-B547-7256564A16CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{256DD1C2-5852-4D32-B547-7256564A16CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867BED7E-2C83-45F7-9A29-2316F1BC655A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867BED7E-2C83-45F7-9A29-2316F1BC655A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867BED7E-2C83-45F7-9A29-2316F1BC655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867BED7E-2C83-45F7-9A29-2316F1BC655A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

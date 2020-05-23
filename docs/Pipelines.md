@@ -26,7 +26,7 @@ Let's say you have the following line of code:
 ```cs
 var result = long.Parse(age);
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L23-L25' title='File snippet `basic_code_line` was extracted from'>snippet source</a> | <a href='#snippet-basic_code_line' title='Navigate to start of snippet `basic_code_line`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L24-L26' title='File snippet `basic_code_line` was extracted from'>snippet source</a> | <a href='#snippet-basic_code_line' title='Navigate to start of snippet `basic_code_line`'>anchor</a></sup>
 <!-- endsnippet -->
 
 You can refactor this to pipelines with the following
@@ -41,7 +41,7 @@ var collector = parsePipe.Collect();
 inputPipe.Send("42");
 var result = collector.SingleResult;
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L30-L37' title='File snippet `basic_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-basic_pipeline' title='Navigate to start of snippet `basic_pipeline`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L31-L38' title='File snippet `basic_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-basic_pipeline' title='Navigate to start of snippet `basic_pipeline`'>anchor</a></sup>
 <!-- endsnippet -->
 
 These will produce the same results.
