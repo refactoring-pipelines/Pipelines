@@ -14,7 +14,6 @@ using GraphVizWrapper.Queries;
 
 namespace Refactoring.Pipelines.ApprovalsWithGraphViz
 {
-    //make it work
     public class PipelineApprovalsWithGraphViz
     {
         public static void VerifyAsPng(IGraphNode input)
