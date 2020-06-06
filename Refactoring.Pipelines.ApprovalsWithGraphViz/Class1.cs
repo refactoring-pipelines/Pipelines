@@ -23,16 +23,18 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
             var graphViz = GetGraphVizGenerator();
 
             byte[] output = graphViz.GenerateGraph(dotGraph.ToString(), Enums.GraphReturnType.Png);
-            
+
             Approvals.VerifyBinaryFile(output, ".png");
         }
 
         private static GraphGeneration GetGraphVizGenerator()
         {
-            var getStartProcessQuery = new GetStartProcessQuery();
-            var getProcessStartInfoQuery = new GetProcessStartInfoQuery();
-            var registerLayoutPluginCommand = new RegisterLayoutPluginCommand(getProcessStartInfoQuery, getStartProcessQuery);
-            var wrapper = new GraphGeneration(getStartProcessQuery, getProcessStartInfoQuery, registerLayoutPluginCommand);
+            var registerLayoutPluginCommand =
+                new RegisterLayoutPluginCommand(new GetProcessStartInfoQuery(), new GetStartProcessQuery());
+            var wrapper = new GraphGeneration(
+                new GetStartProcessQuery(),
+                new GetProcessStartInfoQuery(),
+                registerLayoutPluginCommand);
 
             wrapper.GraphvizPath = Path.Combine(GetNuGetPackagesPath(), "Graphviz.2.38.0.2");
             return wrapper;
