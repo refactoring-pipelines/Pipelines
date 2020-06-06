@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.IO;
 using ApprovalTests;
-using ApprovalTests.Writers;
 using GraphVizWrapper;
 using GraphVizWrapper.Commands;
 using GraphVizWrapper.Queries;
@@ -42,7 +34,12 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
         private static string GetNuGetPackagesPath()
         {
             var graphVizAssemblyLocation = typeof(GraphVizWrapper.GraphGeneration).Assembly.Location;
-            var packagesFolder = Path.GetDirectoryName(graphVizAssemblyLocation) + @"\..\..\..\..\packages";
+            var directoryName = Path.GetDirectoryName(graphVizAssemblyLocation);
+            while (!Directory.Exists(Path.Combine(directoryName, "packages")))
+            {
+               directoryName = Directory.GetParent(directoryName).FullName;
+            }
+            var packagesFolder = Path.Combine(directoryName, "packages");
             return Path.GetFullPath(packagesFolder);
         }
     }
