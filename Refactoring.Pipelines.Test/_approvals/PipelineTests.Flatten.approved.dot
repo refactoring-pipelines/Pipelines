@@ -1,4 +1,4 @@
-﻿digraph G { node [style=filled, shape=rec]
+﻿digraph G { node [style=filled, shape=rect]
 
 # Nodes
 {"Tuple<Int64, Int64>", "Int64 value3"} -> "Join" -> "Tuple<Tuple<Int64, Int64>, Int64>"

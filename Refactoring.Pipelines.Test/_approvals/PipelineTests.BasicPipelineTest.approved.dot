@@ -1,4 +1,4 @@
-﻿digraph G { node [style=filled, shape=rec]
+﻿digraph G { node [style=filled, shape=rect]
 
 # Nodes
 "String age" -> "Int64.Parse()" -> {"Int64", "Collector"}
