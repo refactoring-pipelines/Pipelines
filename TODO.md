@@ -38,3 +38,4 @@
 - generate NuGet packages in CI
 - Run same tests against both Sync and Async APIs
 - Create CI for PipelinesExercise (use GitHub Actions to learn about them)
+- detect .dot errors like https://github.com/refactoring-pipelines/Pipelines/pull/67
