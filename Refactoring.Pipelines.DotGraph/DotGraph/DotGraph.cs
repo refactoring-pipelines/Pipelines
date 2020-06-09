@@ -14,7 +14,7 @@ namespace Refactoring.Pipelines.DotGraph
         public override string ToString()
         {
             return $@"
-digraph G {{ node [style=filled, shape=rec]
+digraph G {{ node [style=filled, shape=rect]
 
 # Nodes
 {nodes.JoinWith("")}

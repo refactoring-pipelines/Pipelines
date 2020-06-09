@@ -1,4 +1,4 @@
-﻿digraph G { node [style=filled, shape=rec]
+﻿digraph G { node [style=filled, shape=rect]
 
 # Nodes
 {"List<Int32> part1", "Int32[] part2"} -> "ConcatWith" -> {"List<Int32>", "Collector"}

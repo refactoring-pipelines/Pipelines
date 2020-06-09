@@ -1,4 +1,4 @@
-﻿digraph G { node [style=filled, shape=rec]
+﻿digraph G { node [style=filled, shape=rect]
 
 # Nodes
 "List<Int64> part1" -> "Foreach(PipelineTests.IncrementLong())" -> {"List<Int64>", "Collector"}
