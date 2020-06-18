@@ -1,20 +1,20 @@
 ﻿digraph G { node [style=filled, shape=rect]
 
 # Nodes
-"List<Int32> inputs" -> "_" -> "List<Int32>"
-"List<Int32>" -> "AddToList(l, 1)" -> "Int32"
+"ConcurrentBag<Int32> inputs" -> "_" -> "ConcurrentBag<Int32>"
+"ConcurrentBag<Int32>" -> "AddToList(l, 1)" -> "Int32"
 {"Int32", "Int32 1"} -> "Join" -> "Tuple<Int32, Int32>"
-"List<Int32>" -> "AddToList(l, 2)" -> "Int32 1"
-"List<Int32>" -> "AddToList(l, 3)" -> "Int32 2"
-"List<Int32>" -> "AddToList(l, 4)" -> "Int32 3"
-"List<Int32>" -> "AddToList(l, 5)" -> "Int32 4"
-"List<Int32>" -> "AddToList(l, 6)" -> "Int32 5"
-"List<Int32>" -> "AddToList(l, 7)" -> "Int32 6"
+"ConcurrentBag<Int32>" -> "AddToList(l, 2)" -> "Int32 1"
+"ConcurrentBag<Int32>" -> "AddToList(l, 3)" -> "Int32 2"
+"ConcurrentBag<Int32>" -> "AddToList(l, 4)" -> "Int32 3"
+"ConcurrentBag<Int32>" -> "AddToList(l, 5)" -> "Int32 4"
+"ConcurrentBag<Int32>" -> "AddToList(l, 6)" -> "Int32 5"
+"ConcurrentBag<Int32>" -> "AddToList(l, 7)" -> "Int32 6"
 
 
 # Formatting
-"List<Int32> inputs" [color=green]
-"List<Int32>" [color="#9fbff4"]
+"ConcurrentBag<Int32> inputs" [color=green]
+"ConcurrentBag<Int32>" [color="#9fbff4"]
 "_" [shape=invhouse]
 "Int32" [color="#9fbff4"]
 "AddToList(l, 1)" [shape=invhouse]
