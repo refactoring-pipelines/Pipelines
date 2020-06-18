@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Refactoring.Pipelines.ReflectionUtilities;
@@ -21,8 +22,8 @@ namespace Refactoring.Pipelines
         private readonly ForwardingListener<TInput2> _listener2;
         private readonly ISender<TInput1> _sender1;
         private readonly ISender<TInput2> _sender2;
-        private readonly Queue<TInput1> _values1 = new Queue<TInput1>();
-        private readonly Queue<TInput2> _values2 = new Queue<TInput2>();
+        private readonly ConcurrentQueue<TInput1> _values1 = new ConcurrentQueue<TInput1>();
+        private readonly ConcurrentQueue<TInput2> _values2 = new ConcurrentQueue<TInput2>();
 
         private JoinedPipes()
         {
@@ -63,7 +64,9 @@ namespace Refactoring.Pipelines
         {
             if (_values1.Any() && _values2.Any())
             {
-                _Send(Tuple.Create(_values1.Dequeue(), _values2.Dequeue()));
+                _values1.TryDequeue(out TInput1 value1);
+                _values2.TryDequeue(out TInput2 value2);
+                _Send(Tuple.Create(value1, value2));
             }
         }
     }
