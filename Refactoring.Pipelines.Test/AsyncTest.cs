@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace Refactoring.PipelinesAsync.Test
         [TestMethod]
         public void ParallelRuns()
         {
-            var inputPipe = new InputPipe<List<int>>("inputs");
+            var inputPipe = new InputPipe<ConcurrentBag<int>>("inputs");
             var echoPipe = inputPipe.Process(_ => _);
             var listAddPipe1 = echoPipe.Process(l => AddToList(l, 1));
             var listAddPipe2 = echoPipe.Process(l => AddToList(l, 2));
@@ -31,8 +32,8 @@ namespace Refactoring.PipelinesAsync.Test
 
             var joinedPipe = listAddPipe1.JoinTo(listAddPipe2);
 
-            var list1 = new List<int>();
-            var list2 = new List<int>();
+            var list1 = new ConcurrentBag<int>();
+            var list2 = new ConcurrentBag<int>();
             inputPipe.Send(list1);
             inputPipe.Send(list2);
             Assert.AreNotEqual(list1.ToReadableString(), list2.ToReadableString());
@@ -51,7 +52,7 @@ namespace Refactoring.PipelinesAsync.Test
             Assert.AreEqual(collectorPipe, subject.Output1);
         }
 
-        private static int AddToList(List<int> l, int value)
+        private static int AddToList(ConcurrentBag<int> l, int value)
         {
             Thread.Sleep(random.Next(50, 100));
             l.Add(value);
