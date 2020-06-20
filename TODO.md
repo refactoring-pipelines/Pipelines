@@ -1,5 +1,6 @@
 ! Experiments:
 	- try VS Git UI
+	- break every round (add to mob timer)
 	- autosave in VS
 * Handle SVG
 * Do we want to address the version of .Net we're using?'
