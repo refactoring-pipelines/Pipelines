@@ -1,9 +1,7 @@
+* Handle SVG
 * Do we want to address the version of .Net we're using?'
-* and why do we need to Graphviz packages? Console.WriteLine(Assembly.Load("Graphviz").Location);
-* Why NCrunch failed?
-* rebase master
+* rebase or merge from master
 * generate svg/png programatically
-	https://github.com/timothy-shields/graphviz
 - code converter (Roslyn or Mono.Cecil)
 - Propagate Exceptions through a pipeline
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
