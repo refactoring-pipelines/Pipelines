@@ -45,9 +45,12 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
             return Path.GetFullPath(packagesFolder);
         }
 
-        public static void SetGraphVizLocation(string graphVizLocation_)
+        public static string GraphVizLocation
         {
-            graphVizLocation = graphVizLocation_;
+            set
+            {
+                graphVizLocation = value;
+            }
         }
     }
 }
