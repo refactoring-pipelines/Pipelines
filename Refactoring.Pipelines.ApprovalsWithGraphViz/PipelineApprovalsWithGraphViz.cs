@@ -8,6 +8,8 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
 {
     public class PipelineApprovalsWithGraphViz
     {
+        private static string graphVizLocation;
+
         public static void VerifyAsPng(IGraphNode input)
         {
             var dotGraph = DotGraph.DotGraph.FromPipeline(input);
@@ -27,7 +29,7 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
                 new GetProcessStartInfoQuery(),
                 registerLayoutPluginCommand);
 
-            wrapper.GraphvizPath = Path.Combine(GetNuGetPackagesPath(), "Graphviz.2.38.0.2");
+            wrapper.GraphvizPath = graphVizLocation ?? Path.Combine(GetNuGetPackagesPath(), "Graphviz.2.38.0.2");
             return wrapper;
         }
 
@@ -41,6 +43,11 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
             }
             var packagesFolder = Path.Combine(directoryName, "packages");
             return Path.GetFullPath(packagesFolder);
+        }
+
+        public static void SetGraphVizLocation(string graphVizLocation_)
+        {
+            graphVizLocation = graphVizLocation_;
         }
     }
 }

@@ -53,6 +53,7 @@ namespace Refactoring.Pipelines.Test
 
 
             // Verify the pipeline as PNG
+            PipelineApprovalsWithGraphViz.SetGraphVizLocation(PathUtilities.GetAdjacentFile("../packages/Graphviz.2.38.0.2"));
             PipelineApprovalsWithGraphViz.VerifyAsPng(input);
         }
 
