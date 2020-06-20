@@ -51,7 +51,7 @@ namespace Refactoring.Pipelines.Test
             var parse = input.ProcessFunction(long.Parse);
             var collector = parse.Collect();
 
-            PipelineApprovalsWithGraphViz.SetGraphVizLocation(PathUtilities.GetAdjacentFile("../packages/Graphviz.2.38.0.2"));
+            PipelineApprovalsWithGraphViz.GraphVizLocation = PathUtilities.GetAdjacentFile("../packages/Graphviz.2.38.0.2");
             PipelineApprovalsWithGraphViz.VerifyAsPng(input);
         }
 
