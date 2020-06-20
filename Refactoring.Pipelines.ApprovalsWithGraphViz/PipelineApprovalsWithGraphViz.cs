@@ -8,20 +8,23 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
 {
     public class PipelineApprovalsWithGraphViz
     {
+        public static string GraphVizLocation { get; set; }
+
         public static void VerifyAsPng(IGraphNode input)
         {
             var dotGraph = DotGraph.DotGraph.FromPipeline(input);
             var graphViz = GetGraphVizGenerator();
 
-            byte[] output = graphViz.GenerateGraph(dotGraph.ToString(), Enums.GraphReturnType.Png);
+            var output = graphViz.GenerateGraph(dotGraph.ToString(), Enums.GraphReturnType.Png);
 
             Approvals.VerifyBinaryFile(output, ".png");
         }
 
         private static GraphGeneration GetGraphVizGenerator()
         {
-            var registerLayoutPluginCommand =
-                new RegisterLayoutPluginCommand(new GetProcessStartInfoQuery(), new GetStartProcessQuery());
+            var registerLayoutPluginCommand = new RegisterLayoutPluginCommand(
+                new GetProcessStartInfoQuery(),
+                new GetStartProcessQuery());
             var wrapper = new GraphGeneration(
                 new GetStartProcessQuery(),
                 new GetProcessStartInfoQuery(),
@@ -33,16 +36,15 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
 
         private static string GetNuGetPackagesPath()
         {
-            var graphVizAssemblyLocation = typeof(GraphVizWrapper.GraphGeneration).Assembly.Location;
+            var graphVizAssemblyLocation = typeof(GraphGeneration).Assembly.Location;
             var directoryName = Path.GetDirectoryName(graphVizAssemblyLocation);
             while (!Directory.Exists(Path.Combine(directoryName, "packages")))
             {
-               directoryName = Directory.GetParent(directoryName).FullName;
+                directoryName = Directory.GetParent(directoryName).FullName;
             }
+
             var packagesFolder = Path.Combine(directoryName, "packages");
             return Path.GetFullPath(packagesFolder);
         }
-
-        public static string GraphVizLocation { get; set; }
     }
 }
