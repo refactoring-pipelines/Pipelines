@@ -1,3 +1,6 @@
+* Do we want to address the version of .Net we're using?'
+* and why do we need to Graphviz packages? Console.WriteLine(Assembly.Load("Graphviz").Location);
+* Why NCrunch failed?
 * rebase master
 * generate svg/png programatically
 	https://github.com/timothy-shields/graphviz
