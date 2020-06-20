@@ -1,3 +1,4 @@
+* rebase master
 * generate svg/png programatically
 	https://github.com/timothy-shields/graphviz
 - code converter (Roslyn or Mono.Cecil)
@@ -27,7 +28,7 @@
 - Convenience functions for Tuples on Process & InputPipes
 - blog the PB&J example in code vs. pipelines to show differences and advantages
 	- these are equivalent executable programs
-
+l
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
