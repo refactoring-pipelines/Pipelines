@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using ApprovalTests;
 using GraphVizWrapper;
 using GraphVizWrapper.Commands;
@@ -31,6 +32,10 @@ namespace Refactoring.Pipelines.ApprovalsWithGraphViz
                 registerLayoutPluginCommand);
 
             wrapper.GraphvizPath = GraphVizLocation ?? Path.Combine(GetNuGetPackagesPath(), "Graphviz.2.38.0.2");
+            if (!Directory.Exists(wrapper.GraphvizPath))
+            {
+                throw new Exception($"Could not find graphviz at {wrapper.GraphvizPath}");
+            }
             return wrapper;
         }
 

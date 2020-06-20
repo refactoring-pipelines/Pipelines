@@ -1,3 +1,6 @@
+! Experiments:
+	- try VS Git UI
+	- autosave in VS
 * Handle SVG
 * Do we want to address the version of .Net we're using?'
 * rebase or merge from master
