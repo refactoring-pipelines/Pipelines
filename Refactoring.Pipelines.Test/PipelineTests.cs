@@ -42,6 +42,18 @@ namespace Refactoring.Pipelines.Test
         }
 
         [TestMethod]
+        [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
+        public void TestPng()
+        {
+            // Create a quick pipeline with an input
+            var input = new InputPipe<string>("age");
+            var parse = input.ProcessFunction(long.Parse);
+            var collector = parse.Collect();
+
+            PipelineApprovals.VerifyAsPng(input);
+        }
+
+        [TestMethod]
         public void BasicPipelineTest()
         {
             var input = new InputPipe<string>("age");

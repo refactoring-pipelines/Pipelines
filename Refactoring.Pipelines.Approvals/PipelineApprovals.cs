@@ -2,6 +2,7 @@ using ApprovalTests;
 using ApprovalTests.Writers;
 using DiffEngine;
 using EmptyFiles;
+using GraphVizNet;
 
 namespace Refactoring.Pipelines.ApprovalTests
 {
@@ -16,6 +17,16 @@ namespace Refactoring.Pipelines.ApprovalTests
         {
             var dotGraph = DotGraph.DotGraph.FromPipeline(input);
             Approvals.Verify(WriterFactory.CreateTextWriter(dotGraph.ToString(), "dot"));
+        }
+        public static void VerifyAsPng(IGraphNode input)
+        {
+            var dotGraph = DotGraph.DotGraph.FromPipeline(input);
+            var graphViz = new GraphViz();
+            graphViz.Config.TreatWarningsAsErrors = true;
+
+            var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), "png");
+
+            Approvals.VerifyBinaryFile(output, ".png");
         }
     }
 }
