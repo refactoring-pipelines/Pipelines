@@ -39,3 +39,7 @@
 - Run same tests against both Sync and Async APIs
 - Create CI for PipelinesExercise (use GitHub Actions to learn about them)
 - detect .dot errors like https://github.com/refactoring-pipelines/Pipelines/pull/67
+- ensure the library code invoked in async pipelines is thread-safe
+  - tried HSR Parallel Checker (a free VS Extension) that promises it detects thread-unsafe code, however did not detect any problems on the solution (before the thread-safe fix was applied)
+  - PostSharp Threading - costs money, need to investigate if it's useful
+- ensure/help the users write thread-safe code when using async pipelines
