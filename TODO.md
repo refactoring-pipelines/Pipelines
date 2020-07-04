@@ -1,8 +1,15 @@
-- generate svg/png programatically
+! Experiments:
+	- try VS Git UI
+	- break every round (add to mob timer)
+	- autosave in VS
+* Handle SVG
+* Do we want to address the version of .Net we're using?'
+* rebase or merge from master
+* generate svg/png programatically
 - code converter (Roslyn or Mono.Cecil)
 - Propagate Exceptions through a pipeline
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
-- Automate generating .SVG for docs - https://github.com/timothy-shields/graphviz
+
 - Async
 	- test sometimes fails, missing a value (flaky)
 	- TEST: pipeline that writes to side effect
@@ -26,7 +33,7 @@
 - Convenience functions for Tuples on Process & InputPipes
 - blog the PB&J example in code vs. pipelines to show differences and advantages
 	- these are equivalent executable programs
-
+l
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
