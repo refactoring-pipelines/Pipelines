@@ -20,11 +20,16 @@ namespace Refactoring.Pipelines.ApprovalTests
         }
         public static void VerifyAsPng(IGraphNode input)
         {
+            var format = "png";
+            VerifyAsRenderedGraph(input, format);
+        }
+
+        private static void VerifyAsRenderedGraph(IGraphNode input, string format)
+        {
             var dotGraph = DotGraph.DotGraph.FromPipeline(input);
             var graphViz = new GraphViz();
             graphViz.Config.TreatWarningsAsErrors = true;
 
-            var format = "png";
             var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), format);
 
             Approvals.VerifyBinaryFile(output, "." + format);
@@ -32,11 +37,11 @@ namespace Refactoring.Pipelines.ApprovalTests
 
         public static void VerifyAsSvg(InputPipe<string> input)
         {
+            var format = "svg";
             var dotGraph = DotGraph.DotGraph.FromPipeline(input);
             var graphViz = new GraphViz();
             graphViz.Config.TreatWarningsAsErrors = true;
 
-            var format = "svg";
             var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), format);
 
             Approvals.VerifyBinaryFile(output, "." + format);
