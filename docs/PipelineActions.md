@@ -35,7 +35,7 @@ var join = input1.JoinTo(input2);
 
 will produce:
 
-![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/PipelineTests.JoinInputsSample.approved.dot.svg)
+![GraphViz of JoinedPipe](/Refactoring.Pipelines.Test/_approvals/PipelineTests.JoinInputsSample.approved.svg)
 
 ## ApplyTo(list)
 

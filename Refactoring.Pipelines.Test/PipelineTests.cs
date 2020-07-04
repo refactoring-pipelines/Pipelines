@@ -208,7 +208,7 @@ namespace Refactoring.Pipelines.Test
             var join = input1.JoinTo(input2);
             // end-snippet
 
-            PipelineApprovals.Verify(join);
+            PipelineApprovals.VerifyAsSvg(join);
         }
 
         [TestMethod]
