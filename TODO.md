@@ -2,6 +2,10 @@
 	- try VS Git UI
 	- break every round (add to mob timer)
 	- autosave in VS
+	- safe guarding
+		- visualize the Verify API
+		- create subproject for interfaces
+		- write a test for what level the Verify objects can take
 * generate svg/png programatically
 - code converter (Roslyn or Mono.Cecil)
 - Propagate Exceptions through a pipeline
