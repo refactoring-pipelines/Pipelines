@@ -45,10 +45,7 @@ namespace Refactoring.Pipelines.Test
         [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
         public void TestPng()
         {
-            // Create a quick pipeline with an input
-            var input = new InputPipe<string>("age");
-            var parse = input.ProcessFunction(long.Parse);
-            var collector = parse.Collect();
+            var input = CreateQuickPipelineWithInput();
 
             PipelineApprovals.VerifyAsPng(input);
         }   
@@ -57,12 +54,17 @@ namespace Refactoring.Pipelines.Test
         [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
         public void TestSvg()
         {
-            // Create a quick pipeline with an input
-            var input = new InputPipe<string>("age");
-            var parse = input.ProcessFunction(long.Parse);
-            var collector = parse.Collect();
+            var input = CreateQuickPipelineWithInput();
 
             PipelineApprovals.VerifyAsSvg(input);
+        }
+
+        private static InputPipe<string> CreateQuickPipelineWithInput()
+        {
+            var input = new InputPipe<string>("age");
+            var parse = input.ProcessFunction(long.Parse);
+            parse.Collect();
+            return input;
         }
 
         [TestMethod]
