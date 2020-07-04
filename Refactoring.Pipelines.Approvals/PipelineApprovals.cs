@@ -26,14 +26,12 @@ namespace Refactoring.Pipelines.ApprovalTests
 
         public static void VerifyAsPng(IGraphNode input)
         {
-            var format = "png";
-            VerifyAsRenderedGraph(input, format);
+            VerifyAsRenderedGraph(input, "png");
         }
 
         public static void VerifyAsSvg(InputPipe<string> input)
         {
-            var format = "svg";
-            VerifyAsRenderedGraph(input, format);
+            VerifyAsRenderedGraph(input, "svg");
         }
 
         private static void VerifyAsRenderedGraph(IGraphNode input, string format)
