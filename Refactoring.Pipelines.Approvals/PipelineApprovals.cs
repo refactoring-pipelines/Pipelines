@@ -29,7 +29,7 @@ namespace Refactoring.Pipelines.ApprovalTests
             VerifyAsRenderedGraph(input, "png");
         }
 
-        public static void VerifyAsSvg(InputPipe<string> input)
+        public static void VerifyAsSvg(IGraphNode input)
         {
             VerifyAsRenderedGraph(input, "svg");
         }
