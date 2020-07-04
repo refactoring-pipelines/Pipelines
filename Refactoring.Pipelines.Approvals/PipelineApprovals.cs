@@ -24,9 +24,10 @@ namespace Refactoring.Pipelines.ApprovalTests
             var graphViz = new GraphViz();
             graphViz.Config.TreatWarningsAsErrors = true;
 
-            var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), "png");
+            var format = "png";
+            var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), format);
 
-            Approvals.VerifyBinaryFile(output, "." + "png");
+            Approvals.VerifyBinaryFile(output, "." + format);
         }
 
         public static void VerifyAsSvg(InputPipe<string> input)
@@ -35,9 +36,10 @@ namespace Refactoring.Pipelines.ApprovalTests
             var graphViz = new GraphViz();
             graphViz.Config.TreatWarningsAsErrors = true;
 
-            var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), "svg");
+            var format = "svg";
+            var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), format);
 
-            Approvals.VerifyBinaryFile(output, "." + "svg");
+            Approvals.VerifyBinaryFile(output, "." + format);
         }
     }
 }
