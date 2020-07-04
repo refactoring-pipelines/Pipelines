@@ -28,5 +28,16 @@ namespace Refactoring.Pipelines.ApprovalTests
 
             Approvals.VerifyBinaryFile(output, ".png");
         }
+
+        public static void VerifyAsSvg(InputPipe<string> input)
+        {
+            var dotGraph = DotGraph.DotGraph.FromPipeline(input);
+            var graphViz = new GraphViz();
+            graphViz.Config.TreatWarningsAsErrors = true;
+
+            var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), "svg");
+
+            Approvals.VerifyBinaryFile(output, ".svg");
+        }
     }
 }

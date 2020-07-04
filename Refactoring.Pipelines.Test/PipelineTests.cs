@@ -51,6 +51,18 @@ namespace Refactoring.Pipelines.Test
             var collector = parse.Collect();
 
             PipelineApprovals.VerifyAsPng(input);
+        }   
+        
+        [TestMethod]
+        [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
+        public void TestSvg()
+        {
+            // Create a quick pipeline with an input
+            var input = new InputPipe<string>("age");
+            var parse = input.ProcessFunction(long.Parse);
+            var collector = parse.Collect();
+
+            PipelineApprovals.VerifyAsSvg(input);
         }
 
         [TestMethod]
