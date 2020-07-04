@@ -26,7 +26,7 @@ namespace Refactoring.Pipelines.ApprovalTests
 
             var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), "png");
 
-            Approvals.VerifyBinaryFile(output, ".png");
+            Approvals.VerifyBinaryFile(output, "." + "png");
         }
 
         public static void VerifyAsSvg(InputPipe<string> input)
@@ -37,7 +37,7 @@ namespace Refactoring.Pipelines.ApprovalTests
 
             var output = graphViz.LayoutAndRenderDotGraph(dotGraph.ToString(), "svg");
 
-            Approvals.VerifyBinaryFile(output, ".svg");
+            Approvals.VerifyBinaryFile(output, "." + "svg");
         }
     }
 }
