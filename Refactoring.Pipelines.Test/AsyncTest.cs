@@ -36,7 +36,6 @@ namespace Refactoring.PipelinesAsync.Test
             var list2 = new ConcurrentBag<int>();
             inputPipe.Send(list1);
             inputPipe.Send(list2);
-            Assert.AreNotEqual(list1.ToReadableString(), list2.ToReadableString());
             Assert.AreEqual(list1.OrderBy(_ => _).ToReadableString(), list2.OrderBy(_ => _).ToReadableString());
 
             PipelineApprovals.Verify(inputPipe);
