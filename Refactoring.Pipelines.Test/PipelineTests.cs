@@ -74,7 +74,7 @@ namespace Refactoring.Pipelines.Test
             var parse = input.ProcessFunction(long.Parse);
             var collector = parse.Collect();
 
-            PipelineApprovals.Verify(input);
+            PipelineApprovals.VerifyAsSvg(input);
             input.Send("42");
             Assert.AreEqual(42, collector.SingleResult);
         }

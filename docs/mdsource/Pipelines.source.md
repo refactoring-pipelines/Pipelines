@@ -22,7 +22,7 @@ Despite the complexity add of this code, this pattern has some advantages in ref
 as well has advantages in monitoring. It also has advantages in testing and visualization.
 For example the pipeline can render itself as the following dot file (Graphviz)
 
-![GraphViz of Pipeline](/Refactoring.Pipelines.Test/PipelineTests.BasicPipelineTest.approved.dot.svg)
+![GraphViz of Pipeline](/Refactoring.Pipelines.Test/_approvals/PipelineTests.BasicPipelineTest.approved.svg)
 
 ## Actions
 
