@@ -260,7 +260,7 @@ namespace Refactoring.Pipelines.Test
             var part2 = new InputPipe<int[]>("part2");
             var concatWithPipeline = part1.ConcatWith(part2);
             var collector = concatWithPipeline.Collect();
-            PipelineApprovals.Verify(concatWithPipeline);
+            PipelineApprovals.VerifyAsSvg(concatWithPipeline);
 
             // begin-snippet: ConcatWith_inputs
             var concat = new List<int> {1, 2};

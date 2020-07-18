@@ -113,7 +113,7 @@ part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
 
-![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/_approvals/PipelineTests.Concat.approved.svg)
 
 ## Processing a Lambda
 

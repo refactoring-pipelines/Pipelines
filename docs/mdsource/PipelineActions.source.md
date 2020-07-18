@@ -54,7 +54,7 @@ snippet: ConcatWith_manual
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
 
-![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.Concat.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/_approvals/PipelineTests.Concat.approved.svg)
 
 ## Processing a Lambda
 
