@@ -227,7 +227,7 @@ namespace Refactoring.Pipelines.Test
 
             var applyToPipeline = prefix.ApplyTo(values);
             var collector = applyToPipeline.Collect();
-            PipelineApprovals.Verify(applyToPipeline);
+            PipelineApprovals.VerifyAsSvg(applyToPipeline);
 
             // begin-snippet: ApplyTo_inputs
             var apply = "#";

@@ -74,7 +74,7 @@ prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i))
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
 
-![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/PipelineTests.ApplyTo.approved.dot.svg)
+![GraphViz of AppliedPipe](/Refactoring.Pipelines.Test/_approvals/PipelineTests.ApplyTo.approved.svg)
 
 ## ConcatWith(list)
 
