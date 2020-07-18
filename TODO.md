@@ -13,6 +13,7 @@ Converted .dot files to automatically-generated SVGs and update the documnetatio
 		- visualize the Verify API
 		- create subproject for interfaces
 		- write a test for what level the Verify objects can take
+	- Open a external miro board 
 
 # Ideas
 - code converter (Roslyn or Mono.Cecil)
