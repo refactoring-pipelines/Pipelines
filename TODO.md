@@ -57,3 +57,8 @@ l
   - tried HSR Parallel Checker (a free VS Extension) that promises it detects thread-unsafe code, however did not detect any problems on the solution (before the thread-safe fix was applied)
   - PostSharp Threading - costs money, need to investigate if it's useful
 - ensure/help the users write thread-safe code when using async pipelines
+
+# Retro
+- start with 
+	- questions/things I didn't understand
+	- what happened today
