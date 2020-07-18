@@ -64,4 +64,4 @@ snippet: process_lambda
 
 will look like:
 
-![GraphViz of Lambda](/Refactoring.Pipelines.Test/PipelineTests.Lambda.approved.dot.svg)
+![GraphViz of Lambda](/Refactoring.Pipelines.Test/_approvals/PipelineTests.Lambda.approved.svg)

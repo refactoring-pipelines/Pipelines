@@ -305,7 +305,7 @@ namespace Refactoring.Pipelines.Test
             input.Process(p => p.ToString());
             // end-snippet
 
-            PipelineApprovals.Verify(input);
+            PipelineApprovals.VerifyAsSvg(input);
         }
 
         [TestMethod]
