@@ -2,7 +2,8 @@
 Converted .dot files to automatically-generated SVGs and update the documnetation
 
 # Next
-* generate svg/png programmatically
+- Go through the peanut butter and jelly tutorial
+- generate svg/png programmatically
 	- write documentation about the PNG/SVG feature
 	- Ship to NuGet
 
