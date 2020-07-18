@@ -9,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Refactoring.Pipelines.Test
 {
     [TestClass]
-    [UseReporter(typeof(DiffReporter))]
     public class GenerateInputsAndOutputsRunner
     {
         [TestMethod]

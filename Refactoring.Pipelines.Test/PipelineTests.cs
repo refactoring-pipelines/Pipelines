@@ -11,7 +11,6 @@ using Refactoring.Pipelines.DotGraph;
 
 namespace Refactoring.Pipelines.Test
 {
-    [UseReporter(typeof(DiffReporter))]
     [TestClass]
     public class PipelineTests
     {
@@ -42,7 +41,6 @@ namespace Refactoring.Pipelines.Test
         }
 
         [TestMethod]
-        [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
         public void TestPng()
         {
             var input = CreateQuickPipelineWithInput();
@@ -51,7 +49,6 @@ namespace Refactoring.Pipelines.Test
         }   
         
         [TestMethod]
-        [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
         public void TestSvg()
         {
             var input = CreateQuickPipelineWithInput();
