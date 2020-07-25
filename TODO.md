@@ -47,7 +47,10 @@ l
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
-
+- C# tuple without Join():
+```
+   (peanutButterPipe, jellyPipe).ProcessFunction(CreateSandwich)
+```
 
 # Safeguarding / automation
 - ensure imported .svg really exist at that name
