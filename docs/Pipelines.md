@@ -22,7 +22,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 Let's say you have the following line of code:
 
 <!-- snippet: basic_code_line -->
-<a id='snippet-basic_code_line'/></a>
+<a id='snippet-basic_code_line'></a>
 ```cs
 var result = long.Parse(age);
 ```
@@ -32,7 +32,7 @@ var result = long.Parse(age);
 You can refactor this to pipelines with the following
 
 <!-- snippet: basic_pipeline -->
-<a id='snippet-basic_pipeline'/></a>
+<a id='snippet-basic_pipeline'></a>
 ```cs
 var inputPipe = new InputPipe<string>("age");
 var parsePipe = inputPipe.ProcessFunction(long.Parse);
