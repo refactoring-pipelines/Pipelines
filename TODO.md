@@ -47,6 +47,7 @@ l
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
+- add `Task SendAsync()` that executes the entire pipeline asynchronously (on both sync and async pipelines)
 - C# tuple without Join():
 ```
    (peanutButterPipe, jellyPipe).ProcessFunction(CreateSandwich)
