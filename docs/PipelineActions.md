@@ -13,7 +13,7 @@ To change this file edit the source file and then run MarkdownSnippets.
   * [Joining pipes](#joining-pipes)
   * [ApplyTo(list)](#applytolist)
   * [ConcatWith(list)](#concatwithlist)
-  * [Processing a Lambda](#processing-a-lambda)<!-- endtoc -->
+  * [Processing a Lambda](#processing-a-lambda)<!-- endToc -->
 
 ## Joining pipes
 
@@ -31,7 +31,7 @@ var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L202-L206' title='File snippet `joined_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-joined_pipeline' title='Navigate to start of snippet `joined_pipeline`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 will produce:
 
@@ -50,7 +50,7 @@ var apply = "#";
 var to = new[] {1, 2};
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L229-L232' title='File snippet `applyto_inputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_inputs' title='Navigate to start of snippet `applyto_inputs`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 You can combine them to produce the following output:
 
@@ -60,7 +60,7 @@ You can combine them to produce the following output:
 var result = "[(#, 1), (#, 2)]";
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L234-L236' title='File snippet `applyto_outputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_outputs' title='Navigate to start of snippet `applyto_outputs`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
@@ -70,7 +70,7 @@ For reference you can do this manually (although it creates a bad visualization)
 prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L239-L241' title='File snippet `applyto_manual` was extracted from'>snippet source</a> | <a href='#snippet-applyto_manual' title='Navigate to start of snippet `applyto_manual`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
 
@@ -89,7 +89,7 @@ var concat = new List<int> {1, 2};
 var with = new[] {3, 4};
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L262-L265' title='File snippet `concatwith_inputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_inputs' title='Navigate to start of snippet `concatwith_inputs`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 You can combine them to produce the following output:
 
@@ -99,7 +99,7 @@ You can combine them to produce the following output:
 var result = "[1, 2, 3, 4]";
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L267-L269' title='File snippet `concatwith_outputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_outputs' title='Navigate to start of snippet `concatwith_outputs`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
@@ -109,7 +109,7 @@ For reference you can do this manually (although it creates a bad visualization)
 part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L272-L274' title='File snippet `concatwith_manual` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_manual' title='Navigate to start of snippet `concatwith_manual`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
 
@@ -126,7 +126,7 @@ var input = new InputPipe<int>("input");
 input.Process(p => p.ToString());
 ```
 <sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L300-L303' title='File snippet `process_lambda` was extracted from'>snippet source</a> | <a href='#snippet-process_lambda' title='Navigate to start of snippet `process_lambda`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 will look like:
 

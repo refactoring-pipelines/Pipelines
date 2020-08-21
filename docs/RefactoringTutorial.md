@@ -26,7 +26,7 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [10. Use `GetInputs<>` to collect all the inputs and outputs in a single object:](#10-use-getinputs-to-collect-all-the-inputs-and-outputs-in-a-single-object)
     * [10. Extract a CreatePipe function](#10-extract-a-createpipe-function)
     * [11. Move the `PipelineApprovals.Verify()` call into a unit test](#11-move-the-pipelineapprovalsverify-call-into-a-unit-test)
-  * [Handling multiple parameters](#handling-multiple-parameters)<!-- endtoc -->
+  * [Handling multiple parameters](#handling-multiple-parameters)<!-- endToc -->
 
 
 ## Prep
