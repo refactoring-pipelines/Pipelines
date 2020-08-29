@@ -1,0 +1,17 @@
+﻿digraph G { node [style=filled, shape=rect]
+
+# Nodes
+"Int64 value" -> "PipelineTests.LongToString()" -> "String"
+"Int64 value" -> "PipelineTests.IncrementLong()" -> "Int64"
+
+
+# Formatting
+"Int64 value" [color=green]
+"String" [color="#9fbff4"]
+"PipelineTests.LongToString()" [shape=invhouse]
+"Int64" [color="#9fbff4"]
+"PipelineTests.IncrementLong()" [shape=invhouse]
+
+
+
+}

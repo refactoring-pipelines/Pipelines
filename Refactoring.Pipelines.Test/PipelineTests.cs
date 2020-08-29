@@ -43,9 +43,10 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void TestPng()
         {
+            // begin-snippet: graphviz_png_approval
             var input = CreateQuickPipelineWithInput();
-
             PipelineApprovals.VerifyAsPng(input);
+            // end-snippet
         }   
         
         [TestMethod]
@@ -135,11 +136,13 @@ namespace Refactoring.Pipelines.Test
         [TestMethod]
         public void SplitInput()
         {
+            // begin-snippet: graphviz_approval
             var input = new InputPipe<long>("value");
             input.ProcessFunction(LongToString);
             input.ProcessFunction(IncrementLong);
 
             PipelineApprovals.Verify(input);
+            // end-snippet
         }
 
         [TestMethod]
