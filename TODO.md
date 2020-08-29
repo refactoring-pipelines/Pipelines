@@ -1,5 +1,5 @@
 # End of last session 
-Converted .dot files to automatically-generated SVGs and update the documnetation
+Created documentation for .SVG. Ready to deploy NuGet packages.
 
 # Next
 - generate svg/png programmatically
