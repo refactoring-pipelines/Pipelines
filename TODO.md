@@ -1,9 +1,11 @@
 # End of last session 
-Created documentation for .SVG. Ready to deploy NuGet packages.
+Deployed NuGet packages.
 
 # Next
-- generate svg/png programmatically
-	- Ship to NuGet
+- kata w/ pipelines
+	- fizzbuzz
+	- tennis / bowling
+	- game of life
 
 # Experiments:
 	- try VS Git UI
@@ -11,7 +13,7 @@ Created documentation for .SVG. Ready to deploy NuGet packages.
 		- visualize the Verify API
 		- create subproject for interfaces
 		- write a test for what level the Verify objects can take
-	- Open a external miro board 
+	* Open a external Mindmup board 
 
 # Ideas
 - code converter (Roslyn or Mono.Cecil)
@@ -62,6 +64,7 @@ l
   - PostSharp Threading - costs money, need to investigate if it's useful
 - ensure/help the users write thread-safe code when using async pipelines
 - dependabot config file 
+- automate deployment in CI pipeline
 
 # Retro
 - start with 
