@@ -1,7 +1,6 @@
 ::::::: A: Setup:
-:: 1. choco install nuget.commandline
-:: 2. Get API key from https://www.nuget.org/account/apikeys
-:: 3. NuGet.exe setapikey BLAH-BLAH-BLAH
+:: 1. Get API key from https://www.nuget.org/account/apikeys
+:: 2. NuGet.exe setapikey BLAH-BLAH-BLAH
 ::
 :::::: B: Execute
 :: 1. Update version number in `Directory.Build.props`
