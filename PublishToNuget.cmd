@@ -1,9 +1,15 @@
-::::::: Setup:
+::::::: A: Setup:
 :: 1. choco install nuget.commandline
 :: 2. Get API key from https://www.nuget.org/account/apikeys
 :: 3. NuGet.exe setapikey BLAH-BLAH-BLAH
 ::
-:: Remember to update version number in `Directory.Build.props` before running this script
+:::::: B: Execute
+:: 1. Update version number in `Directory.Build.props`
+:: 2. Run this script
+:: 3. Commit all changes to Git
+:: 4. `git tag nuget-v9.9.9.9`
+:: 5. `git push`
+::::::
 
 IF EXIST nuget_packages (
     DEL /S /Q nuget_packages\
@@ -19,4 +25,3 @@ FOR %%f IN (nuget_packages\*.nupkg) DO (
 )
 
 pause 
-
