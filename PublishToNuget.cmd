@@ -10,11 +10,11 @@ IF EXIST nuget_packages (
     IF ERRORLEVEL 1 exit /b 1
 )
 
-"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\\MSBuild\Current\Bin\MSBuild.exe" "/target:clean,restore,build
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MSBuild.exe" /target:clean,restore,build
 IF ERRORLEVEL 1 exit /b 1
 
 FOR %%f IN (nuget_packages\*.nupkg) DO (
-    NuGet push %%f -Source nuget.org
+    NuGet push %%f -Source nuget.org -Verbosity detailed
     IF ERRORLEVEL 1 exit /b 1
 )
 
