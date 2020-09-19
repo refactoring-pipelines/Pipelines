@@ -12,8 +12,6 @@ iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/visual-
 
 & "C:\Program Files\Git\cmd\git.exe" clone https://github.com/refactoring-pipelines/Pipelines.git C:\Source\Pipelines
 
-& "C:\Program Files\dotnet\dotnet.exe" test C:\Source\Pipelines\
-
 Write-Host -Foreground yellow " ################################################################"
 Write-Host -Foreground yellow " # Install NuGet API key now:                                   #" 
 Write-Host -Foreground yellow " # 1. Get API key from https://www.nuget.org/account/apikeys    #"
