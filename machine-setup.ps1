@@ -1,5 +1,5 @@
 # To run this script directly, open PowerShell and run this command:
-#     PS> Invoke-WebRequest -UseBasicParsing https://<URL HERE...> | Invoke-Expression
+#     PS> Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/refactoring-pipelines/Pipelines/main/machine-setup.ps1 | Invoke-Expression
 
 #Requires -RunAsAdministrator
 
