@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="5.4.1" />
-    <PackageReference Include="ApprovalUtilities" Version="5.4.1" />
+    <PackageReference Include="ApprovalUtilities" Version="5.4.2" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="21.0.1">
       <PrivateAssets>all</PrivateAssets>
