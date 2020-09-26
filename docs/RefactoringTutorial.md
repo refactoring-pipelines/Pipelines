@@ -40,27 +40,28 @@ CTRL-SHIFT-V to preview a `.dot` file as a rendered graph.
 
 ## Notes
 
- 1. All pipeline setup code occurs at the top of the method.
- 2. Then the approvals call
- 3. Then the sending through the pipeline
+Pipeline-based functions have the following stucture:
 
-### Template 
+ 1. All pipeline setup
+ 2. Then `PipelineApprovals.Verify()`
+ 3. Then send input through the pipeline and extract the result.
+
+### Template to copy into your code to guide you through the refactoring
 
 ```cs
-// Set up Pipeline
-// ApprovalPipeline
-// Send thru pipeline
+// Set up Pipeline objects
+// `PipelineApprovals.Verify()`
+// Send input through pipeline
 // Original code
 ```
 ### 1. Call the method in question from a test
 
-Simply call the method you wish to refactor from a test.
-Don't think of this as a traditional unit test. Think of it more as a specialized `main()` method
+Call the method you wish to refactor from a test. Don't think of this as a traditional unit test. Think of it more as a specialized `main()` method
 
 ### 2. Take the 1st thing to move to async and create an `InputPipe` of it's parameters directly above it.
 
 ``` cs
-var startingPointInput = new InputPipe<InputType>("InputName");
+var inputNamePipe = new InputPipe<InputType>("InputName");
 ```
 
 ### 3. Place a ApprovalTests to get insight into the pipeline.
@@ -68,7 +69,7 @@ var startingPointInput = new InputPipe<InputType>("InputName");
 Place this right in the middle of the production code you want to refactor. It is a temporary step.
 
 ``` cs
-PipelineApprovals.Verify(startingPointInput);
+PipelineApprovals.Verify(inputNamePipe);
 ```
 
 With a DotReporter (on the test)
@@ -81,19 +82,20 @@ With a DotReporter (on the test)
 
 ### 5. Add a process as a delegate
 
-If the code isn't in a method, extract it to one first
+If the code isn't in a method, use a lambda instead
 
 ``` cs
- var methodCallPipe = startingPoint.Process(TheMethodCall)
+ var methodCallPipe = startingPoint.ProcessFunction(TheMethodCall);
+ var methodCallPipe = startingPoint.Process(x => x * 2);
 ```
 
 Do this above the `PipelineApprovals.Verify()`. Run it again for feedback.
 
-### 6. Add a collector, and send input in
+### 6. Add a collector and send input in
 
 ``` cs
  var methodCallCollector = methodCallPipe.Collect();
- startingPoint.Send(firstParameter);
+ inputNamePipe.Send(firstParameter);
  var variable = methodCallCollector.SingleResult;
 ```
 
@@ -108,17 +110,17 @@ Previously you were using `.Collect()` to pull out values from intermediate step
 ### 10. Use `GetInputs<>` to collect all the inputs and outputs in a single object:
 
 ``` cs
-        var inputsAndOutputs = bestSandwichCollector.GetInputs<ZipCode>().AndOutputs<Sandwich>().AsTuple();
-        inputsAndOutputs.Send(zipCode);
-        inputsAndOutputs.Outputs...
+var inputsAndOutputs = bestSandwichCollector.GetInputs<ZipCode>().AndOutputs<Sandwich>().AsTuple();
+inputsAndOutputs.Send(zipCode);
+inputsAndOutputs.Outputs...
 ```
-### 10. Extract a CreatePipe function 
+### 10. Extract a `CreatePipe()` function 
 
 ### 11. Move the `PipelineApprovals.Verify()` call into a unit test
 
 ``` cs
-    var pipe = SimpleCalls.CreatePipe();
-    PipelineApprovals.Verify(pipe.Input1);
+   var pipe = SimpleCalls.CreatePipe();
+   PipelineApprovals.Verify(pipe.Input1);
 ```
 
 ## Handling multiple parameters
