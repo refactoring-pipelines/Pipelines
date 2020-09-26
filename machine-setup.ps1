@@ -11,6 +11,7 @@ iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/visual-
 ) | % { & "C:\Program Files\Microsoft VS Code\bin\code.cmd" --install-extension $_ }
 
 & "C:\Program Files\Git\cmd\git.exe" clone https://github.com/refactoring-pipelines/Pipelines.git C:\Source\Pipelines
+github C:\Source\Pipelines
 
 Write-Host -Foreground yellow " ################################################################"
 Write-Host -Foreground yellow " # Install NuGet API key now:                                   #" 
