@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using ApprovalTests;
-using ApprovalTests.Reporters;
 using ApprovalUtilities.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

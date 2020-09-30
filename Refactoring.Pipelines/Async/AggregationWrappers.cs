@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 // The code in this file is a cheat, not well tested, and some of it is not actually Async despite the namespace name.
 
