@@ -18,6 +18,9 @@ after_build:
   - git add -A --renormalize
   - git diff-index --quiet HEAD
 
+on_failure:
+  - ps: Get-ChildItem *.received.* -recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
 artifacts:
 - path: '**\*.dot'
   name: Files
