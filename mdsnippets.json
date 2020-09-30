@@ -1,8 +1,7 @@
 {
-    "ReadOnly": true,
-    "WriteHeader": true,
     "TreatMissingSnippetAsWarning": true,
     "TreatMissingIncludeAsWarning": true,
+    "Convention": "InPlaceOverwrite",
 
     "// LinkFormat": "Tfs",
     "// TocLevel": 3,
