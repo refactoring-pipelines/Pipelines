@@ -13,7 +13,7 @@ When verifying a pipeline graph, you can generate either a GraphViz diagram or a
 If you want to verify a `Pipeline`, you can call `PipelineApprovals.Verify()`:
 
 <!-- snippet: graphviz_approval -->
-<a id='snippet-graphviz_approval'></a>
+<a id='db99e294'></a>
 ```cs
 var input = new InputPipe<long>("value");
 input.ProcessFunction(LongToString);
@@ -21,13 +21,13 @@ input.ProcessFunction(IncrementLong);
 
 PipelineApprovals.Verify(input);
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L139-L145' title='File snippet `graphviz_approval` was extracted from'>snippet source</a> | <a href='#snippet-graphviz_approval' title='Navigate to start of snippet `graphviz_approval`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L139-L145' title='Snippet source file'>snippet source</a> | <a href='#db99e294' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Which produces the following approved file:
 
 <!-- snippet: _approvals/PipelineTests.SplitInput.approved.txt -->
-<a id='snippet-_approvals/PipelineTests.SplitInput.approved.txt'></a>
+<a id='29b2fa54'></a>
 ```txt
 digraph G { node [style=filled, shape=rect]
 
@@ -47,7 +47,7 @@ digraph G { node [style=filled, shape=rect]
 
 }
 ```
-<sup><a href='/Refactoring.Pipelines.Test/_approvals/PipelineTests.SplitInput.approved.txt#L1-L17' title='File snippet `_approvals/PipelineTests.SplitInput.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-_approvals/PipelineTests.SplitInput.approved.txt' title='Navigate to start of snippet `_approvals/PipelineTests.SplitInput.approved.txt`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/_approvals/PipelineTests.SplitInput.approved.txt#L1-L17' title='Snippet source file'>snippet source</a> | <a href='#29b2fa54' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -58,12 +58,12 @@ Usually we open these in Visual Studio Code with a plugin. The advantage of thes
 If you want to create the images, you can do that automatically as well, using the following:
 
 <!-- snippet: graphviz_png_approval -->
-<a id='snippet-graphviz_png_approval'></a>
+<a id='20976745'></a>
 ```cs
 var input = CreateQuickPipelineWithInput();
 PipelineApprovals.VerifyAsPng(input);
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L46-L49' title='File snippet `graphviz_png_approval` was extracted from'>snippet source</a> | <a href='#snippet-graphviz_png_approval' title='Navigate to start of snippet `graphviz_png_approval`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L46-L49' title='Snippet source file'>snippet source</a> | <a href='#20976745' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which produces the following approved file:
