@@ -17,13 +17,13 @@ When you have two inputs that are needed for the next piece of functionality, yo
 Note: If you are using `JoinedPipe` you need to call `Verify()` with the join.
 
 <!-- snippet: joined_pipeline -->
-<a id='snippet-joined_pipeline'></a>
+<a id='4e03ed6f'></a>
 ```cs
 var input1 = new InputPipe<long>("value1");
 var input2 = new InputPipe<long>("value2");
 var join = input1.JoinTo(input2);
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L205-L209' title='File snippet `joined_pipeline` was extracted from'>snippet source</a> | <a href='#snippet-joined_pipeline' title='Navigate to start of snippet `joined_pipeline`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L205-L209' title='Snippet source file'>snippet source</a> | <a href='#4e03ed6f' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will produce:
@@ -37,32 +37,32 @@ Sometimes you will want a special type of Join which takes one thing and applies
 For example, if you had:
 
 <!-- snippet: ApplyTo_inputs -->
-<a id='snippet-applyto_inputs'></a>
+<a id='06765414'></a>
 ```cs
 var apply = "#";
 var to = new[] {1, 2};
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L232-L235' title='File snippet `applyto_inputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_inputs' title='Navigate to start of snippet `applyto_inputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L232-L235' title='Snippet source file'>snippet source</a> | <a href='#06765414' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can combine them to produce the following output:
 
 <!-- snippet: ApplyTo_outputs -->
-<a id='snippet-applyto_outputs'></a>
+<a id='d43fde21'></a>
 ```cs
 var result = "[(#, 1), (#, 2)]";
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L237-L239' title='File snippet `applyto_outputs` was extracted from'>snippet source</a> | <a href='#snippet-applyto_outputs' title='Navigate to start of snippet `applyto_outputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L237-L239' title='Snippet source file'>snippet source</a> | <a href='#d43fde21' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
 <!-- snippet: ApplyTo_manual -->
-<a id='snippet-applyto_manual'></a>
+<a id='071a74fe'></a>
 ```cs
 prefix.JoinTo(values).Process(t => t.Item2.Select(i => Tuple.Create(t.Item1, i)));
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L242-L244' title='File snippet `applyto_manual` was extracted from'>snippet source</a> | <a href='#snippet-applyto_manual' title='Navigate to start of snippet `applyto_manual`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L242-L244' title='Snippet source file'>snippet source</a> | <a href='#071a74fe' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 However, if you use the `ApplyTo()` method, you will end up with a much better-rendered result.
@@ -76,32 +76,32 @@ Sometimes you will want a special type of Join which takes two enumerables of th
 For example, if you had:
 
 <!-- snippet: ConcatWith_inputs -->
-<a id='snippet-concatwith_inputs'></a>
+<a id='cfec6e51'></a>
 ```cs
 var concat = new List<int> {1, 2};
 var with = new[] {3, 4};
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L265-L268' title='File snippet `concatwith_inputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_inputs' title='Navigate to start of snippet `concatwith_inputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L265-L268' title='Snippet source file'>snippet source</a> | <a href='#cfec6e51' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can combine them to produce the following output:
 
 <!-- snippet: ConcatWith_outputs -->
-<a id='snippet-concatwith_outputs'></a>
+<a id='55cb5149'></a>
 ```cs
 var result = "[1, 2, 3, 4]";
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L270-L272' title='File snippet `concatwith_outputs` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_outputs' title='Navigate to start of snippet `concatwith_outputs`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L270-L272' title='Snippet source file'>snippet source</a> | <a href='#55cb5149' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 For reference you can do this manually (although it creates a bad visualization):
 
 <!-- snippet: ConcatWith_manual -->
-<a id='snippet-concatwith_manual'></a>
+<a id='1be96e9f'></a>
 ```cs
 part1.JoinTo(part2).Process(t => t.Item1.Concat(t.Item2).ToList());
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L275-L277' title='File snippet `concatwith_manual` was extracted from'>snippet source</a> | <a href='#snippet-concatwith_manual' title='Navigate to start of snippet `concatwith_manual`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L275-L277' title='Snippet source file'>snippet source</a> | <a href='#1be96e9f' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 However, if you use the `ConcatWith()` method, you will end up with a much better-rendered result.
@@ -113,12 +113,12 @@ However, if you use the `ConcatWith()` method, you will end up with a much bette
 the `FunctionPipe` uses the name of the function, but if you pass in a lambda it will format that nicely. For example:
 
 <!-- snippet: process_lambda -->
-<a id='snippet-process_lambda'></a>
+<a id='08a2f889'></a>
 ```cs
 var input = new InputPipe<int>("input");
 input.Process(p => p.ToString());
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L303-L306' title='File snippet `process_lambda` was extracted from'>snippet source</a> | <a href='#snippet-process_lambda' title='Navigate to start of snippet `process_lambda`'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L303-L306' title='Snippet source file'>snippet source</a> | <a href='#08a2f889' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will look like:
