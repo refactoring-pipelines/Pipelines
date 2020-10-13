@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApprovalTests" Version="5.4.2" />
+    <PackageReference Include="ApprovalTests" Version="5.4.3" />
     <PackageReference Include="ApprovalUtilities" Version="5.4.3" />
     <PackageReference Include="Fody" Version="6.2.6" PrivateAssets="All" />
     <PackageReference Include="GraphVizNet" Version="1.0.2" PrivateAssets="None"/>
