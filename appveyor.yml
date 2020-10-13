@@ -16,10 +16,11 @@ after_build:
   #   - MarkdownSnippets was updated but .md files weren't regenerated
   #   - .source.md files were modified but .md files weren't regenerated
   - git add -A --renormalize
-  - git diff-index --quiet HEAD
+  - git diff --staged --exit-code > diff.txt
 
 on_failure:
   - ps: Get-ChildItem *.received.* -recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Push-AppveyorArtifact diff.txt
 
 artifacts:
 - path: '**\*.dot'
