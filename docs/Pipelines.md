@@ -16,17 +16,17 @@
 Let's say you have the following line of code:
 
 <!-- snippet: basic_code_line -->
-<a id='70528eb3'></a>
+<a id='snippet-basic_code_line'></a>
 ```cs
 var result = long.Parse(age);
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24' title='Snippet source file'>snippet source</a> | <a href='#70528eb3' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_code_line' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can refactor this to pipelines with the following
 
 <!-- snippet: basic_pipeline -->
-<a id='ab2a88cc'></a>
+<a id='snippet-basic_pipeline'></a>
 ```cs
 var inputPipe = new InputPipe<string>("age");
 var parsePipe = inputPipe.ProcessFunction(long.Parse);
@@ -35,7 +35,7 @@ var collector = parsePipe.Collect();
 inputPipe.Send("42");
 var result = collector.SingleResult;
 ```
-<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36' title='Snippet source file'>snippet source</a> | <a href='#ab2a88cc' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_pipeline' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 These will produce the same results.
