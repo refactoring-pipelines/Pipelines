@@ -1,0 +1,34 @@
+﻿digraph G { node [style=filled, shape=rect]
+
+# Nodes
+
+
+"Tuple<Tuple<Tuple<Int32, Int32>, Int32>, Int32>" -> "(((a.Item1.Item1 + a.Item1.Item2) + a.Item2) + b)" -> {"Int32", "Collector"}
+"Tuple<Tuple<Tuple<Int32, Int32>, Int32>, Int32>" -> "(((a.Item1.Item1 * a.Item1.Item2) * a.Item2) * b)" -> {"Int32 1", "Collector 1"}
+{"Tuple<Int32, Int32>", "Int32 input3"} -> "Join 1" -> "Tuple<Tuple<Int32, Int32>, Int32>"
+{"Int32 input1", "Int32 input2", "Int32 input3", "Int32 input4"} -> "Join" -> "Tuple<Tuple<Tuple<Int32, Int32>, Int32>, Int32>"
+
+
+# Formatting
+"Int32 input4" [color=green]
+"Tuple<Tuple<Tuple<Int32, Int32>, Int32>, Int32>" [color="#9fbff4"]
+"Join" [color=pink]
+"Int32" [color="#9fbff4"]
+"(((a.Item1.Item1 + a.Item1.Item2) + a.Item2) + b)" [shape=invhouse]
+"Collector" [color = "#c361f4"]
+"Int32 1" [label="Int32", color="#9fbff4"]
+"(((a.Item1.Item1 * a.Item1.Item2) * a.Item2) * b)" [shape=invhouse]
+"Collector 1" [label=Collector, color = "#c361f4"]
+"Int32 input3" [color=green]
+"Tuple<Tuple<Int32, Int32>, Int32>" [color="#9fbff4"]
+"Join 1" [label="Join", color=pink]
+"Int32 input1" [color=green]
+"Tuple<Int32, Int32>" [color="#9fbff4"]
+"Join 2" [label="Join", color=pink]
+"Int32 input2" [color=green]
+
+{ rank=same; "(((a.Item1.Item1 + a.Item1.Item2) + a.Item2) + b)", "Collector"}
+{ rank=same; "(((a.Item1.Item1 * a.Item1.Item2) * a.Item2) * b)", "Collector 1"}
+
+
+}
