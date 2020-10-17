@@ -1,11 +1,12 @@
 # End of last session 
-Deployed NuGet packages.
+Experimented with Tuples / Join / Labels
 
 # Next
 - kata w/ pipelines
 	- fizzbuzz
 	- tennis / bowling
 	- game of life
+- unroll tuples: `Tuple<Tuple<,>,>` -> `Tuple<,,>`
 
 # Experiments:
 	- try VS Git UI
@@ -16,6 +17,8 @@ Deployed NuGet packages.
 	* Open a external Mindmup board 
 
 # Ideas
+- tuples as (a, b, c)
+- label edges, including edge to nothing
 - code converter (Roslyn or Mono.Cecil)
 - Propagate Exceptions through a pipeline
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
@@ -43,7 +46,6 @@ Deployed NuGet packages.
 - Convenience functions for Tuples on Process & InputPipes
 - blog the PB&J example in code vs. pipelines to show differences and advantages
 	- these are equivalent executable programs
-l
 - Properties
 -  Tuple { ... } 
 - progress reporting hooks
@@ -52,6 +54,8 @@ l
 ```
    (peanutButterPipe, jellyPipe).ProcessFunction(CreateSandwich)
 ```
+- refactoring: split "pipeline" from "graph"
+- refactoring: implement pipelines as pipelines
 
 # Safeguarding / automation
 - ensure imported .svg really exist at that name
