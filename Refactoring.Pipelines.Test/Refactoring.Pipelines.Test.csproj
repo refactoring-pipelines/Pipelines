@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApprovalTests" Version="5.4.4" />
+    <PackageReference Include="ApprovalTests" Version="5.4.5" />
     <PackageReference Include="ApprovalUtilities" Version="5.4.5" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="21.7.1">
