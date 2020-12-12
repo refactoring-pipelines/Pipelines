@@ -1,37 +1,36 @@
-- [ ] create new project, with test and pipeline approvals
+- [ ] Create new C# test project. Add Pipeline Approvals NuGet packages.
 
-- [ ] Sketch out scenario
+- [ ] Sketch out scenario in whiteboard or equivalent.
 
-- [ ] Create test that gets a pipeline
+- [ ] Create test that gets a pipeline:
 
 ``` cpp
+[TestMethod]
 public void TestMethod1()
 {
-      PipelineApprovals.Verify(Template.DoSomethingViaPipeline()));
+      PipelineApprovals.Verify(Template.DoSomethingViaPipeline());
  }
 
 public class Template
 {
-    public static Inputs1AndOutputs1<Input, Output> DoSomethingViaPipeline()
+    public static Inputs1AndOutputs1<TInput, TOutput> DoSomethingViaPipeline()
     {
-        InputPipe<Input> input = new InputPipe<Input>("Your Input");
+        InputPipe<TInput> input = new InputPipe<TInput>("Your Input");
             var outputPipe = input.ProcessFunction(DoEverything);
             var collectorPipe = outputPipe.Collect();
-            return collectorPipe.GetInputs<Input>().AndOutputs<Output>();
+            return collectorPipe.GetInputs<TInput>().AndOutputs<TOutput>();
         }
-        public static Output DoEverything(Input arg)
+        public static TOutput DoEverything(TInput input)
        {
             throw new System.NotImplementedException();
         }
     }
-
-
-
+}
 ```
 
 - [ ] Add Steps (no implementation)
 
 - [ ] Fill implementation
 
-  - [ ] Test steps
+  - [ ] Test each step
 
