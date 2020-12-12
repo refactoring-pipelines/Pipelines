@@ -1,11 +1,10 @@
 # End of last session 
-Experimented with Tuples / Join / Labels
+* game of life
 
 # Next
 - kata w/ pipelines
-	- fizzbuzz
-	- tennis / bowling
-	- game of life
+	* game of life
+	- tennis
 - unroll tuples: `Tuple<Tuple<,>,>` -> `Tuple<,,>`
 
 # Experiments:
