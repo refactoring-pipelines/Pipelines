@@ -11,7 +11,7 @@ public void TestMethod1()
       PipelineApprovals.Verify(Template.DoSomethingViaPipeline());
  }
 
-public class Template
+class Template
 {
     public static Inputs1AndOutputs1<TInput, TOutput> DoSomethingViaPipeline()
     {
