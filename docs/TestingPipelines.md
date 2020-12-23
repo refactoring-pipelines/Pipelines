@@ -47,7 +47,7 @@ digraph G { node [style=filled, shape=rect]
 
 }
 ```
-<sup><a href='/Refactoring.Pipelines.Test/_approvals/PipelineTests.SplitInput.approved.txt#L1-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-_approvals/PipelineTests.SplitInput.approved.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='#snippet-_approvals/PipelineTests.SplitInput.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
