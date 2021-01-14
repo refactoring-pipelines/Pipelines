@@ -316,9 +316,41 @@ namespace Refactoring.Pipelines.Test
             Approvals.VerifyException(exception);
         }
 
+        [TestMethod]
+        public void MultipleParametersFunction()
+        {
+            var input1 = new InputPipe<int>("value1");
+            var input2 = new InputPipe<int>("value2");
+            var functionPipe = input1.ProcessFunction(Add, input2);
+            var collector = functionPipe.Collect();
+
+            input1.Send(1);
+            input2.Send(2);
+            Assert.AreEqual(3, collector.SingleResult);
+
+            PipelineApprovals.VerifyAsSvg(collector);
+        }
+
+        [TestMethod]
+        public void MultipleParametersLambda()
+        {
+            var input1 = new InputPipe<int>("value1");
+            var input2 = new InputPipe<int>("value2");
+            var functionPipe = input1.Process((a, b) => a + b, input2);
+            var collector = functionPipe.Collect();
+
+            input1.Send(1);
+            input2.Send(2);
+            Assert.AreEqual(3, collector.SingleResult);
+
+            PipelineApprovals.VerifyAsSvg(collector);
+        }
+
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }
+
+        private int Add(int value1, int value2) { return value1 + value2; }
 
         private T Echo<T>(T t) { return t; }
     }

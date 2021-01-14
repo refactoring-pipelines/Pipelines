@@ -16,7 +16,7 @@ namespace Refactoring.Pipelines
         }
     }
 
-    public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>, IGraphNodeWithOutput
+    public class JoinedPipes<TInput1, TInput2> : Sender<Tuple<TInput1, TInput2>>,  IListener<TInput1, TInput2>, IGraphNodeWithOutput
     {
         private readonly ForwardingListener<TInput1> _listener1;
         private readonly ForwardingListener<TInput2> _listener2;
@@ -48,13 +48,13 @@ namespace Refactoring.Pipelines
         IGraphNode IGraphNodeWithOutput.Output =>
             new OutputNode(this, OutputType.ToReadableString());
 
-        private void OnMessage1(TInput1 value)
+        public void OnMessage1(TInput1 value)
         {
             _values1.Enqueue(value);
             _SendIfReady();
         }
 
-        private void OnMessage2(TInput2 value)
+        public void OnMessage2(TInput2 value)
         {
             _values2.Enqueue(value);
             _SendIfReady();
