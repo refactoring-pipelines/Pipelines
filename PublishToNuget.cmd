@@ -19,7 +19,7 @@ IF EXIST nuget_packages (
 IF ERRORLEVEL 1 exit /b 1
 
 FOR %%f IN (nuget_packages\*.nupkg) DO (
-    NuGet push %%f -Source nuget.org -Verbosity detailed
+    dotnet nuget push %%f -Source nuget.org -Verbosity detailed
     IF ERRORLEVEL 1 exit /b 1
 )
 
