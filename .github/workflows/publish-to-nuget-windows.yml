@@ -35,7 +35,7 @@ jobs:
   
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: deploy to nuget
-      run: PublishToNuget.cmd 
+      run: ./PublishToNuget.cmd 
    
 
   
