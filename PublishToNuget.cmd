@@ -21,7 +21,7 @@ MSBuild.exe /target:build
 IF ERRORLEVEL 1 exit /b 1
 
 FOR %%f IN (nuget_packages\*.nupkg) DO (
-    dotnet nuget push %%f -Source nuget.org -Verbosity detailed -k %NUGET_API_KEY%
+    dotnet nuget push %%f --source nuget.org --api-key %NUGET_API_KEY%
     IF ERRORLEVEL 1 exit /b 1
 )
 
