@@ -32,9 +32,10 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@2008f912f56e61277eefaac6d1888b750582aa16
 
-  
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: deploy to nuget
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       run: ./PublishToNuget.cmd 
    
 
