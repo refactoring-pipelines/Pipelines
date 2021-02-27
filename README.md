@@ -2,7 +2,9 @@
 
 A library for implementing programs as Pipeline objects. Inspired by Arlo Belshee's talk, [Refactoring to Async](https://www.ustream.tv/recorded/114862163).
 
-[![Build status](https://ci.appveyor.com/api/projects/status/flc852kfr9s235sq/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/pipelines/branch/master) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=refactoring-pipelines/Pipelines)](https://dependabot.com)
+[![Build status](https://ci.appveyor.com/api/projects/status/flc852kfr9s235sq/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/pipelines/branch/master)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=refactoring-pipelines/Pipelines)](https://dependabot.com)
+[![NuGet Status](https://img.shields.io/nuget/v/Refactoring.Pipelines.svg?style=flat)](https://www.nuget.org/packages/Refactoring.Pipelines/)
 
 <!-- toc -->
 ## Contents
