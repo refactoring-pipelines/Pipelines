@@ -15,7 +15,9 @@ IF EXIST nuget_packages (
     IF ERRORLEVEL 1 exit /b 1
 )
 
-MSBuild.exe /target:clean,restore,build
+MSBuild.exe /target:clean
+MSBuild.exe /target:restore
+MSBuild.exe /target:build
 IF ERRORLEVEL 1 exit /b 1
 
 FOR %%f IN (nuget_packages\*.nupkg) DO (
