@@ -26,9 +26,9 @@ PipelineApprovals.Verify(input);
 
 Which produces the following approved file:
 
-<!-- snippet: _approvals/PipelineTests.SplitInput.approved.txt -->
-<a id='snippet-_approvals/PipelineTests.SplitInput.approved.txt'></a>
-```txt
+<!-- snippet: _approvals/PipelineTests.SplitInput.approved.dot -->
+<a id='snippet-_approvals/PipelineTests.SplitInput.approved.dot'></a>
+```dot
 digraph G { node [style=filled, shape=rect]
 
 # Nodes
@@ -47,7 +47,7 @@ digraph G { node [style=filled, shape=rect]
 
 }
 ```
-<sup><a href='#snippet-_approvals/PipelineTests.SplitInput.approved.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='#snippet-_approvals/PipelineTests.SplitInput.approved.dot' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
