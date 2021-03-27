@@ -21,7 +21,7 @@ input.ProcessFunction(IncrementLong);
 
 PipelineApprovals.Verify(input);
 ```
-<sup><a href='#snippet-graphviz_approval' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L139-L145' title='Snippet source file'>snippet source</a> | <a href='#snippet-graphviz_approval' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Which produces the following approved file:
@@ -63,7 +63,7 @@ If you want to create the images, you can do that automatically as well, using t
 var input = CreateQuickPipelineWithInput();
 PipelineApprovals.VerifyAsPng(input);
 ```
-<sup><a href='#snippet-graphviz_png_approval' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L46-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-graphviz_png_approval' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which produces the following approved file:

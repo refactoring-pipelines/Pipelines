@@ -20,7 +20,7 @@ Let's say you have the following line of code:
 ```cs
 var result = long.Parse(age);
 ```
-<sup><a href='#snippet-basic_code_line' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L22-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_code_line' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can refactor this to pipelines with the following
@@ -35,7 +35,7 @@ var collector = parsePipe.Collect();
 inputPipe.Send("42");
 var result = collector.SingleResult;
 ```
-<sup><a href='#snippet-basic_pipeline' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/Refactoring.Pipelines.Test/PipelineTests.cs#L29-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_pipeline' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 These will produce the same results.
