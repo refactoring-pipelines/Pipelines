@@ -1,11 +1,9 @@
 # End of last session 
-* game of life
 
 # Next
-- kata w/ pipelines
-	* game of life
-	- tennis
-- unroll tuples: `Tuple<Tuple<,>,>` -> `Tuple<,,>`
+- remove appveryor
+- add GitHub actions badge
+- publish new packages to NuGet
 
 # Experiments:
 	- try VS Git UI
@@ -16,6 +14,10 @@
 	* Open a external Mindmup board 
 
 # Ideas
+- kata w/ pipelines
+	* game of life
+	- tennis
+- unroll tuples: `Tuple<Tuple<,>,>` -> `Tuple<,,>`
 - tuples as (a, b, c)
 - label edges, including edge to nothing
 - code converter (Roslyn or Mono.Cecil)
