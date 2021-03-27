@@ -15,10 +15,10 @@ namespace Refactoring.Pipelines
 
         public static void AssertNotLambda<T, TOutput>(Func<T, TOutput> func)
         {
-            bool IsLambda(Func<T, TOutput> func)
+            bool IsLambda(Func<T, TOutput> func2)
             {
                 var invalidChars = new[] {'<', '>'};
-                return func.Method.Name.Any(invalidChars.Contains);
+                return func2.Method.Name.Any(invalidChars.Contains);
             }
 
             if (IsLambda(func))
