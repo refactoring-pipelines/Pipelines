@@ -4,7 +4,7 @@
 - remove appveryor
 - add GitHub actions badge
 - publish new packages to NuGet
-- generate markdown CI
+
 
 # Experiments:
 	- try VS Git UI
