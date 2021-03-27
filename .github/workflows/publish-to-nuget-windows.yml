@@ -1,5 +1,5 @@
 
-name: .NET Core Desktop
+name: Publish to Nuget (Windows)
 
 on:
   release:
