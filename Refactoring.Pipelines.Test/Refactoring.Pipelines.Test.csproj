@@ -9,16 +9,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApprovalTests" Version="5.4.5" />
-    <PackageReference Include="ApprovalUtilities" Version="5.4.5" />
+    <PackageReference Include="ApprovalTests" Version="5.4.7" />
+    <PackageReference Include="ApprovalUtilities" Version="5.4.7" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="MarkdownSnippets.MsBuild" Version="23.0.2">
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="23.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
