@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="5.4.7" />
     <PackageReference Include="ApprovalUtilities" Version="5.4.7" />
-    <PackageReference Include="Fody" Version="6.5.0" PrivateAssets="All" />
+    <PackageReference Include="Fody" Version="6.5.1" PrivateAssets="All" />
     <PackageReference Include="GraphVizNet" Version="1.0.2" PrivateAssets="None" />
     <PackageReference Include="Publicize.Fody" Version="1.8.0" PrivateAssets="All" />
     <PackageReference Include="Virtuosity.Fody" Version="3.1.1" PrivateAssets="All" />
