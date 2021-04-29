@@ -1,0 +1,33 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: ApprovalUtilities
+    versions:
+    - 5.4.6
+    - 5.4.7
+  - dependency-name: ApprovalTests
+    versions:
+    - 5.4.6
+    - 5.4.7
+  - dependency-name: MarkdownSnippets.MsBuild
+    versions:
+    - 23.1.0
+    - 23.1.1
+  - dependency-name: MSTest.TestFramework
+    versions:
+    - 2.2.1
+    - 2.2.2
+    - 2.2.3
+  - dependency-name: MSTest.TestAdapter
+    versions:
+    - 2.2.1
+    - 2.2.2
+    - 2.2.3
+  - dependency-name: Fody
+    versions:
+    - 6.4.0
