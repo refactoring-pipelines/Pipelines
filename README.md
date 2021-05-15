@@ -2,6 +2,7 @@
 
 A library for implementing programs as Pipeline objects. Inspired by Arlo Belshee's talk, [Refactoring to Async](https://www.ustream.tv/recorded/114862163).
 
+[![Build and Test](https://github.com/refactoring-pipelines/Pipelines/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/refactoring-pipelines/Pipelines/actions/workflows/build-and-test.yml)
 [![NuGet Status](https://img.shields.io/nuget/v/Refactoring.Pipelines.svg?style=flat)](https://www.nuget.org/packages/Refactoring.Pipelines/)
 
 <!-- toc -->
