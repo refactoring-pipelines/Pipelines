@@ -1,8 +1,6 @@
 # End of last session 
 
 # Next
-- remove appveryor
-- add GitHub actions badge
 - publish new packages to NuGet
 
 
