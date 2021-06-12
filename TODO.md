@@ -1,6 +1,9 @@
 # End of last session 
 
 # Next
+	- label edges, including edge to nothing
+		- return values from Function rendered differently
+		- 
 
 # Experiments:
 	- try VS Git UI
@@ -15,7 +18,6 @@
 	* game of life
 	- tennis
 - tuples as (a, b, c)
-- label edges, including edge to nothing
 - code converter (Roslyn or Mono.Cecil)
 - Propagate Exceptions through a pipeline
 - GetInputs<>.AndOutputs<>() when finding an end-point that's not of a type we expect could have said "looking for an InputPipe<> but found an unconnected pipe of type InputPipe<>" (would have been async)
