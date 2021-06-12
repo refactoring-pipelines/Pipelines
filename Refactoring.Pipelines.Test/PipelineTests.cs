@@ -316,6 +316,16 @@ namespace Refactoring.Pipelines.Test
             Approvals.VerifyException(exception);
         }
 
+        
+        //[TestMethod]
+        //TODO: START HERE
+        public void AlternativeUIRendering()
+        {
+
+        }
+
+        
+
         private string LongToString(long value) { return value.ToString(); }
 
         private long IncrementLong(long value) { return value + 1; }

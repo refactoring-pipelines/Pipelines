@@ -1,6 +1,7 @@
 # End of last session 
 
 # Next
+	- Go look at test with TODO. Copy in a scenario that is closer to the points below
 	- label edges, including edge to nothing
 		- return values from Function rendered differently
 		- 
