@@ -1,8 +1,6 @@
 # End of last session 
 
 # Next
-- publish new packages to NuGet
-
 
 # Experiments:
 	- try VS Git UI
@@ -16,7 +14,6 @@
 - kata w/ pipelines
 	* game of life
 	- tennis
-- unroll tuples: `Tuple<Tuple<,>,>` -> `Tuple<,,>`
 - tuples as (a, b, c)
 - label edges, including edge to nothing
 - code converter (Roslyn or Mono.Cecil)
