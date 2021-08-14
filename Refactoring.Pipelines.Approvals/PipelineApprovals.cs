@@ -14,7 +14,7 @@ namespace Refactoring.Pipelines.ApprovalTests
             DiffTools.AddToolBasedOn(
                 DiffTool.VisualStudioCode,
                 "Vs Code for Visgraph",
-                arguments: (temp, target) => $"-r \"{temp}\"",
+                targetRightArguments: (temp, targetFile) => $"-r \"{temp}\"",
                 binaryExtensions: new[] {".dot"});
         }
 
