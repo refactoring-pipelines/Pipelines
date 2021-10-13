@@ -13,7 +13,7 @@ namespace Refactoring.Pipelines
     public class CollectorPipe<T> : IListener<T>, ICollectorNode
     {
         private readonly ISender<T> _predecessor;
-        private readonly List<T> _results = new List<T>();
+        public List<T> Results { get; } = new List<T>();
 
         public CollectorPipe(ISender<T> predecessor)
         {
@@ -22,15 +22,15 @@ namespace Refactoring.Pipelines
         }
 
         public T SingleResult =>
-            _results.Single();
+            Results.Single();
 
         public bool IsEmpty =>
-            !_results.Any();
+            !Results.Any();
 
         IEnumerable<IGraphNode> IGraphNode.Parents =>
             new[] {_predecessor};
 
-        public void OnMessage(T value) { _results.Add(value); }
+        public void OnMessage(T value) { Results.Add(value); }
 
         string IGraphNode.Name =>
             "Collector";

@@ -57,6 +57,9 @@
 - refactoring: split "pipeline" from "graph"
 - refactoring: implement pipelines as pipelines
 
+- void-returning last method
+- nullable
+
 # Safeguarding / automation
 - ensure imported .svg really exist at that name
 - verify .svg are up to date in CI

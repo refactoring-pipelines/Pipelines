@@ -1,4 +1,5 @@
 using System;
+using ApprovalTests;
 using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Refactoring.Pipelines.ApprovalTests;
@@ -78,6 +79,20 @@ namespace Refactoring.Pipelines.Test
 
             Assert.AreEqual(input1, endPoints.Input1);
             Assert.AreEqual(output1, endPoints.Output1);
+        }
+
+        [TestMethod]
+        public void SendAll()
+        {
+            var input = new InputPipe<int>("input");
+            var middle = input.Process(p => p + 1);
+            var end = middle.Process(p => p.ToString()).Collect();
+
+            var inputsAndOutputs = middle.GetInputs<int>().AndOutputs<string>();
+            var (inputPipe, collectorPipe) = inputsAndOutputs.AsTuple();
+
+            inputsAndOutputs.SendAll(new[] { 1, 2, 3 });
+            Approvals.VerifyAll(inputsAndOutputs.Output1.Results, "");
         }
     }
 }
