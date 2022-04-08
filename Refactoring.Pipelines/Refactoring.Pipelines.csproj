@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="ApprovalUtilities" Version="5.7.1" />
     <PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.9" />
     <PackageReference Include="Publicize.Fody" Version="1.8.0" PrivateAssets="All" />
     <PackageReference Include="Virtuosity.Fody" Version="3.1.1" PrivateAssets="All" />
   </ItemGroup>
