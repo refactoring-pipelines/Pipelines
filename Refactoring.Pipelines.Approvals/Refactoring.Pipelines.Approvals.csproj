@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="5.7.1" />
-    <PackageReference Include="ApprovalUtilities" Version="5.7.1" />
+    <PackageReference Include="ApprovalUtilities" Version="5.7.3" />
     <PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
     <PackageReference Include="GraphVizNet" Version="1.0.3" PrivateAssets="None" />
     <PackageReference Include="Publicize.Fody" Version="1.8.0" PrivateAssets="All" />
