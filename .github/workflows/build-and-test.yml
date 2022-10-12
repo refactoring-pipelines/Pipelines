@@ -21,7 +21,7 @@ jobs:
         fetch-depth: 0
 
     - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@ab534842b4bdf384b8aaf93765dc6f721d9f5fab
+      uses: microsoft/setup-msbuild@d6496d378fd258c01b23231ffff1e73808f126e7
 
     - name: build and test
       run: ./build-and-test.cmd
