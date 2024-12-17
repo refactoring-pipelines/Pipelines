@@ -7,6 +7,10 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
+  groups:
+    approvals:
+        patterns:
+          - MSTest.Test
 
 - package-ecosystem: github-actions
   directory: "/"
